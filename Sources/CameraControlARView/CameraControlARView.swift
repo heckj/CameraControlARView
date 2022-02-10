@@ -105,10 +105,14 @@ import RealityKit
 
     // MARK: - FPS mode variables
 
+    /// The speed at which the camera moves when incrementing forward via the keyboard
     public var forward_speed: Float
+    /// The speed at which the camera moves when rotating using the keyboard
     public var turn_speed: Float
     private var dragstart_transform: matrix_float4x4
     private let sixtydegrees = Float.pi / 3
+    
+    /// The homogenous transform that represents the camera's location and rotation.
     public var camera_transform: matrix_float4x4 {
         get {
             cameraAnchor.transform.matrix
@@ -122,7 +126,12 @@ import RealityKit
     public var cameraAnchor: AnchorEntity
     /// A copy of the basic transform applied ot the camera, and updated in parallel to reflect "upward" to SwiftUI.
     @Published var macOSCameraTransform: Transform
-
+    
+    /// Creates a new AR View with the camera controlled by mouse, keyboard, and/or the trackpad.
+    ///
+    /// The default motion mode for the view is ``MotionMode-swift.enum/arcball``, which orbits the camera around a specific point in space.
+    ///
+    /// - Parameter frameRect: The frame rectangle for the view, measured in points.
     public required init(frame frameRect: NSRect) {
         motionMode = .arcball
 
