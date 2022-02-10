@@ -5,12 +5,11 @@
 //  Created by Joseph Heck on 2/7/22.
 //
 
-import RealityKit
 import Cocoa
+import RealityKit
 
 /// An augmented reality view for macOS that provides keyboard and mouse movement controls for the camera within the view.
 @objc public class CameraControlARView: ARView, ObservableObject {
-    
     /// The mode of camera motion within the augmented reality scene.
     public enum MotionMode: Int {
         /// Rotate around a target location, effectively orbiting and keeping the camera trained on it.
@@ -28,7 +27,7 @@ import Cocoa
         /// Free motion within the AR scene, not locked to a location.
         case firstperson
     }
-    
+
     // arcball:
     //
     // At its heart, arcball is all about looking at a singular location (or object). It needs to have a
@@ -42,7 +41,7 @@ import Cocoa
     // - maginification (increase = zoom in) interpretted as shortening the radius to the target location, and
     // zoom out does the reverse. Definitely clamp to a minimum of zero radius, and potentially want to have a
     // lower set limit not to come earlier based on a collision boundary for any target object and maybe some padding.
-    
+
     /// The mode in which the camera is controlled by keypresses and/or mouse and gesture movements.
     ///
     /// The default option is ``MotionMode-swift.enum/arcball``:
@@ -50,10 +49,11 @@ import Cocoa
     /// - ``MotionMode-swift.enum/firstperson`` moves freely in all axis within the world space, not locked to any location.
     ///
     public var motionMode: MotionMode
-    
+
     // TODO: consider encapsulating all these values into a single struct to allow for assigning consolidated values.
-    
+
     // MARK: - ARCBALL mode variables
+
     /// The target for the camera when in arcball mode.
     public var arcballTarget: simd_float3 {
         didSet {
@@ -62,6 +62,7 @@ import Cocoa
             }
         }
     }
+
     /// The angle of inclination of the camera when in arcball mode.
     public var inclinationAngle: Float {
         didSet {
@@ -70,6 +71,7 @@ import Cocoa
             }
         }
     }
+
     /// The angle of rotation of the camera when in arcball mode.
     public var rotationAngle: Float {
         didSet {
@@ -78,6 +80,7 @@ import Cocoa
             }
         }
     }
+
     /// The camera's orbital distance from the target when in arcball mode.
     public var radius: Float {
         didSet {
@@ -86,31 +89,32 @@ import Cocoa
             }
         }
     }
-    
+
     /// The speed at which drag operations map percentage of movement within the view to rotational or positional updates.
     public var dragspeed: Float
-    
+
     /// The speed at which keypresses change the angles of inclination or rotation.
     ///
     /// This view doubles the speed valuewhen the key is held-down.
     public var keyspeed: Float
-    
+
     private var dragstart: NSPoint
     private var dragstart_rotation: Float
     private var dragstart_inclination: Float
     private var magnify_start: Float
-    
+
     // MARK: - FPS mode variables
+
     public var forward_speed: Float
     public var turn_speed: Float
     private var dragstart_transform: matrix_float4x4
-    private let sixtydegrees = Float.pi/3
+    private let sixtydegrees = Float.pi / 3
     public var camera_transform: matrix_float4x4 {
         get {
-            self.cameraAnchor.transform.matrix
+            cameraAnchor.transform.matrix
         }
         set {
-            self.cameraAnchor.transform = Transform(matrix: newValue)
+            cameraAnchor.transform = Transform(matrix: newValue)
         }
     }
 
@@ -118,12 +122,12 @@ import Cocoa
     public var cameraAnchor: AnchorEntity
     /// A copy of the basic transform applied ot the camera, and updated in parallel to reflect "upward" to SwiftUI.
     @Published var macOSCameraTransform: Transform
-    
-    required init(frame frameRect: NSRect) {
+
+    public required init(frame frameRect: NSRect) {
         motionMode = .arcball
-        
+
         // ARCBALL mode
-        arcballTarget = simd_float3(0,0,0)
+        arcballTarget = simd_float3(0, 0, 0)
         inclinationAngle = 0
         rotationAngle = 0
         radius = 2
@@ -132,11 +136,11 @@ import Cocoa
         dragstart_rotation = 0
         dragstart_inclination = 0
         magnify_start = radius
-        
+
         // FPS mode
         forward_speed = 0.05
         turn_speed = 0.01
-        
+
         // Not mode specific
         cameraAnchor = AnchorEntity(world: .zero)
         dragstart = NSPoint.zero
@@ -144,17 +148,17 @@ import Cocoa
         // reflect the camera's transform as an observed object
         macOSCameraTransform = cameraAnchor.transform
         super.init(frame: frameRect)
-        
+
         let cameraEntity = PerspectiveCamera()
         cameraEntity.camera.fieldOfViewInDegrees = 60
         cameraAnchor.addChild(cameraEntity)
         scene.addAnchor(cameraAnchor)
-        
+
         updateCamera()
     }
-    
+
     // MARK: - rotational transforms
-    
+
     /// Creates a 3D rotation transform that rotates around the Z axis by the angle that you provide
     /// - Parameter radians: The amount (in radians) to rotate around the Z axis.
     /// - Returns: A Z-axis rotation transform.
@@ -190,11 +194,12 @@ import Cocoa
             SIMD4<Float>(0, 0, 0, 1)
         )
     }
+
     /// Returns the rotational transform component from a homogeneous matrix.
     /// - Parameter matrix: The homogeneous transform matrix.
     /// - Returns: The 3x3 rotation matrix.
     private func rotationTransform(_ matrix: matrix_float4x4) -> matrix_float3x3 {
-        // extract the rotational component from the transform matrix
+        // Extract the rotational component from the transform matrix
         let (col1, col2, col3, _) = matrix.columns
         let rotationTransform = matrix_float3x3(
             simd_float3(x: col1.x, y: col1.y, z: col1.z),
@@ -205,13 +210,13 @@ import Cocoa
     }
 
     // MARK: - heading vectors
-    
+
     /// Returns the unit-vector that represents the current heading for the camera.
     private func headingVector() -> simd_float3 {
-        // original heading is assuming the camera started out pointing in -Z direction.
+        // Original heading is assumed to be the camera started out pointing in -Z direction.
         let short_heading_vector = simd_float3(x: 0, y: 0, z: -1)
         let rotated_heading = matrix_multiply(
-            rotationTransform(self.cameraAnchor.transform.matrix),
+            rotationTransform(cameraAnchor.transform.matrix),
             short_heading_vector
         )
         return rotated_heading
@@ -219,10 +224,10 @@ import Cocoa
 
     /// Returns the unit-vector that represents the heading 90° to the right of forward for the camera.
     private func rightVector() -> simd_float3 {
-        // original heading is assuming the camera started out pointing in -Z direction.
+        // Original heading is assumed to be the camera started out pointing in -Z direction.
         let short_heading_vector = simd_float3(x: 1, y: 0, z: 0)
         let rotated_heading = matrix_multiply(
-            rotationTransform(self.cameraAnchor.transform.matrix),
+            rotationTransform(cameraAnchor.transform.matrix),
             short_heading_vector
         )
         return rotated_heading
@@ -234,11 +239,12 @@ import Cocoa
             let translationTransform = Transform(scale: .one,
                                                  rotation: simd_quatf(),
                                                  translation: SIMD3<Float>(0, 0, radius))
-            let combinedRotationTransform: Transform = Transform(pitch: inclinationAngle, yaw: rotationAngle, roll: 0)
+            let combinedRotationTransform: Transform = .init(pitch: inclinationAngle, yaw: rotationAngle, roll: 0)
+
             // ORDER of operations is critical here to getting the correct transform:
             // - identity -> rotation -> translation
             let computed_transform = matrix_identity_float4x4 * combinedRotationTransform.matrix * translationTransform.matrix
-            
+
             // This moves the camera to the right location
             cameraAnchor.transform = Transform(matrix: computed_transform)
             // This spins the camera AT its current location to look at a specific target location
@@ -248,16 +254,16 @@ import Cocoa
         case .firstperson:
             break
         }
-
     }
-    
-    @MainActor required dynamic init?(coder decoder: NSCoder) {
+
+    @available(*, unavailable)
+    @MainActor dynamic required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    override dynamic open func mouseDown(with event: NSEvent) {
-        //print("mouseDown EVENT: \(event)")
-        //        print(" at \(event.locationInWindow) of \(self.frame)")
+
+    override open dynamic func mouseDown(with event: NSEvent) {
+        // print("mouseDown EVENT: \(event)")
+        // print(" at \(event.locationInWindow) of \(self.frame)")
         dragstart = event.locationInWindow
         switch motionMode {
         case .arcball:
@@ -267,31 +273,31 @@ import Cocoa
             dragstart_transform = cameraAnchor.transform.matrix
         }
     }
-    
-    override dynamic open func mouseDragged(with event: NSEvent) {
-        //        print("mouseDragged EVENT: \(event)")
-        //        print(" at \(event.locationInWindow) of \(self.frame)")
+
+    override open dynamic func mouseDragged(with event: NSEvent) {
+        // print("mouseDragged EVENT: \(event)")
+        // print(" at \(event.locationInWindow) of \(self.frame)")
         let deltaX = Float(event.locationInWindow.x - dragstart.x)
         let deltaY = Float(event.locationInWindow.y - dragstart.y)
         switch motionMode {
         case .arcball:
             rotationAngle = dragstart_rotation - deltaX * dragspeed
             inclinationAngle = dragstart_inclination + deltaY * dragspeed
-            if inclinationAngle > Float.pi/2 {
-                inclinationAngle = Float.pi/2
+            if inclinationAngle > Float.pi / 2 {
+                inclinationAngle = Float.pi / 2
             }
-            if inclinationAngle < -Float.pi/2 {
-                inclinationAngle = -Float.pi/2
+            if inclinationAngle < -Float.pi / 2 {
+                inclinationAngle = -Float.pi / 2
             }
             updateCamera()
         case .firstperson:
-//            print("delta X is \(deltaX)")
-//            print("delta Y is \(deltaY)")
-//            print("Divided by frame X: \(deltaX/Float(self.frame.width))")
-//            print("Divided by frame Y: \(deltaY/Float(self.frame.height))")
-//
-            let proportion_view_vertical_drag = deltaY/Float(self.frame.height)
-            let proportion_view_horizontal_drag = deltaX/Float(self.frame.width)
+            // print("delta X is \(deltaX)")
+            // print("delta Y is \(deltaY)")
+            // print("Divided by frame X: \(deltaX/Float(self.frame.width))")
+            // print("Divided by frame Y: \(deltaY/Float(self.frame.height))")
+
+            let proportion_view_vertical_drag = deltaY / Float(frame.height)
+            let proportion_view_horizontal_drag = deltaX / Float(frame.width)
 
             let look_up_transform = rotationAroundXAxisTransform(
                 radians: -sixtydegrees * proportion_view_vertical_drag)
@@ -300,20 +306,11 @@ import Cocoa
             let combined_transform = dragstart_transform * look_up_transform * left_turn_transform
             cameraAnchor.transform = Transform(matrix: combined_transform)
         }
-        //        print(" converted local: \(self.convert(event.locationInWindow, from: self))")
-        //        print(" associated event mask: \(event.associatedEventsMask)")
     }
-    
-    //    override dynamic open func mouseMoved(with event: NSEvent) {
-    //        // looks like I'd need to create a relevant NSTrackingArea to capture random mouse movements here
-    //        // https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/EventOverview/TrackingAreaObjects/TrackingAreaObjects.html
-    //        // https://swiftui-lab.com/a-powerful-combo/
-    //        print("mouseMoved EVENT: \(event)")
-    //    }
-    
-    override dynamic open func keyDown(with event: NSEvent) {
-//        print("keyDown: \(event)")
-//        print("key value: \(event.keyCode)")
+
+    override open dynamic func keyDown(with event: NSEvent) {
+        // print("keyDown: \(event)")
+        // print("key value: \(event.keyCode)")
         switch motionMode {
         case .arcball:
             switch event.keyCode {
@@ -338,7 +335,7 @@ import Cocoa
             case 126, 13:
                 // 126 = up arrow
                 // 13 = w
-                if inclinationAngle > -Float.pi/2 {
+                if inclinationAngle > -Float.pi / 2 {
                     if event.isARepeat {
                         inclinationAngle -= keyspeed * 2
                     } else {
@@ -349,7 +346,7 @@ import Cocoa
             case 125, 1:
                 // 125 = down arrow
                 // 1 = s
-                if inclinationAngle < Float.pi/2 {
+                if inclinationAngle < Float.pi / 2 {
                     if event.isARepeat {
                         inclinationAngle += keyspeed * 2
                     } else {
@@ -360,7 +357,7 @@ import Cocoa
             default:
                 break
             }
-            
+
         case .firstperson:
             switch event.keyCode {
             case 0:
@@ -436,24 +433,18 @@ import Cocoa
             }
         }
     }
-    
-    override dynamic open func magnify(with event: NSEvent) {
-//        if event.phase == NSEvent.Phase.ended {
-//            print("magnify: \(event)")
-//        }
+
+    override open dynamic func magnify(with event: NSEvent) {
+        // if event.phase == NSEvent.Phase.ended {
+        //    print("magnify: \(event)")
+        // }
         switch motionMode {
         case .arcball:
             let multiplier = Float(event.magnification) // magnify_end
             radius = radius * (multiplier + 1)
-//            print("radius set to \(radius)")
             updateCamera()
         case .firstperson:
             break
         }
     }
-    
-    //    override dynamic open func rotate(with event: NSEvent) {
-    //        print("rotate: \(event)")
-    //    }
-    
 }
