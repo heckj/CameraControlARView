@@ -9,7 +9,7 @@ import Cocoa
 import RealityKit
 import SwiftUI
 
-/// A SwiftUI representable view that wraps an underlying CameraControlARView instance.
+/// A SwiftUI representable view that wraps an underlying augmented reality view with camera controls instance.
 public struct ARViewContainer: NSViewRepresentable {
     public typealias NSViewType = RealityKit.ARView
 

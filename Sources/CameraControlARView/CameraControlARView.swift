@@ -8,7 +8,7 @@
 import Cocoa
 import RealityKit
 
-/// An augmented reality view for macOS that provides keyboard and mouse movement controls for the camera within the view.
+/// An augmented reality view for macOS that provides keyboard, trackpad, and mouse movement controls for the camera within the view.
 @objc public class CameraControlARView: ARView, ObservableObject {
     /// The mode of camera motion within the augmented reality scene.
     public enum MotionMode: Int {
