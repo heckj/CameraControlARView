@@ -9,6 +9,14 @@ import Cocoa
 import RealityKit
 
 /// An augmented reality view for macOS that provides keyboard, trackpad, and mouse movement controls for the camera within the view.
+///
+/// Set the ``CameraControlARView/CameraControlARView/motionMode-swift.property`` to either:
+/// - ``MotionMode-swift.enum/arcball`` for rotating around a specific point.
+/// - ``MotionMode-swift.enum/firstperson`` for moving freely within the environment.
+///
+/// The default motion mode is ``MotionMode-swift.enum/arcball``.
+///
+/// Additional properties control the target location, the camera's location, or the speed of movement within the environment.
 @objc public class CameraControlARView: ARView, ObservableObject {
     /// The mode of camera motion within the augmented reality scene.
     public enum MotionMode: Int {
@@ -17,14 +25,32 @@ import RealityKit
         /// Drag motions:
         /// - The view converts vertical drag distance into an inclination above, or below, the target location, clamped to directly above and below it.
         /// - The view converts horizontal drag distance into a rotational angle, orbiting the target location.
+        /// - A magnify gesture zooms in, or out, from the target location.
         ///
         /// Keyboard motions:
         /// - The right-arrow and `d` keys rotate the camera to the right around the location.
         /// - The left-arrow and `a` keys rotate the camera to the left around the location.
-        /// - the up-arrow and `w` keys rotate the camera upward around the location, clamped to a maximum of directly above the location.
-        /// - the down-arrow and `s` keys rotate the camera downward around the location, clamped to a minimum of directly below the location.
+        /// - The up-arrow and `w` keys rotate the camera upward around the location, clamped to a maximum of directly above the location.
+        /// - The down-arrow and `s` keys rotate the camera downward around the location, clamped to a minimum of directly below the location.
         case arcball
         /// Free motion within the AR scene, not locked to a location.
+        ///
+        /// In general, the arrow keys or trackpad control where you're looking and the `a`,`s`,`d`, and `w` keys move you around.
+        ///
+        /// Drag motions:
+        /// - A drag motion changes where the camera is looking.
+        ///
+        /// Keyboard motions:
+        /// - The `d` key moves the camera in a strafing motion to the right.
+        /// - The `a` key moves the camera in a strafing motion to the left.
+        /// - The `w` key moves the camera forward.
+        /// - The `s` key moves the camera backward.
+        ///
+        /// - The right-arrow key rotates the camera to the right..
+        /// - The left-arrow key rotates the camera to the left.
+        /// - The up-arrow key rotates the camera upward.
+        /// - The down-arrow key rotates the camera downward.
+
         case firstperson
     }
 
