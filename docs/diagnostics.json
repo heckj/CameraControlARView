@@ -1,1 +1,11 @@
-[{"explanation":"This content was already declared at 'file:\/\/\/Users\/heckj\/src\/CameraControlARView\/Sources\/CameraControlARView\/Documentation.docc\/CameraControlARView.md'","source":"Extensions\/CameraControlARView.md","severity":2,"notes":[],"summary":"Redeclaration of 'CameraControlARView.md'; this file will be skipped"}]
+[
+  {
+    "explanation" : "This content was already declared at 'file:\/\/\/Users\/heckj\/src\/CameraControlARView\/Sources\/CameraControlARView\/Documentation.docc\/CameraControlARView.md'",
+    "notes" : [
+
+    ],
+    "severity" : 2,
+    "source" : "Extensions\/CameraControlARView.md",
+    "summary" : "Redeclaration of 'CameraControlARView.md'; this file will be skipped"
+  }
+]

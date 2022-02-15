@@ -1,1 +1,309 @@
-{"primaryContentSections":[{"kind":"declarations","declarations":[{"tokens":[{"kind":"keyword","text":"enum"},{"kind":"text","text":" "},{"kind":"identifier","text":"MotionMode"}],"languages":["swift"],"platforms":["macOS"]}]}],"schemaVersion":{"major":0,"minor":2,"patch":0},"sections":[],"variants":[{"paths":["\/documentation\/cameracontrolarview\/cameracontrolarview\/motionmode-swift.enum"],"traits":[{"interfaceLanguage":"swift"}]}],"relationshipsSections":[{"identifiers":["doc:\/\/CameraControlARView\/SQ","doc:\/\/CameraControlARView\/SH","doc:\/\/CameraControlARView\/SY"],"kind":"relationships","title":"Conforms To","type":"conformsTo"}],"identifier":{"url":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum","interfaceLanguage":"swift"},"abstract":[{"type":"text","text":"The mode of camera motion within the augmented reality scene."}],"kind":"symbol","metadata":{"fragments":[{"kind":"keyword","text":"enum"},{"kind":"text","text":" "},{"kind":"identifier","text":"MotionMode"}],"title":"CameraControlARView.MotionMode","roleHeading":"Enumeration","role":"symbol","symbolKind":"enum","externalID":"s:19CameraControlARViewAAC10MotionModeO","modules":[{"name":"CameraControlARView"}],"navigatorTitle":[{"kind":"identifier","text":"MotionMode"}]},"hierarchy":{"paths":[["doc:\/\/CameraControlARView\/documentation\/CameraControlARView","doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView"]]},"topicSections":[{"title":"Enumeration Cases","identifiers":["doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum\/arcball","doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum\/firstperson"]},{"title":"Default Implementations","identifiers":["doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum\/Equatable-Implementations","doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum\/RawRepresentable-Implementations"],"generated":true}],"references":{"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/MotionMode-swift.enum/arcball":{"role":"symbol","title":"CameraControlARView.MotionMode.arcball","fragments":[{"kind":"keyword","text":"case"},{"kind":"text","text":" "},{"kind":"identifier","text":"arcball"}],"abstract":[{"type":"text","text":"Rotate around a target location, effectively orbiting and keeping the camera trained on it."}],"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum\/arcball","kind":"symbol","type":"topic","url":"\/documentation\/cameracontrolarview\/cameracontrolarview\/motionmode-swift.enum\/arcball"},"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/MotionMode-swift.enum":{"role":"symbol","title":"CameraControlARView.MotionMode","fragments":[{"kind":"keyword","text":"enum"},{"kind":"text","text":" "},{"kind":"identifier","text":"MotionMode"}],"abstract":[{"type":"text","text":"The mode of camera motion within the augmented reality scene."}],"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"MotionMode"}],"url":"\/documentation\/cameracontrolarview\/cameracontrolarview\/motionmode-swift.enum"},"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/MotionMode-swift.enum/Equatable-Implementations":{"role":"collectionGroup","title":"Equatable Implementations","abstract":[],"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum\/Equatable-Implementations","kind":"article","type":"topic","url":"\/documentation\/cameracontrolarview\/cameracontrolarview\/motionmode-swift.enum\/equatable-implementations"},"doc://CameraControlARView/SH":{"type":"unresolvable","title":"Swift.Hashable","identifier":"doc:\/\/CameraControlARView\/SH"},"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView":{"role":"symbol","title":"CameraControlARView","fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"identifier","text":"CameraControlARView"}],"abstract":[{"type":"text","text":"An augmented reality view for macOS that provides keyboard, trackpad, and mouse movement controls for the camera within the view."}],"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"CameraControlARView"}],"url":"\/documentation\/cameracontrolarview\/cameracontrolarview"},"doc://CameraControlARView/documentation/CameraControlARView":{"role":"collection","title":"CameraControlARView","abstract":[{"type":"text","text":"An ARView with camera control and SwiftUI wrappers to use RealityKit with macOS."}],"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView","kind":"symbol","type":"topic","url":"\/documentation\/cameracontrolarview"},"doc://CameraControlARView/SQ":{"type":"unresolvable","title":"Swift.Equatable","identifier":"doc:\/\/CameraControlARView\/SQ"},"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/MotionMode-swift.enum/firstperson":{"role":"symbol","title":"CameraControlARView.MotionMode.firstperson","fragments":[{"kind":"keyword","text":"case"},{"kind":"text","text":" "},{"kind":"identifier","text":"firstperson"}],"abstract":[{"type":"text","text":"Free motion within the AR scene, not locked to a location."}],"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum\/firstperson","kind":"symbol","type":"topic","url":"\/documentation\/cameracontrolarview\/cameracontrolarview\/motionmode-swift.enum\/firstperson"},"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/MotionMode-swift.enum/RawRepresentable-Implementations":{"role":"collectionGroup","title":"RawRepresentable Implementations","abstract":[],"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum\/RawRepresentable-Implementations","kind":"article","type":"topic","url":"\/documentation\/cameracontrolarview\/cameracontrolarview\/motionmode-swift.enum\/rawrepresentable-implementations"},"doc://CameraControlARView/SY":{"type":"unresolvable","title":"Swift.RawRepresentable","identifier":"doc:\/\/CameraControlARView\/SY"}}}
+{
+  "abstract" : [
+    {
+      "text" : "The mode of camera motion within the augmented reality scene.",
+      "type" : "text"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "externalID" : "s:19CameraControlARViewAAC10MotionModeO",
+    "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "enum"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "identifier",
+        "text" : "MotionMode"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "CameraControlARView"
+      }
+    ],
+    "navigatorTitle" : [
+      {
+        "kind" : "identifier",
+        "text" : "MotionMode"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Enumeration",
+    "symbolKind" : "enum",
+    "title" : "CameraControlARView.MotionMode"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "macOS"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "enum"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "identifier",
+              "text" : "MotionMode"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    }
+  ],
+  "relationshipsSections" : [
+    {
+      "identifiers" : [
+        "doc:\/\/CameraControlARView\/SQ",
+        "doc:\/\/CameraControlARView\/SH",
+        "doc:\/\/CameraControlARView\/SY"
+      ],
+      "kind" : "relationships",
+      "title" : "Conforms To",
+      "type" : "conformsTo"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 2,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "topicSections" : [
+    {
+      "identifiers" : [
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum\/arcball",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum\/firstperson"
+      ],
+      "title" : "Enumeration Cases"
+    },
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum\/Equatable-Implementations",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum\/RawRepresentable-Implementations"
+      ],
+      "title" : "Default Implementations"
+    }
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/cameracontrolarview\/cameracontrolarview\/motionmode-swift.enum"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://CameraControlARView/SH": {
+  "identifier" : "doc:\/\/CameraControlARView\/SH",
+  "title" : "Swift.Hashable",
+  "type" : "unresolvable"
+},
+"doc://CameraControlARView/SQ": {
+  "identifier" : "doc:\/\/CameraControlARView\/SQ",
+  "title" : "Swift.Equatable",
+  "type" : "unresolvable"
+},
+"doc://CameraControlARView/SY": {
+  "identifier" : "doc:\/\/CameraControlARView\/SY",
+  "title" : "Swift.RawRepresentable",
+  "type" : "unresolvable"
+},
+"doc://CameraControlARView/documentation/CameraControlARView": {
+  "abstract" : [
+    {
+      "text" : "An ARView with camera control and SwiftUI wrappers to use RealityKit with macOS.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "CameraControlARView",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView": {
+  "abstract" : [
+    {
+      "text" : "An augmented reality view for macOS that provides keyboard, trackpad, and mouse movement controls for the camera within the view.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "class"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "CameraControlARView"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "CameraControlARView"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "CameraControlARView",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/MotionMode-swift.enum": {
+  "abstract" : [
+    {
+      "text" : "The mode of camera motion within the augmented reality scene.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "enum"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "MotionMode"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "MotionMode"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "CameraControlARView.MotionMode",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/motionmode-swift.enum"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/MotionMode-swift.enum/Equatable-Implementations": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum\/Equatable-Implementations",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Equatable Implementations",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/motionmode-swift.enum\/equatable-implementations"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/MotionMode-swift.enum/RawRepresentable-Implementations": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum\/RawRepresentable-Implementations",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "RawRepresentable Implementations",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/motionmode-swift.enum\/rawrepresentable-implementations"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/MotionMode-swift.enum/arcball": {
+  "abstract" : [
+    {
+      "text" : "Rotate around a target location, effectively orbiting and keeping the camera trained on it.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "case"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "arcball"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum\/arcball",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "CameraControlARView.MotionMode.arcball",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/motionmode-swift.enum\/arcball"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/MotionMode-swift.enum/firstperson": {
+  "abstract" : [
+    {
+      "text" : "Free motion within the AR scene, not locked to a location.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "case"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "firstperson"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum\/firstperson",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "CameraControlARView.MotionMode.firstperson",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/motionmode-swift.enum\/firstperson"
+}
+}
+}

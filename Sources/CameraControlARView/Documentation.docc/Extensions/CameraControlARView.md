@@ -1,8 +1,10 @@
-# ``CameraControlARView/CameraControlARView``
+# ``CameraControlARView/CameraControlARView-7q1s2``
+
+@Metadata {
+    @DocumentationExtension(mergeBehavior: append)
+}
 
 ## Topics
-
-
 
 ### Creating a Camera Controlled AR View
 
@@ -18,8 +20,6 @@
 - ``CameraControlARView/CameraControlARView/motionMode-swift.property``
 - ``CameraControlARView/CameraControlARView/MotionMode-swift.enum``
 - ``CameraControlARView/CameraControlARView/MotionMode-swift.enum/!=(_:_:)``
-- ``CameraControlARView/CameraControlARView/MotionMode-swift.enum/Equatable-Implementations``
-- ``CameraControlARView/CameraControlARView/MotionMode-swift.enum/RawRepresentable-Implementations``
 - ``CameraControlARView/CameraControlARView/MotionMode-swift.enum/arcball``
 - ``CameraControlARView/CameraControlARView/MotionMode-swift.enum/firstperson``
 - ``CameraControlARView/CameraControlARView/MotionMode-swift.enum/hash(into:)``

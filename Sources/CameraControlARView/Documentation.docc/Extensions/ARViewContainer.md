@@ -1,5 +1,9 @@
 # ``CameraControlARView/ARViewContainer``
 
+@Metadata {
+    @DocumentationExtension(mergeBehavior: append)
+}
+
 ## Topics
 
 ### Creating an AR View Container

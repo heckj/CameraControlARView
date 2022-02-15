@@ -1,1 +1,1164 @@
-{"primaryContentSections":[{"kind":"declarations","declarations":[{"tokens":[{"kind":"attribute","text":"@objc"},{"kind":"text","text":" "},{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"identifier","text":"CameraControlARView"}],"languages":["swift"],"platforms":["macOS"]}]},{"kind":"content","content":[{"anchor":"overview","level":2,"type":"heading","text":"Overview"},{"type":"paragraph","inlineContent":[{"type":"text","text":"Set the "},{"type":"reference","isActive":true,"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/motionMode-swift.property"},{"type":"text","text":" to either:"}]},{"type":"unorderedList","items":[{"content":[{"type":"paragraph","inlineContent":[{"type":"reference","isActive":true,"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum\/arcball"},{"type":"text","text":" for rotating around a specific point."}]}]},{"content":[{"type":"paragraph","inlineContent":[{"type":"reference","isActive":true,"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum\/firstperson"},{"type":"text","text":" for moving freely within the environment."}]}]}]},{"type":"paragraph","inlineContent":[{"type":"text","text":"The default motion mode is "},{"type":"reference","isActive":true,"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum\/arcball"},{"type":"text","text":"."}]},{"type":"paragraph","inlineContent":[{"type":"text","text":"Additional properties control the target location, the camera’s location, or the speed of movement within the environment."}]}]}],"schemaVersion":{"major":0,"minor":2,"patch":0},"sections":[],"variants":[{"paths":["\/documentation\/cameracontrolarview\/cameracontrolarview"],"traits":[{"interfaceLanguage":"swift"}]}],"relationshipsSections":[{"identifiers":[],"kind":"relationships","title":"Inherits From","type":"inheritsFrom"},{"identifiers":["doc:\/\/CameraControlARView\/objc(pl)NSAccessibilityElement","doc:\/\/CameraControlARView\/objc(pl)NSAccessibility","doc:\/\/CameraControlARView\/objc(pl)NSAnimatablePropertyContainer","doc:\/\/CameraControlARView\/objc(pl)NSAppearanceCustomization","doc:\/\/CameraControlARView\/objc(pl)NSDraggingDestination","doc:\/\/CameraControlARView\/objc(pl)NSStandardKeyBindingResponding","doc:\/\/CameraControlARView\/objc(pl)NSTouchBarProvider","doc:\/\/CameraControlARView\/objc(pl)NSUserActivityRestoring","doc:\/\/CameraControlARView\/objc(pl)NSUserInterfaceItemIdentification","doc:\/\/CameraControlARView\/7Combine16ObservableObjectP","doc:\/\/CameraControlARView\/objc(pl)NSCoding","doc:\/\/CameraControlARView\/objc(pl)NSObject","doc:\/\/CameraControlARView\/s7CVarArgP","doc:\/\/CameraControlARView\/s28CustomDebugStringConvertibleP","doc:\/\/CameraControlARView\/s23CustomStringConvertibleP","doc:\/\/CameraControlARView\/SQ","doc:\/\/CameraControlARView\/SH"],"kind":"relationships","title":"Conforms To","type":"conformsTo"}],"identifier":{"url":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView","interfaceLanguage":"swift"},"abstract":[{"type":"text","text":"An augmented reality view for macOS that provides keyboard, trackpad, and mouse movement controls for the camera within the view."}],"kind":"symbol","metadata":{"fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"identifier","text":"CameraControlARView"}],"title":"CameraControlARView","roleHeading":"Class","role":"symbol","symbolKind":"class","externalID":"c:@M@CameraControlARView@objc(cs)CameraControlARView","modules":[{"name":"CameraControlARView"}],"navigatorTitle":[{"kind":"identifier","text":"CameraControlARView"}]},"hierarchy":{"paths":[["doc:\/\/CameraControlARView\/documentation\/CameraControlARView"]]},"topicSections":[{"title":"Initializers","identifiers":["doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/init(frame:)"]},{"title":"Instance Properties","identifiers":["doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/arcballTarget","doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/cameraAnchor","doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/camera_transform","doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/dragspeed","doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/forward_speed","doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/inclinationAngle","doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/keyspeed","doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/motionMode-swift.property","doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/radius","doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/rotationAngle","doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/turn_speed"]},{"title":"Instance Methods","identifiers":["doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/keyDown(with:)","doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/magnify(with:)","doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/mouseDown(with:)","doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/mouseDragged(with:)"]},{"title":"Enumerations","identifiers":["doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum"]},{"title":"Default Implementations","identifiers":["doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/ObservableObject-Implementations"],"generated":true}],"references":{"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/camera_transform":{"role":"symbol","title":"camera_transform","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"camera_transform"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"matrix_float4x4","preciseIdentifier":"c:@T@matrix_float4x4"}],"abstract":[{"type":"text","text":"The homogenous transform that represents the camera’s location and rotation."}],"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/camera_transform","kind":"symbol","type":"topic","url":"\/documentation\/cameracontrolarview\/cameracontrolarview\/camera_transform"},"doc://CameraControlARView/objc(pl)NSObject":{"type":"unresolvable","title":"ObjectiveC.NSObjectProtocol","identifier":"doc:\/\/CameraControlARView\/objc(pl)NSObject"},"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/init(frame:)":{"role":"symbol","title":"init(frame:)","fragments":[{"kind":"identifier","text":"init"},{"kind":"text","text":"("},{"kind":"externalParam","text":"frame"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"NSRect","preciseIdentifier":"c:@T@NSRect"},{"kind":"text","text":")"}],"abstract":[{"type":"text","text":"Creates a new AR View with the camera controlled by mouse, keyboard, and\/or the trackpad."}],"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/init(frame:)","kind":"symbol","type":"topic","url":"\/documentation\/cameracontrolarview\/cameracontrolarview\/init(frame:)"},"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/forward_speed":{"role":"symbol","title":"forward_speed","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"forward_speed"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"Float","preciseIdentifier":"s:Sf"}],"abstract":[{"type":"text","text":"The speed at which the camera moves when incrementing forward via the keyboard"}],"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/forward_speed","kind":"symbol","type":"topic","url":"\/documentation\/cameracontrolarview\/cameracontrolarview\/forward_speed"},"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/motionMode-swift.property":{"role":"symbol","title":"motionMode","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"motionMode"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"CameraControlARView","preciseIdentifier":"c:@M@CameraControlARView@objc(cs)CameraControlARView"},{"kind":"text","text":"."},{"kind":"typeIdentifier","text":"MotionMode","preciseIdentifier":"s:19CameraControlARViewAAC10MotionModeO"}],"abstract":[{"type":"text","text":"The mode in which the camera is controlled by keypresses and\/or mouse and gesture movements."}],"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/motionMode-swift.property","kind":"symbol","type":"topic","url":"\/documentation\/cameracontrolarview\/cameracontrolarview\/motionmode-swift.property"},"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/inclinationAngle":{"role":"symbol","title":"inclinationAngle","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"inclinationAngle"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"Float","preciseIdentifier":"s:Sf"}],"abstract":[{"type":"text","text":"The angle of inclination of the camera when in arcball mode."}],"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/inclinationAngle","kind":"symbol","type":"topic","url":"\/documentation\/cameracontrolarview\/cameracontrolarview\/inclinationangle"},"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView":{"role":"symbol","title":"CameraControlARView","fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"identifier","text":"CameraControlARView"}],"abstract":[{"type":"text","text":"An augmented reality view for macOS that provides keyboard, trackpad, and mouse movement controls for the camera within the view."}],"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"CameraControlARView"}],"url":"\/documentation\/cameracontrolarview\/cameracontrolarview"},"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/ObservableObject-Implementations":{"role":"collectionGroup","title":"ObservableObject Implementations","abstract":[],"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/ObservableObject-Implementations","kind":"article","type":"topic","url":"\/documentation\/cameracontrolarview\/cameracontrolarview\/observableobject-implementations"},"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/magnify(with:)":{"role":"symbol","title":"magnify(with:)","fragments":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"magnify"},{"kind":"text","text":"("},{"kind":"externalParam","text":"with"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"NSEvent","preciseIdentifier":"c:objc(cs)NSEvent"},{"kind":"text","text":")"}],"abstract":[],"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/magnify(with:)","kind":"symbol","type":"topic","url":"\/documentation\/cameracontrolarview\/cameracontrolarview\/magnify(with:)"},"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/keyDown(with:)":{"role":"symbol","title":"keyDown(with:)","fragments":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"keyDown"},{"kind":"text","text":"("},{"kind":"externalParam","text":"with"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"NSEvent","preciseIdentifier":"c:objc(cs)NSEvent"},{"kind":"text","text":")"}],"abstract":[],"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/keyDown(with:)","kind":"symbol","type":"topic","url":"\/documentation\/cameracontrolarview\/cameracontrolarview\/keydown(with:)"},"doc://CameraControlARView/SH":{"type":"unresolvable","title":"Swift.Hashable","identifier":"doc:\/\/CameraControlARView\/SH"},"doc://CameraControlARView/objc(pl)NSStandardKeyBindingResponding":{"type":"unresolvable","title":"AppKit.NSStandardKeyBindingResponding","identifier":"doc:\/\/CameraControlARView\/objc(pl)NSStandardKeyBindingResponding"},"doc://CameraControlARView/objc(pl)NSAppearanceCustomization":{"type":"unresolvable","title":"AppKit.NSAppearanceCustomization","identifier":"doc:\/\/CameraControlARView\/objc(pl)NSAppearanceCustomization"},"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/cameraAnchor":{"role":"symbol","title":"cameraAnchor","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"cameraAnchor"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"AnchorEntity","preciseIdentifier":"s:17RealityFoundation12AnchorEntityC"}],"abstract":[{"type":"text","text":"A reference to the camera anchor entity for moving, or reading the location values, for the camera."}],"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/cameraAnchor","kind":"symbol","type":"topic","url":"\/documentation\/cameracontrolarview\/cameracontrolarview\/cameraanchor"},"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/rotationAngle":{"role":"symbol","title":"rotationAngle","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"rotationAngle"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"Float","preciseIdentifier":"s:Sf"}],"abstract":[{"type":"text","text":"The angle of rotation of the camera when in arcball mode."}],"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/rotationAngle","kind":"symbol","type":"topic","url":"\/documentation\/cameracontrolarview\/cameracontrolarview\/rotationangle"},"doc://CameraControlARView/objc(pl)NSDraggingDestination":{"type":"unresolvable","title":"AppKit.NSDraggingDestination","identifier":"doc:\/\/CameraControlARView\/objc(pl)NSDraggingDestination"},"doc://CameraControlARView/7Combine16ObservableObjectP":{"type":"unresolvable","title":"Combine.ObservableObject","identifier":"doc:\/\/CameraControlARView\/7Combine16ObservableObjectP"},"doc://CameraControlARView/s23CustomStringConvertibleP":{"type":"unresolvable","title":"Swift.CustomStringConvertible","identifier":"doc:\/\/CameraControlARView\/s23CustomStringConvertibleP"},"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/dragspeed":{"role":"symbol","title":"dragspeed","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"dragspeed"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"Float","preciseIdentifier":"s:Sf"}],"abstract":[{"type":"text","text":"The speed at which drag operations map percentage of movement within the view to rotational or positional updates."}],"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/dragspeed","kind":"symbol","type":"topic","url":"\/documentation\/cameracontrolarview\/cameracontrolarview\/dragspeed"},"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/arcballTarget":{"role":"symbol","title":"arcballTarget","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"arcballTarget"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"simd_float3","preciseIdentifier":"c:@T@simd_float3"}],"abstract":[{"type":"text","text":"The target for the camera when in arcball mode."}],"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/arcballTarget","kind":"symbol","type":"topic","url":"\/documentation\/cameracontrolarview\/cameracontrolarview\/arcballtarget"},"doc://CameraControlARView/documentation/CameraControlARView":{"role":"collection","title":"CameraControlARView","abstract":[{"type":"text","text":"An ARView with camera control and SwiftUI wrappers to use RealityKit with macOS."}],"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView","kind":"symbol","type":"topic","url":"\/documentation\/cameracontrolarview"},"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/MotionMode-swift.enum/firstperson":{"role":"symbol","title":"CameraControlARView.MotionMode.firstperson","fragments":[{"kind":"keyword","text":"case"},{"kind":"text","text":" "},{"kind":"identifier","text":"firstperson"}],"abstract":[{"type":"text","text":"Free motion within the AR scene, not locked to a location."}],"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum\/firstperson","kind":"symbol","type":"topic","url":"\/documentation\/cameracontrolarview\/cameracontrolarview\/motionmode-swift.enum\/firstperson"},"doc://CameraControlARView/s28CustomDebugStringConvertibleP":{"type":"unresolvable","title":"Swift.CustomDebugStringConvertible","identifier":"doc:\/\/CameraControlARView\/s28CustomDebugStringConvertibleP"},"doc://CameraControlARView/s7CVarArgP":{"type":"unresolvable","title":"Swift.CVarArg","identifier":"doc:\/\/CameraControlARView\/s7CVarArgP"},"doc://CameraControlARView/objc(pl)NSAccessibility":{"type":"unresolvable","title":"AppKit.NSAccessibilityProtocol","identifier":"doc:\/\/CameraControlARView\/objc(pl)NSAccessibility"},"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/turn_speed":{"role":"symbol","title":"turn_speed","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"turn_speed"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"Float","preciseIdentifier":"s:Sf"}],"abstract":[{"type":"text","text":"The speed at which the camera moves when rotating using the keyboard"}],"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/turn_speed","kind":"symbol","type":"topic","url":"\/documentation\/cameracontrolarview\/cameracontrolarview\/turn_speed"},"doc://CameraControlARView/objc(pl)NSUserInterfaceItemIdentification":{"type":"unresolvable","title":"AppKit.NSUserInterfaceItemIdentification","identifier":"doc:\/\/CameraControlARView\/objc(pl)NSUserInterfaceItemIdentification"},"doc://CameraControlARView/SQ":{"type":"unresolvable","title":"Swift.Equatable","identifier":"doc:\/\/CameraControlARView\/SQ"},"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/radius":{"role":"symbol","title":"radius","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"radius"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"Float","preciseIdentifier":"s:Sf"}],"abstract":[{"type":"text","text":"The camera’s orbital distance from the target when in arcball mode."}],"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/radius","kind":"symbol","type":"topic","url":"\/documentation\/cameracontrolarview\/cameracontrolarview\/radius"},"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/mouseDragged(with:)":{"role":"symbol","title":"mouseDragged(with:)","fragments":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"mouseDragged"},{"kind":"text","text":"("},{"kind":"externalParam","text":"with"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"NSEvent","preciseIdentifier":"c:objc(cs)NSEvent"},{"kind":"text","text":")"}],"abstract":[],"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/mouseDragged(with:)","kind":"symbol","type":"topic","url":"\/documentation\/cameracontrolarview\/cameracontrolarview\/mousedragged(with:)"},"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/keyspeed":{"role":"symbol","title":"keyspeed","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"keyspeed"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"Float","preciseIdentifier":"s:Sf"}],"abstract":[{"type":"text","text":"The speed at which keypresses change the angles of inclination or rotation."}],"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/keyspeed","kind":"symbol","type":"topic","url":"\/documentation\/cameracontrolarview\/cameracontrolarview\/keyspeed"},"doc://CameraControlARView/objc(pl)NSCoding":{"type":"unresolvable","title":"Foundation.NSCoding","identifier":"doc:\/\/CameraControlARView\/objc(pl)NSCoding"},"doc://CameraControlARView/objc(pl)NSAccessibilityElement":{"type":"unresolvable","title":"AppKit.NSAccessibilityElementProtocol","identifier":"doc:\/\/CameraControlARView\/objc(pl)NSAccessibilityElement"},"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/MotionMode-swift.enum":{"role":"symbol","title":"CameraControlARView.MotionMode","fragments":[{"kind":"keyword","text":"enum"},{"kind":"text","text":" "},{"kind":"identifier","text":"MotionMode"}],"abstract":[{"type":"text","text":"The mode of camera motion within the augmented reality scene."}],"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"MotionMode"}],"url":"\/documentation\/cameracontrolarview\/cameracontrolarview\/motionmode-swift.enum"},"doc://CameraControlARView/objc(pl)NSAnimatablePropertyContainer":{"type":"unresolvable","title":"AppKit.NSAnimatablePropertyContainer","identifier":"doc:\/\/CameraControlARView\/objc(pl)NSAnimatablePropertyContainer"},"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/MotionMode-swift.enum/arcball":{"role":"symbol","title":"CameraControlARView.MotionMode.arcball","fragments":[{"kind":"keyword","text":"case"},{"kind":"text","text":" "},{"kind":"identifier","text":"arcball"}],"abstract":[{"type":"text","text":"Rotate around a target location, effectively orbiting and keeping the camera trained on it."}],"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum\/arcball","kind":"symbol","type":"topic","url":"\/documentation\/cameracontrolarview\/cameracontrolarview\/motionmode-swift.enum\/arcball"},"doc://CameraControlARView/objc(pl)NSUserActivityRestoring":{"type":"unresolvable","title":"AppKit.NSUserActivityRestoring","identifier":"doc:\/\/CameraControlARView\/objc(pl)NSUserActivityRestoring"},"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/mouseDown(with:)":{"role":"symbol","title":"mouseDown(with:)","fragments":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"mouseDown"},{"kind":"text","text":"("},{"kind":"externalParam","text":"with"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"NSEvent","preciseIdentifier":"c:objc(cs)NSEvent"},{"kind":"text","text":")"}],"abstract":[],"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/mouseDown(with:)","kind":"symbol","type":"topic","url":"\/documentation\/cameracontrolarview\/cameracontrolarview\/mousedown(with:)"},"doc://CameraControlARView/objc(pl)NSTouchBarProvider":{"type":"unresolvable","title":"AppKit.NSTouchBarProvider","identifier":"doc:\/\/CameraControlARView\/objc(pl)NSTouchBarProvider"}}}
+{
+  "abstract" : [
+    {
+      "text" : "An augmented reality view for macOS that provides keyboard, trackpad, and mouse movement controls for the camera within the view.",
+      "type" : "text"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "externalID" : "c:@M@CameraControlARView@objc(cs)CameraControlARView",
+    "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "class"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "identifier",
+        "text" : "CameraControlARView"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "CameraControlARView"
+      }
+    ],
+    "navigatorTitle" : [
+      {
+        "kind" : "identifier",
+        "text" : "CameraControlARView"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Class",
+    "symbolKind" : "class",
+    "title" : "CameraControlARView"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "macOS"
+          ],
+          "tokens" : [
+            {
+              "kind" : "attribute",
+              "text" : "@objc"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "keyword",
+              "text" : "class"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "identifier",
+              "text" : "CameraControlARView"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    },
+    {
+      "content" : [
+        {
+          "anchor" : "overview",
+          "level" : 2,
+          "text" : "Overview",
+          "type" : "heading"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "Set the ",
+              "type" : "text"
+            },
+            {
+              "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/motionMode-swift.property",
+              "isActive" : true,
+              "type" : "reference"
+            },
+            {
+              "text" : " to either:",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        },
+        {
+          "items" : [
+            {
+              "content" : [
+                {
+                  "inlineContent" : [
+                    {
+                      "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum\/arcball",
+                      "isActive" : true,
+                      "type" : "reference"
+                    },
+                    {
+                      "text" : " for rotating around a specific point.",
+                      "type" : "text"
+                    }
+                  ],
+                  "type" : "paragraph"
+                }
+              ]
+            },
+            {
+              "content" : [
+                {
+                  "inlineContent" : [
+                    {
+                      "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum\/firstperson",
+                      "isActive" : true,
+                      "type" : "reference"
+                    },
+                    {
+                      "text" : " for moving freely within the environment.",
+                      "type" : "text"
+                    }
+                  ],
+                  "type" : "paragraph"
+                }
+              ]
+            }
+          ],
+          "type" : "unorderedList"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "The default motion mode is ",
+              "type" : "text"
+            },
+            {
+              "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum\/arcball",
+              "isActive" : true,
+              "type" : "reference"
+            },
+            {
+              "text" : ".",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "Additional properties control the target location, the camera’s location, or the speed of movement within the environment.",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        }
+      ],
+      "kind" : "content"
+    }
+  ],
+  "relationshipsSections" : [
+    {
+      "identifiers" : [
+
+      ],
+      "kind" : "relationships",
+      "title" : "Inherits From",
+      "type" : "inheritsFrom"
+    },
+    {
+      "identifiers" : [
+        "doc:\/\/CameraControlARView\/objc(pl)NSAccessibilityElement",
+        "doc:\/\/CameraControlARView\/objc(pl)NSAccessibility",
+        "doc:\/\/CameraControlARView\/objc(pl)NSAnimatablePropertyContainer",
+        "doc:\/\/CameraControlARView\/objc(pl)NSAppearanceCustomization",
+        "doc:\/\/CameraControlARView\/objc(pl)NSDraggingDestination",
+        "doc:\/\/CameraControlARView\/objc(pl)NSStandardKeyBindingResponding",
+        "doc:\/\/CameraControlARView\/objc(pl)NSTouchBarProvider",
+        "doc:\/\/CameraControlARView\/objc(pl)NSUserActivityRestoring",
+        "doc:\/\/CameraControlARView\/objc(pl)NSUserInterfaceItemIdentification",
+        "doc:\/\/CameraControlARView\/7Combine16ObservableObjectP",
+        "doc:\/\/CameraControlARView\/objc(pl)NSCoding",
+        "doc:\/\/CameraControlARView\/objc(pl)NSObject",
+        "doc:\/\/CameraControlARView\/s7CVarArgP",
+        "doc:\/\/CameraControlARView\/s28CustomDebugStringConvertibleP",
+        "doc:\/\/CameraControlARView\/s23CustomStringConvertibleP",
+        "doc:\/\/CameraControlARView\/SQ",
+        "doc:\/\/CameraControlARView\/SH"
+      ],
+      "kind" : "relationships",
+      "title" : "Conforms To",
+      "type" : "conformsTo"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 2,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "topicSections" : [
+    {
+      "identifiers" : [
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/init(frame:)"
+      ],
+      "title" : "Initializers"
+    },
+    {
+      "identifiers" : [
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/arcballTarget",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/cameraAnchor",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/camera_transform",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/dragspeed",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/forward_speed",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/inclinationAngle",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/keyspeed",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/motionMode-swift.property",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/radius",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/rotationAngle",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/turn_speed"
+      ],
+      "title" : "Instance Properties"
+    },
+    {
+      "identifiers" : [
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/keyDown(with:)",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/magnify(with:)",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/mouseDown(with:)",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/mouseDragged(with:)"
+      ],
+      "title" : "Instance Methods"
+    },
+    {
+      "identifiers" : [
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum"
+      ],
+      "title" : "Enumerations"
+    },
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/ObservableObject-Implementations"
+      ],
+      "title" : "Default Implementations"
+    }
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/cameracontrolarview\/cameracontrolarview"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://CameraControlARView/7Combine16ObservableObjectP": {
+  "identifier" : "doc:\/\/CameraControlARView\/7Combine16ObservableObjectP",
+  "title" : "Combine.ObservableObject",
+  "type" : "unresolvable"
+},
+"doc://CameraControlARView/SH": {
+  "identifier" : "doc:\/\/CameraControlARView\/SH",
+  "title" : "Swift.Hashable",
+  "type" : "unresolvable"
+},
+"doc://CameraControlARView/SQ": {
+  "identifier" : "doc:\/\/CameraControlARView\/SQ",
+  "title" : "Swift.Equatable",
+  "type" : "unresolvable"
+},
+"doc://CameraControlARView/documentation/CameraControlARView": {
+  "abstract" : [
+    {
+      "text" : "An ARView with camera control and SwiftUI wrappers to use RealityKit with macOS.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "CameraControlARView",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView": {
+  "abstract" : [
+    {
+      "text" : "An augmented reality view for macOS that provides keyboard, trackpad, and mouse movement controls for the camera within the view.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "class"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "CameraControlARView"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "CameraControlARView"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "CameraControlARView",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/MotionMode-swift.enum": {
+  "abstract" : [
+    {
+      "text" : "The mode of camera motion within the augmented reality scene.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "enum"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "MotionMode"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "MotionMode"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "CameraControlARView.MotionMode",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/motionmode-swift.enum"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/MotionMode-swift.enum/arcball": {
+  "abstract" : [
+    {
+      "text" : "Rotate around a target location, effectively orbiting and keeping the camera trained on it.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "case"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "arcball"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum\/arcball",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "CameraControlARView.MotionMode.arcball",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/motionmode-swift.enum\/arcball"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/MotionMode-swift.enum/firstperson": {
+  "abstract" : [
+    {
+      "text" : "Free motion within the AR scene, not locked to a location.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "case"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "firstperson"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum\/firstperson",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "CameraControlARView.MotionMode.firstperson",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/motionmode-swift.enum\/firstperson"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/ObservableObject-Implementations": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/ObservableObject-Implementations",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "ObservableObject Implementations",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/observableobject-implementations"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/arcballTarget": {
+  "abstract" : [
+    {
+      "text" : "The target for the camera when in arcball mode.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "arcballTarget"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "c:@T@simd_float3",
+      "text" : "simd_float3"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/arcballTarget",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "arcballTarget",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/arcballtarget"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/cameraAnchor": {
+  "abstract" : [
+    {
+      "text" : "A reference to the camera anchor entity for moving, or reading the location values, for the camera.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "cameraAnchor"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:17RealityFoundation12AnchorEntityC",
+      "text" : "AnchorEntity"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/cameraAnchor",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "cameraAnchor",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/cameraanchor"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/camera_transform": {
+  "abstract" : [
+    {
+      "text" : "The homogenous transform that represents the camera’s location and rotation.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "camera_transform"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "c:@T@matrix_float4x4",
+      "text" : "matrix_float4x4"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/camera_transform",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "camera_transform",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/camera_transform"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/dragspeed": {
+  "abstract" : [
+    {
+      "text" : "The speed at which drag operations map percentage of movement within the view to rotational or positional updates.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "dragspeed"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sf",
+      "text" : "Float"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/dragspeed",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "dragspeed",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/dragspeed"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/forward_speed": {
+  "abstract" : [
+    {
+      "text" : "The speed at which the camera moves when incrementing forward via the keyboard",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "forward_speed"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sf",
+      "text" : "Float"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/forward_speed",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "forward_speed",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/forward_speed"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/inclinationAngle": {
+  "abstract" : [
+    {
+      "text" : "The angle of inclination of the camera when in arcball mode.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "inclinationAngle"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sf",
+      "text" : "Float"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/inclinationAngle",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "inclinationAngle",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/inclinationangle"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/init(frame:)": {
+  "abstract" : [
+    {
+      "text" : "Creates a new AR View with the camera controlled by mouse, keyboard, and\/or the trackpad.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "identifier",
+      "text" : "init"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "frame"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "c:@T@NSRect",
+      "text" : "NSRect"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/init(frame:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "init(frame:)",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/init(frame:)"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/keyDown(with:)": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "keyDown"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "with"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "c:objc(cs)NSEvent",
+      "text" : "NSEvent"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/keyDown(with:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "keyDown(with:)",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/keydown(with:)"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/keyspeed": {
+  "abstract" : [
+    {
+      "text" : "The speed at which keypresses change the angles of inclination or rotation.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "keyspeed"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sf",
+      "text" : "Float"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/keyspeed",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "keyspeed",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/keyspeed"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/magnify(with:)": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "magnify"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "with"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "c:objc(cs)NSEvent",
+      "text" : "NSEvent"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/magnify(with:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "magnify(with:)",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/magnify(with:)"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/motionMode-swift.property": {
+  "abstract" : [
+    {
+      "text" : "The mode in which the camera is controlled by keypresses and\/or mouse and gesture movements.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "motionMode"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "c:@M@CameraControlARView@objc(cs)CameraControlARView",
+      "text" : "CameraControlARView"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:19CameraControlARViewAAC10MotionModeO",
+      "text" : "MotionMode"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/motionMode-swift.property",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "motionMode",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/motionmode-swift.property"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/mouseDown(with:)": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "mouseDown"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "with"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "c:objc(cs)NSEvent",
+      "text" : "NSEvent"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/mouseDown(with:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "mouseDown(with:)",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/mousedown(with:)"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/mouseDragged(with:)": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "mouseDragged"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "with"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "c:objc(cs)NSEvent",
+      "text" : "NSEvent"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/mouseDragged(with:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "mouseDragged(with:)",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/mousedragged(with:)"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/radius": {
+  "abstract" : [
+    {
+      "text" : "The camera’s orbital distance from the target when in arcball mode.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "radius"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sf",
+      "text" : "Float"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/radius",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "radius",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/radius"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/rotationAngle": {
+  "abstract" : [
+    {
+      "text" : "The angle of rotation of the camera when in arcball mode.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "rotationAngle"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sf",
+      "text" : "Float"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/rotationAngle",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "rotationAngle",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/rotationangle"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/turn_speed": {
+  "abstract" : [
+    {
+      "text" : "The speed at which the camera moves when rotating using the keyboard",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "turn_speed"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sf",
+      "text" : "Float"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/turn_speed",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "turn_speed",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/turn_speed"
+},
+"doc://CameraControlARView/objc(pl)NSAccessibility": {
+  "identifier" : "doc:\/\/CameraControlARView\/objc(pl)NSAccessibility",
+  "title" : "AppKit.NSAccessibilityProtocol",
+  "type" : "unresolvable"
+},
+"doc://CameraControlARView/objc(pl)NSAccessibilityElement": {
+  "identifier" : "doc:\/\/CameraControlARView\/objc(pl)NSAccessibilityElement",
+  "title" : "AppKit.NSAccessibilityElementProtocol",
+  "type" : "unresolvable"
+},
+"doc://CameraControlARView/objc(pl)NSAnimatablePropertyContainer": {
+  "identifier" : "doc:\/\/CameraControlARView\/objc(pl)NSAnimatablePropertyContainer",
+  "title" : "AppKit.NSAnimatablePropertyContainer",
+  "type" : "unresolvable"
+},
+"doc://CameraControlARView/objc(pl)NSAppearanceCustomization": {
+  "identifier" : "doc:\/\/CameraControlARView\/objc(pl)NSAppearanceCustomization",
+  "title" : "AppKit.NSAppearanceCustomization",
+  "type" : "unresolvable"
+},
+"doc://CameraControlARView/objc(pl)NSCoding": {
+  "identifier" : "doc:\/\/CameraControlARView\/objc(pl)NSCoding",
+  "title" : "Foundation.NSCoding",
+  "type" : "unresolvable"
+},
+"doc://CameraControlARView/objc(pl)NSDraggingDestination": {
+  "identifier" : "doc:\/\/CameraControlARView\/objc(pl)NSDraggingDestination",
+  "title" : "AppKit.NSDraggingDestination",
+  "type" : "unresolvable"
+},
+"doc://CameraControlARView/objc(pl)NSObject": {
+  "identifier" : "doc:\/\/CameraControlARView\/objc(pl)NSObject",
+  "title" : "ObjectiveC.NSObjectProtocol",
+  "type" : "unresolvable"
+},
+"doc://CameraControlARView/objc(pl)NSStandardKeyBindingResponding": {
+  "identifier" : "doc:\/\/CameraControlARView\/objc(pl)NSStandardKeyBindingResponding",
+  "title" : "AppKit.NSStandardKeyBindingResponding",
+  "type" : "unresolvable"
+},
+"doc://CameraControlARView/objc(pl)NSTouchBarProvider": {
+  "identifier" : "doc:\/\/CameraControlARView\/objc(pl)NSTouchBarProvider",
+  "title" : "AppKit.NSTouchBarProvider",
+  "type" : "unresolvable"
+},
+"doc://CameraControlARView/objc(pl)NSUserActivityRestoring": {
+  "identifier" : "doc:\/\/CameraControlARView\/objc(pl)NSUserActivityRestoring",
+  "title" : "AppKit.NSUserActivityRestoring",
+  "type" : "unresolvable"
+},
+"doc://CameraControlARView/objc(pl)NSUserInterfaceItemIdentification": {
+  "identifier" : "doc:\/\/CameraControlARView\/objc(pl)NSUserInterfaceItemIdentification",
+  "title" : "AppKit.NSUserInterfaceItemIdentification",
+  "type" : "unresolvable"
+},
+"doc://CameraControlARView/s23CustomStringConvertibleP": {
+  "identifier" : "doc:\/\/CameraControlARView\/s23CustomStringConvertibleP",
+  "title" : "Swift.CustomStringConvertible",
+  "type" : "unresolvable"
+},
+"doc://CameraControlARView/s28CustomDebugStringConvertibleP": {
+  "identifier" : "doc:\/\/CameraControlARView\/s28CustomDebugStringConvertibleP",
+  "title" : "Swift.CustomDebugStringConvertible",
+  "type" : "unresolvable"
+},
+"doc://CameraControlARView/s7CVarArgP": {
+  "identifier" : "doc:\/\/CameraControlARView\/s7CVarArgP",
+  "title" : "Swift.CVarArg",
+  "type" : "unresolvable"
+}
+}
+}

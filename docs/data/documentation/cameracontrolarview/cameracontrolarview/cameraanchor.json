@@ -1,1 +1,202 @@
-{"primaryContentSections":[{"kind":"declarations","declarations":[{"tokens":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"cameraAnchor"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"AnchorEntity","preciseIdentifier":"s:17RealityFoundation12AnchorEntityC"}],"languages":["swift"],"platforms":["macOS"]}]}],"schemaVersion":{"major":0,"minor":2,"patch":0},"sections":[],"variants":[{"paths":["\/documentation\/cameracontrolarview\/cameracontrolarview\/cameraanchor"],"traits":[{"interfaceLanguage":"swift"}]}],"identifier":{"url":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/cameraAnchor","interfaceLanguage":"swift"},"abstract":[{"type":"text","text":"A reference to the camera anchor entity for moving, or reading the location values, for the camera."}],"kind":"symbol","metadata":{"fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"cameraAnchor"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"AnchorEntity","preciseIdentifier":"s:17RealityFoundation12AnchorEntityC"}],"title":"cameraAnchor","roleHeading":"Instance Property","role":"symbol","symbolKind":"property","externalID":"s:19CameraControlARViewAAC12cameraAnchor17RealityFoundation0E6EntityCvp","modules":[{"name":"CameraControlARView"}]},"hierarchy":{"paths":[["doc:\/\/CameraControlARView\/documentation\/CameraControlARView","doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView"]]},"references":{"doc://CameraControlARView/documentation/CameraControlARView":{"role":"collection","title":"CameraControlARView","abstract":[{"type":"text","text":"An ARView with camera control and SwiftUI wrappers to use RealityKit with macOS."}],"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView","kind":"symbol","type":"topic","url":"\/documentation\/cameracontrolarview"},"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView":{"role":"symbol","title":"CameraControlARView","fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"identifier","text":"CameraControlARView"}],"abstract":[{"type":"text","text":"An augmented reality view for macOS that provides keyboard, trackpad, and mouse movement controls for the camera within the view."}],"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"CameraControlARView"}],"url":"\/documentation\/cameracontrolarview\/cameracontrolarview"},"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/cameraAnchor":{"role":"symbol","title":"cameraAnchor","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"cameraAnchor"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"AnchorEntity","preciseIdentifier":"s:17RealityFoundation12AnchorEntityC"}],"abstract":[{"type":"text","text":"A reference to the camera anchor entity for moving, or reading the location values, for the camera."}],"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/cameraAnchor","kind":"symbol","type":"topic","url":"\/documentation\/cameracontrolarview\/cameracontrolarview\/cameraanchor"}}}
+{
+  "abstract" : [
+    {
+      "text" : "A reference to the camera anchor entity for moving, or reading the location values, for the camera.",
+      "type" : "text"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/cameraAnchor"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "externalID" : "s:19CameraControlARViewAAC12cameraAnchor17RealityFoundation0E6EntityCvp",
+    "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "var"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "identifier",
+        "text" : "cameraAnchor"
+      },
+      {
+        "kind" : "text",
+        "text" : ": "
+      },
+      {
+        "kind" : "typeIdentifier",
+        "preciseIdentifier" : "s:17RealityFoundation12AnchorEntityC",
+        "text" : "AnchorEntity"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "CameraControlARView"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Instance Property",
+    "symbolKind" : "property",
+    "title" : "cameraAnchor"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "macOS"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "var"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "identifier",
+              "text" : "cameraAnchor"
+            },
+            {
+              "kind" : "text",
+              "text" : ": "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:17RealityFoundation12AnchorEntityC",
+              "text" : "AnchorEntity"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 2,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/cameracontrolarview\/cameracontrolarview\/cameraanchor"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://CameraControlARView/documentation/CameraControlARView": {
+  "abstract" : [
+    {
+      "text" : "An ARView with camera control and SwiftUI wrappers to use RealityKit with macOS.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "CameraControlARView",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView": {
+  "abstract" : [
+    {
+      "text" : "An augmented reality view for macOS that provides keyboard, trackpad, and mouse movement controls for the camera within the view.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "class"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "CameraControlARView"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "CameraControlARView"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "CameraControlARView",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/cameraAnchor": {
+  "abstract" : [
+    {
+      "text" : "A reference to the camera anchor entity for moving, or reading the location values, for the camera.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "cameraAnchor"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:17RealityFoundation12AnchorEntityC",
+      "text" : "AnchorEntity"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/cameraAnchor",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "cameraAnchor",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/cameraanchor"
+}
+}
+}

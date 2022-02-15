@@ -1,1 +1,222 @@
-{"primaryContentSections":[{"kind":"declarations","declarations":[{"tokens":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"arcballTarget"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"simd_float3","preciseIdentifier":"c:@T@simd_float3"},{"kind":"text","text":" { "},{"kind":"keyword","text":"get"},{"kind":"text","text":" "},{"kind":"keyword","text":"set"},{"kind":"text","text":" }"}],"languages":["swift"],"platforms":["macOS"]}]}],"schemaVersion":{"major":0,"minor":2,"patch":0},"sections":[],"variants":[{"paths":["\/documentation\/cameracontrolarview\/cameracontrolarview\/arcballtarget"],"traits":[{"interfaceLanguage":"swift"}]}],"identifier":{"url":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/arcballTarget","interfaceLanguage":"swift"},"abstract":[{"type":"text","text":"The target for the camera when in arcball mode."}],"kind":"symbol","metadata":{"fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"arcballTarget"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"simd_float3","preciseIdentifier":"c:@T@simd_float3"}],"title":"arcballTarget","roleHeading":"Instance Property","role":"symbol","symbolKind":"property","externalID":"s:19CameraControlARViewAAC13arcballTargets5SIMD3VySfGvp","modules":[{"name":"CameraControlARView"}]},"hierarchy":{"paths":[["doc:\/\/CameraControlARView\/documentation\/CameraControlARView","doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView"]]},"references":{"doc://CameraControlARView/documentation/CameraControlARView":{"role":"collection","title":"CameraControlARView","abstract":[{"type":"text","text":"An ARView with camera control and SwiftUI wrappers to use RealityKit with macOS."}],"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView","kind":"symbol","type":"topic","url":"\/documentation\/cameracontrolarview"},"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView":{"role":"symbol","title":"CameraControlARView","fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"identifier","text":"CameraControlARView"}],"abstract":[{"type":"text","text":"An augmented reality view for macOS that provides keyboard, trackpad, and mouse movement controls for the camera within the view."}],"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"CameraControlARView"}],"url":"\/documentation\/cameracontrolarview\/cameracontrolarview"},"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/arcballTarget":{"role":"symbol","title":"arcballTarget","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"arcballTarget"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"simd_float3","preciseIdentifier":"c:@T@simd_float3"}],"abstract":[{"type":"text","text":"The target for the camera when in arcball mode."}],"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/arcballTarget","kind":"symbol","type":"topic","url":"\/documentation\/cameracontrolarview\/cameracontrolarview\/arcballtarget"}}}
+{
+  "abstract" : [
+    {
+      "text" : "The target for the camera when in arcball mode.",
+      "type" : "text"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/arcballTarget"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "externalID" : "s:19CameraControlARViewAAC13arcballTargets5SIMD3VySfGvp",
+    "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "var"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "identifier",
+        "text" : "arcballTarget"
+      },
+      {
+        "kind" : "text",
+        "text" : ": "
+      },
+      {
+        "kind" : "typeIdentifier",
+        "preciseIdentifier" : "c:@T@simd_float3",
+        "text" : "simd_float3"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "CameraControlARView"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Instance Property",
+    "symbolKind" : "property",
+    "title" : "arcballTarget"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "macOS"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "var"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "identifier",
+              "text" : "arcballTarget"
+            },
+            {
+              "kind" : "text",
+              "text" : ": "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "c:@T@simd_float3",
+              "text" : "simd_float3"
+            },
+            {
+              "kind" : "text",
+              "text" : " { "
+            },
+            {
+              "kind" : "keyword",
+              "text" : "get"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "keyword",
+              "text" : "set"
+            },
+            {
+              "kind" : "text",
+              "text" : " }"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 2,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/cameracontrolarview\/cameracontrolarview\/arcballtarget"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://CameraControlARView/documentation/CameraControlARView": {
+  "abstract" : [
+    {
+      "text" : "An ARView with camera control and SwiftUI wrappers to use RealityKit with macOS.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "CameraControlARView",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView": {
+  "abstract" : [
+    {
+      "text" : "An augmented reality view for macOS that provides keyboard, trackpad, and mouse movement controls for the camera within the view.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "class"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "CameraControlARView"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "CameraControlARView"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "CameraControlARView",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/arcballTarget": {
+  "abstract" : [
+    {
+      "text" : "The target for the camera when in arcball mode.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "arcballTarget"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "c:@T@simd_float3",
+      "text" : "simd_float3"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/arcballTarget",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "arcballTarget",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/arcballtarget"
+}
+}
+}

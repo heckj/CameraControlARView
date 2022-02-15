@@ -22,6 +22,8 @@ xcrun docc convert Sources/CameraControlARView/Documentation.docc \
 --experimental-documentation-coverage \
 --level brief
 
+export DOCC_JSON_PRETTYPRINT=YES
+
 # Swift package plugin for hosted content:
 #
 swift package \

@@ -1,1 +1,410 @@
-{"primaryContentSections":[{"kind":"declarations","declarations":[{"tokens":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"onPasteCommand"},{"kind":"text","text":"("},{"kind":"externalParam","text":"of"},{"kind":"text","text":" "},{"kind":"internalParam","text":"supportedContentTypes"},{"kind":"text","text":": ["},{"kind":"typeIdentifier","text":"UTType","preciseIdentifier":"s:22UniformTypeIdentifiers6UTTypeV"},{"kind":"text","text":"], "},{"kind":"externalParam","text":"perform"},{"kind":"text","text":" "},{"kind":"internalParam","text":"payloadAction"},{"kind":"text","text":": "},{"kind":"keyword","text":"@escaping"},{"kind":"text","text":" (["},{"kind":"typeIdentifier","text":"NSItemProvider","preciseIdentifier":"c:objc(cs)NSItemProvider"},{"kind":"text","text":"]) -> "},{"kind":"typeIdentifier","text":"Void","preciseIdentifier":"s:s4Voida"},{"kind":"text","text":") -> "},{"kind":"keyword","text":"some"},{"kind":"text","text":" "},{"kind":"typeIdentifier","text":"View","preciseIdentifier":"s:7SwiftUI4ViewP"},{"kind":"text","text":"\n"}],"languages":["swift"],"platforms":["macOS"]}]}],"schemaVersion":{"major":0,"minor":2,"patch":0},"sections":[],"variants":[{"paths":["\/documentation\/cameracontrolarview\/arviewcontainer\/onpastecommand(of:perform:)-10gxx"],"traits":[{"interfaceLanguage":"swift"}]}],"identifier":{"url":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer\/onPasteCommand(of:perform:)-10gxx","interfaceLanguage":"swift"},"abstract":[{"type":"text","text":"Inherited from "},{"type":"codeVoice","code":"View.onPasteCommand(of:perform:)"},{"type":"text","text":"."}],"kind":"symbol","metadata":{"modules":[{"name":"CameraControlARView"}],"role":"symbol","title":"onPasteCommand(of:perform:)","roleHeading":"Instance Method","fragments":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"onPasteCommand"},{"kind":"text","text":"("},{"kind":"externalParam","text":"of"},{"kind":"text","text":": ["},{"kind":"typeIdentifier","text":"UTType","preciseIdentifier":"s:22UniformTypeIdentifiers6UTTypeV"},{"kind":"text","text":"], "},{"kind":"externalParam","text":"perform"},{"kind":"text","text":": (["},{"kind":"typeIdentifier","text":"NSItemProvider","preciseIdentifier":"c:objc(cs)NSItemProvider"},{"kind":"text","text":"]) -> "},{"kind":"typeIdentifier","text":"Void","preciseIdentifier":"s:s4Voida"},{"kind":"text","text":") -> "},{"kind":"keyword","text":"some"},{"kind":"text","text":" "},{"kind":"typeIdentifier","text":"View","preciseIdentifier":"s:7SwiftUI4ViewP"}],"symbolKind":"method","externalID":"s:7SwiftUI4ViewPAAE14onPasteCommand2of7performQrSay22UniformTypeIdentifiers6UTTypeVG_ySaySo14NSItemProviderCGctF::SYNTHESIZED::s:19CameraControlARView0C9ContainerV","extendedModule":"SwiftUI","platforms":[{"beta":false,"unavailable":false,"name":"macOS","introducedAt":"11.0","deprecated":false}]},"hierarchy":{"paths":[["doc:\/\/CameraControlARView\/documentation\/CameraControlARView","doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer","doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer\/View-Implementations"]]},"references":{"doc://CameraControlARView/documentation/CameraControlARView/ARViewContainer/View-Implementations":{"role":"collectionGroup","title":"View Implementations","abstract":[],"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer\/View-Implementations","kind":"article","type":"topic","url":"\/documentation\/cameracontrolarview\/arviewcontainer\/view-implementations"},"doc://CameraControlARView/documentation/CameraControlARView/ARViewContainer/onPasteCommand(of:perform:)-10gxx":{"role":"symbol","title":"onPasteCommand(of:perform:)","fragments":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"onPasteCommand"},{"kind":"text","text":"("},{"kind":"externalParam","text":"of"},{"kind":"text","text":": ["},{"kind":"typeIdentifier","text":"UTType","preciseIdentifier":"s:22UniformTypeIdentifiers6UTTypeV"},{"kind":"text","text":"], "},{"kind":"externalParam","text":"perform"},{"kind":"text","text":": (["},{"kind":"typeIdentifier","text":"NSItemProvider","preciseIdentifier":"c:objc(cs)NSItemProvider"},{"kind":"text","text":"]) -> "},{"kind":"typeIdentifier","text":"Void","preciseIdentifier":"s:s4Voida"},{"kind":"text","text":") -> "},{"kind":"keyword","text":"some"},{"kind":"text","text":" "},{"kind":"typeIdentifier","text":"View","preciseIdentifier":"s:7SwiftUI4ViewP"}],"abstract":[],"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer\/onPasteCommand(of:perform:)-10gxx","kind":"symbol","type":"topic","url":"\/documentation\/cameracontrolarview\/arviewcontainer\/onpastecommand(of:perform:)-10gxx"},"doc://CameraControlARView/documentation/CameraControlARView/ARViewContainer":{"role":"symbol","title":"ARViewContainer","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"ARViewContainer"}],"abstract":[{"type":"text","text":"A SwiftUI representable view that wraps an underlying augmented reality view with camera controls instance."}],"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"ARViewContainer"}],"url":"\/documentation\/cameracontrolarview\/arviewcontainer"},"doc://CameraControlARView/documentation/CameraControlARView":{"role":"collection","title":"CameraControlARView","abstract":[{"type":"text","text":"An ARView with camera control and SwiftUI wrappers to use RealityKit with macOS."}],"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView","kind":"symbol","type":"topic","url":"\/documentation\/cameracontrolarview"}}}
+{
+  "abstract" : [
+    {
+      "text" : "Inherited from ",
+      "type" : "text"
+    },
+    {
+      "code" : "View.onPasteCommand(of:perform:)",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer\/View-Implementations"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer\/onPasteCommand(of:perform:)-10gxx"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "extendedModule" : "SwiftUI",
+    "externalID" : "s:7SwiftUI4ViewPAAE14onPasteCommand2of7performQrSay22UniformTypeIdentifiers6UTTypeVG_ySaySo14NSItemProviderCGctF::SYNTHESIZED::s:19CameraControlARView0C9ContainerV",
+    "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "func"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "identifier",
+        "text" : "onPasteCommand"
+      },
+      {
+        "kind" : "text",
+        "text" : "("
+      },
+      {
+        "kind" : "externalParam",
+        "text" : "of"
+      },
+      {
+        "kind" : "text",
+        "text" : ": ["
+      },
+      {
+        "kind" : "typeIdentifier",
+        "preciseIdentifier" : "s:22UniformTypeIdentifiers6UTTypeV",
+        "text" : "UTType"
+      },
+      {
+        "kind" : "text",
+        "text" : "], "
+      },
+      {
+        "kind" : "externalParam",
+        "text" : "perform"
+      },
+      {
+        "kind" : "text",
+        "text" : ": (["
+      },
+      {
+        "kind" : "typeIdentifier",
+        "preciseIdentifier" : "c:objc(cs)NSItemProvider",
+        "text" : "NSItemProvider"
+      },
+      {
+        "kind" : "text",
+        "text" : "]) -> "
+      },
+      {
+        "kind" : "typeIdentifier",
+        "preciseIdentifier" : "s:s4Voida",
+        "text" : "Void"
+      },
+      {
+        "kind" : "text",
+        "text" : ") -> "
+      },
+      {
+        "kind" : "keyword",
+        "text" : "some"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "typeIdentifier",
+        "preciseIdentifier" : "s:7SwiftUI4ViewP",
+        "text" : "View"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "CameraControlARView"
+      }
+    ],
+    "platforms" : [
+      {
+        "beta" : false,
+        "deprecated" : false,
+        "introducedAt" : "11.0",
+        "name" : "macOS",
+        "unavailable" : false
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Instance Method",
+    "symbolKind" : "method",
+    "title" : "onPasteCommand(of:perform:)"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "macOS"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "func"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "identifier",
+              "text" : "onPasteCommand"
+            },
+            {
+              "kind" : "text",
+              "text" : "("
+            },
+            {
+              "kind" : "externalParam",
+              "text" : "of"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "internalParam",
+              "text" : "supportedContentTypes"
+            },
+            {
+              "kind" : "text",
+              "text" : ": ["
+            },
+            {
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:22UniformTypeIdentifiers6UTTypeV",
+              "text" : "UTType"
+            },
+            {
+              "kind" : "text",
+              "text" : "], "
+            },
+            {
+              "kind" : "externalParam",
+              "text" : "perform"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "internalParam",
+              "text" : "payloadAction"
+            },
+            {
+              "kind" : "text",
+              "text" : ": "
+            },
+            {
+              "kind" : "keyword",
+              "text" : "@escaping"
+            },
+            {
+              "kind" : "text",
+              "text" : " (["
+            },
+            {
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "c:objc(cs)NSItemProvider",
+              "text" : "NSItemProvider"
+            },
+            {
+              "kind" : "text",
+              "text" : "]) -> "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:s4Voida",
+              "text" : "Void"
+            },
+            {
+              "kind" : "text",
+              "text" : ") -> "
+            },
+            {
+              "kind" : "keyword",
+              "text" : "some"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:7SwiftUI4ViewP",
+              "text" : "View"
+            },
+            {
+              "kind" : "text",
+              "text" : "\n"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 2,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/cameracontrolarview\/arviewcontainer\/onpastecommand(of:perform:)-10gxx"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://CameraControlARView/documentation/CameraControlARView": {
+  "abstract" : [
+    {
+      "text" : "An ARView with camera control and SwiftUI wrappers to use RealityKit with macOS.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "CameraControlARView",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/ARViewContainer": {
+  "abstract" : [
+    {
+      "text" : "A SwiftUI representable view that wraps an underlying augmented reality view with camera controls instance.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ARViewContainer"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ARViewContainer"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ARViewContainer",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/arviewcontainer"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/ARViewContainer/View-Implementations": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer\/View-Implementations",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "View Implementations",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/arviewcontainer\/view-implementations"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/ARViewContainer/onPasteCommand(of:perform:)-10gxx": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "onPasteCommand"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "of"
+    },
+    {
+      "kind" : "text",
+      "text" : ": ["
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:22UniformTypeIdentifiers6UTTypeV",
+      "text" : "UTType"
+    },
+    {
+      "kind" : "text",
+      "text" : "], "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "perform"
+    },
+    {
+      "kind" : "text",
+      "text" : ": (["
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "c:objc(cs)NSItemProvider",
+      "text" : "NSItemProvider"
+    },
+    {
+      "kind" : "text",
+      "text" : "]) -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:s4Voida",
+      "text" : "Void"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "some"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:7SwiftUI4ViewP",
+      "text" : "View"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer\/onPasteCommand(of:perform:)-10gxx",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "onPasteCommand(of:perform:)",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/arviewcontainer\/onpastecommand(of:perform:)-10gxx"
+}
+}
+}

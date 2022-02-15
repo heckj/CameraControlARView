@@ -1,1 +1,540 @@
-{"seeAlsoSections":[{"title":"View Coordinator Methods","identifiers":["doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer\/NSViewType","doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer\/makeCoordinator()","doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer\/makeNSView(context:)","doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer\/updateNSView(_:context:)"],"generated":true}],"schemaVersion":{"major":0,"minor":2,"patch":0},"metadata":{"fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"identifier","text":"ARViewCoordinator"}],"title":"ARViewContainer.ARViewCoordinator","roleHeading":"Class","role":"symbol","symbolKind":"class","externalID":"s:19CameraControlARView0C9ContainerV0C11CoordinatorC","modules":[{"name":"CameraControlARView"}],"navigatorTitle":[{"kind":"identifier","text":"ARViewCoordinator"}]},"abstract":[{"type":"text","text":"The coordinator object that facilitates to and from the wrapped view."}],"sections":[],"identifier":{"url":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer\/ARViewCoordinator","interfaceLanguage":"swift"},"relationshipsSections":[{"identifiers":[],"kind":"relationships","title":"Inherits From","type":"inheritsFrom"},{"identifiers":["doc:\/\/CameraControlARView\/objc(pl)NSObject","doc:\/\/CameraControlARView\/s7CVarArgP","doc:\/\/CameraControlARView\/s28CustomDebugStringConvertibleP","doc:\/\/CameraControlARView\/s23CustomStringConvertibleP","doc:\/\/CameraControlARView\/SQ","doc:\/\/CameraControlARView\/SH"],"kind":"relationships","title":"Conforms To","type":"conformsTo"}],"hierarchy":{"paths":[["doc:\/\/CameraControlARView\/documentation\/CameraControlARView","doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer"]]},"topicSections":[{"title":"Initializers","identifiers":["doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer\/ARViewCoordinator\/init(_:)"]},{"title":"Instance Properties","identifiers":["doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer\/ARViewCoordinator\/representableContainer"]}],"variants":[{"paths":["\/documentation\/cameracontrolarview\/arviewcontainer\/arviewcoordinator"],"traits":[{"interfaceLanguage":"swift"}]}],"kind":"symbol","primaryContentSections":[{"kind":"declarations","declarations":[{"tokens":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"identifier","text":"ARViewCoordinator"}],"languages":["swift"],"platforms":["macOS"]}]}],"references":{"doc://CameraControlARView/documentation/CameraControlARView/ARViewContainer/ARViewCoordinator":{"role":"symbol","title":"ARViewContainer.ARViewCoordinator","fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"identifier","text":"ARViewCoordinator"}],"abstract":[{"type":"text","text":"The coordinator object that facilitates to and from the wrapped view."}],"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer\/ARViewCoordinator","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"ARViewCoordinator"}],"url":"\/documentation\/cameracontrolarview\/arviewcontainer\/arviewcoordinator"},"doc://CameraControlARView/objc(pl)NSObject":{"type":"unresolvable","title":"ObjectiveC.NSObjectProtocol","identifier":"doc:\/\/CameraControlARView\/objc(pl)NSObject"},"doc://CameraControlARView/documentation/CameraControlARView/ARViewContainer/ARViewCoordinator/init(_:)":{"role":"symbol","title":"init(_:)","fragments":[{"kind":"identifier","text":"init"},{"kind":"text","text":"("},{"kind":"typeIdentifier","text":"ARViewContainer","preciseIdentifier":"s:19CameraControlARView0C9ContainerV"},{"kind":"text","text":")"}],"abstract":[],"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer\/ARViewCoordinator\/init(_:)","kind":"symbol","type":"topic","url":"\/documentation\/cameracontrolarview\/arviewcontainer\/arviewcoordinator\/init(_:)"},"doc://CameraControlARView/documentation/CameraControlARView/ARViewContainer/updateNSView(_:context:)":{"role":"symbol","title":"updateNSView(_:context:)","fragments":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"updateNSView"},{"kind":"text","text":"("},{"kind":"typeIdentifier","text":"ARView","preciseIdentifier":"c:@M@RealityKit@objc(cs)ARView"},{"kind":"text","text":", "},{"kind":"externalParam","text":"context"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"ARViewContainer","preciseIdentifier":"s:19CameraControlARView0C9ContainerV"},{"kind":"text","text":"."},{"kind":"typeIdentifier","text":"Context","preciseIdentifier":"s:7SwiftUI19NSViewRepresentableP7Contexta"},{"kind":"text","text":")"}],"abstract":[{"type":"text","text":"Updates the wrapped AR view with state information from SwiftUI."}],"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer\/updateNSView(_:context:)","kind":"symbol","type":"topic","url":"\/documentation\/cameracontrolarview\/arviewcontainer\/updatensview(_:context:)"},"doc://CameraControlARView/SQ":{"type":"unresolvable","title":"Swift.Equatable","identifier":"doc:\/\/CameraControlARView\/SQ"},"doc://CameraControlARView/documentation/CameraControlARView/ARViewContainer":{"role":"symbol","title":"ARViewContainer","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"ARViewContainer"}],"abstract":[{"type":"text","text":"A SwiftUI representable view that wraps an underlying augmented reality view with camera controls instance."}],"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"ARViewContainer"}],"url":"\/documentation\/cameracontrolarview\/arviewcontainer"},"doc://CameraControlARView/s7CVarArgP":{"type":"unresolvable","title":"Swift.CVarArg","identifier":"doc:\/\/CameraControlARView\/s7CVarArgP"},"doc://CameraControlARView/SH":{"type":"unresolvable","title":"Swift.Hashable","identifier":"doc:\/\/CameraControlARView\/SH"},"doc://CameraControlARView/s28CustomDebugStringConvertibleP":{"type":"unresolvable","title":"Swift.CustomDebugStringConvertible","identifier":"doc:\/\/CameraControlARView\/s28CustomDebugStringConvertibleP"},"doc://CameraControlARView/documentation/CameraControlARView/ARViewContainer/NSViewType":{"role":"symbol","title":"ARViewContainer.NSViewType","fragments":[{"kind":"keyword","text":"typealias"},{"kind":"text","text":" "},{"kind":"identifier","text":"NSViewType"}],"abstract":[{"type":"text","text":"The type of view this container wraps."}],"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer\/NSViewType","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"NSViewType"}],"url":"\/documentation\/cameracontrolarview\/arviewcontainer\/nsviewtype"},"doc://CameraControlARView/documentation/CameraControlARView/ARViewContainer/makeNSView(context:)":{"role":"symbol","title":"makeNSView(context:)","fragments":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"makeNSView"},{"kind":"text","text":"("},{"kind":"externalParam","text":"context"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"ARViewContainer","preciseIdentifier":"s:19CameraControlARView0C9ContainerV"},{"kind":"text","text":"."},{"kind":"typeIdentifier","text":"Context","preciseIdentifier":"s:7SwiftUI19NSViewRepresentableP7Contexta"},{"kind":"text","text":") -> "},{"kind":"typeIdentifier","text":"ARView","preciseIdentifier":"c:@M@RealityKit@objc(cs)ARView"}],"abstract":[{"type":"text","text":"Creates a new SwiftUI view."}],"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer\/makeNSView(context:)","kind":"symbol","type":"topic","url":"\/documentation\/cameracontrolarview\/arviewcontainer\/makensview(context:)"},"doc://CameraControlARView/documentation/CameraControlARView":{"role":"collection","title":"CameraControlARView","abstract":[{"type":"text","text":"An ARView with camera control and SwiftUI wrappers to use RealityKit with macOS."}],"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView","kind":"symbol","type":"topic","url":"\/documentation\/cameracontrolarview"},"doc://CameraControlARView/documentation/CameraControlARView/ARViewContainer/makeCoordinator()":{"role":"symbol","title":"makeCoordinator()","fragments":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"makeCoordinator"},{"kind":"text","text":"() -> "},{"kind":"typeIdentifier","text":"ARViewContainer","preciseIdentifier":"s:19CameraControlARView0C9ContainerV"},{"kind":"text","text":"."},{"kind":"typeIdentifier","text":"ARViewCoordinator","preciseIdentifier":"s:19CameraControlARView0C9ContainerV0C11CoordinatorC"}],"abstract":[{"type":"text","text":"Creates a coordinator to establish the view and to pass updates to and from the SwiftUI context hosting the view."}],"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer\/makeCoordinator()","kind":"symbol","type":"topic","url":"\/documentation\/cameracontrolarview\/arviewcontainer\/makecoordinator()"},"doc://CameraControlARView/s23CustomStringConvertibleP":{"type":"unresolvable","title":"Swift.CustomStringConvertible","identifier":"doc:\/\/CameraControlARView\/s23CustomStringConvertibleP"},"doc://CameraControlARView/documentation/CameraControlARView/ARViewContainer/ARViewCoordinator/representableContainer":{"role":"symbol","title":"representableContainer","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"representableContainer"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"ARViewContainer","preciseIdentifier":"s:19CameraControlARView0C9ContainerV"}],"abstract":[],"identifier":"doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer\/ARViewCoordinator\/representableContainer","kind":"symbol","type":"topic","url":"\/documentation\/cameracontrolarview\/arviewcontainer\/arviewcoordinator\/representablecontainer"}}}
+{
+  "abstract" : [
+    {
+      "text" : "The coordinator object that facilitates to and from the wrapped view.",
+      "type" : "text"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer\/ARViewCoordinator"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "externalID" : "s:19CameraControlARView0C9ContainerV0C11CoordinatorC",
+    "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "class"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "identifier",
+        "text" : "ARViewCoordinator"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "CameraControlARView"
+      }
+    ],
+    "navigatorTitle" : [
+      {
+        "kind" : "identifier",
+        "text" : "ARViewCoordinator"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Class",
+    "symbolKind" : "class",
+    "title" : "ARViewContainer.ARViewCoordinator"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "macOS"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "class"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "identifier",
+              "text" : "ARViewCoordinator"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    }
+  ],
+  "relationshipsSections" : [
+    {
+      "identifiers" : [
+
+      ],
+      "kind" : "relationships",
+      "title" : "Inherits From",
+      "type" : "inheritsFrom"
+    },
+    {
+      "identifiers" : [
+        "doc:\/\/CameraControlARView\/objc(pl)NSObject",
+        "doc:\/\/CameraControlARView\/s7CVarArgP",
+        "doc:\/\/CameraControlARView\/s28CustomDebugStringConvertibleP",
+        "doc:\/\/CameraControlARView\/s23CustomStringConvertibleP",
+        "doc:\/\/CameraControlARView\/SQ",
+        "doc:\/\/CameraControlARView\/SH"
+      ],
+      "kind" : "relationships",
+      "title" : "Conforms To",
+      "type" : "conformsTo"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 2,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "seeAlsoSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer\/NSViewType",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer\/makeCoordinator()",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer\/makeNSView(context:)",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer\/updateNSView(_:context:)"
+      ],
+      "title" : "View Coordinator Methods"
+    }
+  ],
+  "topicSections" : [
+    {
+      "identifiers" : [
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer\/ARViewCoordinator\/init(_:)"
+      ],
+      "title" : "Initializers"
+    },
+    {
+      "identifiers" : [
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer\/ARViewCoordinator\/representableContainer"
+      ],
+      "title" : "Instance Properties"
+    }
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/cameracontrolarview\/arviewcontainer\/arviewcoordinator"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://CameraControlARView/SH": {
+  "identifier" : "doc:\/\/CameraControlARView\/SH",
+  "title" : "Swift.Hashable",
+  "type" : "unresolvable"
+},
+"doc://CameraControlARView/SQ": {
+  "identifier" : "doc:\/\/CameraControlARView\/SQ",
+  "title" : "Swift.Equatable",
+  "type" : "unresolvable"
+},
+"doc://CameraControlARView/documentation/CameraControlARView": {
+  "abstract" : [
+    {
+      "text" : "An ARView with camera control and SwiftUI wrappers to use RealityKit with macOS.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "CameraControlARView",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/ARViewContainer": {
+  "abstract" : [
+    {
+      "text" : "A SwiftUI representable view that wraps an underlying augmented reality view with camera controls instance.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ARViewContainer"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ARViewContainer"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ARViewContainer",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/arviewcontainer"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/ARViewContainer/ARViewCoordinator": {
+  "abstract" : [
+    {
+      "text" : "The coordinator object that facilitates to and from the wrapped view.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "class"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ARViewCoordinator"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer\/ARViewCoordinator",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ARViewCoordinator"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ARViewContainer.ARViewCoordinator",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/arviewcontainer\/arviewcoordinator"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/ARViewContainer/ARViewCoordinator/init(_:)": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "identifier",
+      "text" : "init"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:19CameraControlARView0C9ContainerV",
+      "text" : "ARViewContainer"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer\/ARViewCoordinator\/init(_:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "init(_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/arviewcontainer\/arviewcoordinator\/init(_:)"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/ARViewContainer/ARViewCoordinator/representableContainer": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "representableContainer"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:19CameraControlARView0C9ContainerV",
+      "text" : "ARViewContainer"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer\/ARViewCoordinator\/representableContainer",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "representableContainer",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/arviewcontainer\/arviewcoordinator\/representablecontainer"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/ARViewContainer/NSViewType": {
+  "abstract" : [
+    {
+      "text" : "The type of view this container wraps.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "typealias"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "NSViewType"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer\/NSViewType",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "NSViewType"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ARViewContainer.NSViewType",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/arviewcontainer\/nsviewtype"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/ARViewContainer/makeCoordinator()": {
+  "abstract" : [
+    {
+      "text" : "Creates a coordinator to establish the view and to pass updates to and from the SwiftUI context hosting the view.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "makeCoordinator"
+    },
+    {
+      "kind" : "text",
+      "text" : "() -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:19CameraControlARView0C9ContainerV",
+      "text" : "ARViewContainer"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:19CameraControlARView0C9ContainerV0C11CoordinatorC",
+      "text" : "ARViewCoordinator"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer\/makeCoordinator()",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "makeCoordinator()",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/arviewcontainer\/makecoordinator()"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/ARViewContainer/makeNSView(context:)": {
+  "abstract" : [
+    {
+      "text" : "Creates a new SwiftUI view.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "makeNSView"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "context"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:19CameraControlARView0C9ContainerV",
+      "text" : "ARViewContainer"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:7SwiftUI19NSViewRepresentableP7Contexta",
+      "text" : "Context"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "c:@M@RealityKit@objc(cs)ARView",
+      "text" : "ARView"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer\/makeNSView(context:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "makeNSView(context:)",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/arviewcontainer\/makensview(context:)"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/ARViewContainer/updateNSView(_:context:)": {
+  "abstract" : [
+    {
+      "text" : "Updates the wrapped AR view with state information from SwiftUI.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "updateNSView"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "c:@M@RealityKit@objc(cs)ARView",
+      "text" : "ARView"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "context"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:19CameraControlARView0C9ContainerV",
+      "text" : "ARViewContainer"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:7SwiftUI19NSViewRepresentableP7Contexta",
+      "text" : "Context"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer\/updateNSView(_:context:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "updateNSView(_:context:)",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/arviewcontainer\/updatensview(_:context:)"
+},
+"doc://CameraControlARView/objc(pl)NSObject": {
+  "identifier" : "doc:\/\/CameraControlARView\/objc(pl)NSObject",
+  "title" : "ObjectiveC.NSObjectProtocol",
+  "type" : "unresolvable"
+},
+"doc://CameraControlARView/s23CustomStringConvertibleP": {
+  "identifier" : "doc:\/\/CameraControlARView\/s23CustomStringConvertibleP",
+  "title" : "Swift.CustomStringConvertible",
+  "type" : "unresolvable"
+},
+"doc://CameraControlARView/s28CustomDebugStringConvertibleP": {
+  "identifier" : "doc:\/\/CameraControlARView\/s28CustomDebugStringConvertibleP",
+  "title" : "Swift.CustomDebugStringConvertible",
+  "type" : "unresolvable"
+},
+"doc://CameraControlARView/s7CVarArgP": {
+  "identifier" : "doc:\/\/CameraControlARView\/s7CVarArgP",
+  "title" : "Swift.CVarArg",
+  "type" : "unresolvable"
+}
+}
+}
