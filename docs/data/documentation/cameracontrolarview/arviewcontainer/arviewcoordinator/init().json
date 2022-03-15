@@ -1,0 +1,203 @@
+{
+  "abstract" : [
+    {
+      "text" : "No overview available.",
+      "type" : "text"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer\/ARViewCoordinator"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer\/ARViewCoordinator\/init()"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "externalID" : "s:19CameraControlARView0C9ContainerV0C11CoordinatorCAEycfc",
+    "fragments" : [
+      {
+        "kind" : "identifier",
+        "text" : "init"
+      },
+      {
+        "kind" : "text",
+        "text" : "()"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "CameraControlARView"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Initializer",
+    "symbolKind" : "init",
+    "title" : "init()"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "macOS"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "override"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "keyword",
+              "text" : "init"
+            },
+            {
+              "kind" : "text",
+              "text" : "()"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 2,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/cameracontrolarview\/arviewcontainer\/arviewcoordinator\/init()"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://CameraControlARView/documentation/CameraControlARView": {
+  "abstract" : [
+    {
+      "text" : "An ARView with camera control and SwiftUI wrappers to use RealityKit with macOS.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "CameraControlARView",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/ARViewContainer": {
+  "abstract" : [
+    {
+      "text" : "A SwiftUI representable view that wraps an underlying augmented reality view with camera controls instance.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ARViewContainer"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ARViewContainer"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ARViewContainer",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/arviewcontainer"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/ARViewContainer/ARViewCoordinator": {
+  "abstract" : [
+    {
+      "text" : "The coordinator object that facilitates to and from the wrapped view.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "class"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ARViewCoordinator"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer\/ARViewCoordinator",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ARViewCoordinator"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ARViewContainer.ARViewCoordinator",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/arviewcontainer\/arviewcoordinator"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/ARViewContainer/ARViewCoordinator/init()": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "identifier",
+      "text" : "init"
+    },
+    {
+      "kind" : "text",
+      "text" : "()"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer\/ARViewCoordinator\/init()",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "init()",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/arviewcontainer\/arviewcoordinator\/init()"
+}
+}
+}

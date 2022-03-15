@@ -125,6 +125,7 @@
   "topicSections" : [
     {
       "identifiers" : [
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer\/ARViewCoordinator\/init()",
         "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer\/ARViewCoordinator\/init(_:)"
       ],
       "title" : "Initializers"
@@ -241,6 +242,27 @@
   "title" : "ARViewContainer.ARViewCoordinator",
   "type" : "topic",
   "url" : "\/documentation\/cameracontrolarview\/arviewcontainer\/arviewcoordinator"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/ARViewContainer/ARViewCoordinator/init()": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "identifier",
+      "text" : "init"
+    },
+    {
+      "kind" : "text",
+      "text" : "()"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer\/ARViewCoordinator\/init()",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "init()",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/arviewcontainer\/arviewcoordinator\/init()"
 },
 "doc://CameraControlARView/documentation/CameraControlARView/ARViewContainer/ARViewCoordinator/init(_:)": {
   "abstract" : [

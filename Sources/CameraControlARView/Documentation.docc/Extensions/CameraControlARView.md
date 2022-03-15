@@ -1,4 +1,4 @@
-# ``CameraControlARView/CameraControlARView-7q1s2``
+# ``CameraControlARView/CameraControlARView``
 
 @Metadata {
     @DocumentationExtension(mergeBehavior: append)
