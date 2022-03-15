@@ -119,6 +119,15 @@
   "sections" : [
 
   ],
+  "seeAlsoSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/forward_speed"
+      ],
+      "title" : "Updating the Camera Using First Person Mode"
+    }
+  ],
   "variants" : [
     {
       "paths" : [
@@ -217,6 +226,43 @@
   "title" : "camera_transform",
   "type" : "topic",
   "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/camera_transform"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/forward_speed": {
+  "abstract" : [
+    {
+      "text" : "The speed at which the camera moves when incrementing forward via the keyboard",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "forward_speed"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sf",
+      "text" : "Float"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/forward_speed",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "forward_speed",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/forward_speed"
 }
 }
 }

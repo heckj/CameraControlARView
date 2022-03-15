@@ -17,6 +17,10 @@
     "paths" : [
       [
         "doc:\/\/CameraControlARView\/documentation\/CameraControlARView",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView"
+      ],
+      [
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView",
         "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView",
         "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/ObservableObject-Implementations"
       ]
@@ -183,6 +187,15 @@
   "sections" : [
 
   ],
+  "seeAlsoSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/cameraAnchor"
+      ],
+      "title" : "Inspecting the View"
+    }
+  ],
   "variants" : [
     {
       "paths" : [
@@ -255,6 +268,43 @@
   "title" : "ObservableObject Implementations",
   "type" : "topic",
   "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/observableobject-implementations"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/cameraAnchor": {
+  "abstract" : [
+    {
+      "text" : "A reference to the camera anchor entity for moving, or reading the location values, for the camera.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "cameraAnchor"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:17RealityFoundation12AnchorEntityC",
+      "text" : "AnchorEntity"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/cameraAnchor",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "cameraAnchor",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/cameraanchor"
 },
 "doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/objectWillChange": {
   "abstract" : [

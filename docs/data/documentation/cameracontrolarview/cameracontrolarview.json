@@ -230,38 +230,54 @@
       "identifiers" : [
         "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/init(frame:)"
       ],
-      "title" : "Initializers"
+      "title" : "Creating a Camera Controlled AR View"
     },
     {
       "identifiers" : [
-        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/arcballTarget",
         "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/cameraAnchor",
-        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/camera_transform",
-        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/dragspeed",
-        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/forward_speed",
-        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/inclinationAngle",
-        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/keyspeed",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/objectWillChange"
+      ],
+      "title" : "Inspecting the View"
+    },
+    {
+      "identifiers" : [
         "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/motionMode-swift.property",
-        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/radius",
-        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/rotationAngle",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum\/!=(_:_:)",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum\/arcball",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum\/firstperson",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum\/hash(into:)",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum\/hashValue",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/dragspeed",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/keyspeed",
         "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/turn_speed"
       ],
-      "title" : "Instance Properties"
+      "title" : "Inspecting the Camera Control Mode"
     },
     {
       "identifiers" : [
-        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/keyDown(with:)",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/inclinationAngle",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/rotationAngle",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/radius",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/arcballTarget"
+      ],
+      "title" : "Updating the Camera Using ArcBall Mode"
+    },
+    {
+      "identifiers" : [
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/camera_transform",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/forward_speed"
+      ],
+      "title" : "Updating the Camera Using First Person Mode"
+    },
+    {
+      "identifiers" : [
         "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/magnify(with:)",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/keyDown(with:)",
         "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/mouseDown(with:)",
         "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/mouseDragged(with:)"
       ],
-      "title" : "Instance Methods"
-    },
-    {
-      "identifiers" : [
-        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum"
-      ],
-      "title" : "Enumerations"
+      "title" : "Overridden Methods to Provide Controls"
     },
     {
       "generated" : true,
@@ -382,6 +398,68 @@
   "type" : "topic",
   "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/motionmode-swift.enum"
 },
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/MotionMode-swift.enum/!=(_:_:)": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "!="
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum\/!=(_:_:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "!=(_:_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/motionmode-swift.enum\/!=(_:_:)"
+},
 "doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/MotionMode-swift.enum/arcball": {
   "abstract" : [
     {
@@ -437,6 +515,190 @@
   "title" : "CameraControlARView.MotionMode.firstperson",
   "type" : "topic",
   "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/motionmode-swift.enum\/firstperson"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/MotionMode-swift.enum/hash(into:)": {
+  "abstract" : [
+
+  ],
+  "conformance" : {
+    "availabilityPrefix" : [
+      {
+        "text" : "Available when",
+        "type" : "text"
+      }
+    ],
+    "conformancePrefix" : [
+      {
+        "text" : "Conforms when",
+        "type" : "text"
+      }
+    ],
+    "constraints" : [
+      {
+        "code" : "Self",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : " conforms to ",
+        "type" : "text"
+      },
+      {
+        "code" : "Hashable",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : " and ",
+        "type" : "text"
+      },
+      {
+        "code" : "RawValue",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : " conforms to ",
+        "type" : "text"
+      },
+      {
+        "code" : "Hashable",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : ".",
+        "type" : "text"
+      }
+    ]
+  },
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "hash"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "into"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "inout"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:s6HasherV",
+      "text" : "Hasher"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum\/hash(into:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "hash(into:)",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/motionmode-swift.enum\/hash(into:)"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/MotionMode-swift.enum/hashValue": {
+  "abstract" : [
+
+  ],
+  "conformance" : {
+    "availabilityPrefix" : [
+      {
+        "text" : "Available when",
+        "type" : "text"
+      }
+    ],
+    "conformancePrefix" : [
+      {
+        "text" : "Conforms when",
+        "type" : "text"
+      }
+    ],
+    "constraints" : [
+      {
+        "code" : "Self",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : " conforms to ",
+        "type" : "text"
+      },
+      {
+        "code" : "Hashable",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : " and ",
+        "type" : "text"
+      },
+      {
+        "code" : "RawValue",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : " conforms to ",
+        "type" : "text"
+      },
+      {
+        "code" : "Hashable",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : ".",
+        "type" : "text"
+      }
+    ]
+  },
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "hashValue"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum\/hashValue",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "hashValue",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/motionmode-swift.enum\/hashvalue"
 },
 "doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/ObservableObject-Implementations": {
   "abstract" : [
@@ -978,6 +1240,72 @@
   "title" : "mouseDragged(with:)",
   "type" : "topic",
   "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/mousedragged(with:)"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/objectWillChange": {
+  "abstract" : [
+
+  ],
+  "conformance" : {
+    "availabilityPrefix" : [
+      {
+        "text" : "Available when",
+        "type" : "text"
+      }
+    ],
+    "conformancePrefix" : [
+      {
+        "text" : "Conforms when",
+        "type" : "text"
+      }
+    ],
+    "constraints" : [
+      {
+        "code" : "ObjectWillChangePublisher",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : " is ",
+        "type" : "text"
+      },
+      {
+        "code" : "ObservableObjectPublisher",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : ".",
+        "type" : "text"
+      }
+    ]
+  },
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "objectWillChange"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:7Combine25ObservableObjectPublisherC",
+      "text" : "ObservableObjectPublisher"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/objectWillChange",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "objectWillChange",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/objectwillchange"
 },
 "doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/radius": {
   "abstract" : [

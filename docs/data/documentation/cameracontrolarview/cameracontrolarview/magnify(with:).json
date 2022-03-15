@@ -147,6 +147,17 @@
   "sections" : [
 
   ],
+  "seeAlsoSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/keyDown(with:)",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/mouseDown(with:)",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/mouseDragged(with:)"
+      ],
+      "title" : "Overridden Methods to Provide Controls"
+    }
+  ],
   "variants" : [
     {
       "paths" : [
@@ -209,6 +220,52 @@
   "type" : "topic",
   "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview"
 },
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/keyDown(with:)": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "keyDown"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "with"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "c:objc(cs)NSEvent",
+      "text" : "NSEvent"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/keyDown(with:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "keyDown(with:)",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/keydown(with:)"
+},
 "doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/magnify(with:)": {
   "abstract" : [
 
@@ -254,6 +311,98 @@
   "title" : "magnify(with:)",
   "type" : "topic",
   "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/magnify(with:)"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/mouseDown(with:)": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "mouseDown"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "with"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "c:objc(cs)NSEvent",
+      "text" : "NSEvent"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/mouseDown(with:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "mouseDown(with:)",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/mousedown(with:)"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/mouseDragged(with:)": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "mouseDragged"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "with"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "c:objc(cs)NSEvent",
+      "text" : "NSEvent"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/mouseDragged(with:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "mouseDragged(with:)",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/mousedragged(with:)"
 }
 }
 }

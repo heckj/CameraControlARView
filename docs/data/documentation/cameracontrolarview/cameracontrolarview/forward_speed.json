@@ -99,6 +99,15 @@
   "sections" : [
 
   ],
+  "seeAlsoSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/camera_transform"
+      ],
+      "title" : "Updating the Camera Using First Person Mode"
+    }
+  ],
   "variants" : [
     {
       "paths" : [
@@ -160,6 +169,43 @@
   "title" : "CameraControlARView",
   "type" : "topic",
   "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/camera_transform": {
+  "abstract" : [
+    {
+      "text" : "The homogenous transform that represents the camera’s location and rotation.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "camera_transform"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "c:@T@matrix_float4x4",
+      "text" : "matrix_float4x4"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/camera_transform",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "camera_transform",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/camera_transform"
 },
 "doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/forward_speed": {
   "abstract" : [
