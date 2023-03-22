@@ -5,8 +5,16 @@
 //  Created by Joseph Heck on 2/7/22.
 //
 
-import Cocoa
+#if os(iOS)
+import UIKit
+import ARKit
+#endif
+#if os(macOS)
+import AppKit
+#endif
 import RealityKit
+import Foundation
+import CoreGraphics
 
 /// An augmented reality view for macOS that provides keyboard, trackpad, and mouse movement controls for the camera within the view.
 ///
@@ -17,7 +25,7 @@ import RealityKit
 /// The default motion mode is ``MotionMode-swift.enum/arcball``.
 ///
 /// Additional properties control the target location, the camera's location, or the speed of movement within the environment.
-@objc public class CameraControlARView: ARView, ObservableObject {
+public class CameraControlARView: ARView, ObservableObject {
     /// The mode of camera motion within the augmented reality scene.
     public enum MotionMode: Int {
         /// Rotate around a target location, effectively orbiting and keeping the camera trained on it.
@@ -124,7 +132,7 @@ import RealityKit
     /// This view doubles the speed valuewhen the key is held-down.
     public var keyspeed: Float
 
-    private var dragstart: NSPoint
+    private var dragstart: CGPoint
     private var dragstart_rotation: Float
     private var dragstart_inclination: Float
     private var magnify_start: Float
@@ -153,12 +161,21 @@ import RealityKit
     /// A copy of the basic transform applied ot the camera, and updated in parallel to reflect "upward" to SwiftUI.
     @Published var macOSCameraTransform: Transform
 
+    #if os(iOS)
+    var pinchGesture:UIPinchGestureRecognizer?
+    @IBAction func pinchRecognized(_ pinch: UIPinchGestureRecognizer) {
+        let multiplier = ((pinch.scale > 1.0) ? -1.0 : 1.0) * Float(pinch.scale)/100 // magnify_end
+        radius = radius * (multiplier + 1)
+        updateCamera()
+    }
+    #endif
+    
     /// Creates a new AR View with the camera controlled by mouse, keyboard, and/or the trackpad.
     ///
     /// The default motion mode for the view is ``MotionMode-swift.enum/arcball``, which orbits the camera around a specific point in space.
     ///
     /// - Parameter frameRect: The frame rectangle for the view, measured in points.
-    public required init(frame frameRect: NSRect) {
+    public required init(frame frameRect: CGRect) {
         motionMode = .arcball
 
         // ARCBALL mode
@@ -178,18 +195,24 @@ import RealityKit
 
         // Not mode specific
         cameraAnchor = AnchorEntity(world: .zero)
-        dragstart = NSPoint.zero
+        dragstart = CGPoint.zero
         dragstart_transform = cameraAnchor.transform.matrix
         // reflect the camera's transform as an observed object
         macOSCameraTransform = cameraAnchor.transform
         super.init(frame: frameRect)
 
+#if os(macOS) || targetEnvironment(simulator)
         let cameraEntity = PerspectiveCamera()
         cameraEntity.camera.fieldOfViewInDegrees = 60
         cameraAnchor.addChild(cameraEntity)
         scene.addAnchor(cameraAnchor)
-
+#endif
         updateCamera()
+        
+#if os(iOS)
+        self.pinchGesture = UIPinchGestureRecognizer(target: self, action:#selector(pinchRecognized(_:)))
+        self.addGestureRecognizer(self.pinchGesture!)
+#endif
     }
 
     // MARK: - rotational transforms
@@ -296,10 +319,7 @@ import RealityKit
         fatalError("init(coder:) has not been implemented")
     }
 
-    override open dynamic func mouseDown(with event: NSEvent) {
-        // print("mouseDown EVENT: \(event)")
-        // print(" at \(event.locationInWindow) of \(self.frame)")
-        dragstart = event.locationInWindow
+    func dragStart() {
         switch motionMode {
         case .arcball:
             dragstart_rotation = rotationAngle
@@ -308,12 +328,8 @@ import RealityKit
             dragstart_transform = cameraAnchor.transform.matrix
         }
     }
-
-    override open dynamic func mouseDragged(with event: NSEvent) {
-        // print("mouseDragged EVENT: \(event)")
-        // print(" at \(event.locationInWindow) of \(self.frame)")
-        let deltaX = Float(event.locationInWindow.x - dragstart.x)
-        let deltaY = Float(event.locationInWindow.y - dragstart.y)
+    
+    func dragMove(_ deltaX: Float, _ deltaY: Float) {
         switch motionMode {
         case .arcball:
             rotationAngle = dragstart_rotation - deltaX * dragspeed
@@ -341,6 +357,36 @@ import RealityKit
             let combined_transform = dragstart_transform * look_up_transform * left_turn_transform
             cameraAnchor.transform = Transform(matrix: combined_transform)
         }
+    }
+    
+#if os(iOS)
+    override open dynamic func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        dragstart = touches.first!.location(in: self)
+        dragStart()
+    }
+    
+    override open dynamic func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let drag = touches.first!.location(in: self)
+        let deltaX = Float(drag.x - dragstart.x)
+        let deltaY = Float(dragstart.y - drag.y)
+        dragMove(deltaX, deltaY)
+    }
+#endif
+    
+#if os(macOS)
+    override open dynamic func mouseDown(with event: NSEvent) {
+        // print("mouseDown EVENT: \(event)")
+        // print(" at \(event.locationInWindow) of \(self.frame)")
+        dragstart = event.locationInWindow
+        dragStart()
+    }
+
+    override open dynamic func mouseDragged(with event: NSEvent) {
+        // print("mouseDragged EVENT: \(event)")
+        // print(" at \(event.locationInWindow) of \(self.frame)")
+        let deltaX = Float(event.locationInWindow.x - dragstart.x)
+        let deltaY = Float(event.locationInWindow.y - dragstart.y)
+        dragMove(deltaX, deltaY)
     }
 
     override open dynamic func keyDown(with event: NSEvent) {
@@ -482,4 +528,5 @@ import RealityKit
             break
         }
     }
+#endif
 }
