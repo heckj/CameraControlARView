@@ -6,15 +6,15 @@
 //
 
 #if os(iOS)
-import UIKit
-import ARKit
+    import ARKit
+    import UIKit
 #endif
 #if os(macOS)
-import AppKit
+    import AppKit
 #endif
-import RealityKit
-import Foundation
 import CoreGraphics
+import Foundation
+import RealityKit
 
 /// An augmented reality view for macOS or iOS that provides keyboard, trackpad, and mouse movement controls for the camera within the view.
 ///
@@ -23,7 +23,7 @@ import CoreGraphics
 /// - ``MotionMode-swift.enum/firstperson`` for moving freely within the environment.
 ///
 /// The default motion mode is ``MotionMode-swift.enum/arcball``.
-/// 
+///
 /// When used on iOS, a pinch gesture is automatically registered for interaction.
 ///
 /// Additional properties control the target location, the camera's location, or the speed of movement within the environment.
@@ -164,14 +164,14 @@ import CoreGraphics
     @Published var macOSCameraTransform: Transform
 
     #if os(iOS)
-    var pinchGesture:UIPinchGestureRecognizer?
-    @IBAction func pinchRecognized(_ pinch: UIPinchGestureRecognizer) {
-        let multiplier = ((pinch.scale > 1.0) ? -1.0 : 1.0) * Float(pinch.scale)/100 // magnify_end
-        radius = radius * (multiplier + 1)
-        updateCamera()
-    }
+        var pinchGesture: UIPinchGestureRecognizer?
+        @IBAction func pinchRecognized(_ pinch: UIPinchGestureRecognizer) {
+            let multiplier = ((pinch.scale > 1.0) ? -1.0 : 1.0) * Float(pinch.scale) / 100 // magnify_end
+            radius = radius * (multiplier + 1)
+            updateCamera()
+        }
     #endif
-    
+
     /// Creates a new AR View with the camera controlled by mouse, keyboard, and/or the trackpad.
     ///
     /// The default motion mode for the view is ``MotionMode-swift.enum/arcball``, which orbits the camera around a specific point in space.
@@ -203,18 +203,18 @@ import CoreGraphics
         macOSCameraTransform = cameraAnchor.transform
         super.init(frame: frameRect)
 
-#if os(macOS) || targetEnvironment(simulator)
-        let cameraEntity = PerspectiveCamera()
-        cameraEntity.camera.fieldOfViewInDegrees = 60
-        cameraAnchor.addChild(cameraEntity)
-        scene.addAnchor(cameraAnchor)
-#endif
+        #if os(macOS) || targetEnvironment(simulator)
+            let cameraEntity = PerspectiveCamera()
+            cameraEntity.camera.fieldOfViewInDegrees = 60
+            cameraAnchor.addChild(cameraEntity)
+            scene.addAnchor(cameraAnchor)
+        #endif
         updateCamera()
-        
-#if os(iOS)
-        self.pinchGesture = UIPinchGestureRecognizer(target: self, action:#selector(pinchRecognized(_:)))
-        self.addGestureRecognizer(self.pinchGesture!)
-#endif
+
+        #if os(iOS)
+            pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(pinchRecognized(_:)))
+            addGestureRecognizer(pinchGesture!)
+        #endif
     }
 
     // MARK: - rotational transforms
@@ -330,7 +330,7 @@ import CoreGraphics
             dragstart_transform = cameraAnchor.transform.matrix
         }
     }
-    
+
     func dragMove(_ deltaX: Float, _ deltaY: Float) {
         switch motionMode {
         case .arcball:
@@ -360,175 +360,175 @@ import CoreGraphics
             cameraAnchor.transform = Transform(matrix: combined_transform)
         }
     }
-    
-#if os(iOS)
-    override open dynamic func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        dragstart = touches.first!.location(in: self)
-        dragStart()
-    }
-    
-    override open dynamic func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let drag = touches.first!.location(in: self)
-        let deltaX = Float(drag.x - dragstart.x)
-        let deltaY = Float(dragstart.y - drag.y)
-        dragMove(deltaX, deltaY)
-    }
-#endif
-    
-#if os(macOS)
-    override open dynamic func mouseDown(with event: NSEvent) {
-        // print("mouseDown EVENT: \(event)")
-        // print(" at \(event.locationInWindow) of \(self.frame)")
-        dragstart = event.locationInWindow
-        dragStart()
-    }
 
-    override open dynamic func mouseDragged(with event: NSEvent) {
-        // print("mouseDragged EVENT: \(event)")
-        // print(" at \(event.locationInWindow) of \(self.frame)")
-        let deltaX = Float(event.locationInWindow.x - dragstart.x)
-        let deltaY = Float(event.locationInWindow.y - dragstart.y)
-        dragMove(deltaX, deltaY)
-    }
+    #if os(iOS)
+        override open dynamic func touchesBegan(_ touches: Set<UITouch>, with _: UIEvent?) {
+            dragstart = touches.first!.location(in: self)
+            dragStart()
+        }
 
-    override open dynamic func keyDown(with event: NSEvent) {
-        // print("keyDown: \(event)")
-        // print("key value: \(event.keyCode)")
-        switch motionMode {
-        case .arcball:
-            switch event.keyCode {
-            case 123, 0:
-                // 123 = left arrow
-                // 0 = a
-                if event.isARepeat {
-                    rotationAngle -= keyspeed * 2
-                } else {
-                    rotationAngle -= keyspeed
-                }
-                updateCamera()
-            case 124, 2:
-                // 124 = right arrow
-                // 2 = d
-                if event.isARepeat {
-                    rotationAngle += keyspeed * 2
-                } else {
-                    rotationAngle += keyspeed
-                }
-                updateCamera()
-            case 126, 13:
-                // 126 = up arrow
-                // 13 = w
-                if inclinationAngle > -Float.pi / 2 {
+        override open dynamic func touchesMoved(_ touches: Set<UITouch>, with _: UIEvent?) {
+            let drag = touches.first!.location(in: self)
+            let deltaX = Float(drag.x - dragstart.x)
+            let deltaY = Float(dragstart.y - drag.y)
+            dragMove(deltaX, deltaY)
+        }
+    #endif
+
+    #if os(macOS)
+        override open dynamic func mouseDown(with event: NSEvent) {
+            // print("mouseDown EVENT: \(event)")
+            // print(" at \(event.locationInWindow) of \(self.frame)")
+            dragstart = event.locationInWindow
+            dragStart()
+        }
+
+        override open dynamic func mouseDragged(with event: NSEvent) {
+            // print("mouseDragged EVENT: \(event)")
+            // print(" at \(event.locationInWindow) of \(self.frame)")
+            let deltaX = Float(event.locationInWindow.x - dragstart.x)
+            let deltaY = Float(event.locationInWindow.y - dragstart.y)
+            dragMove(deltaX, deltaY)
+        }
+
+        override open dynamic func keyDown(with event: NSEvent) {
+            // print("keyDown: \(event)")
+            // print("key value: \(event.keyCode)")
+            switch motionMode {
+            case .arcball:
+                switch event.keyCode {
+                case 123, 0:
+                    // 123 = left arrow
+                    // 0 = a
                     if event.isARepeat {
-                        inclinationAngle -= keyspeed * 2
+                        rotationAngle -= keyspeed * 2
                     } else {
-                        inclinationAngle -= keyspeed
+                        rotationAngle -= keyspeed
                     }
                     updateCamera()
-                }
-            case 125, 1:
-                // 125 = down arrow
-                // 1 = s
-                if inclinationAngle < Float.pi / 2 {
+                case 124, 2:
+                    // 124 = right arrow
+                    // 2 = d
                     if event.isARepeat {
-                        inclinationAngle += keyspeed * 2
+                        rotationAngle += keyspeed * 2
                     } else {
-                        inclinationAngle += keyspeed
+                        rotationAngle += keyspeed
                     }
                     updateCamera()
+                case 126, 13:
+                    // 126 = up arrow
+                    // 13 = w
+                    if inclinationAngle > -Float.pi / 2 {
+                        if event.isARepeat {
+                            inclinationAngle -= keyspeed * 2
+                        } else {
+                            inclinationAngle -= keyspeed
+                        }
+                        updateCamera()
+                    }
+                case 125, 1:
+                    // 125 = down arrow
+                    // 1 = s
+                    if inclinationAngle < Float.pi / 2 {
+                        if event.isARepeat {
+                            inclinationAngle += keyspeed * 2
+                        } else {
+                            inclinationAngle += keyspeed
+                        }
+                        updateCamera()
+                    }
+                default:
+                    break
                 }
-            default:
-                break
+
+            case .firstperson:
+                switch event.keyCode {
+                case 0:
+                    // 0 = a (move left)
+                    if event.isARepeat {
+                        cameraAnchor.position = cameraAnchor.position - (rightVector() * forward_speed * 2)
+                    } else {
+                        cameraAnchor.position = cameraAnchor.position - (rightVector() * forward_speed)
+                    }
+                case 2:
+                    // 2 = d (move right)
+                    if event.isARepeat {
+                        cameraAnchor.position = cameraAnchor.position + (rightVector() * forward_speed * 2)
+                    } else {
+                        cameraAnchor.position = cameraAnchor.position + (rightVector() * forward_speed)
+                    }
+                case 13:
+                    // 13 = w (move forward)
+                    if event.isARepeat {
+                        cameraAnchor.position = cameraAnchor.position + (headingVector() * forward_speed * 2)
+                    } else {
+                        cameraAnchor.position = cameraAnchor.position + (headingVector() * forward_speed)
+                    }
+                case 1:
+                    // 1 = s (move back)
+                    if event.isARepeat {
+                        cameraAnchor.position = cameraAnchor.position - (headingVector() * forward_speed * 2)
+                    } else {
+                        cameraAnchor.position = cameraAnchor.position - (headingVector() * forward_speed)
+                    }
+                case 123:
+                    // 123 = left arrow (turn left)
+                    let current_transform = cameraAnchor.transform.matrix
+                    let left_turn_transform: matrix_float4x4
+                    if event.isARepeat {
+                        left_turn_transform = rotationAroundYAxisTransform(radians: turn_speed * 2)
+                    } else {
+                        left_turn_transform = rotationAroundYAxisTransform(radians: turn_speed)
+                    }
+                    cameraAnchor.transform = Transform(matrix: matrix_multiply(current_transform, left_turn_transform))
+                case 124:
+                    // 124 = right arrow (turn right)
+                    let current_transform = cameraAnchor.transform.matrix
+                    let right_turn_transform: matrix_float4x4
+                    if event.isARepeat {
+                        right_turn_transform = rotationAroundYAxisTransform(radians: -turn_speed * 2)
+                    } else {
+                        right_turn_transform = rotationAroundYAxisTransform(radians: -turn_speed)
+                    }
+                    cameraAnchor.transform = Transform(matrix: matrix_multiply(current_transform, right_turn_transform))
+                case 126:
+                    // 126 = up arrow (neg, X rotation)
+                    let current_transform = cameraAnchor.transform.matrix
+                    let look_up_transform: matrix_float4x4
+                    if event.isARepeat {
+                        look_up_transform = rotationAroundXAxisTransform(radians: -turn_speed * 2)
+                    } else {
+                        look_up_transform = rotationAroundXAxisTransform(radians: -turn_speed)
+                    }
+                    cameraAnchor.transform = Transform(matrix: matrix_multiply(current_transform, look_up_transform))
+                case 125:
+                    // 125 = down arrow
+                    let current_transform = cameraAnchor.transform.matrix
+                    let look_down_transform: matrix_float4x4
+                    if event.isARepeat {
+                        look_down_transform = rotationAroundXAxisTransform(radians: turn_speed * 2)
+                    } else {
+                        look_down_transform = rotationAroundXAxisTransform(radians: turn_speed)
+                    }
+                    cameraAnchor.transform = Transform(matrix: matrix_multiply(current_transform, look_down_transform))
+                default:
+                    break
+                }
             }
+        }
 
-        case .firstperson:
-            switch event.keyCode {
-            case 0:
-                // 0 = a (move left)
-                if event.isARepeat {
-                    cameraAnchor.position = cameraAnchor.position - (rightVector() * forward_speed * 2)
-                } else {
-                    cameraAnchor.position = cameraAnchor.position - (rightVector() * forward_speed)
-                }
-            case 2:
-                // 2 = d (move right)
-                if event.isARepeat {
-                    cameraAnchor.position = cameraAnchor.position + (rightVector() * forward_speed * 2)
-                } else {
-                    cameraAnchor.position = cameraAnchor.position + (rightVector() * forward_speed)
-                }
-            case 13:
-                // 13 = w (move forward)
-                if event.isARepeat {
-                    cameraAnchor.position = cameraAnchor.position + (headingVector() * forward_speed * 2)
-                } else {
-                    cameraAnchor.position = cameraAnchor.position + (headingVector() * forward_speed)
-                }
-            case 1:
-                // 1 = s (move back)
-                if event.isARepeat {
-                    cameraAnchor.position = cameraAnchor.position - (headingVector() * forward_speed * 2)
-                } else {
-                    cameraAnchor.position = cameraAnchor.position - (headingVector() * forward_speed)
-                }
-            case 123:
-                // 123 = left arrow (turn left)
-                let current_transform = cameraAnchor.transform.matrix
-                let left_turn_transform: matrix_float4x4
-                if event.isARepeat {
-                    left_turn_transform = rotationAroundYAxisTransform(radians: turn_speed * 2)
-                } else {
-                    left_turn_transform = rotationAroundYAxisTransform(radians: turn_speed)
-                }
-                cameraAnchor.transform = Transform(matrix: matrix_multiply(current_transform, left_turn_transform))
-            case 124:
-                // 124 = right arrow (turn right)
-                let current_transform = cameraAnchor.transform.matrix
-                let right_turn_transform: matrix_float4x4
-                if event.isARepeat {
-                    right_turn_transform = rotationAroundYAxisTransform(radians: -turn_speed * 2)
-                } else {
-                    right_turn_transform = rotationAroundYAxisTransform(radians: -turn_speed)
-                }
-                cameraAnchor.transform = Transform(matrix: matrix_multiply(current_transform, right_turn_transform))
-            case 126:
-                // 126 = up arrow (neg, X rotation)
-                let current_transform = cameraAnchor.transform.matrix
-                let look_up_transform: matrix_float4x4
-                if event.isARepeat {
-                    look_up_transform = rotationAroundXAxisTransform(radians: -turn_speed * 2)
-                } else {
-                    look_up_transform = rotationAroundXAxisTransform(radians: -turn_speed)
-                }
-                cameraAnchor.transform = Transform(matrix: matrix_multiply(current_transform, look_up_transform))
-            case 125:
-                // 125 = down arrow
-                let current_transform = cameraAnchor.transform.matrix
-                let look_down_transform: matrix_float4x4
-                if event.isARepeat {
-                    look_down_transform = rotationAroundXAxisTransform(radians: turn_speed * 2)
-                } else {
-                    look_down_transform = rotationAroundXAxisTransform(radians: turn_speed)
-                }
-                cameraAnchor.transform = Transform(matrix: matrix_multiply(current_transform, look_down_transform))
-            default:
+        override open dynamic func magnify(with event: NSEvent) {
+            // if event.phase == NSEvent.Phase.ended {
+            //    print("magnify: \(event)")
+            // }
+            switch motionMode {
+            case .arcball:
+                let multiplier = Float(event.magnification) // magnify_end
+                radius = radius * (multiplier + 1)
+                updateCamera()
+            case .firstperson:
                 break
             }
         }
-    }
-
-    override open dynamic func magnify(with event: NSEvent) {
-        // if event.phase == NSEvent.Phase.ended {
-        //    print("magnify: \(event)")
-        // }
-        switch motionMode {
-        case .arcball:
-            let multiplier = Float(event.magnification) // magnify_end
-            radius = radius * (multiplier + 1)
-            updateCamera()
-        case .firstperson:
-            break
-        }
-    }
-#endif
+    #endif
 }

@@ -6,11 +6,11 @@
 //
 
 #if os(iOS)
-import UIKit
-typealias PlatformViewRepresentable = UIViewRepresentable
+    import UIKit
+    typealias PlatformViewRepresentable = UIViewRepresentable
 #elseif os(macOS)
-import Cocoa
-typealias PlatformViewRepresentable = NSViewRepresentable
+    import Cocoa
+    typealias PlatformViewRepresentable = NSViewRepresentable
 #endif
 import RealityKit
 import SwiftUI
@@ -32,36 +32,38 @@ public struct ARViewContainer: PlatformViewRepresentable {
     }
 
     /// Creates a new SwiftUI view.
-#if os(iOS)
-    public func makeUIView(context _: Context) -> ARView {
-        let arView = cameraARView
-        return arView
-    }
-#elseif os(macOS)
-    public func makeNSView(context _: Context) -> ARView {
-        // Creates the view object and configures its initial state.
-        //
-        // Context includes:
-        // - coordinator
-        // - transaction
-        // - environment
+    #if os(iOS)
+        public func makeUIView(context _: Context) -> ARView {
+            let arView = cameraARView
+            return arView
+        }
 
-        let arView = cameraARView
-        return arView
-    }
-#endif
-    
-#if os(iOS)
-    /// Updates the wrapped AR view with state information from SwiftUI.
-    public func updateUIView(_: ARView, context _: Context) {
-        // Updates the state of the specified view with new information from SwiftUI.
-    }
-#elseif os(macOS)
-    /// Updates the wrapped AR view with state information from SwiftUI.
-    public func updateNSView(_: ARView, context _: Context) {
-        // Updates the state of the specified view with new information from SwiftUI.
-    }
-#endif
+    #elseif os(macOS)
+        public func makeNSView(context _: Context) -> ARView {
+            // Creates the view object and configures its initial state.
+            //
+            // Context includes:
+            // - coordinator
+            // - transaction
+            // - environment
+
+            let arView = cameraARView
+            return arView
+        }
+    #endif
+
+    #if os(iOS)
+        /// Updates the wrapped AR view with state information from SwiftUI.
+        public func updateUIView(_: ARView, context _: Context) {
+            // Updates the state of the specified view with new information from SwiftUI.
+        }
+
+    #elseif os(macOS)
+        /// Updates the wrapped AR view with state information from SwiftUI.
+        public func updateNSView(_: ARView, context _: Context) {
+            // Updates the state of the specified view with new information from SwiftUI.
+        }
+    #endif
 
     /// Creates a new SwiftUI view that wraps and displays an augmented reality view.
     /// - Parameter cameraARView: An instance of the camera-controlled AR View.

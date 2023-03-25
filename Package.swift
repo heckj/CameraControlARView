@@ -7,7 +7,7 @@ let package = Package(
     name: "CameraControlARView",
     platforms: [
         .macOS(.v10_15),
-        .iOS(.v14)
+        .iOS(.v14),
     ],
     products: [
         .library(
