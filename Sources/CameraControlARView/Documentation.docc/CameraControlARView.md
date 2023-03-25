@@ -42,10 +42,11 @@ struct ExampleARContentView: View {
 
 ## Topics
 
-### ARView for macOS 
+### ARView for macOS or iOS
 
 - ``CameraControlARView/CameraControlARView``
 
-### SwiftUI Representable View
+### SwiftUI Representable Views
 
 - ``CameraControlARView/ARViewContainer``
+- ``CameraControlARView/RealityKitView``

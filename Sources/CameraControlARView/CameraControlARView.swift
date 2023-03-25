@@ -16,13 +16,15 @@ import RealityKit
 import Foundation
 import CoreGraphics
 
-/// An augmented reality view for macOS that provides keyboard, trackpad, and mouse movement controls for the camera within the view.
+/// An augmented reality view for macOS or iOS that provides keyboard, trackpad, and mouse movement controls for the camera within the view.
 ///
 /// Set the ``CameraControlARView/CameraControlARView/motionMode-swift.property`` to either:
 /// - ``MotionMode-swift.enum/arcball`` for rotating around a specific point.
 /// - ``MotionMode-swift.enum/firstperson`` for moving freely within the environment.
 ///
 /// The default motion mode is ``MotionMode-swift.enum/arcball``.
+/// 
+/// When used on iOS, a pinch gesture is automatically registered for interaction.
 ///
 /// Additional properties control the target location, the camera's location, or the speed of movement within the environment.
 @objc public class CameraControlARView: ARView, ObservableObject {
