@@ -11,10 +11,8 @@ import Combine
 import RealityKit
 
 fileprivate let arContainer = ARViewContainer.init(cameraARView: CameraControlARView.init(frame: .zero))
-var cancellables = [Cancellable]()
 
 public struct RealityKitView: View {
-    public typealias UpdateBlock = () -> Void
     
     public struct Context {
         public var base: RealityKit.Scene?
@@ -24,22 +22,21 @@ public struct RealityKitView: View {
             
             let originAnchor = AnchorEntity(world: .zero)
             originAnchor.addChild(entity)
-            arContainer.arView.scene.anchors.append(originAnchor)
+            arContainer.cameraARView.scene.anchors.append(originAnchor)
         }
     }
-    let context = Context.init(base: arContainer.arView.scene)
-    var update: UpdateBlock?
+    let context = Context.init(base: arContainer.cameraARView.scene)
+    var update: (() -> Void)?
+    var updateCancellable: Cancellable?
     
-    
-    public init(_ content: @escaping (_ context:Context) -> Void, update: UpdateBlock? = nil) {
+    public init(_ content: @escaping (_ context:Context) -> Void, update: (() -> Void)? = nil) {
         content(context)
         self.update = update
         
         if let update = self.update {
-            let updateCa = arContainer.arView.scene.subscribe(to: SceneEvents.Update.self) { event in
+            self.updateCancellable = arContainer.cameraARView.scene.subscribe(to: SceneEvents.Update.self) { event in
                 update()
             }
-            cancellables.append(updateCa)
         }
     }
     

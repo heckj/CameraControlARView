@@ -25,7 +25,7 @@ import CoreGraphics
 /// The default motion mode is ``MotionMode-swift.enum/arcball``.
 ///
 /// Additional properties control the target location, the camera's location, or the speed of movement within the environment.
-public class CameraControlARView: ARView, ObservableObject {
+@objc public class CameraControlARView: ARView, ObservableObject {
     /// The mode of camera motion within the augmented reality scene.
     public enum MotionMode: Int {
         /// Rotate around a target location, effectively orbiting and keeping the camera trained on it.
