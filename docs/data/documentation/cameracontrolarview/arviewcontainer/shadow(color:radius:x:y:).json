@@ -29,7 +29,7 @@
   "kind" : "symbol",
   "metadata" : {
     "extendedModule" : "SwiftUI",
-    "externalID" : "s:7SwiftUI4ViewPAAE6shadow5color6radius1x1yQrAA5ColorV_12CoreGraphics7CGFloatVA2MtF::SYNTHESIZED::s:19CameraControlARView0C9ContainerV",
+    "externalID" : "s:7SwiftUI4ViewPAAE6shadow5color6radius1x1yQrAA5ColorV_14CoreFoundation7CGFloatVA2MtF::SYNTHESIZED::s:19CameraControlARView0C9ContainerV",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -74,7 +74,7 @@
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:12CoreGraphics7CGFloatV",
+        "preciseIdentifier" : "s:14CoreFoundation7CGFloatV",
         "text" : "CGFloat"
       },
       {
@@ -91,7 +91,7 @@
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:12CoreGraphics7CGFloatV",
+        "preciseIdentifier" : "s:14CoreFoundation7CGFloatV",
         "text" : "CGFloat"
       },
       {
@@ -108,7 +108,7 @@
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:12CoreGraphics7CGFloatV",
+        "preciseIdentifier" : "s:14CoreFoundation7CGFloatV",
         "text" : "CGFloat"
       },
       {
@@ -223,7 +223,7 @@
             },
             {
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:12CoreGraphics7CGFloatV",
+              "preciseIdentifier" : "s:14CoreFoundation7CGFloatV",
               "text" : "CGFloat"
             },
             {
@@ -240,7 +240,7 @@
             },
             {
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:12CoreGraphics7CGFloatV",
+              "preciseIdentifier" : "s:14CoreFoundation7CGFloatV",
               "text" : "CGFloat"
             },
             {
@@ -257,7 +257,7 @@
             },
             {
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:12CoreGraphics7CGFloatV",
+              "preciseIdentifier" : "s:14CoreFoundation7CGFloatV",
               "text" : "CGFloat"
             },
             {
@@ -289,7 +289,7 @@
   ],
   "schemaVersion" : {
     "major" : 0,
-    "minor" : 2,
+    "minor" : 3,
     "patch" : 0
   },
   "sections" : [
@@ -416,7 +416,7 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12CoreGraphics7CGFloatV",
+      "preciseIdentifier" : "s:14CoreFoundation7CGFloatV",
       "text" : "CGFloat"
     },
     {
@@ -433,7 +433,7 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12CoreGraphics7CGFloatV",
+      "preciseIdentifier" : "s:14CoreFoundation7CGFloatV",
       "text" : "CGFloat"
     },
     {
@@ -450,7 +450,7 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12CoreGraphics7CGFloatV",
+      "preciseIdentifier" : "s:14CoreFoundation7CGFloatV",
       "text" : "CGFloat"
     },
     {

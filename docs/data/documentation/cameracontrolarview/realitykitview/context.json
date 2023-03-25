@@ -1,0 +1,283 @@
+{
+  "abstract" : [
+    {
+      "text" : "The context for the RealityKit view.",
+      "type" : "text"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/RealityKitView"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/RealityKitView\/Context"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "externalID" : "s:19CameraControlARView14RealityKitViewV7ContextV",
+    "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "struct"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "identifier",
+        "text" : "Context"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "CameraControlARView"
+      }
+    ],
+    "navigatorTitle" : [
+      {
+        "kind" : "identifier",
+        "text" : "Context"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Structure",
+    "symbolKind" : "struct",
+    "title" : "RealityKitView.Context"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "macOS"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "struct"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "identifier",
+              "text" : "Context"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 3,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "topicSections" : [
+    {
+      "identifiers" : [
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/RealityKitView\/Context\/base"
+      ],
+      "title" : "Instance Properties"
+    },
+    {
+      "identifiers" : [
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/RealityKitView\/Context\/add(_:)"
+      ],
+      "title" : "Instance Methods"
+    }
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/cameracontrolarview\/realitykitview\/context"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://CameraControlARView/documentation/CameraControlARView": {
+  "abstract" : [
+    {
+      "text" : "An ARView with camera control and SwiftUI wrappers to use RealityKit with macOS.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "CameraControlARView",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/RealityKitView": {
+  "abstract" : [
+    {
+      "text" : "A SwiftUI augmented reality view for macOS or iOS that optionally connects a closure you provide to Scene events.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "RealityKitView"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/RealityKitView",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "RealityKitView"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RealityKitView",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/realitykitview"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/RealityKitView/Context": {
+  "abstract" : [
+    {
+      "text" : "The context for the RealityKit view.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Context"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/RealityKitView\/Context",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Context"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RealityKitView.Context",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/realitykitview\/context"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/RealityKitView/Context/add(_:)": {
+  "abstract" : [
+    {
+      "text" : "Adds the entity that you provide at the center of the scene.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "add"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:17RealityFoundation6EntityC",
+      "text" : "Entity"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/RealityKitView\/Context\/add(_:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "add(_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/realitykitview\/context\/add(_:)"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/RealityKitView/Context/base": {
+  "abstract" : [
+    {
+      "text" : "An optional RealityKit Scene for the view.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "base"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:17RealityFoundation5SceneC",
+      "text" : "Scene"
+    },
+    {
+      "kind" : "text",
+      "text" : "?"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/RealityKitView\/Context\/base",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "base",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/realitykitview\/context\/base"
+}
+}
+}

@@ -128,11 +128,20 @@
   ],
   "schemaVersion" : {
     "major" : 0,
-    "minor" : 2,
+    "minor" : 3,
     "patch" : 0
   },
   "sections" : [
 
+  ],
+  "seeAlsoSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/RealityKitView"
+      ],
+      "title" : "SwiftUI Representable Views"
+    }
   ],
   "topicSections" : [
     {
@@ -454,10 +463,7 @@
 },
 "doc://CameraControlARView/documentation/CameraControlARView/ARViewContainer/makeNSView(context:)": {
   "abstract" : [
-    {
-      "text" : "Creates a new SwiftUI view.",
-      "type" : "text"
-    }
+
   ],
   "fragments" : [
     {
@@ -581,6 +587,40 @@
   "title" : "updateNSView(_:context:)",
   "type" : "topic",
   "url" : "\/documentation\/cameracontrolarview\/arviewcontainer\/updatensview(_:context:)"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/RealityKitView": {
+  "abstract" : [
+    {
+      "text" : "A SwiftUI augmented reality view for macOS or iOS that optionally connects a closure you provide to Scene events.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "RealityKitView"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/RealityKitView",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "RealityKitView"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RealityKitView",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/realitykitview"
 }
 }
 }

@@ -143,7 +143,7 @@
   ],
   "schemaVersion" : {
     "major" : 0,
-    "minor" : 2,
+    "minor" : 3,
     "patch" : 0
   },
   "sections" : [
@@ -154,13 +154,14 @@
       "identifiers" : [
         "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView"
       ],
-      "title" : "ARView for macOS"
+      "title" : "ARView for macOS or iOS"
     },
     {
       "identifiers" : [
-        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer"
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/RealityKitView"
       ],
-      "title" : "SwiftUI Representable View"
+      "title" : "SwiftUI Representable Views"
     }
   ],
   "variants" : [
@@ -228,7 +229,7 @@
 "doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView": {
   "abstract" : [
     {
-      "text" : "An augmented reality view for macOS that provides keyboard, trackpad, and mouse movement controls for the camera within the view.",
+      "text" : "An augmented reality view for macOS or iOS that provides keyboard, trackpad, and mouse movement controls for the camera within the view.",
       "type" : "text"
     }
   ],
@@ -258,6 +259,40 @@
   "title" : "CameraControlARView",
   "type" : "topic",
   "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/RealityKitView": {
+  "abstract" : [
+    {
+      "text" : "A SwiftUI augmented reality view for macOS or iOS that optionally connects a closure you provide to Scene events.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "RealityKitView"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/RealityKitView",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "RealityKitView"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RealityKitView",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/realitykitview"
 }
 }
 }

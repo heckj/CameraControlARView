@@ -1,0 +1,397 @@
+{
+  "abstract" : [
+    {
+      "text" : "Creates a new RealityKit SwiftUI View using the context you provide.",
+      "type" : "text"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/RealityKitView"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/RealityKitView\/init(_:update:)"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "externalID" : "s:19CameraControlARView14RealityKitViewV_6updateACyAC7ContextVc_yycSgtcfc",
+    "fragments" : [
+      {
+        "kind" : "identifier",
+        "text" : "init"
+      },
+      {
+        "kind" : "text",
+        "text" : "(("
+      },
+      {
+        "kind" : "typeIdentifier",
+        "preciseIdentifier" : "s:19CameraControlARView14RealityKitViewV",
+        "text" : "RealityKitView"
+      },
+      {
+        "kind" : "text",
+        "text" : "."
+      },
+      {
+        "kind" : "typeIdentifier",
+        "preciseIdentifier" : "s:19CameraControlARView14RealityKitViewV7ContextV",
+        "text" : "Context"
+      },
+      {
+        "kind" : "text",
+        "text" : ") -> "
+      },
+      {
+        "kind" : "typeIdentifier",
+        "preciseIdentifier" : "s:s4Voida",
+        "text" : "Void"
+      },
+      {
+        "kind" : "text",
+        "text" : ", "
+      },
+      {
+        "kind" : "externalParam",
+        "text" : "update"
+      },
+      {
+        "kind" : "text",
+        "text" : ": (() -> "
+      },
+      {
+        "kind" : "typeIdentifier",
+        "preciseIdentifier" : "s:s4Voida",
+        "text" : "Void"
+      },
+      {
+        "kind" : "text",
+        "text" : ")?)"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "CameraControlARView"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Initializer",
+    "symbolKind" : "init",
+    "title" : "init(_:update:)"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "macOS"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "init"
+            },
+            {
+              "kind" : "text",
+              "text" : "("
+            },
+            {
+              "kind" : "externalParam",
+              "text" : "_"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "internalParam",
+              "text" : "content"
+            },
+            {
+              "kind" : "text",
+              "text" : ": "
+            },
+            {
+              "kind" : "keyword",
+              "text" : "@escaping"
+            },
+            {
+              "kind" : "text",
+              "text" : " ("
+            },
+            {
+              "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/RealityKitView",
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:19CameraControlARView14RealityKitViewV",
+              "text" : "RealityKitView"
+            },
+            {
+              "kind" : "text",
+              "text" : "."
+            },
+            {
+              "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/RealityKitView\/Context",
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:19CameraControlARView14RealityKitViewV7ContextV",
+              "text" : "Context"
+            },
+            {
+              "kind" : "text",
+              "text" : ") -> "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:s4Voida",
+              "text" : "Void"
+            },
+            {
+              "kind" : "text",
+              "text" : ", "
+            },
+            {
+              "kind" : "externalParam",
+              "text" : "update"
+            },
+            {
+              "kind" : "text",
+              "text" : ": (() -> "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:s4Voida",
+              "text" : "Void"
+            },
+            {
+              "kind" : "text",
+              "text" : ")? = nil)"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    },
+    {
+      "kind" : "parameters",
+      "parameters" : [
+        {
+          "content" : [
+            {
+              "inlineContent" : [
+                {
+                  "text" : "A closure that provides ",
+                  "type" : "text"
+                },
+                {
+                  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/RealityKitView\/Context",
+                  "isActive" : true,
+                  "type" : "reference"
+                },
+                {
+                  "text" : " for constructing your scene.",
+                  "type" : "text"
+                }
+              ],
+              "type" : "paragraph"
+            }
+          ],
+          "name" : "content"
+        },
+        {
+          "content" : [
+            {
+              "inlineContent" : [
+                {
+                  "text" : "An optional closure that RealityKit calls when Scene events are triggered.",
+                  "type" : "text"
+                }
+              ],
+              "type" : "paragraph"
+            }
+          ],
+          "name" : "update"
+        }
+      ]
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 3,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/cameracontrolarview\/realitykitview\/init(_:update:)"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://CameraControlARView/documentation/CameraControlARView": {
+  "abstract" : [
+    {
+      "text" : "An ARView with camera control and SwiftUI wrappers to use RealityKit with macOS.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "CameraControlARView",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/RealityKitView": {
+  "abstract" : [
+    {
+      "text" : "A SwiftUI augmented reality view for macOS or iOS that optionally connects a closure you provide to Scene events.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "RealityKitView"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/RealityKitView",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "RealityKitView"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RealityKitView",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/realitykitview"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/RealityKitView/Context": {
+  "abstract" : [
+    {
+      "text" : "The context for the RealityKit view.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Context"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/RealityKitView\/Context",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Context"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RealityKitView.Context",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/realitykitview\/context"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/RealityKitView/init(_:update:)": {
+  "abstract" : [
+    {
+      "text" : "Creates a new RealityKit SwiftUI View using the context you provide.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "identifier",
+      "text" : "init"
+    },
+    {
+      "kind" : "text",
+      "text" : "(("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:19CameraControlARView14RealityKitViewV",
+      "text" : "RealityKitView"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:19CameraControlARView14RealityKitViewV7ContextV",
+      "text" : "Context"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:s4Voida",
+      "text" : "Void"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "update"
+    },
+    {
+      "kind" : "text",
+      "text" : ": (() -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:s4Voida",
+      "text" : "Void"
+    },
+    {
+      "kind" : "text",
+      "text" : ")?)"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/RealityKitView\/init(_:update:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "init(_:update:)",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/realitykitview\/init(_:update:)"
+}
+}
+}

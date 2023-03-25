@@ -29,7 +29,7 @@
   "kind" : "symbol",
   "metadata" : {
     "extendedModule" : "SwiftUI",
-    "externalID" : "s:7SwiftUI4ViewPAAE11scaleEffect1x1y6anchorQr12CoreGraphics7CGFloatV_AjA9UnitPointVtF::SYNTHESIZED::s:19CameraControlARView0C9ContainerV",
+    "externalID" : "s:7SwiftUI4ViewPAAE11scaleEffect1x1y6anchorQr14CoreFoundation7CGFloatV_AjA9UnitPointVtF::SYNTHESIZED::s:19CameraControlARView0C9ContainerV",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -57,7 +57,7 @@
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:12CoreGraphics7CGFloatV",
+        "preciseIdentifier" : "s:14CoreFoundation7CGFloatV",
         "text" : "CGFloat"
       },
       {
@@ -74,7 +74,7 @@
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:12CoreGraphics7CGFloatV",
+        "preciseIdentifier" : "s:14CoreFoundation7CGFloatV",
         "text" : "CGFloat"
       },
       {
@@ -189,7 +189,7 @@
             },
             {
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:12CoreGraphics7CGFloatV",
+              "preciseIdentifier" : "s:14CoreFoundation7CGFloatV",
               "text" : "CGFloat"
             },
             {
@@ -206,7 +206,7 @@
             },
             {
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:12CoreGraphics7CGFloatV",
+              "preciseIdentifier" : "s:14CoreFoundation7CGFloatV",
               "text" : "CGFloat"
             },
             {
@@ -255,7 +255,7 @@
   ],
   "schemaVersion" : {
     "major" : 0,
-    "minor" : 2,
+    "minor" : 3,
     "patch" : 0
   },
   "sections" : [
@@ -365,7 +365,7 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12CoreGraphics7CGFloatV",
+      "preciseIdentifier" : "s:14CoreFoundation7CGFloatV",
       "text" : "CGFloat"
     },
     {
@@ -382,7 +382,7 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12CoreGraphics7CGFloatV",
+      "preciseIdentifier" : "s:14CoreFoundation7CGFloatV",
       "text" : "CGFloat"
     },
     {

@@ -1,7 +1,7 @@
 {
   "abstract" : [
     {
-      "text" : "An augmented reality view for macOS that provides keyboard, trackpad, and mouse movement controls for the camera within the view.",
+      "text" : "An augmented reality view for macOS or iOS that provides keyboard, trackpad, and mouse movement controls for the camera within the view.",
       "type" : "text"
     }
   ],
@@ -173,6 +173,15 @@
         {
           "inlineContent" : [
             {
+              "text" : "When used on iOS, a pinch gesture is automatically registered for interaction.",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        },
+        {
+          "inlineContent" : [
+            {
               "text" : "Additional properties control the target location, the camera’s location, or the speed of movement within the environment.",
               "type" : "text"
             }
@@ -186,7 +195,7 @@
   "relationshipsSections" : [
     {
       "identifiers" : [
-
+        "doc:\/\/CameraControlARView\/@M@RealityKit@objc(cs)ARView"
       ],
       "kind" : "relationships",
       "title" : "Inherits From",
@@ -219,7 +228,7 @@
   ],
   "schemaVersion" : {
     "major" : 0,
-    "minor" : 2,
+    "minor" : 3,
     "patch" : 0
   },
   "sections" : [
@@ -306,6 +315,11 @@
   "title" : "Combine.ObservableObject",
   "type" : "unresolvable"
 },
+"doc://CameraControlARView/@M@RealityKit@objc(cs)ARView": {
+  "identifier" : "doc:\/\/CameraControlARView\/@M@RealityKit@objc(cs)ARView",
+  "title" : "RealityKit.ARView",
+  "type" : "unresolvable"
+},
 "doc://CameraControlARView/SH": {
   "identifier" : "doc:\/\/CameraControlARView\/SH",
   "title" : "Swift.Hashable",
@@ -333,7 +347,7 @@
 "doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView": {
   "abstract" : [
     {
-      "text" : "An augmented reality view for macOS that provides keyboard, trackpad, and mouse movement controls for the camera within the view.",
+      "text" : "An augmented reality view for macOS or iOS that provides keyboard, trackpad, and mouse movement controls for the camera within the view.",
       "type" : "text"
     }
   ],
@@ -959,8 +973,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "c:@T@NSRect",
-      "text" : "NSRect"
+      "preciseIdentifier" : "c:@S@CGRect",
+      "text" : "CGRect"
     },
     {
       "kind" : "text",

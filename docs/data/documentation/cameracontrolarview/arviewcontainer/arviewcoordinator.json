@@ -82,7 +82,7 @@
   "relationshipsSections" : [
     {
       "identifiers" : [
-
+        "doc:\/\/CameraControlARView\/objc(cs)NSObject"
       ],
       "kind" : "relationships",
       "title" : "Inherits From",
@@ -104,7 +104,7 @@
   ],
   "schemaVersion" : {
     "major" : 0,
-    "minor" : 2,
+    "minor" : 3,
     "patch" : 0
   },
   "sections" : [
@@ -125,7 +125,6 @@
   "topicSections" : [
     {
       "identifiers" : [
-        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer\/ARViewCoordinator\/init()",
         "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer\/ARViewCoordinator\/init(_:)"
       ],
       "title" : "Initializers"
@@ -242,27 +241,6 @@
   "title" : "ARViewContainer.ARViewCoordinator",
   "type" : "topic",
   "url" : "\/documentation\/cameracontrolarview\/arviewcontainer\/arviewcoordinator"
-},
-"doc://CameraControlARView/documentation/CameraControlARView/ARViewContainer/ARViewCoordinator/init()": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "identifier",
-      "text" : "init"
-    },
-    {
-      "kind" : "text",
-      "text" : "()"
-    }
-  ],
-  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer\/ARViewCoordinator\/init()",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "init()",
-  "type" : "topic",
-  "url" : "\/documentation\/cameracontrolarview\/arviewcontainer\/arviewcoordinator\/init()"
 },
 "doc://CameraControlARView/documentation/CameraControlARView/ARViewContainer/ARViewCoordinator/init(_:)": {
   "abstract" : [
@@ -410,10 +388,7 @@
 },
 "doc://CameraControlARView/documentation/CameraControlARView/ARViewContainer/makeNSView(context:)": {
   "abstract" : [
-    {
-      "text" : "Creates a new SwiftUI view.",
-      "type" : "text"
-    }
+
   ],
   "fragments" : [
     {
@@ -537,6 +512,11 @@
   "title" : "updateNSView(_:context:)",
   "type" : "topic",
   "url" : "\/documentation\/cameracontrolarview\/arviewcontainer\/updatensview(_:context:)"
+},
+"doc://CameraControlARView/objc(cs)NSObject": {
+  "identifier" : "doc:\/\/CameraControlARView\/objc(cs)NSObject",
+  "title" : "ObjectiveC.NSObject",
+  "type" : "unresolvable"
 },
 "doc://CameraControlARView/objc(pl)NSObject": {
   "identifier" : "doc:\/\/CameraControlARView\/objc(pl)NSObject",

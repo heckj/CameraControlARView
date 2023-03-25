@@ -110,7 +110,7 @@
   ],
   "schemaVersion" : {
     "major" : 0,
-    "minor" : 2,
+    "minor" : 3,
     "patch" : 0
   },
   "sections" : [
@@ -147,7 +147,7 @@
 "doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView": {
   "abstract" : [
     {
-      "text" : "An augmented reality view for macOS that provides keyboard, trackpad, and mouse movement controls for the camera within the view.",
+      "text" : "An augmented reality view for macOS or iOS that provides keyboard, trackpad, and mouse movement controls for the camera within the view.",
       "type" : "text"
     }
   ],

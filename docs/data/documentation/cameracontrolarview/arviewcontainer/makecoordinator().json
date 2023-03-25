@@ -113,7 +113,7 @@
   ],
   "schemaVersion" : {
     "major" : 0,
-    "minor" : 2,
+    "minor" : 3,
     "patch" : 0
   },
   "sections" : [
@@ -309,10 +309,7 @@
 },
 "doc://CameraControlARView/documentation/CameraControlARView/ARViewContainer/makeNSView(context:)": {
   "abstract" : [
-    {
-      "text" : "Creates a new SwiftUI view.",
-      "type" : "text"
-    }
+
   ],
   "fragments" : [
     {
