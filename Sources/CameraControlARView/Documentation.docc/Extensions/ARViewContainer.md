@@ -1,23 +1,19 @@
 # ``CameraControlARView/ARViewContainer``
 
-@Metadata {
-    @DocumentationExtension(mergeBehavior: append)
-}
-
 ## Topics
 
 ### Creating an AR View Container
 
-- ``CameraControlARView/ARViewContainer/init(cameraARView:)``
+- ``ARViewContainer/init(cameraARView:)``
 
 ### Inspecting the View Container
 
-- ``CameraControlARView/ARViewContainer/cameraARView``
+- ``ARViewContainer/cameraARView``
 
 ### View Coordinator Methods
 
-- ``CameraControlARView/ARViewContainer/NSViewType``
-- ``CameraControlARView/ARViewContainer/makeCoordinator()``
-- ``CameraControlARView/ARViewContainer/makeNSView(context:)``
-- ``CameraControlARView/ARViewContainer/updateNSView(_:context:)``
-- ``CameraControlARView/ARViewContainer/ARViewCoordinator``
+- ``ARViewContainer/NSViewType``
+- ``ARViewContainer/makeCoordinator()``
+- ``ARViewContainer/makeNSView(context:)``
+- ``ARViewContainer/updateNSView(_:context:)``
+- ``ARViewContainer/ARViewCoordinator``
