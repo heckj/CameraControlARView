@@ -44,9 +44,9 @@ struct ExampleARContentView: View {
 
 ### ARView for macOS or iOS
 
-- ``CameraControlARView/CameraControlARView``
+- ``CameraControlARView``
 
 ### SwiftUI Representable Views
 
-- ``CameraControlARView/ARViewContainer``
-- ``CameraControlARView/RealityKitView``
+- ``ARViewContainer``
+- ``RealityKitView``
