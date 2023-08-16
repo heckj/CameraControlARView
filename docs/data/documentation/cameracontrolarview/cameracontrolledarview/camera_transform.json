@@ -1,7 +1,7 @@
 {
   "abstract" : [
     {
-      "text" : "The speed at which the camera moves when incrementing forward via the keyboard",
+      "text" : "The homogenous transform that represents the camera’s location and rotation.",
       "type" : "text"
     }
   ],
@@ -9,17 +9,17 @@
     "paths" : [
       [
         "doc:\/\/CameraControlARView\/documentation\/CameraControlARView",
-        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView"
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView"
       ]
     ]
   },
   "identifier" : {
     "interfaceLanguage" : "swift",
-    "url" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/forward_speed"
+    "url" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/camera_transform"
   },
   "kind" : "symbol",
   "metadata" : {
-    "externalID" : "s:19CameraControlARViewAAC13forward_speedSfvp",
+    "externalID" : "s:19CameraControlARView0a10ControlledC0C16camera_transformSo13simd_float4x4avp",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -31,7 +31,7 @@
       },
       {
         "kind" : "identifier",
-        "text" : "forward_speed"
+        "text" : "camera_transform"
       },
       {
         "kind" : "text",
@@ -39,8 +39,8 @@
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:Sf",
-        "text" : "Float"
+        "preciseIdentifier" : "c:@T@matrix_float4x4",
+        "text" : "matrix_float4x4"
       }
     ],
     "modules" : [
@@ -51,7 +51,7 @@
     "role" : "symbol",
     "roleHeading" : "Instance Property",
     "symbolKind" : "property",
-    "title" : "forward_speed"
+    "title" : "camera_transform"
   },
   "primaryContentSections" : [
     {
@@ -74,7 +74,7 @@
             },
             {
               "kind" : "identifier",
-              "text" : "forward_speed"
+              "text" : "camera_transform"
             },
             {
               "kind" : "text",
@@ -82,8 +82,28 @@
             },
             {
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:Sf",
-              "text" : "Float"
+              "preciseIdentifier" : "c:@T@matrix_float4x4",
+              "text" : "matrix_float4x4"
+            },
+            {
+              "kind" : "text",
+              "text" : " { "
+            },
+            {
+              "kind" : "keyword",
+              "text" : "get"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "keyword",
+              "text" : "set"
+            },
+            {
+              "kind" : "text",
+              "text" : " }"
             }
           ]
         }
@@ -103,7 +123,7 @@
     {
       "generated" : true,
       "identifiers" : [
-        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/camera_transform"
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/forward_speed"
       ],
       "title" : "Updating the Camera Using First Person Mode"
     }
@@ -111,7 +131,7 @@
   "variants" : [
     {
       "paths" : [
-        "\/documentation\/cameracontrolarview\/cameracontrolarview\/forward_speed"
+        "\/documentation\/cameracontrolarview\/cameracontrolledarview\/camera_transform"
       ],
       "traits" : [
         {
@@ -136,10 +156,10 @@
   "type" : "topic",
   "url" : "\/documentation\/cameracontrolarview"
 },
-"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView": {
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlledARView": {
   "abstract" : [
     {
-      "text" : "An augmented reality view for macOS or iOS that provides keyboard, trackpad, and mouse movement controls for the camera within the view.",
+      "text" : "A 3D View for SwiftUI using RealityKit that provides movement controls for the camera within the view.",
       "type" : "text"
     }
   ],
@@ -154,23 +174,23 @@
     },
     {
       "kind" : "identifier",
-      "text" : "CameraControlARView"
+      "text" : "CameraControlledARView"
     }
   ],
-  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView",
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "CameraControlARView"
+      "text" : "CameraControlledARView"
     }
   ],
   "role" : "symbol",
-  "title" : "CameraControlARView",
+  "title" : "CameraControlledARView",
   "type" : "topic",
-  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview"
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolledarview"
 },
-"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/camera_transform": {
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlledARView/camera_transform": {
   "abstract" : [
     {
       "text" : "The homogenous transform that represents the camera’s location and rotation.",
@@ -200,14 +220,14 @@
       "text" : "matrix_float4x4"
     }
   ],
-  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/camera_transform",
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/camera_transform",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "camera_transform",
   "type" : "topic",
-  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/camera_transform"
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolledarview\/camera_transform"
 },
-"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/forward_speed": {
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlledARView/forward_speed": {
   "abstract" : [
     {
       "text" : "The speed at which the camera moves when incrementing forward via the keyboard",
@@ -237,12 +257,12 @@
       "text" : "Float"
     }
   ],
-  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/forward_speed",
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/forward_speed",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "forward_speed",
   "type" : "topic",
-  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/forward_speed"
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolledarview\/forward_speed"
 }
 }
 }

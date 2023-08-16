@@ -17,18 +17,18 @@
     "paths" : [
       [
         "doc:\/\/CameraControlARView\/documentation\/CameraControlARView",
-        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView"
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView"
       ],
       [
         "doc:\/\/CameraControlARView\/documentation\/CameraControlARView",
-        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView",
-        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/ObservableObject-Implementations"
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/ObservableObject-Implementations"
       ]
     ]
   },
   "identifier" : {
     "interfaceLanguage" : "swift",
-    "url" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/objectWillChange"
+    "url" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/objectWillChange"
   },
   "kind" : "symbol",
   "metadata" : {
@@ -65,7 +65,7 @@
       ]
     },
     "extendedModule" : "Combine",
-    "externalID" : "s:7Combine16ObservableObjectPA2A0bC9PublisherC0c10WillChangeD0RtzrlE06objecteF0AEvp::SYNTHESIZED::c:@M@CameraControlARView@objc(cs)CameraControlARView",
+    "externalID" : "s:7Combine16ObservableObjectPA2A0bC9PublisherC0c10WillChangeD0RtzrlE06objecteF0AEvp::SYNTHESIZED::c:@M@CameraControlARView@objc(cs)CameraControlledARView",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -194,7 +194,7 @@
     {
       "generated" : true,
       "identifiers" : [
-        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/cameraAnchor"
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/cameraAnchor"
       ],
       "title" : "Inspecting the View"
     }
@@ -202,7 +202,7 @@
   "variants" : [
     {
       "paths" : [
-        "\/documentation\/cameracontrolarview\/cameracontrolarview\/objectwillchange"
+        "\/documentation\/cameracontrolarview\/cameracontrolledarview\/objectwillchange"
       ],
       "traits" : [
         {
@@ -227,10 +227,10 @@
   "type" : "topic",
   "url" : "\/documentation\/cameracontrolarview"
 },
-"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView": {
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlledARView": {
   "abstract" : [
     {
-      "text" : "An augmented reality view for macOS or iOS that provides keyboard, trackpad, and mouse movement controls for the camera within the view.",
+      "text" : "A 3D View for SwiftUI using RealityKit that provides movement controls for the camera within the view.",
       "type" : "text"
     }
   ],
@@ -245,34 +245,34 @@
     },
     {
       "kind" : "identifier",
-      "text" : "CameraControlARView"
+      "text" : "CameraControlledARView"
     }
   ],
-  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView",
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "CameraControlARView"
+      "text" : "CameraControlledARView"
     }
   ],
   "role" : "symbol",
-  "title" : "CameraControlARView",
+  "title" : "CameraControlledARView",
   "type" : "topic",
-  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview"
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolledarview"
 },
-"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/ObservableObject-Implementations": {
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlledARView/ObservableObject-Implementations": {
   "abstract" : [
 
   ],
-  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/ObservableObject-Implementations",
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/ObservableObject-Implementations",
   "kind" : "article",
   "role" : "collectionGroup",
   "title" : "ObservableObject Implementations",
   "type" : "topic",
-  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/observableobject-implementations"
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolledarview\/observableobject-implementations"
 },
-"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/cameraAnchor": {
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlledARView/cameraAnchor": {
   "abstract" : [
     {
       "text" : "A reference to the camera anchor entity for moving, or reading the location values, for the camera.",
@@ -302,14 +302,14 @@
       "text" : "AnchorEntity"
     }
   ],
-  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/cameraAnchor",
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/cameraAnchor",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "cameraAnchor",
   "type" : "topic",
-  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/cameraanchor"
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolledarview\/cameraanchor"
 },
-"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/objectWillChange": {
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlledARView/objectWillChange": {
   "abstract" : [
 
   ],
@@ -368,12 +368,12 @@
       "text" : "ObservableObjectPublisher"
     }
   ],
-  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/objectWillChange",
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/objectWillChange",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "objectWillChange",
   "type" : "topic",
-  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/objectwillchange"
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolledarview\/objectwillchange"
 }
 }
 }

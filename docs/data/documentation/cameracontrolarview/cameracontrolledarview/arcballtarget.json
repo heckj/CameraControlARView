@@ -1,7 +1,7 @@
 {
   "abstract" : [
     {
-      "text" : "The angle of inclination of the camera when in arcball mode.",
+      "text" : "The target for the camera when in arcball mode.",
       "type" : "text"
     }
   ],
@@ -9,17 +9,17 @@
     "paths" : [
       [
         "doc:\/\/CameraControlARView\/documentation\/CameraControlARView",
-        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView"
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView"
       ]
     ]
   },
   "identifier" : {
     "interfaceLanguage" : "swift",
-    "url" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/inclinationAngle"
+    "url" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/arcballTarget"
   },
   "kind" : "symbol",
   "metadata" : {
-    "externalID" : "s:19CameraControlARViewAAC16inclinationAngleSfvp",
+    "externalID" : "s:19CameraControlARView0a10ControlledC0C13arcballTargets5SIMD3VySfGvp",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -31,7 +31,7 @@
       },
       {
         "kind" : "identifier",
-        "text" : "inclinationAngle"
+        "text" : "arcballTarget"
       },
       {
         "kind" : "text",
@@ -39,8 +39,8 @@
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:Sf",
-        "text" : "Float"
+        "preciseIdentifier" : "c:@T@simd_float3",
+        "text" : "simd_float3"
       }
     ],
     "modules" : [
@@ -51,7 +51,7 @@
     "role" : "symbol",
     "roleHeading" : "Instance Property",
     "symbolKind" : "property",
-    "title" : "inclinationAngle"
+    "title" : "arcballTarget"
   },
   "primaryContentSections" : [
     {
@@ -74,7 +74,7 @@
             },
             {
               "kind" : "identifier",
-              "text" : "inclinationAngle"
+              "text" : "arcballTarget"
             },
             {
               "kind" : "text",
@@ -82,8 +82,8 @@
             },
             {
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:Sf",
-              "text" : "Float"
+              "preciseIdentifier" : "c:@T@simd_float3",
+              "text" : "simd_float3"
             },
             {
               "kind" : "text",
@@ -123,9 +123,9 @@
     {
       "generated" : true,
       "identifiers" : [
-        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/rotationAngle",
-        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/radius",
-        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/arcballTarget"
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/inclinationAngle",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/rotationAngle",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/radius"
       ],
       "title" : "Updating the Camera Using ArcBall Mode"
     }
@@ -133,7 +133,7 @@
   "variants" : [
     {
       "paths" : [
-        "\/documentation\/cameracontrolarview\/cameracontrolarview\/inclinationangle"
+        "\/documentation\/cameracontrolarview\/cameracontrolledarview\/arcballtarget"
       ],
       "traits" : [
         {
@@ -158,10 +158,10 @@
   "type" : "topic",
   "url" : "\/documentation\/cameracontrolarview"
 },
-"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView": {
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlledARView": {
   "abstract" : [
     {
-      "text" : "An augmented reality view for macOS or iOS that provides keyboard, trackpad, and mouse movement controls for the camera within the view.",
+      "text" : "A 3D View for SwiftUI using RealityKit that provides movement controls for the camera within the view.",
       "type" : "text"
     }
   ],
@@ -176,23 +176,23 @@
     },
     {
       "kind" : "identifier",
-      "text" : "CameraControlARView"
+      "text" : "CameraControlledARView"
     }
   ],
-  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView",
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "CameraControlARView"
+      "text" : "CameraControlledARView"
     }
   ],
   "role" : "symbol",
-  "title" : "CameraControlARView",
+  "title" : "CameraControlledARView",
   "type" : "topic",
-  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview"
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolledarview"
 },
-"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/arcballTarget": {
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlledARView/arcballTarget": {
   "abstract" : [
     {
       "text" : "The target for the camera when in arcball mode.",
@@ -222,14 +222,14 @@
       "text" : "simd_float3"
     }
   ],
-  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/arcballTarget",
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/arcballTarget",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "arcballTarget",
   "type" : "topic",
-  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/arcballtarget"
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolledarview\/arcballtarget"
 },
-"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/inclinationAngle": {
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlledARView/inclinationAngle": {
   "abstract" : [
     {
       "text" : "The angle of inclination of the camera when in arcball mode.",
@@ -259,14 +259,14 @@
       "text" : "Float"
     }
   ],
-  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/inclinationAngle",
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/inclinationAngle",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "inclinationAngle",
   "type" : "topic",
-  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/inclinationangle"
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolledarview\/inclinationangle"
 },
-"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/radius": {
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlledARView/radius": {
   "abstract" : [
     {
       "text" : "The camera’s orbital distance from the target when in arcball mode.",
@@ -296,14 +296,14 @@
       "text" : "Float"
     }
   ],
-  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/radius",
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/radius",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "radius",
   "type" : "topic",
-  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/radius"
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolledarview\/radius"
 },
-"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/rotationAngle": {
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlledARView/rotationAngle": {
   "abstract" : [
     {
       "text" : "The angle of rotation of the camera when in arcball mode.",
@@ -333,12 +333,12 @@
       "text" : "Float"
     }
   ],
-  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/rotationAngle",
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/rotationAngle",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "rotationAngle",
   "type" : "topic",
-  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/rotationangle"
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolledarview\/rotationangle"
 }
 }
 }

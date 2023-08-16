@@ -1,15 +1,7 @@
 {
   "abstract" : [
     {
-      "text" : "Inherited from ",
-      "type" : "text"
-    },
-    {
-      "code" : "View.body",
-      "type" : "codeVoice"
-    },
-    {
-      "text" : ".",
+      "text" : "The body of the view.",
       "type" : "text"
     }
   ],
@@ -166,7 +158,7 @@
 "doc://CameraControlARView/documentation/CameraControlARView/RealityKitView": {
   "abstract" : [
     {
-      "text" : "A SwiftUI augmented reality view for macOS or iOS that optionally connects a closure you provide to Scene events.",
+      "text" : "A SwiftUI RealityKit view that optionally connects a closure you provide to scene events.",
       "type" : "text"
     }
   ],
@@ -199,7 +191,10 @@
 },
 "doc://CameraControlARView/documentation/CameraControlARView/RealityKitView/body": {
   "abstract" : [
-
+    {
+      "text" : "The body of the view.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

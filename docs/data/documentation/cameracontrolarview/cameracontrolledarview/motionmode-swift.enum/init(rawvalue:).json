@@ -17,18 +17,18 @@
     "paths" : [
       [
         "doc:\/\/CameraControlARView\/documentation\/CameraControlARView",
-        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView",
-        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum"
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/MotionMode-swift.enum"
       ]
     ]
   },
   "identifier" : {
     "interfaceLanguage" : "swift",
-    "url" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum\/init(rawValue:)"
+    "url" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/MotionMode-swift.enum\/init(rawValue:)"
   },
   "kind" : "symbol",
   "metadata" : {
-    "externalID" : "s:19CameraControlARViewAAC10MotionModeO8rawValueADSgSi_tcfc",
+    "externalID" : "s:19CameraControlARView0a10ControlledC0C10MotionModeO8rawValueAESgSi_tcfc",
     "fragments" : [
       {
         "kind" : "identifier",
@@ -119,7 +119,7 @@
   "variants" : [
     {
       "paths" : [
-        "\/documentation\/cameracontrolarview\/cameracontrolarview\/motionmode-swift.enum\/init(rawvalue:)"
+        "\/documentation\/cameracontrolarview\/cameracontrolledarview\/motionmode-swift.enum\/init(rawvalue:)"
       ],
       "traits" : [
         {
@@ -144,10 +144,10 @@
   "type" : "topic",
   "url" : "\/documentation\/cameracontrolarview"
 },
-"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView": {
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlledARView": {
   "abstract" : [
     {
-      "text" : "An augmented reality view for macOS or iOS that provides keyboard, trackpad, and mouse movement controls for the camera within the view.",
+      "text" : "A 3D View for SwiftUI using RealityKit that provides movement controls for the camera within the view.",
       "type" : "text"
     }
   ],
@@ -162,23 +162,23 @@
     },
     {
       "kind" : "identifier",
-      "text" : "CameraControlARView"
+      "text" : "CameraControlledARView"
     }
   ],
-  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView",
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "CameraControlARView"
+      "text" : "CameraControlledARView"
     }
   ],
   "role" : "symbol",
-  "title" : "CameraControlARView",
+  "title" : "CameraControlledARView",
   "type" : "topic",
-  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview"
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolledarview"
 },
-"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/MotionMode-swift.enum": {
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlledARView/MotionMode-swift.enum": {
   "abstract" : [
     {
       "text" : "The mode of camera motion within the augmented reality scene.",
@@ -199,7 +199,7 @@
       "text" : "MotionMode"
     }
   ],
-  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum",
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/MotionMode-swift.enum",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
@@ -208,11 +208,11 @@
     }
   ],
   "role" : "symbol",
-  "title" : "CameraControlARView.MotionMode",
+  "title" : "CameraControlledARView.MotionMode",
   "type" : "topic",
-  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/motionmode-swift.enum"
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolledarview\/motionmode-swift.enum"
 },
-"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/MotionMode-swift.enum/init(rawValue:)": {
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlledARView/MotionMode-swift.enum/init(rawValue:)": {
   "abstract" : [
 
   ],
@@ -243,12 +243,12 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum\/init(rawValue:)",
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/MotionMode-swift.enum\/init(rawValue:)",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "init(rawValue:)",
   "type" : "topic",
-  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/motionmode-swift.enum\/init(rawvalue:)"
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolledarview\/motionmode-swift.enum\/init(rawvalue:)"
 }
 }
 }
