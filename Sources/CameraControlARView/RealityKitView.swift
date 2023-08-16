@@ -10,16 +10,21 @@ import Combine
 import RealityKit
 import SwiftUI
 
-private let arContainer = ARViewContainer(cameraARView: CameraControlARView(frame: .zero))
+private let arContainer = ARViewContainer(cameraARView: CameraControlledARView(frame: .zero))
 
-/// A SwiftUI augmented reality view for macOS or iOS that optionally connects a closure you provide to Scene events.
+/// A SwiftUI RealityKit view that optionally connects a closure you provide to scene events.
 ///
-/// RealityKitView extends the default ``CameraControlARView/CameraControlARView``.
+/// This view provides an ``ARViewContainer`` and a default configured ``CameraControlledARView``, customizable through the struct ``RealityKitView/Context``.
+/// If provided, the instance calls the optional update closure provided to ``init(_:update:)`` when the associated RealityKit scene provides scene events.
 ///
 /// The example below shows creating a view that contains a box:
 /// ```swift
 /// RealityKitView({ context in
-///     let entity = ModelEntity(mesh: .generateBox(size: SIMD3<Float>.init(repeating: 1)))
+///     let entity = ModelEntity(
+///         mesh: .generateBox(
+///             size: SIMD3<Float>.init(repeating: 1)
+///         )
+///     )
 ///     context.add(entity)
 /// }, update: {
 ///     print("update")
@@ -58,7 +63,8 @@ public struct RealityKitView: View {
             }
         }
     }
-
+    
+    /// The body of the view.
     public var body: some View {
         arContainer
     }

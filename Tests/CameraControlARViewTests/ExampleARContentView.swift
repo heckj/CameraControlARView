@@ -12,8 +12,8 @@ import SwiftUI
 import XCTest
 
 struct ExampleARContentView: View {
-    @StateObject var arview: CameraControlARView = {
-        let arView = CameraControlARView(frame: .zero)
+    @StateObject var arview: CameraControlledARView = {
+        let arView = CameraControlledARView(frame: .zero)
 
         // Set ARView debug options
         arView.debugOptions = [

@@ -4,7 +4,7 @@ import XCTest
 final class CameraControlARViewTests: XCTestCase {
     func testExample() throws {
         #if os(macOS)
-            XCTAssertNotNil(CameraControlARView())
+            XCTAssertNotNil(CameraControlledARView())
         #endif
     }
 }

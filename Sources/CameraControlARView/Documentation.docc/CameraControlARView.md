@@ -1,4 +1,4 @@
-# ``CameraControlARView``
+# ``/CameraControlARView``
 
 An ARView with camera control and SwiftUI wrappers to use RealityKit with macOS.
 
@@ -8,8 +8,13 @@ The package provides an `ARView` subclass that you can use within AppKit, or wit
 RealityKit includes an `ARView` that functions on macOS, but in a limited fashion.
 The subclassed ARView provides controls to move the camera within the RealityKit scene with a mouse, trackpad and/or keyboard.
 
-The wrapping SwiftUI view is crafted to allow you to create an instance of the ``CameraControlARView/CameraControlARView`` externally and provide it to the view. 
+The wrapping SwiftUI view is crafted to allow you to create an instance of the ``CameraControlledARView`` externally and provide it to the view. 
 The following example view illustrates creating a view so that you can also access the underlying view's properties to manipulate the view: 
+
+Configure this subclass of ARView, potentially appending any scene details, before using it
+to initialize ``ARViewContainer`` to present the via in SwiftUI. 
+
+For example, the following snippet creates a SwiftUI view into a RealityKit scene:
 
 ```swift
 struct ExampleARContentView: View {
@@ -42,11 +47,12 @@ struct ExampleARContentView: View {
 
 ## Topics
 
-### ARView for macOS or iOS
+### SwiftUI View for RealityKit 
 
-- ``CameraControlARView``
-
-### SwiftUI Representable Views
-
-- ``ARViewContainer``
 - ``RealityKitView``
+- ``RealityKitView/Context``
+
+### Configurable SwiftUI View for RealityKit
+
+- ``CameraControlledARView``
+- ``ARViewContainer``
