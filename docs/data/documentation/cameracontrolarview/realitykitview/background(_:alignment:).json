@@ -107,7 +107,10 @@
     ],
     "modules" : [
       {
-        "name" : "CameraControlARView"
+        "name" : "CameraControlARView",
+        "relatedModules" : [
+          "SwiftUI"
+        ]
       }
     ],
     "platforms" : [
@@ -145,6 +148,15 @@
         "introducedAt" : "6.0",
         "message" : "Use `background(alignment:content:)` instead.",
         "name" : "watchOS",
+        "unavailable" : false
+      },
+      {
+        "beta" : false,
+        "deprecated" : false,
+        "deprecatedAt" : "100000.0",
+        "introducedAt" : "1.0",
+        "message" : "Use `background(alignment:content:)` instead.",
+        "name" : "visionOS",
         "unavailable" : false
       }
     ],

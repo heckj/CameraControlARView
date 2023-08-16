@@ -143,7 +143,10 @@
     ],
     "modules" : [
       {
-        "name" : "CameraControlARView"
+        "name" : "CameraControlARView",
+        "relatedModules" : [
+          "SwiftUI"
+        ]
       }
     ],
     "platforms" : [
@@ -163,6 +166,15 @@
         "introducedAt" : "10.15",
         "message" : "Provide `UTType`s as the `supportedContentTypes` instead.",
         "name" : "macOS",
+        "unavailable" : false
+      },
+      {
+        "beta" : false,
+        "deprecated" : false,
+        "deprecatedAt" : "100000.0",
+        "introducedAt" : "1.0",
+        "message" : "Provide `UTType`s as the `supportedContentTypes` instead.",
+        "name" : "visionOS",
         "unavailable" : false
       }
     ],

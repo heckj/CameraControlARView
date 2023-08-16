@@ -407,6 +407,7 @@
                     "type" : "method"
                   },
                   {
+                    "deprecated" : true,
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/accessibility(selectionidentifier:)",
                     "title" : "func accessibility(selectionIdentifier: AnyHashable) -> ModifiedContent<Self, AccessibilityAttachmentModifier>",
                     "type" : "method"
@@ -521,6 +522,11 @@
                   {
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/accessibilitycustomcontent(_:_:importance:)-9mx8v",
                     "title" : "func accessibilityCustomContent(LocalizedStringKey, LocalizedStringKey, importance: AXCustomContent.Importance) -> ModifiedContent<Self, AccessibilityAttachmentModifier>",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/accessibilitydirecttouch(_:options:)",
+                    "title" : "func accessibilityDirectTouch(Bool, options: AccessibilityDirectTouchOptions) -> ModifiedContent<Self, AccessibilityAttachmentModifier>",
                     "type" : "method"
                   },
                   {
@@ -754,6 +760,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/accessibilityzoomaction(_:)",
+                    "title" : "func accessibilityZoomAction((AccessibilityZoomGestureAction) -> Void) -> ModifiedContent<Self, AccessibilityAttachmentModifier>",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/alert(_:ispresented:actions:)-59rn",
                     "title" : "func alert<A>(LocalizedStringKey, isPresented: Binding<Bool>, actions: () -> A) -> some View",
                     "type" : "method"
@@ -846,6 +857,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/alloweddynamicrange(_:)",
+                    "title" : "func allowedDynamicRange(Image.DynamicRange?) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/allowshittesting(_:)",
                     "title" : "func allowsHitTesting(Bool) -> some View",
                     "type" : "method"
@@ -853,6 +869,11 @@
                   {
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/allowstightening(_:)",
                     "title" : "func allowsTightening(Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/alternatingrowbackgrounds(_:)",
+                    "title" : "func alternatingRowBackgrounds(AlternatingRowBackgroundBehavior) -> some View",
                     "type" : "method"
                   },
                   {
@@ -864,6 +885,11 @@
                     "deprecated" : true,
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/animation(_:)",
                     "title" : "func animation(Animation?) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/animation(_:body:)",
+                    "title" : "func animation<V>(Animation?, body: (PlaceholderContentView<Self>) -> V) -> some View",
                     "type" : "method"
                   },
                   {
@@ -963,6 +989,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/badgeprominence(_:)",
+                    "title" : "func badgeProminence(BadgeProminence) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/baselineoffset(_:)",
                     "title" : "func baselineOffset(CGFloat) -> some View",
                     "type" : "method"
@@ -998,6 +1029,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/buttonrepeatbehavior(_:)",
+                    "title" : "func buttonRepeatBehavior(ButtonRepeatBehavior) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/buttonstyle(_:)-62vtj",
                     "title" : "func buttonStyle<S>(S) -> some View",
                     "type" : "method"
@@ -1015,6 +1051,11 @@
                   {
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/clipped(antialiased:)",
                     "title" : "func clipped(antialiased: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/coloreffect(_:isenabled:)",
+                    "title" : "func colorEffect(Shader, isEnabled: Bool) -> some View",
                     "type" : "method"
                   },
                   {
@@ -1099,8 +1140,48 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/containerbackground(_:for:)",
+                    "title" : "func containerBackground<S>(S, for: ContainerBackgroundPlacement) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/containerbackground(for:alignment:content:)",
+                    "title" : "func containerBackground<V>(for: ContainerBackgroundPlacement, alignment: Alignment, content: () -> V) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/containerrelativeframe(_:alignment:)",
+                    "title" : "func containerRelativeFrame(Axis.Set, alignment: Alignment) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/containerrelativeframe(_:alignment:_:)",
+                    "title" : "func containerRelativeFrame(Axis.Set, alignment: Alignment, (CGFloat, Axis) -> CGFloat) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/containerrelativeframe(_:count:span:spacing:alignment:)",
+                    "title" : "func containerRelativeFrame(Axis.Set, count: Int, span: Int, spacing: CGFloat, alignment: Alignment) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/containershape(_:)",
                     "title" : "func containerShape<T>(T) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/contentmargins(_:_:for:)-1ef6a",
+                    "title" : "func contentMargins(Edge.Set, EdgeInsets, for: ContentMarginPlacement) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/contentmargins(_:_:for:)-54tlt",
+                    "title" : "func contentMargins(Edge.Set, CGFloat?, for: ContentMarginPlacement) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/contentmargins(_:for:)",
+                    "title" : "func contentMargins(CGFloat, for: ContentMarginPlacement) -> some View",
                     "type" : "method"
                   },
                   {
@@ -1156,6 +1237,12 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/coordinatespace(_:)",
+                    "title" : "func coordinateSpace(NamedCoordinateSpace) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "deprecated" : true,
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/coordinatespace(name:)",
                     "title" : "func coordinateSpace<T>(name: T) -> some View",
                     "type" : "method"
@@ -1166,6 +1253,7 @@
                     "type" : "method"
                   },
                   {
+                    "deprecated" : true,
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/cornerradius(_:antialiased:)",
                     "title" : "func cornerRadius(CGFloat, antialiased: Bool) -> some View",
                     "type" : "method"
@@ -1191,8 +1279,43 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/defaultscrollanchor(_:)",
+                    "title" : "func defaultScrollAnchor(UnitPoint?) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/deletedisabled(_:)",
                     "title" : "func deleteDisabled(Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/dialogicon(_:)",
+                    "title" : "func dialogIcon(Image?) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/dialogseverity(_:)",
+                    "title" : "func dialogSeverity(DialogSeverity) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/dialogsuppressiontoggle(_:issuppressed:)-2gtcc",
+                    "title" : "func dialogSuppressionToggle<S>(S, isSuppressed: Binding<Bool>) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/dialogsuppressiontoggle(_:issuppressed:)-2l6mn",
+                    "title" : "func dialogSuppressionToggle(LocalizedStringKey, isSuppressed: Binding<Bool>) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/dialogsuppressiontoggle(_:issuppressed:)-rmw5",
+                    "title" : "func dialogSuppressionToggle(Text, isSuppressed: Binding<Bool>) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/dialogsuppressiontoggle(issuppressed:)",
+                    "title" : "func dialogSuppressionToggle(isSuppressed: Binding<Bool>) -> some View",
                     "type" : "method"
                   },
                   {
@@ -1209,6 +1332,11 @@
                   {
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/disclosuregroupstyle(_:)",
                     "title" : "func disclosureGroupStyle<S>(S) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/distortioneffect(_:maxsampleoffset:isenabled:)",
+                    "title" : "func distortionEffect(Shader, maxSampleOffset: CGSize, isEnabled: Bool) -> some View",
                     "type" : "method"
                   },
                   {
@@ -1243,6 +1371,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/environment(_:)",
+                    "title" : "func environment<T>(T?) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/environment(_:_:)",
                     "title" : "func environment<V>(WritableKeyPath<EnvironmentValues, V>, V) -> some View",
                     "type" : "method"
@@ -1273,6 +1406,61 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/filedialogbrowseroptions(_:)",
+                    "title" : "func fileDialogBrowserOptions(FileDialogBrowserOptions) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/filedialogconfirmationlabel(_:)-6px8w",
+                    "title" : "func fileDialogConfirmationLabel<S>(S) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/filedialogconfirmationlabel(_:)-7ncn8",
+                    "title" : "func fileDialogConfirmationLabel(LocalizedStringKey) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/filedialogconfirmationlabel(_:)-7xdd2",
+                    "title" : "func fileDialogConfirmationLabel(Text?) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/filedialogcustomizationid(_:)",
+                    "title" : "func fileDialogCustomizationID(String) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/filedialogdefaultdirectory(_:)",
+                    "title" : "func fileDialogDefaultDirectory(URL?) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/filedialogimportsunresolvedaliases(_:)",
+                    "title" : "func fileDialogImportsUnresolvedAliases(Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/filedialogmessage(_:)-1pos0",
+                    "title" : "func fileDialogMessage(LocalizedStringKey) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/filedialogmessage(_:)-3a13k",
+                    "title" : "func fileDialogMessage(Text?) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/filedialogmessage(_:)-63a0m",
+                    "title" : "func fileDialogMessage<S>(S) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/filedialogurlenabled(_:)",
+                    "title" : "func fileDialogURLEnabled(Predicate<URL>) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/fileexporter(ispresented:document:contenttype:defaultfilename:oncompletion:)-2c0w7",
                     "title" : "func fileExporter<D>(isPresented: Binding<Bool>, document: D?, contentType: UTType, defaultFilename: String?, onCompletion: (Result<URL, Error>) -> Void) -> some View",
                     "type" : "method"
@@ -1280,6 +1468,16 @@
                   {
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/fileexporter(ispresented:document:contenttype:defaultfilename:oncompletion:)-4734e",
                     "title" : "func fileExporter<D>(isPresented: Binding<Bool>, document: D?, contentType: UTType, defaultFilename: String?, onCompletion: (Result<URL, Error>) -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/fileexporter(ispresented:document:contenttypes:defaultfilename:oncompletion:oncancellation:)-2i8yy",
+                    "title" : "func fileExporter<D>(isPresented: Binding<Bool>, document: D?, contentTypes: [UTType], defaultFilename: String?, onCompletion: (Result<URL, Error>) -> Void, onCancellation: () -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/fileexporter(ispresented:document:contenttypes:defaultfilename:oncompletion:oncancellation:)-uxr5",
+                    "title" : "func fileExporter<D>(isPresented: Binding<Bool>, document: D?, contentTypes: [UTType], defaultFilename: String?, onCompletion: (Result<URL, Error>) -> Void, onCancellation: () -> Void) -> some View",
                     "type" : "method"
                   },
                   {
@@ -1293,8 +1491,48 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/fileexporter(ispresented:documents:contenttypes:oncompletion:oncancellation:)-1lnqv",
+                    "title" : "func fileExporter<C>(isPresented: Binding<Bool>, documents: C, contentTypes: [UTType], onCompletion: (Result<[URL], Error>) -> Void, onCancellation: () -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/fileexporter(ispresented:documents:contenttypes:oncompletion:oncancellation:)-6qaqf",
+                    "title" : "func fileExporter<C>(isPresented: Binding<Bool>, documents: C, contentTypes: [UTType], onCompletion: (Result<[URL], Error>) -> Void, onCancellation: () -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/fileexporter(ispresented:item:contenttypes:defaultfilename:oncompletion:oncancellation:)",
+                    "title" : "func fileExporter<T>(isPresented: Binding<Bool>, item: T?, contentTypes: [UTType], defaultFilename: String?, onCompletion: (Result<URL, Error>) -> Void, onCancellation: () -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/fileexporter(ispresented:items:contenttypes:oncompletion:oncancellation:)",
+                    "title" : "func fileExporter<C, T>(isPresented: Binding<Bool>, items: C, contentTypes: [UTType], onCompletion: (Result<[URL], Error>) -> Void, onCancellation: () -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/fileexporterfilenamelabel(_:)-46jvs",
+                    "title" : "func fileExporterFilenameLabel(Text?) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/fileexporterfilenamelabel(_:)-4bi7q",
+                    "title" : "func fileExporterFilenameLabel<S>(S) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/fileexporterfilenamelabel(_:)-71kco",
+                    "title" : "func fileExporterFilenameLabel(LocalizedStringKey) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/fileimporter(ispresented:allowedcontenttypes:allowsmultipleselection:oncompletion:)",
                     "title" : "func fileImporter(isPresented: Binding<Bool>, allowedContentTypes: [UTType], allowsMultipleSelection: Bool, onCompletion: (Result<[URL], Error>) -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/fileimporter(ispresented:allowedcontenttypes:allowsmultipleselection:oncompletion:oncancellation:)",
+                    "title" : "func fileImporter(isPresented: Binding<Bool>, allowedContentTypes: [UTType], allowsMultipleSelection: Bool, onCompletion: (Result<[URL], Error>) -> Void, onCancellation: () -> Void) -> some View",
                     "type" : "method"
                   },
                   {
@@ -1308,8 +1546,18 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/filemover(ispresented:file:oncompletion:oncancellation:)",
+                    "title" : "func fileMover(isPresented: Binding<Bool>, file: URL?, onCompletion: (Result<URL, Error>) -> Void, onCancellation: () -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/filemover(ispresented:files:oncompletion:)",
                     "title" : "func fileMover<C>(isPresented: Binding<Bool>, files: C, onCompletion: (Result<[URL], Error>) -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/filemover(ispresented:files:oncompletion:oncancellation:)",
+                    "title" : "func fileMover<C>(isPresented: Binding<Bool>, files: C, onCompletion: (Result<[URL], Error>) -> Void, onCancellation: () -> Void) -> some View",
                     "type" : "method"
                   },
                   {
@@ -1328,6 +1576,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/focuseffectdisabled(_:)",
+                    "title" : "func focusEffectDisabled(Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/focusscope(_:)",
                     "title" : "func focusScope(Namespace.ID) -> some View",
                     "type" : "method"
@@ -1340,6 +1593,11 @@
                   {
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/focusable(_:)",
                     "title" : "func focusable(Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/focusable(_:interactions:)",
+                    "title" : "func focusable(Bool, interactions: FocusInteractions) -> some View",
                     "type" : "method"
                   },
                   {
@@ -1389,6 +1647,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/focusedvalue(_:)",
+                    "title" : "func focusedValue<T>(T?) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/focusedvalue(_:_:)-52zgh",
                     "title" : "func focusedValue<Value>(WritableKeyPath<FocusedValues, Value?>, Value?) -> some View",
                     "type" : "method"
@@ -1419,6 +1682,7 @@
                     "type" : "method"
                   },
                   {
+                    "deprecated" : true,
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/foregroundcolor(_:)",
                     "title" : "func foregroundColor(Color?) -> some View",
                     "type" : "method"
@@ -1461,6 +1725,11 @@
                   {
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/gaugestyle(_:)",
                     "title" : "func gaugeStyle<S>(S) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/geometrygroup()",
+                    "title" : "func geometryGroup() -> some View",
                     "type" : "method"
                   },
                   {
@@ -1569,6 +1838,21 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/inspector(ispresented:content:)",
+                    "title" : "func inspector<V>(isPresented: Binding<Bool>, content: () -> V) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/inspectorcolumnwidth(_:)",
+                    "title" : "func inspectorColumnWidth(CGFloat) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/inspectorcolumnwidth(min:ideal:max:)",
+                    "title" : "func inspectorColumnWidth(min: CGFloat?, ideal: CGFloat, max: CGFloat?) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/interactionactivitytrackingtag(_:)",
                     "title" : "func interactionActivityTrackingTag(String) -> some View",
                     "type" : "method"
@@ -1576,6 +1860,11 @@
                   {
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/interactivedismissdisabled(_:)",
                     "title" : "func interactiveDismissDisabled(Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/invalidatablecontent(_:)",
+                    "title" : "func invalidatableContent(Bool) -> some View",
                     "type" : "method"
                   },
                   {
@@ -1614,6 +1903,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/keyframeanimator(initialvalue:repeating:content:keyframes:)",
+                    "title" : "func keyframeAnimator<Value>(initialValue: Value, repeating: Bool, content: (PlaceholderContentView<Self>, Value) -> some View, keyframes: (Value) -> some Keyframes) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/keyframeanimator(initialvalue:trigger:content:keyframes:)",
+                    "title" : "func keyframeAnimator<Value>(initialValue: Value, trigger: some Equatable, content: (PlaceholderContentView<Self>, Value) -> some View, keyframes: (Value) -> some Keyframes) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/labelstyle(_:)",
                     "title" : "func labelStyle<S>(S) -> some View",
                     "type" : "method"
@@ -1626,6 +1925,16 @@
                   {
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/labelshidden()",
                     "title" : "func labelsHidden() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/layereffect(_:maxsampleoffset:isenabled:)",
+                    "title" : "func layerEffect(Shader, maxSampleOffset: CGSize, isEnabled: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/layoutdirectionbehavior(_:)",
+                    "title" : "func layoutDirectionBehavior(LayoutDirectionBehavior) -> some View",
                     "type" : "method"
                   },
                   {
@@ -1848,6 +2157,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/navigationdestination(item:destination:)",
+                    "title" : "func navigationDestination<D, C>(item: Binding<Optional<D>>, destination: (D) -> C) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/navigationdocument(_:)",
                     "title" : "func navigationDocument(URL) -> some View",
                     "type" : "method"
@@ -1949,6 +2263,17 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/onchange(of:initial:_:)-2gy8q",
+                    "title" : "func onChange<V>(of: V, initial: Bool, (V, V) -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/onchange(of:initial:_:)-fp81",
+                    "title" : "func onChange<V>(of: V, initial: Bool, () -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "deprecated" : true,
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/onchange(of:perform:)",
                     "title" : "func onChange<V>(of: V, perform: (V) -> Void) -> some View",
                     "type" : "method"
@@ -1964,6 +2289,7 @@
                     "type" : "method"
                   },
                   {
+                    "deprecated" : true,
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/oncontinuoushover(coordinatespace:perform:)",
                     "title" : "func onContinuousHover(coordinateSpace: CoordinateSpace, perform: (HoverPhase) -> Void) -> some View",
                     "type" : "method"
@@ -2042,6 +2368,31 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/onkeypress(_:action:)",
+                    "title" : "func onKeyPress(KeyEquivalent, action: () -> KeyPress.Result) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/onkeypress(_:phases:action:)",
+                    "title" : "func onKeyPress(KeyEquivalent, phases: KeyPress.Phases, action: (KeyPress) -> KeyPress.Result) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/onkeypress(characters:phases:action:)",
+                    "title" : "func onKeyPress(characters: CharacterSet, phases: KeyPress.Phases, action: (KeyPress) -> KeyPress.Result) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/onkeypress(keys:phases:action:)",
+                    "title" : "func onKeyPress(keys: Set<KeyEquivalent>, phases: KeyPress.Phases, action: (KeyPress) -> KeyPress.Result) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/onkeypress(phases:action:)",
+                    "title" : "func onKeyPress(phases: KeyPress.Phases, action: (KeyPress) -> KeyPress.Result) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/onlongpressgesture(minimumduration:maximumdistance:perform:onpressingchanged:)",
                     "title" : "func onLongPressGesture(minimumDuration: Double, maximumDistance: CGFloat, perform: () -> Void, onPressingChanged: ((Bool) -> Void)?) -> some View",
                     "type" : "method"
@@ -2116,6 +2467,7 @@
                     "type" : "method"
                   },
                   {
+                    "deprecated" : true,
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/ontapgesture(count:coordinatespace:perform:)",
                     "title" : "func onTapGesture(count: Int, coordinateSpace: CoordinateSpace, perform: (CGPoint) -> Void) -> some View",
                     "type" : "method"
@@ -2182,6 +2534,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/paletteselectioneffect(_:)",
+                    "title" : "func paletteSelectionEffect(PaletteSelectionEffect) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/pastedestination(for:action:validator:)",
                     "title" : "func pasteDestination<T>(for: T.Type, action: ([T]) -> Void, validator: ([T]) -> [T]) -> some View",
                     "type" : "method"
@@ -2189,6 +2546,16 @@
                   {
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/persistentsystemoverlays(_:)",
                     "title" : "func persistentSystemOverlays(Visibility) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/phaseanimator(_:content:animation:)",
+                    "title" : "func phaseAnimator<Phase>(some Sequence, content: (PlaceholderContentView<Self>, Phase) -> some View, animation: (Phase) -> Animation?) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/phaseanimator(_:trigger:content:animation:)",
+                    "title" : "func phaseAnimator<Phase>(some Sequence, trigger: some Equatable, content: (PlaceholderContentView<Self>, Phase) -> some View, animation: (Phase) -> Animation?) -> some View",
                     "type" : "method"
                   },
                   {
@@ -2372,6 +2739,21 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/safeareapadding(_:)-1sdu1",
+                    "title" : "func safeAreaPadding(CGFloat) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/safeareapadding(_:)-6s10r",
+                    "title" : "func safeAreaPadding(EdgeInsets) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/safeareapadding(_:_:)",
+                    "title" : "func safeAreaPadding(Edge.Set, CGFloat?) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/saturation(_:)",
                     "title" : "func saturation(Double) -> some View",
                     "type" : "method"
@@ -2417,6 +2799,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/scrollclipdisabled(_:)",
+                    "title" : "func scrollClipDisabled(Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/scrollcontentbackground(_:)",
                     "title" : "func scrollContentBackground(Visibility) -> some View",
                     "type" : "method"
@@ -2434,6 +2821,41 @@
                   {
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/scrollindicators(_:axes:)",
                     "title" : "func scrollIndicators(ScrollIndicatorVisibility, axes: Axis.Set) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/scrollindicatorsflash(onappear:)",
+                    "title" : "func scrollIndicatorsFlash(onAppear: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/scrollindicatorsflash(trigger:)",
+                    "title" : "func scrollIndicatorsFlash(trigger: some Equatable) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/scrollposition(id:anchor:)",
+                    "title" : "func scrollPosition(id: Binding<(some Hashable)?>, anchor: UnitPoint?) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/scrolltargetbehavior(_:)",
+                    "title" : "func scrollTargetBehavior(some ScrollTargetBehavior) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/scrolltargetlayout(isenabled:)",
+                    "title" : "func scrollTargetLayout(isEnabled: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/scrolltransition(_:axis:transition:)",
+                    "title" : "func scrollTransition(ScrollTransitionConfiguration, axis: Axis?, transition: (EmptyVisualEffect, ScrollTransitionPhase) -> some VisualEffect) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/scrolltransition(topleading:bottomtrailing:axis:transition:)",
+                    "title" : "func scrollTransition(topLeading: ScrollTransitionConfiguration, bottomTrailing: ScrollTransitionConfiguration, axis: Axis?, transition: (EmptyVisualEffect, ScrollTransitionPhase) -> some VisualEffect) -> some View",
                     "type" : "method"
                   },
                   {
@@ -2459,6 +2881,51 @@
                   {
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/searchsuggestions(_:for:)",
                     "title" : "func searchSuggestions(Visibility, for: SearchSuggestionsPlacement.Set) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/searchable(text:editabletokens:ispresented:placement:prompt:token:)-119vj",
+                    "title" : "func searchable<C>(text: Binding<String>, editableTokens: Binding<C>, isPresented: Binding<Bool>, placement: SearchFieldPlacement, prompt: LocalizedStringKey, token: (Binding<C.Element>) -> some View) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/searchable(text:editabletokens:ispresented:placement:prompt:token:)-2a8w0",
+                    "title" : "func searchable<C>(text: Binding<String>, editableTokens: Binding<C>, isPresented: Binding<Bool>, placement: SearchFieldPlacement, prompt: Text?, token: (Binding<C.Element>) -> some View) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/searchable(text:editabletokens:ispresented:placement:prompt:token:)-5d26c",
+                    "title" : "func searchable<C>(text: Binding<String>, editableTokens: Binding<C>, isPresented: Binding<Bool>, placement: SearchFieldPlacement, prompt: some StringProtocol, token: (Binding<C.Element>) -> some View) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/searchable(text:editabletokens:placement:prompt:token:)-36xw4",
+                    "title" : "func searchable<C>(text: Binding<String>, editableTokens: Binding<C>, placement: SearchFieldPlacement, prompt: some StringProtocol, token: (Binding<C.Element>) -> some View) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/searchable(text:editabletokens:placement:prompt:token:)-8lnis",
+                    "title" : "func searchable<C>(text: Binding<String>, editableTokens: Binding<C>, placement: SearchFieldPlacement, prompt: LocalizedStringKey, token: (Binding<C.Element>) -> some View) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/searchable(text:editabletokens:placement:prompt:token:)-8oy0h",
+                    "title" : "func searchable<C>(text: Binding<String>, editableTokens: Binding<C>, placement: SearchFieldPlacement, prompt: Text?, token: (Binding<C.Element>) -> some View) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/searchable(text:ispresented:placement:prompt:)-106ir",
+                    "title" : "func searchable<S>(text: Binding<String>, isPresented: Binding<Bool>, placement: SearchFieldPlacement, prompt: S) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/searchable(text:ispresented:placement:prompt:)-7chby",
+                    "title" : "func searchable(text: Binding<String>, isPresented: Binding<Bool>, placement: SearchFieldPlacement, prompt: Text?) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/searchable(text:ispresented:placement:prompt:)-9h4x",
+                    "title" : "func searchable(text: Binding<String>, isPresented: Binding<Bool>, placement: SearchFieldPlacement, prompt: LocalizedStringKey) -> some View",
                     "type" : "method"
                   },
                   {
@@ -2495,6 +2962,21 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/searchable(text:tokens:ispresented:placement:prompt:token:)-53lcl",
+                    "title" : "func searchable<C, T>(text: Binding<String>, tokens: Binding<C>, isPresented: Binding<Bool>, placement: SearchFieldPlacement, prompt: Text?, token: (C.Element) -> T) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/searchable(text:tokens:ispresented:placement:prompt:token:)-94u80",
+                    "title" : "func searchable<C, T>(text: Binding<String>, tokens: Binding<C>, isPresented: Binding<Bool>, placement: SearchFieldPlacement, prompt: LocalizedStringKey, token: (C.Element) -> T) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/searchable(text:tokens:ispresented:placement:prompt:token:)-f3h1",
+                    "title" : "func searchable<C, T, S>(text: Binding<String>, tokens: Binding<C>, isPresented: Binding<Bool>, placement: SearchFieldPlacement, prompt: S, token: (C.Element) -> T) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/searchable(text:tokens:placement:prompt:token:)-620w9",
                     "title" : "func searchable<C, T, S>(text: Binding<String>, tokens: Binding<C>, placement: SearchFieldPlacement, prompt: S, token: (C.Element) -> T) -> some View",
                     "type" : "method"
@@ -2510,6 +2992,21 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/searchable(text:tokens:suggestedtokens:ispresented:placement:prompt:token:)-5y1f6",
+                    "title" : "func searchable<C, T>(text: Binding<String>, tokens: Binding<C>, suggestedTokens: Binding<C>, isPresented: Binding<Bool>, placement: SearchFieldPlacement, prompt: LocalizedStringKey, token: (C.Element) -> T) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/searchable(text:tokens:suggestedtokens:ispresented:placement:prompt:token:)-8ennz",
+                    "title" : "func searchable<C, T, S>(text: Binding<String>, tokens: Binding<C>, suggestedTokens: Binding<C>, isPresented: Binding<Bool>, placement: SearchFieldPlacement, prompt: S, token: (C.Element) -> T) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/searchable(text:tokens:suggestedtokens:ispresented:placement:prompt:token:)-9yrpo",
+                    "title" : "func searchable<C, T>(text: Binding<String>, tokens: Binding<C>, suggestedTokens: Binding<C>, isPresented: Binding<Bool>, placement: SearchFieldPlacement, prompt: Text?, token: (C.Element) -> T) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/searchable(text:tokens:suggestedtokens:placement:prompt:token:)-1lc5g",
                     "title" : "func searchable<C, T>(text: Binding<String>, tokens: Binding<C>, suggestedTokens: Binding<C>, placement: SearchFieldPlacement, prompt: LocalizedStringKey, token: (C.Element) -> T) -> some View",
                     "type" : "method"
@@ -2522,6 +3019,26 @@
                   {
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/searchable(text:tokens:suggestedtokens:placement:prompt:token:)-5w2sf",
                     "title" : "func searchable<C, T>(text: Binding<String>, tokens: Binding<C>, suggestedTokens: Binding<C>, placement: SearchFieldPlacement, prompt: Text?, token: (C.Element) -> T) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/selectiondisabled(_:)",
+                    "title" : "func selectionDisabled(Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/sensoryfeedback(_:trigger:)",
+                    "title" : "func sensoryFeedback<T>(SensoryFeedback, trigger: T) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/sensoryfeedback(_:trigger:condition:)",
+                    "title" : "func sensoryFeedback<T>(SensoryFeedback, trigger: T, condition: (T, T) -> Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/sensoryfeedback(trigger:_:)",
+                    "title" : "func sensoryFeedback<T>(trigger: T, (T, T) -> SensoryFeedback?) -> some View",
                     "type" : "method"
                   },
                   {
@@ -2565,6 +3082,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/springloadingbehavior(_:)",
+                    "title" : "func springLoadingBehavior(SpringLoadingBehavior) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/strikethrough(_:pattern:color:)",
                     "title" : "func strikethrough(Bool, pattern: Text.LineStyle.Pattern, color: Color?) -> some View",
                     "type" : "method"
@@ -2585,6 +3107,21 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/symboleffect(_:options:isactive:)",
+                    "title" : "func symbolEffect<T>(T, options: SymbolEffectOptions, isActive: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/symboleffect(_:options:value:)",
+                    "title" : "func symbolEffect<T, U>(T, options: SymbolEffectOptions, value: U) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/symboleffectsremoved(_:)",
+                    "title" : "func symbolEffectsRemoved(Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/symbolrenderingmode(_:)",
                     "title" : "func symbolRenderingMode(SymbolRenderingMode?) -> some View",
                     "type" : "method"
@@ -2602,6 +3139,11 @@
                   {
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/tabviewstyle(_:)",
                     "title" : "func tabViewStyle<S>(S) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/tablecolumnheaders(_:)",
+                    "title" : "func tableColumnHeaders(Visibility) -> some View",
                     "type" : "method"
                   },
                   {
@@ -2635,8 +3177,18 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/texteditorstyle(_:)",
+                    "title" : "func textEditorStyle(some TextEditorStyle) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/textfieldstyle(_:)",
                     "title" : "func textFieldStyle<S>(S) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/textscale(_:isenabled:)",
+                    "title" : "func textScale(Text.Scale, isEnabled: Bool) -> some View",
                     "type" : "method"
                   },
                   {
@@ -2675,6 +3227,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/toolbar(removing:)",
+                    "title" : "func toolbar(removing: ToolbarDefaultItemKind?) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/toolbarbackground(_:for:)",
                     "title" : "func toolbarBackground(Visibility, for: ToolbarPlacement...) -> some View",
                     "type" : "method"
@@ -2687,6 +3244,11 @@
                   {
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/toolbarrole(_:)",
                     "title" : "func toolbarRole(ToolbarRole) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/toolbartitledisplaymode(_:)",
+                    "title" : "func toolbarTitleDisplayMode(ToolbarTitleDisplayMode) -> some View",
                     "type" : "method"
                   },
                   {
@@ -2730,6 +3292,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/transaction(_:body:)",
+                    "title" : "func transaction<V>((inout Transaction) -> Void, body: (PlaceholderContentView<Self>) -> V) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/transaction(value:_:)",
+                    "title" : "func transaction(value: some Equatable, (inout Transaction) -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/transformanchorpreference(key:value:transform:)",
                     "title" : "func transformAnchorPreference<A, K>(key: K.Type, value: Anchor<A>.Source, transform: (inout K.Value, Anchor<A>) -> Void) -> some View",
                     "type" : "method"
@@ -2760,6 +3332,31 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/typeselectequivalent(_:)-376pv",
+                    "title" : "func typeSelectEquivalent(LocalizedStringKey) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/typeselectequivalent(_:)-5ft4w",
+                    "title" : "func typeSelectEquivalent<S>(S) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/typeselectequivalent(_:)-5nup8",
+                    "title" : "func typeSelectEquivalent(Text?) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/typesettinglanguage(_:isenabled:)-593vb",
+                    "title" : "func typesettingLanguage(Locale.Language, isEnabled: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/typesettinglanguage(_:isenabled:)-5w6w3",
+                    "title" : "func typesettingLanguage(TypesettingLanguage, isEnabled: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/underline(_:pattern:color:)",
                     "title" : "func underline(Bool, pattern: Text.LineStyle.Pattern, color: Color?) -> some View",
                     "type" : "method"
@@ -2777,6 +3374,11 @@
                   {
                     "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/useractivity(_:isactive:_:)",
                     "title" : "func userActivity(String, isActive: Bool, (NSUserActivity) -> ()) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/arviewcontainer\/visualeffect(_:)",
+                    "title" : "func visualEffect((EmptyVisualEffect, GeometryProxy) -> some VisualEffect) -> some View",
                     "type" : "method"
                   },
                   {
@@ -2914,6 +3516,7 @@
                     "type" : "method"
                   },
                   {
+                    "deprecated" : true,
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/accessibility(selectionidentifier:)",
                     "title" : "func accessibility(selectionIdentifier: AnyHashable) -> ModifiedContent<Self, AccessibilityAttachmentModifier>",
                     "type" : "method"
@@ -3028,6 +3631,11 @@
                   {
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/accessibilitycustomcontent(_:_:importance:)-8x32s",
                     "title" : "func accessibilityCustomContent(LocalizedStringKey, LocalizedStringKey, importance: AXCustomContent.Importance) -> ModifiedContent<Self, AccessibilityAttachmentModifier>",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/accessibilitydirecttouch(_:options:)",
+                    "title" : "func accessibilityDirectTouch(Bool, options: AccessibilityDirectTouchOptions) -> ModifiedContent<Self, AccessibilityAttachmentModifier>",
                     "type" : "method"
                   },
                   {
@@ -3261,6 +3869,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/accessibilityzoomaction(_:)",
+                    "title" : "func accessibilityZoomAction((AccessibilityZoomGestureAction) -> Void) -> ModifiedContent<Self, AccessibilityAttachmentModifier>",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/alert(_:ispresented:actions:)-3ysxg",
                     "title" : "func alert<S, A>(S, isPresented: Binding<Bool>, actions: () -> A) -> some View",
                     "type" : "method"
@@ -3353,6 +3966,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/alloweddynamicrange(_:)",
+                    "title" : "func allowedDynamicRange(Image.DynamicRange?) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/allowshittesting(_:)",
                     "title" : "func allowsHitTesting(Bool) -> some View",
                     "type" : "method"
@@ -3360,6 +3978,11 @@
                   {
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/allowstightening(_:)",
                     "title" : "func allowsTightening(Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/alternatingrowbackgrounds(_:)",
+                    "title" : "func alternatingRowBackgrounds(AlternatingRowBackgroundBehavior) -> some View",
                     "type" : "method"
                   },
                   {
@@ -3371,6 +3994,11 @@
                     "deprecated" : true,
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/animation(_:)",
                     "title" : "func animation(Animation?) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/animation(_:body:)",
+                    "title" : "func animation<V>(Animation?, body: (PlaceholderContentView<Self>) -> V) -> some View",
                     "type" : "method"
                   },
                   {
@@ -3470,6 +4098,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/badgeprominence(_:)",
+                    "title" : "func badgeProminence(BadgeProminence) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/baselineoffset(_:)",
                     "title" : "func baselineOffset(CGFloat) -> some View",
                     "type" : "method"
@@ -3505,6 +4138,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/buttonrepeatbehavior(_:)",
+                    "title" : "func buttonRepeatBehavior(ButtonRepeatBehavior) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/buttonstyle(_:)-53fga",
                     "title" : "func buttonStyle<S>(S) -> some View",
                     "type" : "method"
@@ -3522,6 +4160,11 @@
                   {
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/clipped(antialiased:)",
                     "title" : "func clipped(antialiased: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/coloreffect(_:isenabled:)",
+                    "title" : "func colorEffect(Shader, isEnabled: Bool) -> some View",
                     "type" : "method"
                   },
                   {
@@ -3606,8 +4249,48 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/containerbackground(_:for:)",
+                    "title" : "func containerBackground<S>(S, for: ContainerBackgroundPlacement) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/containerbackground(for:alignment:content:)",
+                    "title" : "func containerBackground<V>(for: ContainerBackgroundPlacement, alignment: Alignment, content: () -> V) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/containerrelativeframe(_:alignment:)",
+                    "title" : "func containerRelativeFrame(Axis.Set, alignment: Alignment) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/containerrelativeframe(_:alignment:_:)",
+                    "title" : "func containerRelativeFrame(Axis.Set, alignment: Alignment, (CGFloat, Axis) -> CGFloat) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/containerrelativeframe(_:count:span:spacing:alignment:)",
+                    "title" : "func containerRelativeFrame(Axis.Set, count: Int, span: Int, spacing: CGFloat, alignment: Alignment) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/containershape(_:)",
                     "title" : "func containerShape<T>(T) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/contentmargins(_:_:for:)-3v4a4",
+                    "title" : "func contentMargins(Edge.Set, EdgeInsets, for: ContentMarginPlacement) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/contentmargins(_:_:for:)-754ey",
+                    "title" : "func contentMargins(Edge.Set, CGFloat?, for: ContentMarginPlacement) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/contentmargins(_:for:)",
+                    "title" : "func contentMargins(CGFloat, for: ContentMarginPlacement) -> some View",
                     "type" : "method"
                   },
                   {
@@ -3663,6 +4346,12 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/coordinatespace(_:)",
+                    "title" : "func coordinateSpace(NamedCoordinateSpace) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "deprecated" : true,
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/coordinatespace(name:)",
                     "title" : "func coordinateSpace<T>(name: T) -> some View",
                     "type" : "method"
@@ -3673,6 +4362,7 @@
                     "type" : "method"
                   },
                   {
+                    "deprecated" : true,
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/cornerradius(_:antialiased:)",
                     "title" : "func cornerRadius(CGFloat, antialiased: Bool) -> some View",
                     "type" : "method"
@@ -3698,8 +4388,43 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/defaultscrollanchor(_:)",
+                    "title" : "func defaultScrollAnchor(UnitPoint?) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/deletedisabled(_:)",
                     "title" : "func deleteDisabled(Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/dialogicon(_:)",
+                    "title" : "func dialogIcon(Image?) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/dialogseverity(_:)",
+                    "title" : "func dialogSeverity(DialogSeverity) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/dialogsuppressiontoggle(_:issuppressed:)-3fq6t",
+                    "title" : "func dialogSuppressionToggle(LocalizedStringKey, isSuppressed: Binding<Bool>) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/dialogsuppressiontoggle(_:issuppressed:)-63za3",
+                    "title" : "func dialogSuppressionToggle<S>(S, isSuppressed: Binding<Bool>) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/dialogsuppressiontoggle(_:issuppressed:)-8ngk7",
+                    "title" : "func dialogSuppressionToggle(Text, isSuppressed: Binding<Bool>) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/dialogsuppressiontoggle(issuppressed:)",
+                    "title" : "func dialogSuppressionToggle(isSuppressed: Binding<Bool>) -> some View",
                     "type" : "method"
                   },
                   {
@@ -3716,6 +4441,11 @@
                   {
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/disclosuregroupstyle(_:)",
                     "title" : "func disclosureGroupStyle<S>(S) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/distortioneffect(_:maxsampleoffset:isenabled:)",
+                    "title" : "func distortionEffect(Shader, maxSampleOffset: CGSize, isEnabled: Bool) -> some View",
                     "type" : "method"
                   },
                   {
@@ -3750,6 +4480,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/environment(_:)",
+                    "title" : "func environment<T>(T?) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/environment(_:_:)",
                     "title" : "func environment<V>(WritableKeyPath<EnvironmentValues, V>, V) -> some View",
                     "type" : "method"
@@ -3780,6 +4515,61 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/filedialogbrowseroptions(_:)",
+                    "title" : "func fileDialogBrowserOptions(FileDialogBrowserOptions) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/filedialogconfirmationlabel(_:)-1holz",
+                    "title" : "func fileDialogConfirmationLabel(LocalizedStringKey) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/filedialogconfirmationlabel(_:)-2wz4d",
+                    "title" : "func fileDialogConfirmationLabel(Text?) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/filedialogconfirmationlabel(_:)-35px6",
+                    "title" : "func fileDialogConfirmationLabel<S>(S) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/filedialogcustomizationid(_:)",
+                    "title" : "func fileDialogCustomizationID(String) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/filedialogdefaultdirectory(_:)",
+                    "title" : "func fileDialogDefaultDirectory(URL?) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/filedialogimportsunresolvedaliases(_:)",
+                    "title" : "func fileDialogImportsUnresolvedAliases(Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/filedialogmessage(_:)-1i5cz",
+                    "title" : "func fileDialogMessage<S>(S) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/filedialogmessage(_:)-2vej1",
+                    "title" : "func fileDialogMessage(LocalizedStringKey) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/filedialogmessage(_:)-4h20v",
+                    "title" : "func fileDialogMessage(Text?) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/filedialogurlenabled(_:)",
+                    "title" : "func fileDialogURLEnabled(Predicate<URL>) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/fileexporter(ispresented:document:contenttype:defaultfilename:oncompletion:)-88ieo",
                     "title" : "func fileExporter<D>(isPresented: Binding<Bool>, document: D?, contentType: UTType, defaultFilename: String?, onCompletion: (Result<URL, Error>) -> Void) -> some View",
                     "type" : "method"
@@ -3787,6 +4577,16 @@
                   {
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/fileexporter(ispresented:document:contenttype:defaultfilename:oncompletion:)-9693h",
                     "title" : "func fileExporter<D>(isPresented: Binding<Bool>, document: D?, contentType: UTType, defaultFilename: String?, onCompletion: (Result<URL, Error>) -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/fileexporter(ispresented:document:contenttypes:defaultfilename:oncompletion:oncancellation:)-5xt6w",
+                    "title" : "func fileExporter<D>(isPresented: Binding<Bool>, document: D?, contentTypes: [UTType], defaultFilename: String?, onCompletion: (Result<URL, Error>) -> Void, onCancellation: () -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/fileexporter(ispresented:document:contenttypes:defaultfilename:oncompletion:oncancellation:)-6k79g",
+                    "title" : "func fileExporter<D>(isPresented: Binding<Bool>, document: D?, contentTypes: [UTType], defaultFilename: String?, onCompletion: (Result<URL, Error>) -> Void, onCancellation: () -> Void) -> some View",
                     "type" : "method"
                   },
                   {
@@ -3800,8 +4600,48 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/fileexporter(ispresented:documents:contenttypes:oncompletion:oncancellation:)-72jua",
+                    "title" : "func fileExporter<C>(isPresented: Binding<Bool>, documents: C, contentTypes: [UTType], onCompletion: (Result<[URL], Error>) -> Void, onCancellation: () -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/fileexporter(ispresented:documents:contenttypes:oncompletion:oncancellation:)-a2s",
+                    "title" : "func fileExporter<C>(isPresented: Binding<Bool>, documents: C, contentTypes: [UTType], onCompletion: (Result<[URL], Error>) -> Void, onCancellation: () -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/fileexporter(ispresented:item:contenttypes:defaultfilename:oncompletion:oncancellation:)",
+                    "title" : "func fileExporter<T>(isPresented: Binding<Bool>, item: T?, contentTypes: [UTType], defaultFilename: String?, onCompletion: (Result<URL, Error>) -> Void, onCancellation: () -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/fileexporter(ispresented:items:contenttypes:oncompletion:oncancellation:)",
+                    "title" : "func fileExporter<C, T>(isPresented: Binding<Bool>, items: C, contentTypes: [UTType], onCompletion: (Result<[URL], Error>) -> Void, onCancellation: () -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/fileexporterfilenamelabel(_:)-1fhqe",
+                    "title" : "func fileExporterFilenameLabel(Text?) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/fileexporterfilenamelabel(_:)-8gthe",
+                    "title" : "func fileExporterFilenameLabel(LocalizedStringKey) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/fileexporterfilenamelabel(_:)-9qgr3",
+                    "title" : "func fileExporterFilenameLabel<S>(S) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/fileimporter(ispresented:allowedcontenttypes:allowsmultipleselection:oncompletion:)",
                     "title" : "func fileImporter(isPresented: Binding<Bool>, allowedContentTypes: [UTType], allowsMultipleSelection: Bool, onCompletion: (Result<[URL], Error>) -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/fileimporter(ispresented:allowedcontenttypes:allowsmultipleselection:oncompletion:oncancellation:)",
+                    "title" : "func fileImporter(isPresented: Binding<Bool>, allowedContentTypes: [UTType], allowsMultipleSelection: Bool, onCompletion: (Result<[URL], Error>) -> Void, onCancellation: () -> Void) -> some View",
                     "type" : "method"
                   },
                   {
@@ -3815,8 +4655,18 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/filemover(ispresented:file:oncompletion:oncancellation:)",
+                    "title" : "func fileMover(isPresented: Binding<Bool>, file: URL?, onCompletion: (Result<URL, Error>) -> Void, onCancellation: () -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/filemover(ispresented:files:oncompletion:)",
                     "title" : "func fileMover<C>(isPresented: Binding<Bool>, files: C, onCompletion: (Result<[URL], Error>) -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/filemover(ispresented:files:oncompletion:oncancellation:)",
+                    "title" : "func fileMover<C>(isPresented: Binding<Bool>, files: C, onCompletion: (Result<[URL], Error>) -> Void, onCancellation: () -> Void) -> some View",
                     "type" : "method"
                   },
                   {
@@ -3835,6 +4685,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/focuseffectdisabled(_:)",
+                    "title" : "func focusEffectDisabled(Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/focusscope(_:)",
                     "title" : "func focusScope(Namespace.ID) -> some View",
                     "type" : "method"
@@ -3847,6 +4702,11 @@
                   {
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/focusable(_:)",
                     "title" : "func focusable(Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/focusable(_:interactions:)",
+                    "title" : "func focusable(Bool, interactions: FocusInteractions) -> some View",
                     "type" : "method"
                   },
                   {
@@ -3896,6 +4756,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/focusedvalue(_:)",
+                    "title" : "func focusedValue<T>(T?) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/focusedvalue(_:_:)-5anjc",
                     "title" : "func focusedValue<Value>(WritableKeyPath<FocusedValues, Value?>, Value) -> some View",
                     "type" : "method"
@@ -3926,6 +4791,7 @@
                     "type" : "method"
                   },
                   {
+                    "deprecated" : true,
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/foregroundcolor(_:)",
                     "title" : "func foregroundColor(Color?) -> some View",
                     "type" : "method"
@@ -3968,6 +4834,11 @@
                   {
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/gaugestyle(_:)",
                     "title" : "func gaugeStyle<S>(S) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/geometrygroup()",
+                    "title" : "func geometryGroup() -> some View",
                     "type" : "method"
                   },
                   {
@@ -4076,6 +4947,21 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/inspector(ispresented:content:)",
+                    "title" : "func inspector<V>(isPresented: Binding<Bool>, content: () -> V) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/inspectorcolumnwidth(_:)",
+                    "title" : "func inspectorColumnWidth(CGFloat) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/inspectorcolumnwidth(min:ideal:max:)",
+                    "title" : "func inspectorColumnWidth(min: CGFloat?, ideal: CGFloat, max: CGFloat?) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/interactionactivitytrackingtag(_:)",
                     "title" : "func interactionActivityTrackingTag(String) -> some View",
                     "type" : "method"
@@ -4083,6 +4969,11 @@
                   {
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/interactivedismissdisabled(_:)",
                     "title" : "func interactiveDismissDisabled(Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/invalidatablecontent(_:)",
+                    "title" : "func invalidatableContent(Bool) -> some View",
                     "type" : "method"
                   },
                   {
@@ -4121,6 +5012,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/keyframeanimator(initialvalue:repeating:content:keyframes:)",
+                    "title" : "func keyframeAnimator<Value>(initialValue: Value, repeating: Bool, content: (PlaceholderContentView<Self>, Value) -> some View, keyframes: (Value) -> some Keyframes) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/keyframeanimator(initialvalue:trigger:content:keyframes:)",
+                    "title" : "func keyframeAnimator<Value>(initialValue: Value, trigger: some Equatable, content: (PlaceholderContentView<Self>, Value) -> some View, keyframes: (Value) -> some Keyframes) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/labelstyle(_:)",
                     "title" : "func labelStyle<S>(S) -> some View",
                     "type" : "method"
@@ -4133,6 +5034,16 @@
                   {
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/labelshidden()",
                     "title" : "func labelsHidden() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/layereffect(_:maxsampleoffset:isenabled:)",
+                    "title" : "func layerEffect(Shader, maxSampleOffset: CGSize, isEnabled: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/layoutdirectionbehavior(_:)",
+                    "title" : "func layoutDirectionBehavior(LayoutDirectionBehavior) -> some View",
                     "type" : "method"
                   },
                   {
@@ -4355,6 +5266,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/navigationdestination(item:destination:)",
+                    "title" : "func navigationDestination<D, C>(item: Binding<Optional<D>>, destination: (D) -> C) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/navigationdocument(_:)",
                     "title" : "func navigationDocument(URL) -> some View",
                     "type" : "method"
@@ -4456,6 +5372,17 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/onchange(of:initial:_:)-3vf54",
+                    "title" : "func onChange<V>(of: V, initial: Bool, (V, V) -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/onchange(of:initial:_:)-onfm",
+                    "title" : "func onChange<V>(of: V, initial: Bool, () -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "deprecated" : true,
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/onchange(of:perform:)",
                     "title" : "func onChange<V>(of: V, perform: (V) -> Void) -> some View",
                     "type" : "method"
@@ -4471,6 +5398,7 @@
                     "type" : "method"
                   },
                   {
+                    "deprecated" : true,
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/oncontinuoushover(coordinatespace:perform:)",
                     "title" : "func onContinuousHover(coordinateSpace: CoordinateSpace, perform: (HoverPhase) -> Void) -> some View",
                     "type" : "method"
@@ -4549,6 +5477,31 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/onkeypress(_:action:)",
+                    "title" : "func onKeyPress(KeyEquivalent, action: () -> KeyPress.Result) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/onkeypress(_:phases:action:)",
+                    "title" : "func onKeyPress(KeyEquivalent, phases: KeyPress.Phases, action: (KeyPress) -> KeyPress.Result) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/onkeypress(characters:phases:action:)",
+                    "title" : "func onKeyPress(characters: CharacterSet, phases: KeyPress.Phases, action: (KeyPress) -> KeyPress.Result) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/onkeypress(keys:phases:action:)",
+                    "title" : "func onKeyPress(keys: Set<KeyEquivalent>, phases: KeyPress.Phases, action: (KeyPress) -> KeyPress.Result) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/onkeypress(phases:action:)",
+                    "title" : "func onKeyPress(phases: KeyPress.Phases, action: (KeyPress) -> KeyPress.Result) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/onlongpressgesture(minimumduration:maximumdistance:perform:onpressingchanged:)",
                     "title" : "func onLongPressGesture(minimumDuration: Double, maximumDistance: CGFloat, perform: () -> Void, onPressingChanged: ((Bool) -> Void)?) -> some View",
                     "type" : "method"
@@ -4623,6 +5576,7 @@
                     "type" : "method"
                   },
                   {
+                    "deprecated" : true,
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/ontapgesture(count:coordinatespace:perform:)",
                     "title" : "func onTapGesture(count: Int, coordinateSpace: CoordinateSpace, perform: (CGPoint) -> Void) -> some View",
                     "type" : "method"
@@ -4689,6 +5643,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/paletteselectioneffect(_:)",
+                    "title" : "func paletteSelectionEffect(PaletteSelectionEffect) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/pastedestination(for:action:validator:)",
                     "title" : "func pasteDestination<T>(for: T.Type, action: ([T]) -> Void, validator: ([T]) -> [T]) -> some View",
                     "type" : "method"
@@ -4696,6 +5655,16 @@
                   {
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/persistentsystemoverlays(_:)",
                     "title" : "func persistentSystemOverlays(Visibility) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/phaseanimator(_:content:animation:)",
+                    "title" : "func phaseAnimator<Phase>(some Sequence, content: (PlaceholderContentView<Self>, Phase) -> some View, animation: (Phase) -> Animation?) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/phaseanimator(_:trigger:content:animation:)",
+                    "title" : "func phaseAnimator<Phase>(some Sequence, trigger: some Equatable, content: (PlaceholderContentView<Self>, Phase) -> some View, animation: (Phase) -> Animation?) -> some View",
                     "type" : "method"
                   },
                   {
@@ -4879,6 +5848,21 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/safeareapadding(_:)-3pbr3",
+                    "title" : "func safeAreaPadding(CGFloat) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/safeareapadding(_:)-59q8n",
+                    "title" : "func safeAreaPadding(EdgeInsets) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/safeareapadding(_:_:)",
+                    "title" : "func safeAreaPadding(Edge.Set, CGFloat?) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/saturation(_:)",
                     "title" : "func saturation(Double) -> some View",
                     "type" : "method"
@@ -4924,6 +5908,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/scrollclipdisabled(_:)",
+                    "title" : "func scrollClipDisabled(Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/scrollcontentbackground(_:)",
                     "title" : "func scrollContentBackground(Visibility) -> some View",
                     "type" : "method"
@@ -4941,6 +5930,41 @@
                   {
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/scrollindicators(_:axes:)",
                     "title" : "func scrollIndicators(ScrollIndicatorVisibility, axes: Axis.Set) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/scrollindicatorsflash(onappear:)",
+                    "title" : "func scrollIndicatorsFlash(onAppear: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/scrollindicatorsflash(trigger:)",
+                    "title" : "func scrollIndicatorsFlash(trigger: some Equatable) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/scrollposition(id:anchor:)",
+                    "title" : "func scrollPosition(id: Binding<(some Hashable)?>, anchor: UnitPoint?) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/scrolltargetbehavior(_:)",
+                    "title" : "func scrollTargetBehavior(some ScrollTargetBehavior) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/scrolltargetlayout(isenabled:)",
+                    "title" : "func scrollTargetLayout(isEnabled: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/scrolltransition(_:axis:transition:)",
+                    "title" : "func scrollTransition(ScrollTransitionConfiguration, axis: Axis?, transition: (EmptyVisualEffect, ScrollTransitionPhase) -> some VisualEffect) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/scrolltransition(topleading:bottomtrailing:axis:transition:)",
+                    "title" : "func scrollTransition(topLeading: ScrollTransitionConfiguration, bottomTrailing: ScrollTransitionConfiguration, axis: Axis?, transition: (EmptyVisualEffect, ScrollTransitionPhase) -> some VisualEffect) -> some View",
                     "type" : "method"
                   },
                   {
@@ -4966,6 +5990,51 @@
                   {
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/searchsuggestions(_:for:)",
                     "title" : "func searchSuggestions(Visibility, for: SearchSuggestionsPlacement.Set) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/searchable(text:editabletokens:ispresented:placement:prompt:token:)-26n57",
+                    "title" : "func searchable<C>(text: Binding<String>, editableTokens: Binding<C>, isPresented: Binding<Bool>, placement: SearchFieldPlacement, prompt: Text?, token: (Binding<C.Element>) -> some View) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/searchable(text:editabletokens:ispresented:placement:prompt:token:)-67ha5",
+                    "title" : "func searchable<C>(text: Binding<String>, editableTokens: Binding<C>, isPresented: Binding<Bool>, placement: SearchFieldPlacement, prompt: some StringProtocol, token: (Binding<C.Element>) -> some View) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/searchable(text:editabletokens:ispresented:placement:prompt:token:)-9z6jz",
+                    "title" : "func searchable<C>(text: Binding<String>, editableTokens: Binding<C>, isPresented: Binding<Bool>, placement: SearchFieldPlacement, prompt: LocalizedStringKey, token: (Binding<C.Element>) -> some View) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/searchable(text:editabletokens:placement:prompt:token:)-14fg2",
+                    "title" : "func searchable<C>(text: Binding<String>, editableTokens: Binding<C>, placement: SearchFieldPlacement, prompt: LocalizedStringKey, token: (Binding<C.Element>) -> some View) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/searchable(text:editabletokens:placement:prompt:token:)-1h4mi",
+                    "title" : "func searchable<C>(text: Binding<String>, editableTokens: Binding<C>, placement: SearchFieldPlacement, prompt: some StringProtocol, token: (Binding<C.Element>) -> some View) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/searchable(text:editabletokens:placement:prompt:token:)-23nk8",
+                    "title" : "func searchable<C>(text: Binding<String>, editableTokens: Binding<C>, placement: SearchFieldPlacement, prompt: Text?, token: (Binding<C.Element>) -> some View) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/searchable(text:ispresented:placement:prompt:)-7x22g",
+                    "title" : "func searchable(text: Binding<String>, isPresented: Binding<Bool>, placement: SearchFieldPlacement, prompt: LocalizedStringKey) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/searchable(text:ispresented:placement:prompt:)-8zvl8",
+                    "title" : "func searchable<S>(text: Binding<String>, isPresented: Binding<Bool>, placement: SearchFieldPlacement, prompt: S) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/searchable(text:ispresented:placement:prompt:)-osth",
+                    "title" : "func searchable(text: Binding<String>, isPresented: Binding<Bool>, placement: SearchFieldPlacement, prompt: Text?) -> some View",
                     "type" : "method"
                   },
                   {
@@ -5002,6 +6071,21 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/searchable(text:tokens:ispresented:placement:prompt:token:)-1frnw",
+                    "title" : "func searchable<C, T>(text: Binding<String>, tokens: Binding<C>, isPresented: Binding<Bool>, placement: SearchFieldPlacement, prompt: LocalizedStringKey, token: (C.Element) -> T) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/searchable(text:tokens:ispresented:placement:prompt:token:)-50v48",
+                    "title" : "func searchable<C, T, S>(text: Binding<String>, tokens: Binding<C>, isPresented: Binding<Bool>, placement: SearchFieldPlacement, prompt: S, token: (C.Element) -> T) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/searchable(text:tokens:ispresented:placement:prompt:token:)-6ia87",
+                    "title" : "func searchable<C, T>(text: Binding<String>, tokens: Binding<C>, isPresented: Binding<Bool>, placement: SearchFieldPlacement, prompt: Text?, token: (C.Element) -> T) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/searchable(text:tokens:placement:prompt:token:)-1s5po",
                     "title" : "func searchable<C, T>(text: Binding<String>, tokens: Binding<C>, placement: SearchFieldPlacement, prompt: Text?, token: (C.Element) -> T) -> some View",
                     "type" : "method"
@@ -5017,6 +6101,21 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/searchable(text:tokens:suggestedtokens:ispresented:placement:prompt:token:)-25aui",
+                    "title" : "func searchable<C, T>(text: Binding<String>, tokens: Binding<C>, suggestedTokens: Binding<C>, isPresented: Binding<Bool>, placement: SearchFieldPlacement, prompt: Text?, token: (C.Element) -> T) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/searchable(text:tokens:suggestedtokens:ispresented:placement:prompt:token:)-9qq4x",
+                    "title" : "func searchable<C, T>(text: Binding<String>, tokens: Binding<C>, suggestedTokens: Binding<C>, isPresented: Binding<Bool>, placement: SearchFieldPlacement, prompt: LocalizedStringKey, token: (C.Element) -> T) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/searchable(text:tokens:suggestedtokens:ispresented:placement:prompt:token:)-piyo",
+                    "title" : "func searchable<C, T, S>(text: Binding<String>, tokens: Binding<C>, suggestedTokens: Binding<C>, isPresented: Binding<Bool>, placement: SearchFieldPlacement, prompt: S, token: (C.Element) -> T) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/searchable(text:tokens:suggestedtokens:placement:prompt:token:)-1lmuz",
                     "title" : "func searchable<C, T, S>(text: Binding<String>, tokens: Binding<C>, suggestedTokens: Binding<C>, placement: SearchFieldPlacement, prompt: S, token: (C.Element) -> T) -> some View",
                     "type" : "method"
@@ -5029,6 +6128,26 @@
                   {
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/searchable(text:tokens:suggestedtokens:placement:prompt:token:)-5zbvc",
                     "title" : "func searchable<C, T>(text: Binding<String>, tokens: Binding<C>, suggestedTokens: Binding<C>, placement: SearchFieldPlacement, prompt: LocalizedStringKey, token: (C.Element) -> T) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/selectiondisabled(_:)",
+                    "title" : "func selectionDisabled(Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/sensoryfeedback(_:trigger:)",
+                    "title" : "func sensoryFeedback<T>(SensoryFeedback, trigger: T) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/sensoryfeedback(_:trigger:condition:)",
+                    "title" : "func sensoryFeedback<T>(SensoryFeedback, trigger: T, condition: (T, T) -> Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/sensoryfeedback(trigger:_:)",
+                    "title" : "func sensoryFeedback<T>(trigger: T, (T, T) -> SensoryFeedback?) -> some View",
                     "type" : "method"
                   },
                   {
@@ -5072,6 +6191,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/springloadingbehavior(_:)",
+                    "title" : "func springLoadingBehavior(SpringLoadingBehavior) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/strikethrough(_:pattern:color:)",
                     "title" : "func strikethrough(Bool, pattern: Text.LineStyle.Pattern, color: Color?) -> some View",
                     "type" : "method"
@@ -5092,6 +6216,21 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/symboleffect(_:options:isactive:)",
+                    "title" : "func symbolEffect<T>(T, options: SymbolEffectOptions, isActive: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/symboleffect(_:options:value:)",
+                    "title" : "func symbolEffect<T, U>(T, options: SymbolEffectOptions, value: U) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/symboleffectsremoved(_:)",
+                    "title" : "func symbolEffectsRemoved(Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/symbolrenderingmode(_:)",
                     "title" : "func symbolRenderingMode(SymbolRenderingMode?) -> some View",
                     "type" : "method"
@@ -5109,6 +6248,11 @@
                   {
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/tabviewstyle(_:)",
                     "title" : "func tabViewStyle<S>(S) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/tablecolumnheaders(_:)",
+                    "title" : "func tableColumnHeaders(Visibility) -> some View",
                     "type" : "method"
                   },
                   {
@@ -5142,8 +6286,18 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/texteditorstyle(_:)",
+                    "title" : "func textEditorStyle(some TextEditorStyle) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/textfieldstyle(_:)",
                     "title" : "func textFieldStyle<S>(S) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/textscale(_:isenabled:)",
+                    "title" : "func textScale(Text.Scale, isEnabled: Bool) -> some View",
                     "type" : "method"
                   },
                   {
@@ -5182,6 +6336,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/toolbar(removing:)",
+                    "title" : "func toolbar(removing: ToolbarDefaultItemKind?) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/toolbarbackground(_:for:)",
                     "title" : "func toolbarBackground(Visibility, for: ToolbarPlacement...) -> some View",
                     "type" : "method"
@@ -5194,6 +6353,11 @@
                   {
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/toolbarrole(_:)",
                     "title" : "func toolbarRole(ToolbarRole) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/toolbartitledisplaymode(_:)",
+                    "title" : "func toolbarTitleDisplayMode(ToolbarTitleDisplayMode) -> some View",
                     "type" : "method"
                   },
                   {
@@ -5237,6 +6401,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/transaction(_:body:)",
+                    "title" : "func transaction<V>((inout Transaction) -> Void, body: (PlaceholderContentView<Self>) -> V) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/transaction(value:_:)",
+                    "title" : "func transaction(value: some Equatable, (inout Transaction) -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/transformanchorpreference(key:value:transform:)",
                     "title" : "func transformAnchorPreference<A, K>(key: K.Type, value: Anchor<A>.Source, transform: (inout K.Value, Anchor<A>) -> Void) -> some View",
                     "type" : "method"
@@ -5267,6 +6441,31 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/typeselectequivalent(_:)-1qyw2",
+                    "title" : "func typeSelectEquivalent(Text?) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/typeselectequivalent(_:)-5juiz",
+                    "title" : "func typeSelectEquivalent<S>(S) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/typeselectequivalent(_:)-6pg6f",
+                    "title" : "func typeSelectEquivalent(LocalizedStringKey) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/typesettinglanguage(_:isenabled:)-3o8hj",
+                    "title" : "func typesettingLanguage(TypesettingLanguage, isEnabled: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/typesettinglanguage(_:isenabled:)-6wfml",
+                    "title" : "func typesettingLanguage(Locale.Language, isEnabled: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/underline(_:pattern:color:)",
                     "title" : "func underline(Bool, pattern: Text.LineStyle.Pattern, color: Color?) -> some View",
                     "type" : "method"
@@ -5284,6 +6483,11 @@
                   {
                     "path" : "\/documentation\/cameracontrolarview\/realitykitview\/useractivity(_:isactive:_:)",
                     "title" : "func userActivity(String, isActive: Bool, (NSUserActivity) -> ()) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/cameracontrolarview\/realitykitview\/visualeffect(_:)",
+                    "title" : "func visualEffect((EmptyVisualEffect, GeometryProxy) -> some VisualEffect) -> some View",
                     "type" : "method"
                   },
                   {

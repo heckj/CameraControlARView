@@ -29,7 +29,7 @@
   "kind" : "symbol",
   "metadata" : {
     "extendedModule" : "SwiftUI",
-    "externalID" : "s:7SwiftUI4ViewPAAE13previewLayoutyQrAA07PreviewE0OF::SYNTHESIZED::s:19CameraControlARView14RealityKitViewV",
+    "externalID" : "s:7SwiftUI4ViewPAAE13previewLayoutyQr21DeveloperToolsSupport07PreviewE0OF::SYNTHESIZED::s:19CameraControlARView14RealityKitViewV",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -49,7 +49,7 @@
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:7SwiftUI13PreviewLayoutO",
+        "preciseIdentifier" : "s:21DeveloperToolsSupport13PreviewLayoutO",
         "text" : "PreviewLayout"
       },
       {
@@ -72,7 +72,10 @@
     ],
     "modules" : [
       {
-        "name" : "CameraControlARView"
+        "name" : "CameraControlARView",
+        "relatedModules" : [
+          "SwiftUI"
+        ]
       }
     ],
     "platforms" : [
@@ -155,7 +158,7 @@
             },
             {
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:7SwiftUI13PreviewLayoutO",
+              "preciseIdentifier" : "s:21DeveloperToolsSupport13PreviewLayoutO",
               "text" : "PreviewLayout"
             },
             {
@@ -289,7 +292,7 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:7SwiftUI13PreviewLayoutO",
+      "preciseIdentifier" : "s:21DeveloperToolsSupport13PreviewLayoutO",
       "text" : "PreviewLayout"
     },
     {

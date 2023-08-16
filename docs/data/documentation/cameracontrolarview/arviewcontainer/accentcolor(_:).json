@@ -83,7 +83,10 @@
     ],
     "modules" : [
       {
-        "name" : "CameraControlARView"
+        "name" : "CameraControlARView",
+        "relatedModules" : [
+          "SwiftUI"
+        ]
       }
     ],
     "platforms" : [
@@ -121,6 +124,15 @@
         "introducedAt" : "6.0",
         "message" : "Use the asset catalog's accent color or View.tint(_:) instead.",
         "name" : "watchOS",
+        "unavailable" : false
+      },
+      {
+        "beta" : false,
+        "deprecated" : false,
+        "deprecatedAt" : "100000.0",
+        "introducedAt" : "1.0",
+        "message" : "Use the asset catalog's accent color or View.tint(_:) instead.",
+        "name" : "visionOS",
         "unavailable" : false
       }
     ],

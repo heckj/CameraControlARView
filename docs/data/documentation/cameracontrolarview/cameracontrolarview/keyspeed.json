@@ -101,7 +101,7 @@
         {
           "inlineContent" : [
             {
-              "text" : "This view doubles the speed valuewhen the key is held-down.",
+              "text" : "This view doubles the speed value when the key is held-down.",
               "type" : "text"
             }
           ],

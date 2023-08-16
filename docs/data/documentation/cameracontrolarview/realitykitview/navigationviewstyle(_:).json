@@ -90,7 +90,10 @@
     ],
     "modules" : [
       {
-        "name" : "CameraControlARView"
+        "name" : "CameraControlARView",
+        "relatedModules" : [
+          "SwiftUI"
+        ]
       }
     ],
     "platforms" : [
@@ -128,6 +131,15 @@
         "introducedAt" : "7.0",
         "message" : "replace styled NavigationView with NavigationStack or NavigationSplitView instead",
         "name" : "watchOS",
+        "unavailable" : false
+      },
+      {
+        "beta" : false,
+        "deprecated" : false,
+        "deprecatedAt" : "100000.0",
+        "introducedAt" : "1.0",
+        "message" : "replace styled NavigationView with NavigationStack or NavigationSplitView instead",
+        "name" : "visionOS",
         "unavailable" : false
       }
     ],
