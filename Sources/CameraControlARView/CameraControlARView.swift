@@ -74,7 +74,7 @@ import RealityKit
     // - horizontal delta motion (drag) interpreted as changing rotation angle. No need to clamp this.
     // - keydown left-arrow, right-arrow get mapped to explicit increments of horizontal delta and change rotation
     // - keydown up-arrow, down-arrow get mapped to explicit increments of vertical delta, and respect the clamping.
-    // - maginification (increase = zoom in) interpretted as shortening the radius to the target location, and
+    // - magnification (increase = zoom in) interpreted as shortening the radius to the target location, and
     // zoom out does the reverse. Definitely clamp to a minimum of zero radius, and potentially want to have a
     // lower set limit not to come earlier based on a collision boundary for any target object and maybe some padding.
 
@@ -131,7 +131,7 @@ import RealityKit
 
     /// The speed at which keypresses change the angles of inclination or rotation.
     ///
-    /// This view doubles the speed valuewhen the key is held-down.
+    /// This view doubles the speed value when the key is held-down.
     public var keyspeed: Float
 
     private var dragstart: CGPoint
