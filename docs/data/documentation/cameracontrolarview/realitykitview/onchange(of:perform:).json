@@ -13,6 +13,17 @@
       "type" : "text"
     }
   ],
+  "deprecationSummary" : [
+    {
+      "inlineContent" : [
+        {
+          "text" : "Use `onChange` with a two or zero parameter action closure instead.",
+          "type" : "text"
+        }
+      ],
+      "type" : "paragraph"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -112,35 +123,46 @@
     ],
     "modules" : [
       {
-        "name" : "CameraControlARView"
+        "name" : "CameraControlARView",
+        "relatedModules" : [
+          "SwiftUI"
+        ]
       }
     ],
     "platforms" : [
       {
         "beta" : false,
         "deprecated" : false,
+        "deprecatedAt" : "17.0",
         "introducedAt" : "14.0",
+        "message" : "Use `onChange` with a two or zero parameter action closure instead.",
         "name" : "iOS",
         "unavailable" : false
       },
       {
         "beta" : false,
         "deprecated" : false,
+        "deprecatedAt" : "14.0",
         "introducedAt" : "11.0",
+        "message" : "Use `onChange` with a two or zero parameter action closure instead.",
         "name" : "macOS",
         "unavailable" : false
       },
       {
         "beta" : false,
         "deprecated" : false,
+        "deprecatedAt" : "17.0",
         "introducedAt" : "14.0",
+        "message" : "Use `onChange` with a two or zero parameter action closure instead.",
         "name" : "tvOS",
         "unavailable" : false
       },
       {
         "beta" : false,
         "deprecated" : false,
+        "deprecatedAt" : "10.0",
         "introducedAt" : "7.0",
+        "message" : "Use `onChange` with a two or zero parameter action closure instead.",
         "name" : "watchOS",
         "unavailable" : false
       }
@@ -383,6 +405,7 @@
   "abstract" : [
 
   ],
+  "deprecated" : true,
   "fragments" : [
     {
       "kind" : "keyword",

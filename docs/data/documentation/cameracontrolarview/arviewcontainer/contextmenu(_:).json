@@ -99,7 +99,10 @@
     ],
     "modules" : [
       {
-        "name" : "CameraControlARView"
+        "name" : "CameraControlARView",
+        "relatedModules" : [
+          "SwiftUI"
+        ]
       }
     ],
     "platforms" : [
@@ -127,6 +130,15 @@
         "deprecatedAt" : "7.0",
         "introducedAt" : "6.0",
         "name" : "watchOS",
+        "unavailable" : false
+      },
+      {
+        "beta" : false,
+        "deprecated" : false,
+        "deprecatedAt" : "100000.0",
+        "introducedAt" : "1.0",
+        "message" : "Use `contextMenu(menuItems:)` instead.",
+        "name" : "visionOS",
         "unavailable" : false
       }
     ],

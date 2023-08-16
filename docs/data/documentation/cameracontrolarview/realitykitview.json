@@ -102,6 +102,27 @@
             }
           ],
           "type" : "paragraph"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "The example below shows creating a view that contains a box:",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        },
+        {
+          "code" : [
+            "RealityKitView({ context in",
+            "    let entity = ModelEntity(mesh: .generateBox(size: SIMD3<Float>.init(repeating: 1)))",
+            "    context.add(entity)",
+            "}, update: {",
+            "    print(\"update\")",
+            "})"
+          ],
+          "syntax" : "swift",
+          "type" : "codeListing"
         }
       ],
       "kind" : "content"

@@ -13,6 +13,17 @@
       "type" : "text"
     }
   ],
+  "deprecationSummary" : [
+    {
+      "inlineContent" : [
+        {
+          "text" : "Use `clipShape` or `fill` instead.",
+          "type" : "text"
+        }
+      ],
+      "type" : "paragraph"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -89,36 +100,56 @@
     ],
     "modules" : [
       {
-        "name" : "CameraControlARView"
+        "name" : "CameraControlARView",
+        "relatedModules" : [
+          "SwiftUI"
+        ]
       }
     ],
     "platforms" : [
       {
         "beta" : false,
         "deprecated" : false,
+        "deprecatedAt" : "100000.0",
         "introducedAt" : "13.0",
+        "message" : "Use `clipShape` or `fill` instead.",
         "name" : "iOS",
         "unavailable" : false
       },
       {
         "beta" : false,
         "deprecated" : false,
+        "deprecatedAt" : "100000.0",
         "introducedAt" : "10.15",
+        "message" : "Use `clipShape` or `fill` instead.",
         "name" : "macOS",
         "unavailable" : false
       },
       {
         "beta" : false,
         "deprecated" : false,
+        "deprecatedAt" : "100000.0",
         "introducedAt" : "13.0",
+        "message" : "Use `clipShape` or `fill` instead.",
         "name" : "tvOS",
         "unavailable" : false
       },
       {
         "beta" : false,
         "deprecated" : false,
+        "deprecatedAt" : "100000.0",
         "introducedAt" : "6.0",
+        "message" : "Use `clipShape` or `fill` instead.",
         "name" : "watchOS",
+        "unavailable" : false
+      },
+      {
+        "beta" : false,
+        "deprecated" : false,
+        "deprecatedAt" : "100000.0",
+        "introducedAt" : "1.0",
+        "message" : "Use `clipShape` or `fill` instead.",
+        "name" : "visionOS",
         "unavailable" : false
       }
     ],
@@ -304,6 +335,7 @@
   "abstract" : [
 
   ],
+  "deprecated" : true,
   "fragments" : [
     {
       "kind" : "keyword",

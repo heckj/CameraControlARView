@@ -113,7 +113,10 @@
     ],
     "modules" : [
       {
-        "name" : "CameraControlARView"
+        "name" : "CameraControlARView",
+        "relatedModules" : [
+          "SwiftUI"
+        ]
       }
     ],
     "platforms" : [
@@ -217,7 +220,7 @@
               "text" : "@"
             },
             {
-              "kind" : "typeIdentifier",
+              "kind" : "attribute",
               "preciseIdentifier" : "s:7SwiftUI11ViewBuilderV",
               "text" : "ViewBuilder"
             },

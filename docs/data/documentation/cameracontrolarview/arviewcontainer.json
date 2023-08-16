@@ -92,7 +92,7 @@
               "type" : "text"
             },
             {
-              "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView",
+              "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView",
               "isActive" : true,
               "type" : "reference"
             },
@@ -587,6 +587,40 @@
   "title" : "updateNSView(_:context:)",
   "type" : "topic",
   "url" : "\/documentation\/cameracontrolarview\/arviewcontainer\/updatensview(_:context:)"
+},
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView": {
+  "abstract" : [
+    {
+      "text" : "An augmented reality view for macOS or iOS that provides keyboard, trackpad, and mouse movement controls for the camera within the view.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "class"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "CameraControlARView"
+    }
+  ],
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "CameraControlARView"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "CameraControlARView",
+  "type" : "topic",
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview"
 },
 "doc://CameraControlARView/documentation/CameraControlARView/RealityKitView": {
   "abstract" : [
