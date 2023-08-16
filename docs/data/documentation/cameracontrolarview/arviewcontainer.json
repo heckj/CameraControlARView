@@ -92,7 +92,7 @@
               "type" : "text"
             },
             {
-              "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView",
+              "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView",
               "isActive" : true,
               "type" : "reference"
             },
@@ -106,6 +106,23 @@
             },
             {
               "text" : "view controls, or the underlying scene, from within SwiftUI.",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "See ",
+              "type" : "text"
+            },
+            {
+              "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView",
+              "isActive" : true,
+              "type" : "reference"
+            },
+            {
+              "text" : " for an example of using this wrapper.",
               "type" : "text"
             }
           ],
@@ -138,9 +155,9 @@
     {
       "generated" : true,
       "identifiers" : [
-        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/RealityKitView"
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView"
       ],
-      "title" : "SwiftUI Representable Views"
+      "title" : "Configurable SwiftUI View for RealityKit"
     }
   ],
   "topicSections" : [
@@ -363,8 +380,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "c:@M@CameraControlARView@objc(cs)CameraControlARView",
-      "text" : "CameraControlARView"
+      "preciseIdentifier" : "c:@M@CameraControlARView@objc(cs)CameraControlledARView",
+      "text" : "CameraControlledARView"
     }
   ],
   "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer\/cameraARView",
@@ -400,8 +417,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "c:@M@CameraControlARView@objc(cs)CameraControlARView",
-      "text" : "CameraControlARView"
+      "preciseIdentifier" : "c:@M@CameraControlARView@objc(cs)CameraControlledARView",
+      "text" : "CameraControlledARView"
     },
     {
       "kind" : "text",
@@ -588,10 +605,10 @@
   "type" : "topic",
   "url" : "\/documentation\/cameracontrolarview\/arviewcontainer\/updatensview(_:context:)"
 },
-"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView": {
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlledARView": {
   "abstract" : [
     {
-      "text" : "An augmented reality view for macOS or iOS that provides keyboard, trackpad, and mouse movement controls for the camera within the view.",
+      "text" : "A 3D View for SwiftUI using RealityKit that provides movement controls for the camera within the view.",
       "type" : "text"
     }
   ],
@@ -606,55 +623,21 @@
     },
     {
       "kind" : "identifier",
-      "text" : "CameraControlARView"
+      "text" : "CameraControlledARView"
     }
   ],
-  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView",
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "CameraControlARView"
+      "text" : "CameraControlledARView"
     }
   ],
   "role" : "symbol",
-  "title" : "CameraControlARView",
+  "title" : "CameraControlledARView",
   "type" : "topic",
-  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview"
-},
-"doc://CameraControlARView/documentation/CameraControlARView/RealityKitView": {
-  "abstract" : [
-    {
-      "text" : "A SwiftUI augmented reality view for macOS or iOS that optionally connects a closure you provide to Scene events.",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "struct"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "RealityKitView"
-    }
-  ],
-  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/RealityKitView",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "RealityKitView"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "RealityKitView",
-  "type" : "topic",
-  "url" : "\/documentation\/cameracontrolarview\/realitykitview"
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolledarview"
 }
 }
 }

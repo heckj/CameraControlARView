@@ -8,8 +8,7 @@
   "hierarchy" : {
     "paths" : [
       [
-        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView",
-        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/RealityKitView"
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView"
       ]
     ]
   },
@@ -77,6 +76,26 @@
         }
       ],
       "kind" : "declarations"
+    },
+    {
+      "content" : [
+        {
+          "anchor" : "overview",
+          "level" : 2,
+          "text" : "Overview",
+          "type" : "heading"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "A context that provides access to the scene associated with RealityKit.",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        }
+      ],
+      "kind" : "content"
     }
   ],
   "schemaVersion" : {
@@ -87,18 +106,27 @@
   "sections" : [
 
   ],
+  "seeAlsoSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/RealityKitView"
+      ],
+      "title" : "SwiftUI View for RealityKit"
+    }
+  ],
   "topicSections" : [
     {
       "identifiers" : [
         "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/RealityKitView\/Context\/base"
       ],
-      "title" : "Instance Properties"
+      "title" : "Accessing the scene"
     },
     {
       "identifiers" : [
         "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/RealityKitView\/Context\/add(_:)"
       ],
-      "title" : "Instance Methods"
+      "title" : "Adding entities"
     }
   ],
   "variants" : [
@@ -132,7 +160,7 @@
 "doc://CameraControlARView/documentation/CameraControlARView/RealityKitView": {
   "abstract" : [
     {
-      "text" : "A SwiftUI augmented reality view for macOS or iOS that optionally connects a closure you provide to Scene events.",
+      "text" : "A SwiftUI RealityKit view that optionally connects a closure you provide to scene events.",
       "type" : "text"
     }
   ],

@@ -1,7 +1,7 @@
 {
   "abstract" : [
     {
-      "text" : "The homogenous transform that represents the camera’s location and rotation.",
+      "text" : "A reference to the camera anchor entity for moving, or reading the location values, for the camera.",
       "type" : "text"
     }
   ],
@@ -9,17 +9,17 @@
     "paths" : [
       [
         "doc:\/\/CameraControlARView\/documentation\/CameraControlARView",
-        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView"
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView"
       ]
     ]
   },
   "identifier" : {
     "interfaceLanguage" : "swift",
-    "url" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/camera_transform"
+    "url" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/cameraAnchor"
   },
   "kind" : "symbol",
   "metadata" : {
-    "externalID" : "s:19CameraControlARViewAAC16camera_transformSo13simd_float4x4avp",
+    "externalID" : "s:19CameraControlARView0a10ControlledC0C12cameraAnchor17RealityFoundation0F6EntityCvp",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -31,7 +31,7 @@
       },
       {
         "kind" : "identifier",
-        "text" : "camera_transform"
+        "text" : "cameraAnchor"
       },
       {
         "kind" : "text",
@@ -39,8 +39,8 @@
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "c:@T@matrix_float4x4",
-        "text" : "matrix_float4x4"
+        "preciseIdentifier" : "s:17RealityFoundation12AnchorEntityC",
+        "text" : "AnchorEntity"
       }
     ],
     "modules" : [
@@ -51,7 +51,7 @@
     "role" : "symbol",
     "roleHeading" : "Instance Property",
     "symbolKind" : "property",
-    "title" : "camera_transform"
+    "title" : "cameraAnchor"
   },
   "primaryContentSections" : [
     {
@@ -74,7 +74,7 @@
             },
             {
               "kind" : "identifier",
-              "text" : "camera_transform"
+              "text" : "cameraAnchor"
             },
             {
               "kind" : "text",
@@ -82,28 +82,8 @@
             },
             {
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "c:@T@matrix_float4x4",
-              "text" : "matrix_float4x4"
-            },
-            {
-              "kind" : "text",
-              "text" : " { "
-            },
-            {
-              "kind" : "keyword",
-              "text" : "get"
-            },
-            {
-              "kind" : "text",
-              "text" : " "
-            },
-            {
-              "kind" : "keyword",
-              "text" : "set"
-            },
-            {
-              "kind" : "text",
-              "text" : " }"
+              "preciseIdentifier" : "s:17RealityFoundation12AnchorEntityC",
+              "text" : "AnchorEntity"
             }
           ]
         }
@@ -123,15 +103,15 @@
     {
       "generated" : true,
       "identifiers" : [
-        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/forward_speed"
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/objectWillChange"
       ],
-      "title" : "Updating the Camera Using First Person Mode"
+      "title" : "Inspecting the View"
     }
   ],
   "variants" : [
     {
       "paths" : [
-        "\/documentation\/cameracontrolarview\/cameracontrolarview\/camera_transform"
+        "\/documentation\/cameracontrolarview\/cameracontrolledarview\/cameraanchor"
       ],
       "traits" : [
         {
@@ -156,10 +136,10 @@
   "type" : "topic",
   "url" : "\/documentation\/cameracontrolarview"
 },
-"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView": {
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlledARView": {
   "abstract" : [
     {
-      "text" : "An augmented reality view for macOS or iOS that provides keyboard, trackpad, and mouse movement controls for the camera within the view.",
+      "text" : "A 3D View for SwiftUI using RealityKit that provides movement controls for the camera within the view.",
       "type" : "text"
     }
   ],
@@ -174,26 +154,26 @@
     },
     {
       "kind" : "identifier",
-      "text" : "CameraControlARView"
+      "text" : "CameraControlledARView"
     }
   ],
-  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView",
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "CameraControlARView"
+      "text" : "CameraControlledARView"
     }
   ],
   "role" : "symbol",
-  "title" : "CameraControlARView",
+  "title" : "CameraControlledARView",
   "type" : "topic",
-  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview"
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolledarview"
 },
-"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/camera_transform": {
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlledARView/cameraAnchor": {
   "abstract" : [
     {
-      "text" : "The homogenous transform that represents the camera’s location and rotation.",
+      "text" : "A reference to the camera anchor entity for moving, or reading the location values, for the camera.",
       "type" : "text"
     }
   ],
@@ -208,7 +188,7 @@
     },
     {
       "kind" : "identifier",
-      "text" : "camera_transform"
+      "text" : "cameraAnchor"
     },
     {
       "kind" : "text",
@@ -216,24 +196,53 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "c:@T@matrix_float4x4",
-      "text" : "matrix_float4x4"
+      "preciseIdentifier" : "s:17RealityFoundation12AnchorEntityC",
+      "text" : "AnchorEntity"
     }
   ],
-  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/camera_transform",
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/cameraAnchor",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "camera_transform",
+  "title" : "cameraAnchor",
   "type" : "topic",
-  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/camera_transform"
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolledarview\/cameraanchor"
 },
-"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/forward_speed": {
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlledARView/objectWillChange": {
   "abstract" : [
-    {
-      "text" : "The speed at which the camera moves when incrementing forward via the keyboard",
-      "type" : "text"
-    }
+
   ],
+  "conformance" : {
+    "availabilityPrefix" : [
+      {
+        "text" : "Available when",
+        "type" : "text"
+      }
+    ],
+    "conformancePrefix" : [
+      {
+        "text" : "Conforms when",
+        "type" : "text"
+      }
+    ],
+    "constraints" : [
+      {
+        "code" : "ObjectWillChangePublisher",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : " is ",
+        "type" : "text"
+      },
+      {
+        "code" : "ObservableObjectPublisher",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : ".",
+        "type" : "text"
+      }
+    ]
+  },
   "fragments" : [
     {
       "kind" : "keyword",
@@ -245,7 +254,7 @@
     },
     {
       "kind" : "identifier",
-      "text" : "forward_speed"
+      "text" : "objectWillChange"
     },
     {
       "kind" : "text",
@@ -253,16 +262,16 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Sf",
-      "text" : "Float"
+      "preciseIdentifier" : "s:7Combine25ObservableObjectPublisherC",
+      "text" : "ObservableObjectPublisher"
     }
   ],
-  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/forward_speed",
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/objectWillChange",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "forward_speed",
+  "title" : "objectWillChange",
   "type" : "topic",
-  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/forward_speed"
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolledarview\/objectwillchange"
 }
 }
 }

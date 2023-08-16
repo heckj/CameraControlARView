@@ -1,7 +1,7 @@
 {
   "abstract" : [
     {
-      "text" : "Free motion within the AR scene, not locked to a location.",
+      "text" : "Rotate around a target location, effectively orbiting and keeping the camera trained on it.",
       "type" : "text"
     }
   ],
@@ -9,17 +9,17 @@
     "paths" : [
       [
         "doc:\/\/CameraControlARView\/documentation\/CameraControlARView",
-        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView"
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView"
       ]
     ]
   },
   "identifier" : {
     "interfaceLanguage" : "swift",
-    "url" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum\/firstperson"
+    "url" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/MotionMode-swift.enum\/arcball"
   },
   "kind" : "symbol",
   "metadata" : {
-    "externalID" : "s:19CameraControlARViewAAC10MotionModeO11firstpersonyA2DmF",
+    "externalID" : "s:19CameraControlARView0a10ControlledC0C10MotionModeO7arcballyA2EmF",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -31,7 +31,7 @@
       },
       {
         "kind" : "identifier",
-        "text" : "firstperson"
+        "text" : "arcball"
       }
     ],
     "modules" : [
@@ -42,7 +42,7 @@
     "role" : "symbol",
     "roleHeading" : "Case",
     "symbolKind" : "case",
-    "title" : "CameraControlARView.MotionMode.firstperson"
+    "title" : "CameraControlledARView.MotionMode.arcball"
   },
   "primaryContentSections" : [
     {
@@ -65,7 +65,7 @@
             },
             {
               "kind" : "identifier",
-              "text" : "firstperson"
+              "text" : "arcball"
             }
           ]
         }
@@ -83,47 +83,6 @@
         {
           "inlineContent" : [
             {
-              "text" : "In general, the arrow keys or trackpad control where you’re looking and the ",
-              "type" : "text"
-            },
-            {
-              "code" : "a",
-              "type" : "codeVoice"
-            },
-            {
-              "text" : ",",
-              "type" : "text"
-            },
-            {
-              "code" : "s",
-              "type" : "codeVoice"
-            },
-            {
-              "text" : ",",
-              "type" : "text"
-            },
-            {
-              "code" : "d",
-              "type" : "codeVoice"
-            },
-            {
-              "text" : ", and ",
-              "type" : "text"
-            },
-            {
-              "code" : "w",
-              "type" : "codeVoice"
-            },
-            {
-              "text" : " keys move you around.",
-              "type" : "text"
-            }
-          ],
-          "type" : "paragraph"
-        },
-        {
-          "inlineContent" : [
-            {
               "text" : "Drag motions:",
               "type" : "text"
             }
@@ -137,7 +96,33 @@
                 {
                   "inlineContent" : [
                     {
-                      "text" : "A drag motion changes where the camera is looking.",
+                      "text" : "The view converts vertical drag distance into an inclination above, or below, the target location, clamped to directly above and below it.",
+                      "type" : "text"
+                    }
+                  ],
+                  "type" : "paragraph"
+                }
+              ]
+            },
+            {
+              "content" : [
+                {
+                  "inlineContent" : [
+                    {
+                      "text" : "The view converts horizontal drag distance into a rotational angle, orbiting the target location.",
+                      "type" : "text"
+                    }
+                  ],
+                  "type" : "paragraph"
+                }
+              ]
+            },
+            {
+              "content" : [
+                {
+                  "inlineContent" : [
+                    {
+                      "text" : "A magnify gesture zooms in, or out, from the target location.",
                       "type" : "text"
                     }
                   ],
@@ -164,7 +149,7 @@
                 {
                   "inlineContent" : [
                     {
-                      "text" : "The ",
+                      "text" : "The right-arrow and ",
                       "type" : "text"
                     },
                     {
@@ -172,7 +157,7 @@
                       "type" : "codeVoice"
                     },
                     {
-                      "text" : " key moves the camera in a strafing motion to the right.",
+                      "text" : " keys rotate the camera to the right around the location.",
                       "type" : "text"
                     }
                   ],
@@ -185,7 +170,7 @@
                 {
                   "inlineContent" : [
                     {
-                      "text" : "The ",
+                      "text" : "The left-arrow and ",
                       "type" : "text"
                     },
                     {
@@ -193,7 +178,7 @@
                       "type" : "codeVoice"
                     },
                     {
-                      "text" : " key moves the camera in a strafing motion to the left.",
+                      "text" : " keys rotate the camera to the left around the location.",
                       "type" : "text"
                     }
                   ],
@@ -206,7 +191,7 @@
                 {
                   "inlineContent" : [
                     {
-                      "text" : "The ",
+                      "text" : "The up-arrow and ",
                       "type" : "text"
                     },
                     {
@@ -214,7 +199,7 @@
                       "type" : "codeVoice"
                     },
                     {
-                      "text" : " key moves the camera forward.",
+                      "text" : " keys rotate the camera upward around the location, clamped to a maximum of directly above the location.",
                       "type" : "text"
                     }
                   ],
@@ -227,7 +212,7 @@
                 {
                   "inlineContent" : [
                     {
-                      "text" : "The ",
+                      "text" : "The down-arrow and ",
                       "type" : "text"
                     },
                     {
@@ -235,59 +220,7 @@
                       "type" : "codeVoice"
                     },
                     {
-                      "text" : " key moves the camera backward.",
-                      "type" : "text"
-                    }
-                  ],
-                  "type" : "paragraph"
-                }
-              ]
-            },
-            {
-              "content" : [
-                {
-                  "inlineContent" : [
-                    {
-                      "text" : "The right-arrow key rotates the camera to the right..",
-                      "type" : "text"
-                    }
-                  ],
-                  "type" : "paragraph"
-                }
-              ]
-            },
-            {
-              "content" : [
-                {
-                  "inlineContent" : [
-                    {
-                      "text" : "The left-arrow key rotates the camera to the left.",
-                      "type" : "text"
-                    }
-                  ],
-                  "type" : "paragraph"
-                }
-              ]
-            },
-            {
-              "content" : [
-                {
-                  "inlineContent" : [
-                    {
-                      "text" : "The up-arrow key rotates the camera upward.",
-                      "type" : "text"
-                    }
-                  ],
-                  "type" : "paragraph"
-                }
-              ]
-            },
-            {
-              "content" : [
-                {
-                  "inlineContent" : [
-                    {
-                      "text" : "The down-arrow key rotates the camera downward.",
+                      "text" : " keys rotate the camera downward around the location, clamped to a minimum of directly below the location.",
                       "type" : "text"
                     }
                   ],
@@ -314,15 +247,15 @@
     {
       "generated" : true,
       "identifiers" : [
-        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/motionMode-swift.property",
-        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum",
-        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum\/!=(_:_:)",
-        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum\/arcball",
-        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum\/hash(into:)",
-        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum\/hashValue",
-        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/dragspeed",
-        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/keyspeed",
-        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/turn_speed"
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/motionMode-swift.property",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/MotionMode-swift.enum",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/MotionMode-swift.enum\/!=(_:_:)",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/MotionMode-swift.enum\/firstperson",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/MotionMode-swift.enum\/hash(into:)",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/MotionMode-swift.enum\/hashValue",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/dragspeed",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/keyspeed",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/turn_speed"
       ],
       "title" : "Inspecting the Camera Control Mode"
     }
@@ -330,7 +263,7 @@
   "variants" : [
     {
       "paths" : [
-        "\/documentation\/cameracontrolarview\/cameracontrolarview\/motionmode-swift.enum\/firstperson"
+        "\/documentation\/cameracontrolarview\/cameracontrolledarview\/motionmode-swift.enum\/arcball"
       ],
       "traits" : [
         {
@@ -355,10 +288,10 @@
   "type" : "topic",
   "url" : "\/documentation\/cameracontrolarview"
 },
-"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView": {
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlledARView": {
   "abstract" : [
     {
-      "text" : "An augmented reality view for macOS or iOS that provides keyboard, trackpad, and mouse movement controls for the camera within the view.",
+      "text" : "A 3D View for SwiftUI using RealityKit that provides movement controls for the camera within the view.",
       "type" : "text"
     }
   ],
@@ -373,23 +306,23 @@
     },
     {
       "kind" : "identifier",
-      "text" : "CameraControlARView"
+      "text" : "CameraControlledARView"
     }
   ],
-  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView",
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "CameraControlARView"
+      "text" : "CameraControlledARView"
     }
   ],
   "role" : "symbol",
-  "title" : "CameraControlARView",
+  "title" : "CameraControlledARView",
   "type" : "topic",
-  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview"
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolledarview"
 },
-"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/MotionMode-swift.enum": {
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlledARView/MotionMode-swift.enum": {
   "abstract" : [
     {
       "text" : "The mode of camera motion within the augmented reality scene.",
@@ -410,7 +343,7 @@
       "text" : "MotionMode"
     }
   ],
-  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum",
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/MotionMode-swift.enum",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
@@ -419,11 +352,11 @@
     }
   ],
   "role" : "symbol",
-  "title" : "CameraControlARView.MotionMode",
+  "title" : "CameraControlledARView.MotionMode",
   "type" : "topic",
-  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/motionmode-swift.enum"
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolledarview\/motionmode-swift.enum"
 },
-"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/MotionMode-swift.enum/!=(_:_:)": {
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlledARView/MotionMode-swift.enum/!=(_:_:)": {
   "abstract" : [
 
   ],
@@ -478,14 +411,14 @@
       "text" : "Bool"
     }
   ],
-  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum\/!=(_:_:)",
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/MotionMode-swift.enum\/!=(_:_:)",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "!=(_:_:)",
   "type" : "topic",
-  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/motionmode-swift.enum\/!=(_:_:)"
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolledarview\/motionmode-swift.enum\/!=(_:_:)"
 },
-"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/MotionMode-swift.enum/arcball": {
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlledARView/MotionMode-swift.enum/arcball": {
   "abstract" : [
     {
       "text" : "Rotate around a target location, effectively orbiting and keeping the camera trained on it.",
@@ -506,14 +439,14 @@
       "text" : "arcball"
     }
   ],
-  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum\/arcball",
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/MotionMode-swift.enum\/arcball",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "CameraControlARView.MotionMode.arcball",
+  "title" : "CameraControlledARView.MotionMode.arcball",
   "type" : "topic",
-  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/motionmode-swift.enum\/arcball"
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolledarview\/motionmode-swift.enum\/arcball"
 },
-"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/MotionMode-swift.enum/firstperson": {
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlledARView/MotionMode-swift.enum/firstperson": {
   "abstract" : [
     {
       "text" : "Free motion within the AR scene, not locked to a location.",
@@ -534,14 +467,14 @@
       "text" : "firstperson"
     }
   ],
-  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum\/firstperson",
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/MotionMode-swift.enum\/firstperson",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "CameraControlARView.MotionMode.firstperson",
+  "title" : "CameraControlledARView.MotionMode.firstperson",
   "type" : "topic",
-  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/motionmode-swift.enum\/firstperson"
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolledarview\/motionmode-swift.enum\/firstperson"
 },
-"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/MotionMode-swift.enum/hash(into:)": {
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlledARView/MotionMode-swift.enum/hash(into:)": {
   "abstract" : [
 
   ],
@@ -636,14 +569,14 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum\/hash(into:)",
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/MotionMode-swift.enum\/hash(into:)",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "hash(into:)",
   "type" : "topic",
-  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/motionmode-swift.enum\/hash(into:)"
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolledarview\/motionmode-swift.enum\/hash(into:)"
 },
-"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/MotionMode-swift.enum/hashValue": {
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlledARView/MotionMode-swift.enum/hashValue": {
   "abstract" : [
 
   ],
@@ -718,14 +651,14 @@
       "text" : "Int"
     }
   ],
-  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/MotionMode-swift.enum\/hashValue",
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/MotionMode-swift.enum\/hashValue",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "hashValue",
   "type" : "topic",
-  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/motionmode-swift.enum\/hashvalue"
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolledarview\/motionmode-swift.enum\/hashvalue"
 },
-"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/dragspeed": {
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlledARView/dragspeed": {
   "abstract" : [
     {
       "text" : "The speed at which drag operations map percentage of movement within the view to rotational or positional updates.",
@@ -755,14 +688,14 @@
       "text" : "Float"
     }
   ],
-  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/dragspeed",
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/dragspeed",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "dragspeed",
   "type" : "topic",
-  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/dragspeed"
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolledarview\/dragspeed"
 },
-"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/keyspeed": {
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlledARView/keyspeed": {
   "abstract" : [
     {
       "text" : "The speed at which keypresses change the angles of inclination or rotation.",
@@ -792,14 +725,14 @@
       "text" : "Float"
     }
   ],
-  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/keyspeed",
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/keyspeed",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "keyspeed",
   "type" : "topic",
-  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/keyspeed"
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolledarview\/keyspeed"
 },
-"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/motionMode-swift.property": {
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlledARView/motionMode-swift.property": {
   "abstract" : [
     {
       "text" : "The mode in which the camera is controlled by keypresses and\/or mouse and gesture movements.",
@@ -825,8 +758,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "c:@M@CameraControlARView@objc(cs)CameraControlARView",
-      "text" : "CameraControlARView"
+      "preciseIdentifier" : "c:@M@CameraControlARView@objc(cs)CameraControlledARView",
+      "text" : "CameraControlledARView"
     },
     {
       "kind" : "text",
@@ -834,18 +767,18 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:19CameraControlARViewAAC10MotionModeO",
+      "preciseIdentifier" : "s:19CameraControlARView0a10ControlledC0C10MotionModeO",
       "text" : "MotionMode"
     }
   ],
-  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/motionMode-swift.property",
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/motionMode-swift.property",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "motionMode",
   "type" : "topic",
-  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/motionmode-swift.property"
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolledarview\/motionmode-swift.property"
 },
-"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/turn_speed": {
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlledARView/turn_speed": {
   "abstract" : [
     {
       "text" : "The speed at which the camera moves when rotating using the keyboard",
@@ -875,12 +808,12 @@
       "text" : "Float"
     }
   ],
-  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/turn_speed",
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/turn_speed",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "turn_speed",
   "type" : "topic",
-  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/turn_speed"
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolledarview\/turn_speed"
 }
 }
 }

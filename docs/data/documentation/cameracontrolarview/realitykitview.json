@@ -1,7 +1,7 @@
 {
   "abstract" : [
     {
-      "text" : "A SwiftUI augmented reality view for macOS or iOS that optionally connects a closure you provide to Scene events.",
+      "text" : "A SwiftUI RealityKit view that optionally connects a closure you provide to scene events.",
       "type" : "text"
     }
   ],
@@ -88,16 +88,51 @@
         {
           "inlineContent" : [
             {
-              "text" : "RealityKitView extends the default ",
+              "text" : "This view provides an ",
               "type" : "text"
             },
             {
-              "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView",
+              "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer",
+              "isActive" : true,
+              "type" : "reference"
+            },
+            {
+              "text" : " and a default configured ",
+              "type" : "text"
+            },
+            {
+              "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView",
+              "isActive" : true,
+              "type" : "reference"
+            },
+            {
+              "text" : ", customizable through the struct ",
+              "type" : "text"
+            },
+            {
+              "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/RealityKitView\/Context",
               "isActive" : true,
               "type" : "reference"
             },
             {
               "text" : ".",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "If provided, the instance calls the optional update closure provided to ",
+              "type" : "text"
+            },
+            {
+              "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/RealityKitView\/init(_:update:)",
+              "isActive" : true,
+              "type" : "reference"
+            },
+            {
+              "text" : " when the associated RealityKit scene provides scene events.",
               "type" : "text"
             }
           ],
@@ -115,7 +150,11 @@
         {
           "code" : [
             "RealityKitView({ context in",
-            "    let entity = ModelEntity(mesh: .generateBox(size: SIMD3<Float>.init(repeating: 1)))",
+            "    let entity = ModelEntity(",
+            "        mesh: .generateBox(",
+            "            size: SIMD3<Float>.init(repeating: 1)",
+            "        )",
+            "    )",
             "    context.add(entity)",
             "}, update: {",
             "    print(\"update\")",
@@ -150,23 +189,17 @@
     {
       "generated" : true,
       "identifiers" : [
-        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/ARViewContainer"
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/RealityKitView\/Context"
       ],
-      "title" : "SwiftUI Representable Views"
+      "title" : "SwiftUI View for RealityKit"
     }
   ],
   "topicSections" : [
     {
       "identifiers" : [
-        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/RealityKitView\/Context"
-      ],
-      "title" : "Structures"
-    },
-    {
-      "identifiers" : [
         "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/RealityKitView\/init(_:update:)"
       ],
-      "title" : "Initializers"
+      "title" : "Creating a view"
     },
     {
       "identifiers" : [
@@ -249,10 +282,10 @@
   "type" : "topic",
   "url" : "\/documentation\/cameracontrolarview\/arviewcontainer"
 },
-"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView": {
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlledARView": {
   "abstract" : [
     {
-      "text" : "An augmented reality view for macOS or iOS that provides keyboard, trackpad, and mouse movement controls for the camera within the view.",
+      "text" : "A 3D View for SwiftUI using RealityKit that provides movement controls for the camera within the view.",
       "type" : "text"
     }
   ],
@@ -267,26 +300,26 @@
     },
     {
       "kind" : "identifier",
-      "text" : "CameraControlARView"
+      "text" : "CameraControlledARView"
     }
   ],
-  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView",
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "CameraControlARView"
+      "text" : "CameraControlledARView"
     }
   ],
   "role" : "symbol",
-  "title" : "CameraControlARView",
+  "title" : "CameraControlledARView",
   "type" : "topic",
-  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview"
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolledarview"
 },
 "doc://CameraControlARView/documentation/CameraControlARView/RealityKitView": {
   "abstract" : [
     {
-      "text" : "A SwiftUI augmented reality view for macOS or iOS that optionally connects a closure you provide to Scene events.",
+      "text" : "A SwiftUI RealityKit view that optionally connects a closure you provide to scene events.",
       "type" : "text"
     }
   ],
@@ -364,7 +397,10 @@
 },
 "doc://CameraControlARView/documentation/CameraControlARView/RealityKitView/body": {
   "abstract" : [
-
+    {
+      "text" : "The body of the view.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

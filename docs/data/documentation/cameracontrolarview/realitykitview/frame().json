@@ -204,7 +204,7 @@
 "doc://CameraControlARView/documentation/CameraControlARView/RealityKitView": {
   "abstract" : [
     {
-      "text" : "A SwiftUI augmented reality view for macOS or iOS that optionally connects a closure you provide to Scene events.",
+      "text" : "A SwiftUI RealityKit view that optionally connects a closure you provide to scene events.",
       "type" : "text"
     }
   ],

@@ -17,17 +17,17 @@
     "paths" : [
       [
         "doc:\/\/CameraControlARView\/documentation\/CameraControlARView",
-        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView"
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView"
       ]
     ]
   },
   "identifier" : {
     "interfaceLanguage" : "swift",
-    "url" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/keyDown(with:)"
+    "url" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/keyDown(with:)"
   },
   "kind" : "symbol",
   "metadata" : {
-    "externalID" : "c:@M@CameraControlARView@objc(cs)CameraControlARView(im)keyDown:",
+    "externalID" : "c:@M@CameraControlARView@objc(cs)CameraControlledARView(im)keyDown:",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -159,9 +159,9 @@
     {
       "generated" : true,
       "identifiers" : [
-        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/magnify(with:)",
-        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/mouseDown(with:)",
-        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/mouseDragged(with:)"
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/magnify(with:)",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/mouseDown(with:)",
+        "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/mouseDragged(with:)"
       ],
       "title" : "Overridden Methods to Provide Controls"
     }
@@ -169,7 +169,7 @@
   "variants" : [
     {
       "paths" : [
-        "\/documentation\/cameracontrolarview\/cameracontrolarview\/keydown(with:)"
+        "\/documentation\/cameracontrolarview\/cameracontrolledarview\/keydown(with:)"
       ],
       "traits" : [
         {
@@ -194,10 +194,10 @@
   "type" : "topic",
   "url" : "\/documentation\/cameracontrolarview"
 },
-"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView": {
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlledARView": {
   "abstract" : [
     {
-      "text" : "An augmented reality view for macOS or iOS that provides keyboard, trackpad, and mouse movement controls for the camera within the view.",
+      "text" : "A 3D View for SwiftUI using RealityKit that provides movement controls for the camera within the view.",
       "type" : "text"
     }
   ],
@@ -212,23 +212,23 @@
     },
     {
       "kind" : "identifier",
-      "text" : "CameraControlARView"
+      "text" : "CameraControlledARView"
     }
   ],
-  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView",
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "CameraControlARView"
+      "text" : "CameraControlledARView"
     }
   ],
   "role" : "symbol",
-  "title" : "CameraControlARView",
+  "title" : "CameraControlledARView",
   "type" : "topic",
-  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview"
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolledarview"
 },
-"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/keyDown(with:)": {
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlledARView/keyDown(with:)": {
   "abstract" : [
 
   ],
@@ -267,14 +267,14 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/keyDown(with:)",
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/keyDown(with:)",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "keyDown(with:)",
   "type" : "topic",
-  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/keydown(with:)"
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolledarview\/keydown(with:)"
 },
-"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/magnify(with:)": {
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlledARView/magnify(with:)": {
   "abstract" : [
 
   ],
@@ -313,14 +313,14 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/magnify(with:)",
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/magnify(with:)",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "magnify(with:)",
   "type" : "topic",
-  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/magnify(with:)"
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolledarview\/magnify(with:)"
 },
-"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/mouseDown(with:)": {
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlledARView/mouseDown(with:)": {
   "abstract" : [
 
   ],
@@ -359,14 +359,14 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/mouseDown(with:)",
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/mouseDown(with:)",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "mouseDown(with:)",
   "type" : "topic",
-  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/mousedown(with:)"
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolledarview\/mousedown(with:)"
 },
-"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView/mouseDragged(with:)": {
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlledARView/mouseDragged(with:)": {
   "abstract" : [
 
   ],
@@ -405,12 +405,12 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView\/mouseDragged(with:)",
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView\/mouseDragged(with:)",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "mouseDragged(with:)",
   "type" : "topic",
-  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview\/mousedragged(with:)"
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolledarview\/mousedragged(with:)"
 }
 }
 }

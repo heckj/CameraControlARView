@@ -19,7 +19,7 @@
   },
   "kind" : "symbol",
   "metadata" : {
-    "externalID" : "s:19CameraControlARView0C9ContainerV06cameraC0Ac2AC_tcfc",
+    "externalID" : "s:19CameraControlARView0C9ContainerV06cameraC0AcA0a10ControlledC0C_tcfc",
     "fragments" : [
       {
         "kind" : "identifier",
@@ -39,8 +39,8 @@
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "c:@M@CameraControlARView@objc(cs)CameraControlARView",
-        "text" : "CameraControlARView"
+        "preciseIdentifier" : "c:@M@CameraControlARView@objc(cs)CameraControlledARView",
+        "text" : "CameraControlledARView"
       },
       {
         "kind" : "text",
@@ -85,10 +85,10 @@
               "text" : ": "
             },
             {
-              "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView",
+              "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView",
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "c:@M@CameraControlARView@objc(cs)CameraControlARView",
-              "text" : "CameraControlARView"
+              "preciseIdentifier" : "c:@M@CameraControlARView@objc(cs)CameraControlledARView",
+              "text" : "CameraControlledARView"
             },
             {
               "kind" : "text",
@@ -215,8 +215,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "c:@M@CameraControlARView@objc(cs)CameraControlARView",
-      "text" : "CameraControlARView"
+      "preciseIdentifier" : "c:@M@CameraControlARView@objc(cs)CameraControlledARView",
+      "text" : "CameraControlledARView"
     },
     {
       "kind" : "text",
@@ -230,10 +230,10 @@
   "type" : "topic",
   "url" : "\/documentation\/cameracontrolarview\/arviewcontainer\/init(cameraarview:)"
 },
-"doc://CameraControlARView/documentation/CameraControlARView/CameraControlARView": {
+"doc://CameraControlARView/documentation/CameraControlARView/CameraControlledARView": {
   "abstract" : [
     {
-      "text" : "An augmented reality view for macOS or iOS that provides keyboard, trackpad, and mouse movement controls for the camera within the view.",
+      "text" : "A 3D View for SwiftUI using RealityKit that provides movement controls for the camera within the view.",
       "type" : "text"
     }
   ],
@@ -248,21 +248,21 @@
     },
     {
       "kind" : "identifier",
-      "text" : "CameraControlARView"
+      "text" : "CameraControlledARView"
     }
   ],
-  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlARView",
+  "identifier" : "doc:\/\/CameraControlARView\/documentation\/CameraControlARView\/CameraControlledARView",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "CameraControlARView"
+      "text" : "CameraControlledARView"
     }
   ],
   "role" : "symbol",
-  "title" : "CameraControlARView",
+  "title" : "CameraControlledARView",
   "type" : "topic",
-  "url" : "\/documentation\/cameracontrolarview\/cameracontrolarview"
+  "url" : "\/documentation\/cameracontrolarview\/cameracontrolledarview"
 }
 }
 }
