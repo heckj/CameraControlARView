@@ -1,5 +1,5 @@
 //
-//  CameraControlARView.swift
+//  CameraControlledARView.swift
 //
 //
 //  Created by Joseph Heck on 2/7/22.
@@ -16,9 +16,9 @@ import CoreGraphics
 import Foundation
 import RealityKit
 
-/// An augmented reality view for macOS or iOS that provides keyboard, trackpad, and mouse movement controls for the camera within the view.
+/// A 3D View for SwiftUI using RealityKit that provides movement controls for the camera within the view.
 ///
-/// Set the ``CameraControlARView/CameraControlARView/motionMode-swift.property`` to either:
+/// Set the ``CameraControlledARView/motionMode-swift.property`` to either:
 /// - ``MotionMode-swift.enum/arcball`` for rotating around a specific point.
 /// - ``MotionMode-swift.enum/firstperson`` for moving freely within the environment.
 ///
@@ -27,7 +27,7 @@ import RealityKit
 /// When used on iOS, a pinch gesture is automatically registered for interaction.
 ///
 /// Additional properties control the target location, the camera's location, or the speed of movement within the environment.
-@objc public class CameraControlARView: ARView, ObservableObject {
+@objc public class CameraControlledARView: ARView, ObservableObject {
     /// The mode of camera motion within the augmented reality scene.
     public enum MotionMode: Int {
         /// Rotate around a target location, effectively orbiting and keeping the camera trained on it.

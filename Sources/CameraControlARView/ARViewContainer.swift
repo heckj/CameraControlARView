@@ -19,12 +19,13 @@ import SwiftUI
 ///
 /// Create an ``CameraControlARView`` externally and hand it into the container so that you can interact with the
 /// view controls, or the underlying scene, from within SwiftUI.
+/// See ``CameraControlARView`` for an example of using this wrapper.
 public struct ARViewContainer: PlatformViewRepresentable {
     /// The type of view this container wraps.
     public typealias NSViewType = RealityKit.ARView
 
     /// The wrapped ARView with camera controls enabled.
-    public var cameraARView: CameraControlARView
+    public var cameraARView: CameraControlledARView
 
     /// Creates a coordinator to establish the view and to pass updates to and from the SwiftUI context hosting the view.
     public func makeCoordinator() -> ARViewContainer.ARViewCoordinator {
@@ -67,7 +68,7 @@ public struct ARViewContainer: PlatformViewRepresentable {
 
     /// Creates a new SwiftUI view that wraps and displays an augmented reality view.
     /// - Parameter cameraARView: An instance of the camera-controlled AR View.
-    public init(cameraARView: CameraControlARView) {
+    public init(cameraARView: CameraControlledARView) {
         self.cameraARView = cameraARView
     }
 
