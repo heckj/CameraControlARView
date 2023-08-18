@@ -1,20 +1,19 @@
-//
-//  RealityView.swift
-//  CompleteAnatomy
-//
-//  Created by Volodymyr Boichentsov on 11/10/2022.
+//  Originally created by Volodymyr Boichentsov on 11/10/2022.
 //  Copyright © 2022 3D4Medical, LLC. All rights reserved.
-//
+//  Copyright © 2023 Joseph Heck
 
 import Combine
 import RealityKit
 import SwiftUI
 
-private let arContainer = ARViewContainer(cameraARView: CameraControlledARView(frame: .zero))
+@MainActor
+enum Global {
+  static let arContainer = ARViewContainer(cameraARView: CameraControlledARView(frame: .zero))
+}
 
 /// A SwiftUI RealityKit view that optionally connects a closure you provide to scene events.
 ///
-/// This view provides an ``ARViewContainer`` and a default configured ``CameraControlledARView``, customizable through the struct ``RealityKitView/Context``.
+/// This uses a global variable to create and provide an instance of ``CameraControlledARView``, with the RealityKit scene customizable through the struct ``RealityKitView/Context``.
 /// If provided, the instance calls the optional update closure provided to ``init(_:update:)`` when the associated RealityKit scene provides scene events.
 ///
 /// The example below shows creating a view that contains a box:
@@ -33,19 +32,30 @@ private let arContainer = ARViewContainer(cameraARView: CameraControlledARView(f
 public struct RealityKitView: View {
     /// The context for the RealityKit view.
     public struct Context {
-        /// An optional RealityKit Scene for the view.
-        public var base: RealityKit.Scene?
-
+        /// A reference to an ARView subclass that you can configure.
+        public var arView: CameraControlledARView
+        
+        /// The RealityKit scene for this view
+        public var base: RealityKit.Scene {
+            self.arView.scene
+        }
+        
+        /// Applies the set of view debugging options that you provide to the RealityKit view.
+        /// - Parameter options: <#options description#>
+        public func applyDebugOptions(_ options: ARView.DebugOptions) {
+            self.arView.debugOptions = options
+        }
+        
         /// Adds the entity that you provide at the center of the scene.
         /// - Parameter entity: The entity to add to the scene.
         public func add(_ entity: Entity) {
             let originAnchor = AnchorEntity(world: .zero)
             originAnchor.addChild(entity)
-            arContainer.cameraARView.scene.anchors.append(originAnchor)
+            Global.arContainer.cameraARView.scene.anchors.append(originAnchor)
         }
     }
 
-    let context = Context(base: arContainer.cameraARView.scene)
+    let context = Context(arView: Global.arContainer.cameraARView)
     var update: (() -> Void)?
     var updateCancellable: Cancellable?
 
@@ -58,7 +68,7 @@ public struct RealityKitView: View {
         self.update = update
 
         if let update = self.update {
-            updateCancellable = arContainer.cameraARView.scene.subscribe(to: SceneEvents.Update.self) { _ in
+            updateCancellable = Global.arContainer.cameraARView.scene.subscribe(to: SceneEvents.Update.self) { _ in
                 update()
             }
         }
@@ -66,7 +76,7 @@ public struct RealityKitView: View {
     
     /// The body of the view.
     public var body: some View {
-        arContainer
+        Global.arContainer
     }
 }
 

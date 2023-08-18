@@ -35,6 +35,13 @@ public struct ARViewContainer: PlatformViewRepresentable {
     /// Creates a new SwiftUI view.
     #if os(iOS)
         public func makeUIView(context _: Context) -> ARView {
+            // Creates the view object and configures its initial state.
+            //
+            // Context includes:
+            // - coordinator - a reference to the coordinator class (this class)
+            // - transaction - information about animations
+            // - environment - environment variables accessible from all SwiftUI views
+
             let arView = cameraARView
             return arView
         }
@@ -44,9 +51,9 @@ public struct ARViewContainer: PlatformViewRepresentable {
             // Creates the view object and configures its initial state.
             //
             // Context includes:
-            // - coordinator
-            // - transaction
-            // - environment
+            // - coordinator - a reference to the coordinator class (this class)
+            // - transaction - information about animations
+            // - environment - environment variables accessible from all SwiftUI views
 
             let arView = cameraARView
             return arView

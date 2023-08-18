@@ -2,10 +2,6 @@
 
 ## Topics
 
-### Creating a Camera Controlled RealityKit View
-
-- ``CameraControlledARView/init(frame:)``
-
 ### Inspecting the View
 
 - ``CameraControlledARView/cameraAnchor``
@@ -14,12 +10,6 @@
 ### Inspecting the Camera Control Mode
 
 - ``CameraControlledARView/motionMode-swift.property``
-- ``CameraControlledARView/MotionMode-swift.enum``
-- ``CameraControlledARView/MotionMode-swift.enum/!=(_:_:)``
-- ``CameraControlledARView/MotionMode-swift.enum/arcball``
-- ``CameraControlledARView/MotionMode-swift.enum/firstperson``
-- ``CameraControlledARView/MotionMode-swift.enum/hash(into:)``
-- ``CameraControlledARView/MotionMode-swift.enum/hashValue``
 
 - ``CameraControlledARView/dragspeed``
 - ``CameraControlledARView/keyspeed``
