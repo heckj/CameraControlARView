@@ -14,6 +14,4 @@
 
 - ``ARViewContainer/NSViewType``
 - ``ARViewContainer/makeCoordinator()``
-- ``ARViewContainer/makeNSView(context:)``
-- ``ARViewContainer/updateNSView(_:context:)``
 - ``ARViewContainer/ARViewCoordinator``

@@ -18,7 +18,13 @@ import RealityKit
 
 /// A 3D View for SwiftUI using RealityKit that provides movement controls for the camera within the view.
 ///
-/// Set the ``CameraControlledARView/motionMode-swift.property`` to either:
+/// Initialize a new instance with `init()` or `init(frame:)` on macOS, `init(frame:cameraMode:)` on iOS.
+/// The ARView creates and maintains the scene associated with the view upon initialization.
+///
+/// Once the view is initialized, configure the scene by updating it with entities attached to anchors, or apply view debugging
+/// options through the `debugOptions` property.
+///
+/// Set the ``CameraControlledARView/motionMode-swift.property`` to define the motion controls.
 /// - ``MotionMode-swift.enum/arcball`` for rotating around a specific point.
 /// - ``MotionMode-swift.enum/firstperson`` for moving freely within the environment.
 ///
@@ -27,56 +33,7 @@ import RealityKit
 /// When used on iOS, a pinch gesture is automatically registered for interaction.
 ///
 /// Additional properties control the target location, the camera's location, or the speed of movement within the environment.
-@objc public class CameraControlledARView: ARView, ObservableObject {
-    /// The mode of camera motion within the augmented reality scene.
-    public enum MotionMode: Int {
-        /// Rotate around a target location, effectively orbiting and keeping the camera trained on it.
-        ///
-        /// Drag motions:
-        /// - The view converts vertical drag distance into an inclination above, or below, the target location, clamped to directly above and below it.
-        /// - The view converts horizontal drag distance into a rotational angle, orbiting the target location.
-        /// - A magnify gesture zooms in, or out, from the target location.
-        ///
-        /// Keyboard motions:
-        /// - The right-arrow and `d` keys rotate the camera to the right around the location.
-        /// - The left-arrow and `a` keys rotate the camera to the left around the location.
-        /// - The up-arrow and `w` keys rotate the camera upward around the location, clamped to a maximum of directly above the location.
-        /// - The down-arrow and `s` keys rotate the camera downward around the location, clamped to a minimum of directly below the location.
-        case arcball
-        /// Free motion within the AR scene, not locked to a location.
-        ///
-        /// In general, the arrow keys or trackpad control where you're looking and the `a`,`s`,`d`, and `w` keys move you around.
-        ///
-        /// Drag motions:
-        /// - A drag motion changes where the camera is looking.
-        ///
-        /// Keyboard motions:
-        /// - The `d` key moves the camera in a strafing motion to the right.
-        /// - The `a` key moves the camera in a strafing motion to the left.
-        /// - The `w` key moves the camera forward.
-        /// - The `s` key moves the camera backward.
-        ///
-        /// - The right-arrow key rotates the camera to the right..
-        /// - The left-arrow key rotates the camera to the left.
-        /// - The up-arrow key rotates the camera upward.
-        /// - The down-arrow key rotates the camera downward.
-
-        case firstperson
-    }
-
-    // arcball:
-    //
-    // At its heart, arcball is all about looking at a singular location (or object). It needs to have a
-    // radius as well.
-    //
-    // - vertical delta motion (drag) interpreted as changing the inclination angle. Which I think
-    // would make sense to clamp at +90° and -90° (+.pi/2, -.pi/2) to keep from getting really confusing.
-    // - horizontal delta motion (drag) interpreted as changing rotation angle. No need to clamp this.
-    // - keydown left-arrow, right-arrow get mapped to explicit increments of horizontal delta and change rotation
-    // - keydown up-arrow, down-arrow get mapped to explicit increments of vertical delta, and respect the clamping.
-    // - magnification (increase = zoom in) interpreted as shortening the radius to the target location, and
-    // zoom out does the reverse. Definitely clamp to a minimum of zero radius, and potentially want to have a
-    // lower set limit not to come earlier based on a collision boundary for any target object and maybe some padding.
+@objc public final class CameraControlledARView: ARView, ObservableObject {
 
     /// The mode in which the camera is controlled by keypresses and/or mouse and gesture movements.
     ///
@@ -172,12 +129,69 @@ import RealityKit
         }
     #endif
 
-    /// Creates a new AR View with the camera controlled by mouse, keyboard, and/or the trackpad.
+    #if os(iOS)
+    /// Creates an augmented reality view with the camera location and orientation controlled by the view.
+    /// 
+    /// The camera orientation and location is controlled by keyboard, mouse, touch, and multitouch gestures, with the specific sets of supported gestures and their effects defined by the view's ``MotionMode-swift.enum``.
+    /// The default motion mode for the view is ``MotionMode-swift.enum/arcball``, which orbits the camera around a specific point in space.
+    /// 
+    /// - Parameter frameRect: The frame rectangle for the view, measured in points.
+    /// - Parameter cameraMode: An indication of whether to use the device’s camera or a virtual one.
+    @MainActor public init(frame frameRect: CGRect, cameraMode: ARView.CameraMode) {
+        motionMode = .arcball
+
+        // ARCBALL mode
+        arcballTarget = simd_float3(0, 0, 0)
+        inclinationAngle = 0
+        rotationAngle = 0
+        radius = 2
+        keyspeed = 0.01
+        dragspeed = 0.01
+        dragstart_rotation = 0
+        dragstart_inclination = 0
+        magnify_start = radius
+
+        // FPS mode
+        forward_speed = 0.05
+        turn_speed = 0.01
+
+        // Not mode specific
+        cameraAnchor = AnchorEntity(world: .zero)
+        dragstart = CGPoint.zero
+        dragstart_transform = cameraAnchor.transform.matrix
+        // reflect the camera's transform as an observed object
+        macOSCameraTransform = cameraAnchor.transform
+
+        #if targetEnvironment(simulator)
+        super.init(frame: frameRect,
+                   cameraMode: .nonAR,
+                   automaticallyConfigureSession: true)
+        let cameraEntity = PerspectiveCamera()
+        cameraEntity.camera.fieldOfViewInDegrees = 60
+        cameraAnchor.addChild(cameraEntity)
+        scene.addAnchor(cameraAnchor)
+        #else
+        super.init(frame: frameRect,
+                   cameraMode: cameraMode,
+                   automaticallyConfigureSession: true)
+        #endif
+        
+        updateCamera()
+
+        pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(pinchRecognized(_:)))
+        addGestureRecognizer(pinchGesture!)
+        
+    }
+#endif
+    
+    /// Creates an augmented reality view with the camera location and orientation controlled by the view.
     ///
+    /// The camera orientation and location is controlled by keyboard, mouse, touch, and multitouch gestures, with the specific sets of supported gestures and their effects defined by the view's ``MotionMode-swift.enum``.
     /// The default motion mode for the view is ``MotionMode-swift.enum/arcball``, which orbits the camera around a specific point in space.
     ///
     /// - Parameter frameRect: The frame rectangle for the view, measured in points.
-    public required init(frame frameRect: CGRect) {
+    /// - Parameter cameraMode: An indication of whether to use the device’s camera or a virtual one.
+    @MainActor dynamic required init(frame frameRect: CGRect) {
         motionMode = .arcball
 
         // ARCBALL mode
@@ -217,6 +231,11 @@ import RealityKit
         #endif
     }
 
+    @available(*, unavailable)
+    @MainActor dynamic required init?(coder _: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - rotational transforms
 
     /// Creates a 3D rotation transform that rotates around the Z axis by the angle that you provide
@@ -315,12 +334,7 @@ import RealityKit
             break
         }
     }
-
-    @available(*, unavailable)
-    @MainActor dynamic required init?(coder _: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
+    
     func dragStart() {
         switch motionMode {
         case .arcball:
@@ -362,12 +376,12 @@ import RealityKit
     }
 
     #if os(iOS)
-        override open dynamic func touchesBegan(_ touches: Set<UITouch>, with _: UIEvent?) {
+    override public dynamic func touchesBegan(_ touches: Set<UITouch>, with _: UIEvent?) {
             dragstart = touches.first!.location(in: self)
             dragStart()
         }
 
-        override open dynamic func touchesMoved(_ touches: Set<UITouch>, with _: UIEvent?) {
+    override public dynamic func touchesMoved(_ touches: Set<UITouch>, with _: UIEvent?) {
             let drag = touches.first!.location(in: self)
             let deltaX = Float(drag.x - dragstart.x)
             let deltaY = Float(dragstart.y - drag.y)
@@ -376,14 +390,14 @@ import RealityKit
     #endif
 
     #if os(macOS)
-        override open dynamic func mouseDown(with event: NSEvent) {
+    override public dynamic func mouseDown(with event: NSEvent) {
             // print("mouseDown EVENT: \(event)")
             // print(" at \(event.locationInWindow) of \(self.frame)")
             dragstart = event.locationInWindow
             dragStart()
         }
 
-        override open dynamic func mouseDragged(with event: NSEvent) {
+    override public dynamic func mouseDragged(with event: NSEvent) {
             // print("mouseDragged EVENT: \(event)")
             // print(" at \(event.locationInWindow) of \(self.frame)")
             let deltaX = Float(event.locationInWindow.x - dragstart.x)
@@ -391,7 +405,7 @@ import RealityKit
             dragMove(deltaX, deltaY)
         }
 
-        override open dynamic func keyDown(with event: NSEvent) {
+    override public dynamic func keyDown(with event: NSEvent) {
             // print("keyDown: \(event)")
             // print("key value: \(event.keyCode)")
             switch motionMode {
@@ -517,7 +531,7 @@ import RealityKit
             }
         }
 
-        override open dynamic func magnify(with event: NSEvent) {
+    override public dynamic func magnify(with event: NSEvent) {
             // if event.phase == NSEvent.Phase.ended {
             //    print("magnify: \(event)")
             // }

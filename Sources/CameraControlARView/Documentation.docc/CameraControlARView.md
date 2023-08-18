@@ -1,20 +1,19 @@
 # ``/CameraControlARView``
 
-An ARView with camera control and SwiftUI wrappers to use RealityKit with macOS.
+An ARView with camera controls and SwiftUI wrappers to use RealityKit on macOS.
 
 ## Overview
 
 The package provides an `ARView` subclass that you can use within AppKit, or with SwiftUI through a wrapping representable view.
-RealityKit includes an `ARView` that functions on macOS, but in a limited fashion.
-The subclassed ARView provides controls to move the camera within the RealityKit scene with a mouse, trackpad and/or keyboard.
+RealityKit includes an `ARView` that functions on macOS in a limited fashion.
+This library provides a subclassed ARView that controls the position and orientation of the AR camera with a mouse, trackpad and/or keyboard.
+Use this library to view RealityKit scene elements on macOS, or iOS, independently of using ARKit and the live scene processing through the device's camera.
 
-The wrapping SwiftUI view is crafted to allow you to create an instance of the ``CameraControlledARView`` externally and provide it to the view. 
-The following example view illustrates creating a view so that you can also access the underlying view's properties to manipulate the view: 
+You can create an instance of ``CameraControlledARView`` and pass it in to ``ExternalRealityKitView`` as a variable to own the lifetime of the view.
+Use ``RealityKitView`` to provide a RealityKit view that is maintained as a singleton reference, with configuration available through a closure to the initializer of the view.
 
-Configure this subclass of ARView, potentially appending any scene details, before using it
-to initialize ``ARViewContainer`` to present the via in SwiftUI. 
-
-For example, the following snippet creates a SwiftUI view into a RealityKit scene:
+You can also assemble a view yourself using ``ARViewContainer``, providing it an instead of ``CameraControlARView``
+For example, the following snippet creates a SwiftUI view that manages its own instance of CamearControlARView, presenting a RealityKit scene:
 
 ```swift
 struct ExampleARContentView: View {
@@ -52,7 +51,8 @@ struct ExampleARContentView: View {
 - ``RealityKitView``
 - ``RealityKitView/Context``
 
-### Configurable SwiftUI View for RealityKit
+### Components for the SwiftUI Views
 
-- ``CameraControlledARView``
 - ``ARViewContainer``
+- ``CameraControlledARView``
+- ``MotionMode``
