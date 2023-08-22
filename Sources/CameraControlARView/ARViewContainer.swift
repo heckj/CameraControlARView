@@ -7,9 +7,11 @@
 
 #if os(iOS)
     import UIKit
+
     typealias PlatformViewRepresentable = UIViewRepresentable
 #elseif os(macOS)
     import Cocoa
+
     typealias PlatformViewRepresentable = NSViewRepresentable
 #endif
 import RealityKit
