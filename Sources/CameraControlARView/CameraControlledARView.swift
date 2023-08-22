@@ -119,16 +119,6 @@ import RealityKit
     /// A copy of the basic transform applied ot the camera, and updated in parallel to reflect "upward" to SwiftUI.
     @Published var macOSCameraTransform: Transform
 
-    #if os(macOS)
-        var panGesture: NSPanGestureRecognizer?
-        @IBAction func panGestureRecognized(_ pan: NSPanGestureRecognizer) {
-            print("RECOGNIZED PAN GESTURE - macOS")
-            let locationPoint = pan.location(in: self)
-            print("  \(pan.description)")
-            print("    at \(locationPoint)")
-        }
-    #endif
-
     #if os(iOS)
         var pinchGesture: UIPinchGestureRecognizer?
         @IBAction func pinchRecognized(_ pinch: UIPinchGestureRecognizer) {
@@ -432,21 +422,9 @@ import RealityKit
             print(" scroll: \(event)")
         }
 
-        override public dynamic func swipe(with event: NSEvent) {
-            // NOTE: heckj - not seeing ANY swipe events, apparently captured at OS level or not
-            // forwarded by the Window...
-            // Three fingers brushing across the trackpad surface in a common direction is a swipe gesture.
-            // https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/EventOverview/HandlingTouchEvents/HandlingTouchEvents.html#//apple_ref/doc/uid/10000060i-CH13
-            print(" swipe: \(event)")
-        }
-
         override public dynamic func rotate(with event: NSEvent) {
             // Two fingers moving in opposite semicircles is a gesture meaning rotate.
             print(" rotate: \(event)")
-        }
-
-        override public dynamic func mouseMoved(with event: NSEvent) {
-            print(" mousemove: \(event)")
         }
 
         override public dynamic func keyDown(with event: NSEvent) {
