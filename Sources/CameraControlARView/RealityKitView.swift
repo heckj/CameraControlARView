@@ -8,7 +8,7 @@ import SwiftUI
 
 @MainActor
 enum Global {
-  static let arContainer = ARViewContainer(cameraARView: CameraControlledARView(frame: .zero))
+    static let arContainer = ARViewContainer(cameraARView: CameraControlledARView(frame: .zero))
 }
 
 /// A SwiftUI RealityKit view that optionally connects a closure you provide to scene events.
@@ -34,18 +34,18 @@ public struct RealityKitView: View {
     public struct Context {
         /// A reference to an ARView subclass that you can configure.
         public var arView: CameraControlledARView
-        
+
         /// The RealityKit scene for this view
         public var base: RealityKit.Scene {
-            self.arView.scene
+            arView.scene
         }
-        
+
         /// Applies the set of view debugging options that you provide to the RealityKit view.
         /// - Parameter options: <#options description#>
         public func applyDebugOptions(_ options: ARView.DebugOptions) {
-            self.arView.debugOptions = options
+            arView.debugOptions = options
         }
-        
+
         /// Adds the entity that you provide at the center of the scene.
         /// - Parameter entity: The entity to add to the scene.
         public func add(_ entity: Entity) {
@@ -73,7 +73,7 @@ public struct RealityKitView: View {
             }
         }
     }
-    
+
     /// The body of the view.
     public var body: some View {
         Global.arContainer
@@ -86,7 +86,7 @@ struct RealityView_Previews: PreviewProvider {
             let entity = ModelEntity(mesh: .generateBox(size: SIMD3<Float>.init(repeating: 1)))
             context.add(entity)
         }, update: {
-            print("update")
+//            print("update")
         }).frame(width: 300, height: 300)
     }
 }

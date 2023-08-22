@@ -13,7 +13,7 @@ public enum MotionMode: Int {
     /// - The up-arrow and `w` keys rotate the camera upward around the location, clamped to a maximum of directly above the location.
     /// - The down-arrow and `s` keys rotate the camera downward around the location, clamped to a minimum of directly below the location.
     case arcball
-    
+
     /// Free motion within the AR scene, not locked to a location.
     ///
     /// In general, the arrow keys or trackpad control where you're looking and the `a`,`s`,`d`, and `w` keys move you around.

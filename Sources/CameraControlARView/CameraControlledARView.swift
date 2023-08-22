@@ -34,7 +34,6 @@ import RealityKit
 ///
 /// Additional properties control the target location, the camera's location, or the speed of movement within the environment.
 @objc public final class CameraControlledARView: ARView, ObservableObject {
-
     /// The mode in which the camera is controlled by keypresses and/or mouse and gesture movements.
     ///
     /// The default option is ``MotionMode-swift.enum/arcball``:
@@ -120,6 +119,16 @@ import RealityKit
     /// A copy of the basic transform applied ot the camera, and updated in parallel to reflect "upward" to SwiftUI.
     @Published var macOSCameraTransform: Transform
 
+    #if os(macOS)
+        var panGesture: NSPanGestureRecognizer?
+        @IBAction func panGestureRecognized(_ pan: NSPanGestureRecognizer) {
+            print("RECOGNIZED PAN GESTURE - macOS")
+            let locationPoint = pan.location(in: self)
+            print("  \(pan.description)")
+            print("    at \(locationPoint)")
+        }
+    #endif
+
     #if os(iOS)
         var pinchGesture: UIPinchGestureRecognizer?
         @IBAction func pinchRecognized(_ pinch: UIPinchGestureRecognizer) {
@@ -127,63 +136,65 @@ import RealityKit
             radius = radius * (multiplier + 1)
             updateCamera()
         }
+
+        var twoFingerSwipeGesture: UISwipeGestureRecognizer?
+        @IBAction func twoFingerSwipeGestureRecognized(_: UISwipeGestureRecognizer) {}
     #endif
 
     #if os(iOS)
-    /// Creates an augmented reality view with the camera location and orientation controlled by the view.
-    /// 
-    /// The camera orientation and location is controlled by keyboard, mouse, touch, and multitouch gestures, with the specific sets of supported gestures and their effects defined by the view's ``MotionMode-swift.enum``.
-    /// The default motion mode for the view is ``MotionMode-swift.enum/arcball``, which orbits the camera around a specific point in space.
-    /// 
-    /// - Parameter frameRect: The frame rectangle for the view, measured in points.
-    /// - Parameter cameraMode: An indication of whether to use the device’s camera or a virtual one.
-    @MainActor public init(frame frameRect: CGRect, cameraMode: ARView.CameraMode) {
-        motionMode = .arcball
+        /// Creates an augmented reality view with the camera location and orientation controlled by the view.
+        ///
+        /// The camera orientation and location is controlled by keyboard, mouse, touch, and multitouch gestures, with the specific sets of supported gestures and their effects defined by the view's ``MotionMode-swift.enum``.
+        /// The default motion mode for the view is ``MotionMode-swift.enum/arcball``, which orbits the camera around a specific point in space.
+        ///
+        /// - Parameter frameRect: The frame rectangle for the view, measured in points.
+        /// - Parameter cameraMode: An indication of whether to use the device’s camera or a virtual one.
+        @MainActor public init(frame frameRect: CGRect, cameraMode: ARView.CameraMode) {
+            motionMode = .arcball
 
-        // ARCBALL mode
-        arcballTarget = simd_float3(0, 0, 0)
-        inclinationAngle = 0
-        rotationAngle = 0
-        radius = 2
-        keyspeed = 0.01
-        dragspeed = 0.01
-        dragstart_rotation = 0
-        dragstart_inclination = 0
-        magnify_start = radius
+            // ARCBALL mode
+            arcballTarget = simd_float3(0, 0, 0)
+            inclinationAngle = 0
+            rotationAngle = 0
+            radius = 2
+            keyspeed = 0.01
+            dragspeed = 0.01
+            dragstart_rotation = 0
+            dragstart_inclination = 0
+            magnify_start = radius
 
-        // FPS mode
-        forward_speed = 0.05
-        turn_speed = 0.01
+            // FPS mode
+            forward_speed = 0.05
+            turn_speed = 0.01
 
-        // Not mode specific
-        cameraAnchor = AnchorEntity(world: .zero)
-        dragstart = CGPoint.zero
-        dragstart_transform = cameraAnchor.transform.matrix
-        // reflect the camera's transform as an observed object
-        macOSCameraTransform = cameraAnchor.transform
+            // Not mode specific
+            cameraAnchor = AnchorEntity(world: .zero)
+            dragstart = CGPoint.zero
+            dragstart_transform = cameraAnchor.transform.matrix
+            // reflect the camera's transform as an observed object
+            macOSCameraTransform = cameraAnchor.transform
 
-        #if targetEnvironment(simulator)
-        super.init(frame: frameRect,
-                   cameraMode: .nonAR,
-                   automaticallyConfigureSession: true)
-        let cameraEntity = PerspectiveCamera()
-        cameraEntity.camera.fieldOfViewInDegrees = 60
-        cameraAnchor.addChild(cameraEntity)
-        scene.addAnchor(cameraAnchor)
-        #else
-        super.init(frame: frameRect,
-                   cameraMode: cameraMode,
-                   automaticallyConfigureSession: true)
-        #endif
-        
-        updateCamera()
+            #if targetEnvironment(simulator)
+                super.init(frame: frameRect,
+                           cameraMode: .nonAR,
+                           automaticallyConfigureSession: true)
+                let cameraEntity = PerspectiveCamera()
+                cameraEntity.camera.fieldOfViewInDegrees = 60
+                cameraAnchor.addChild(cameraEntity)
+                scene.addAnchor(cameraAnchor)
+            #else
+                super.init(frame: frameRect,
+                           cameraMode: cameraMode,
+                           automaticallyConfigureSession: true)
+            #endif
 
-        pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(pinchRecognized(_:)))
-        addGestureRecognizer(pinchGesture!)
-        
-    }
-#endif
-    
+            updateCamera()
+
+            pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(pinchRecognized(_:)))
+            addGestureRecognizer(pinchGesture!)
+        }
+    #endif
+
     /// Creates an augmented reality view with the camera location and orientation controlled by the view.
     ///
     /// The camera orientation and location is controlled by keyboard, mouse, touch, and multitouch gestures, with the specific sets of supported gestures and their effects defined by the view's ``MotionMode-swift.enum``.
@@ -217,6 +228,13 @@ import RealityKit
         macOSCameraTransform = cameraAnchor.transform
         super.init(frame: frameRect)
 
+//        #if os(macOS) || targetEnvironment(simulator)
+//            panGesture = NSPanGestureRecognizer(target: self, action: #selector(panGestureRecognized(_:)))
+//            panGesture?.numberOfTouchesRequired = 2 // only for the damn touchbar
+//            //panGesture?.buttonMask = 0
+//            addGestureRecognizer(panGesture!)
+//        #endif
+
         #if os(macOS) || targetEnvironment(simulator)
             let cameraEntity = PerspectiveCamera()
             cameraEntity.camera.fieldOfViewInDegrees = 60
@@ -226,6 +244,10 @@ import RealityKit
         updateCamera()
 
         #if os(iOS)
+            twoFingerSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(twoFingerSwipeGestureRecognized(_:)))
+            twoFingerSwipeGesture?.numberOfTouchesRequired = 2
+            twoFingerSwipeGesture?.direction = [.up, .down, .left, .right]
+
             pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(pinchRecognized(_:)))
             addGestureRecognizer(pinchGesture!)
         #endif
@@ -235,7 +257,7 @@ import RealityKit
     @MainActor dynamic required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - rotational transforms
 
     /// Creates a 3D rotation transform that rotates around the Z axis by the angle that you provide
@@ -334,7 +356,7 @@ import RealityKit
             break
         }
     }
-    
+
     func dragStart() {
         switch motionMode {
         case .arcball:
@@ -376,12 +398,12 @@ import RealityKit
     }
 
     #if os(iOS)
-    override public dynamic func touchesBegan(_ touches: Set<UITouch>, with _: UIEvent?) {
+        override public dynamic func touchesBegan(_ touches: Set<UITouch>, with _: UIEvent?) {
             dragstart = touches.first!.location(in: self)
             dragStart()
         }
 
-    override public dynamic func touchesMoved(_ touches: Set<UITouch>, with _: UIEvent?) {
+        override public dynamic func touchesMoved(_ touches: Set<UITouch>, with _: UIEvent?) {
             let drag = touches.first!.location(in: self)
             let deltaX = Float(drag.x - dragstart.x)
             let deltaY = Float(dragstart.y - drag.y)
@@ -390,22 +412,44 @@ import RealityKit
     #endif
 
     #if os(macOS)
-    override public dynamic func mouseDown(with event: NSEvent) {
-            // print("mouseDown EVENT: \(event)")
-            // print(" at \(event.locationInWindow) of \(self.frame)")
+        override public dynamic func mouseDown(with event: NSEvent) {
+            print("mouseDown EVENT: \(event)")
+            print(" at \(event.locationInWindow) of \(frame)")
             dragstart = event.locationInWindow
             dragStart()
         }
 
-    override public dynamic func mouseDragged(with event: NSEvent) {
-            // print("mouseDragged EVENT: \(event)")
-            // print(" at \(event.locationInWindow) of \(self.frame)")
+        override public dynamic func mouseDragged(with event: NSEvent) {
+            print("mouseDragged EVENT: \(event)")
+            print(" at \(event.locationInWindow) of \(frame)")
             let deltaX = Float(event.locationInWindow.x - dragstart.x)
             let deltaY = Float(event.locationInWindow.y - dragstart.y)
             dragMove(deltaX, deltaY)
         }
 
-    override public dynamic func keyDown(with event: NSEvent) {
+        override public dynamic func scrollWheel(with event: NSEvent) {
+            // two fingers moving across the trackpad?
+            print(" scroll: \(event)")
+        }
+
+        override public dynamic func swipe(with event: NSEvent) {
+            // NOTE: heckj - not seeing ANY swipe events, apparently captured at OS level or not
+            // forwarded by the Window...
+            // Three fingers brushing across the trackpad surface in a common direction is a swipe gesture.
+            // https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/EventOverview/HandlingTouchEvents/HandlingTouchEvents.html#//apple_ref/doc/uid/10000060i-CH13
+            print(" swipe: \(event)")
+        }
+
+        override public dynamic func rotate(with event: NSEvent) {
+            // Two fingers moving in opposite semicircles is a gesture meaning rotate.
+            print(" rotate: \(event)")
+        }
+
+        override public dynamic func mouseMoved(with event: NSEvent) {
+            print(" mousemove: \(event)")
+        }
+
+        override public dynamic func keyDown(with event: NSEvent) {
             // print("keyDown: \(event)")
             // print("key value: \(event.keyCode)")
             switch motionMode {
@@ -531,10 +575,11 @@ import RealityKit
             }
         }
 
-    override public dynamic func magnify(with event: NSEvent) {
-            // if event.phase == NSEvent.Phase.ended {
-            //    print("magnify: \(event)")
-            // }
+        override public dynamic func magnify(with event: NSEvent) {
+            // Pinching movements (in or out) are gestures meaning zoom out or zoom in (also called magnification).
+            if event.phase == NSEvent.Phase.ended {
+                print("magnify: \(event)")
+            }
             switch motionMode {
             case .arcball:
                 let multiplier = Float(event.magnification) // magnify_end
