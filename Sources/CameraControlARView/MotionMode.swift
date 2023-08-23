@@ -31,12 +31,12 @@ public enum MotionMode: Int {
     case arcball
     // ? allow setting origin or target location
     // allow constraining range to radius from the target?
-    
+
     /// A constrained motion about an AR scene, looking down.
     case lensabove
     // constrain to a radius - max of the scene
     // potentially allow height control with alt-sequences
-    
+
     /// Free motion within the AR scene, not locked to a location.
     ///
     /// In general, the arrow keys or trackpad control where you're looking and the `a`,`s`,`d`, and `w` keys move you around.
