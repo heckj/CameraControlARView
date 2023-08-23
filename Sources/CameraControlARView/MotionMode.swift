@@ -12,8 +12,31 @@ public enum MotionMode: Int {
     /// - The left-arrow and `a` keys rotate the camera to the left around the location.
     /// - The up-arrow and `w` keys rotate the camera upward around the location, clamped to a maximum of directly above the location.
     /// - The down-arrow and `s` keys rotate the camera downward around the location, clamped to a minimum of directly below the location.
-    case arcball
+    case arcball_direct
+    // ? allow setting origin or target location
+    // allow constraining range to radius from the target?
 
+    /// Rotate around a target location, effectively orbiting and keeping the camera trained on it.
+    ///
+    /// Drag motions:
+    /// - The view converts vertical drag distance into an inclination above, or below, the target location, clamped to directly above and below it.
+    /// - The view converts horizontal drag distance into a rotational angle, orbiting the target location.
+    /// - A magnify gesture zooms in, or out, from the target location.
+    ///
+    /// Keyboard motions:
+    /// - The right-arrow and `d` keys rotate the camera to the right around the location.
+    /// - The left-arrow and `a` keys rotate the camera to the left around the location.
+    /// - The up-arrow and `w` keys rotate the camera upward around the location, clamped to a maximum of directly above the location.
+    /// - The down-arrow and `s` keys rotate the camera downward around the location, clamped to a minimum of directly below the location.
+    case arcball
+    // ? allow setting origin or target location
+    // allow constraining range to radius from the target?
+    
+    /// A constrained motion about an AR scene, looking down.
+    case lensabove
+    // constrain to a radius - max of the scene
+    // potentially allow height control with alt-sequences
+    
     /// Free motion within the AR scene, not locked to a location.
     ///
     /// In general, the arrow keys or trackpad control where you're looking and the `a`,`s`,`d`, and `w` keys move you around.
@@ -32,6 +55,7 @@ public enum MotionMode: Int {
     /// - The up-arrow key rotates the camera upward.
     /// - The down-arrow key rotates the camera downward.
     case firstperson
+    // ? allow bounding box constraint
 }
 
 // arcball:

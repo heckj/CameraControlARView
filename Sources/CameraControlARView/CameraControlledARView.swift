@@ -42,41 +42,30 @@ import RealityKit
     ///
     public var motionMode: MotionMode
 
-    // TODO: consider encapsulating all these values into a single struct to allow for assigning consolidated values.
-
     // MARK: - ARCBALL mode variables
 
-    /// The target for the camera when in arcball mode.
-    public var arcballTarget: simd_float3 {
-        didSet {
-            if motionMode == .arcball {
-                updateCamera()
-            }
+    public struct ArcBallState {
+        /// The target for the camera when in arcball mode.
+        var arcballTarget: simd_float3
+        /// The camera's orbital distance from the target when in arcball mode.
+        var radius: Float
+        /// The angle of inclination of the camera when in arcball mode.
+        var inclinationAngle: Float
+        /// The angle of rotation of the camera when in arcball mode.
+        var rotationAngle: Float
+        
+        init(arcballTarget: simd_float3 = simd_float3(0, 0, 0), radius: Float = 2, inclinationAngle: Float = 0, rotationAngle: Float = 0) {
+            self.arcballTarget = arcballTarget
+            self.radius = radius
+            self.inclinationAngle = inclinationAngle
+            self.rotationAngle = rotationAngle
         }
+        
     }
-
-    /// The angle of inclination of the camera when in arcball mode.
-    public var inclinationAngle: Float {
+    
+    public var arcball_state: ArcBallState {
         didSet {
-            if motionMode == .arcball {
-                updateCamera()
-            }
-        }
-    }
-
-    /// The angle of rotation of the camera when in arcball mode.
-    public var rotationAngle: Float {
-        didSet {
-            if motionMode == .arcball {
-                updateCamera()
-            }
-        }
-    }
-
-    /// The camera's orbital distance from the target when in arcball mode.
-    public var radius: Float {
-        didSet {
-            if motionMode == .arcball {
+            if motionMode  == .arcball || motionMode == .arcball_direct {
                 updateCamera()
             }
         }
@@ -196,15 +185,13 @@ import RealityKit
         motionMode = .arcball
 
         // ARCBALL mode
-        arcballTarget = simd_float3(0, 0, 0)
-        inclinationAngle = 0
-        rotationAngle = 0
-        radius = 2
+        arcball_state = ArcBallState()
+
         keyspeed = 0.01
         dragspeed = 0.01
         dragstart_rotation = 0
         dragstart_inclination = 0
-        magnify_start = radius
+        magnify_start = arcball_state.radius
 
         // FPS mode
         forward_speed = 0.05
@@ -217,13 +204,6 @@ import RealityKit
         // reflect the camera's transform as an observed object
         macOSCameraTransform = cameraAnchor.transform
         super.init(frame: frameRect)
-
-//        #if os(macOS) || targetEnvironment(simulator)
-//            panGesture = NSPanGestureRecognizer(target: self, action: #selector(panGestureRecognized(_:)))
-//            panGesture?.numberOfTouchesRequired = 2 // only for the damn touchbar
-//            //panGesture?.buttonMask = 0
-//            addGestureRecognizer(panGesture!)
-//        #endif
 
         #if os(macOS) || targetEnvironment(simulator)
             let cameraEntity = PerspectiveCamera()
@@ -329,8 +309,12 @@ import RealityKit
         case .arcball:
             let translationTransform = Transform(scale: .one,
                                                  rotation: simd_quatf(),
-                                                 translation: SIMD3<Float>(0, 0, radius))
-            let combinedRotationTransform: Transform = .init(pitch: inclinationAngle, yaw: rotationAngle, roll: 0)
+                                                 translation: SIMD3<Float>(0, 0, arcball_state.radius))
+            let combinedRotationTransform: Transform = .init(
+                pitch: arcball_state.inclinationAngle,
+                yaw: arcball_state.rotationAngle,
+                roll: 0
+            )
 
             // ORDER of operations is critical here to getting the correct transform:
             // - identity -> rotation -> translation
@@ -339,10 +323,18 @@ import RealityKit
             // This moves the camera to the right location
             cameraAnchor.transform = Transform(matrix: computed_transform)
             // This spins the camera AT its current location to look at a specific target location
-            cameraAnchor.look(at: arcballTarget, from: cameraAnchor.transform.translation, relativeTo: nil)
+            cameraAnchor.look(
+                at: arcball_state.arcballTarget,
+                from: cameraAnchor.transform.translation,
+                relativeTo: nil
+            )
             // reflect the camera's transform as an observed object
             macOSCameraTransform = cameraAnchor.transform
         case .firstperson:
+            break
+        case .arcball_direct:
+            break
+        case .lensabove:
             break
         }
     }
@@ -350,23 +342,27 @@ import RealityKit
     func dragStart() {
         switch motionMode {
         case .arcball:
-            dragstart_rotation = rotationAngle
-            dragstart_inclination = inclinationAngle
+            dragstart_rotation = arcball_state.rotationAngle
+            dragstart_inclination = arcball_state.inclinationAngle
         case .firstperson:
             dragstart_transform = cameraAnchor.transform.matrix
+        case .arcball_direct:
+            break
+        case .lensabove:
+            break
         }
     }
 
     func dragMove(_ deltaX: Float, _ deltaY: Float) {
         switch motionMode {
         case .arcball:
-            rotationAngle = dragstart_rotation - deltaX * dragspeed
-            inclinationAngle = dragstart_inclination + deltaY * dragspeed
-            if inclinationAngle > Float.pi / 2 {
-                inclinationAngle = Float.pi / 2
+            arcball_state.rotationAngle = dragstart_rotation - deltaX * dragspeed
+            arcball_state.inclinationAngle = dragstart_inclination + deltaY * dragspeed
+            if arcball_state.inclinationAngle > Float.pi / 2 {
+                arcball_state.inclinationAngle = Float.pi / 2
             }
-            if inclinationAngle < -Float.pi / 2 {
-                inclinationAngle = -Float.pi / 2
+            if arcball_state.inclinationAngle < -Float.pi / 2 {
+                arcball_state.inclinationAngle = -Float.pi / 2
             }
             updateCamera()
         case .firstperson:
@@ -384,6 +380,10 @@ import RealityKit
                 radians: sixtydegrees * proportion_view_horizontal_drag)
             let combined_transform = dragstart_transform * look_up_transform * left_turn_transform
             cameraAnchor.transform = Transform(matrix: combined_transform)
+        case .arcball_direct:
+            break
+        case .lensabove:
+            break
         }
     }
 
@@ -437,39 +437,39 @@ import RealityKit
                     // 123 = left arrow
                     // 0 = a
                     if event.isARepeat {
-                        rotationAngle -= keyspeed * 2
+                        arcball_state.rotationAngle -= keyspeed * 2
                     } else {
-                        rotationAngle -= keyspeed
+                        arcball_state.rotationAngle -= keyspeed
                     }
                     updateCamera()
                 case 124, 2:
                     // 124 = right arrow
                     // 2 = d
                     if event.isARepeat {
-                        rotationAngle += keyspeed * 2
+                        arcball_state.rotationAngle += keyspeed * 2
                     } else {
-                        rotationAngle += keyspeed
+                        arcball_state.rotationAngle += keyspeed
                     }
                     updateCamera()
                 case 126, 13:
                     // 126 = up arrow
                     // 13 = w
-                    if inclinationAngle > -Float.pi / 2 {
+                    if arcball_state.inclinationAngle > -Float.pi / 2 {
                         if event.isARepeat {
-                            inclinationAngle -= keyspeed * 2
+                            arcball_state.inclinationAngle -= keyspeed * 2
                         } else {
-                            inclinationAngle -= keyspeed
+                            arcball_state.inclinationAngle -= keyspeed
                         }
                         updateCamera()
                     }
                 case 125, 1:
                     // 125 = down arrow
                     // 1 = s
-                    if inclinationAngle < Float.pi / 2 {
+                    if arcball_state.inclinationAngle < Float.pi / 2 {
                         if event.isARepeat {
-                            inclinationAngle += keyspeed * 2
+                            arcball_state.inclinationAngle += keyspeed * 2
                         } else {
-                            inclinationAngle += keyspeed
+                            arcball_state.inclinationAngle += keyspeed
                         }
                         updateCamera()
                     }
@@ -550,6 +550,10 @@ import RealityKit
                 default:
                     break
                 }
+            case .arcball_direct:
+                break
+            case .lensabove:
+                break
             }
         }
 
@@ -561,9 +565,13 @@ import RealityKit
             switch motionMode {
             case .arcball:
                 let multiplier = Float(event.magnification) // magnify_end
-                radius = radius * (multiplier + 1)
+                arcball_state.radius = arcball_state.radius * (multiplier + 1)
                 updateCamera()
             case .firstperson:
+                break
+            case .arcball_direct:
+                break
+            case .lensabove:
                 break
             }
         }
