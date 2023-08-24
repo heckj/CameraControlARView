@@ -29,6 +29,7 @@ enum Global {
 ///     print("update")
 /// })
 /// ```
+@MainActor
 public struct RealityKitView: View {
     /// The context for the RealityKit view.
     public struct Context {
@@ -36,19 +37,19 @@ public struct RealityKitView: View {
         public var arView: CameraControlledARView
 
         /// The RealityKit scene for this view
-        public var base: RealityKit.Scene {
+        @MainActor public var base: RealityKit.Scene {
             arView.scene
         }
 
         /// Applies the set of view debugging options that you provide to the RealityKit view.
         /// - Parameter options: <#options description#>
-        public func applyDebugOptions(_ options: ARView.DebugOptions) {
+        @MainActor public func applyDebugOptions(_ options: ARView.DebugOptions) {
             arView.debugOptions = options
         }
 
         /// Adds the entity that you provide at the center of the scene.
         /// - Parameter entity: The entity to add to the scene.
-        public func add(_ entity: Entity) {
+        @MainActor public func add(_ entity: Entity) {
             let originAnchor = AnchorEntity(world: .zero)
             originAnchor.addChild(entity)
             Global.arContainer.cameraARView.scene.anchors.append(originAnchor)
@@ -63,9 +64,11 @@ public struct RealityKitView: View {
     /// - Parameters:
     ///   - content: A closure that provides ``Context`` for constructing your scene.
     ///   - update: An optional closure that RealityKit calls when Scene events are triggered.
+    @MainActor
     public init(_ content: @escaping (_ context: Context) -> Void, update: (() -> Void)? = nil) {
         content(context)
         self.update = update
+        context.arView.updateViewFromState()
 
         if let update = self.update {
             updateCancellable = Global.arContainer.cameraARView.scene.subscribe(to: SceneEvents.Update.self) { _ in

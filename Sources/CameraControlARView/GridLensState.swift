@@ -1,8 +1,8 @@
 import simd
 
 public struct GridLensState {
-    static let defaultHeightConstraint: ClosedRange<Float> = 0 ... Float.infinity
-    static let defaultDepthConstraint: ClosedRange<Float> = 0 ... Float.infinity
+    static let defaultHeightConstraint: ClosedRange<Float> = 0.01 ... Float.infinity
+    static let defaultDepthConstraint: ClosedRange<Float> = 0.01 ... Float.infinity
     static let defaultXConstraint: ClosedRange<Float> = -Float.infinity ... Float.infinity
     static let defaultZConstraint: ClosedRange<Float> = -Float.infinity ... Float.infinity
 
@@ -12,7 +12,7 @@ public struct GridLensState {
     public var zConstraint: ClosedRange<Float>
 
     /// The target for the camera when in lens mode.
-    public var lensFocalPoint: simd_float3
+    public var target: simd_float3
 
     private var _x: Float
     public var x: Float {
@@ -54,7 +54,11 @@ public struct GridLensState {
         }
     }
 
-    init(lensFocalPoint: simd_float3 = simd_float3(0, 0, 0),
+    public var lensFocalPoint: simd_float3 {
+        return simd_float3(target.x, target.y - depth, target.z)
+    }
+
+    init(target: simd_float3 = simd_float3(0, 0, 0),
          radius: Float = 2,
          height: Float = 0,
          depth: Float = 2,
@@ -74,6 +78,6 @@ public struct GridLensState {
         _height = height.clamped(to: heightConstraint)
         _depth = depth.clamped(to: depthConstraint)
 
-        self.lensFocalPoint = lensFocalPoint
+        self.target = target
     }
 }

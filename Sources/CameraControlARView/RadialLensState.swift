@@ -1,10 +1,10 @@
 import simd
 
 public struct RadialLensState {
-    static let defaultHeightConstraint: ClosedRange<Float> = 0 ... Float.infinity
-    static let defaultDepthConstraint: ClosedRange<Float> = 0 ... Float.infinity
-    static let defaultRotationConstraint: ClosedRange<Float> = (-Float.pi * 2) ... (Float.pi * 2)
-    static let defaultRadiusConstraint: ClosedRange<Float> = 0.0 ... Float.infinity
+    static let defaultHeightConstraint: ClosedRange<Float> = 0.001 ... Float.infinity
+    static let defaultDepthConstraint: ClosedRange<Float> = 0.001 ... Float.infinity
+    static let defaultRotationConstraint: ClosedRange<Float> = -Float.infinity ... Float.infinity
+    static let defaultRadiusConstraint: ClosedRange<Float> = 0.001 ... Float.infinity
 
     public var heightConstraint: ClosedRange<Float>
     public var depthConstraint: ClosedRange<Float>
@@ -12,7 +12,7 @@ public struct RadialLensState {
     public var radiusConstraint: ClosedRange<Float>
 
     /// The target for the camera when in lens mode.
-    public var lensFocalPoint: simd_float3
+    public var target: simd_float3
 
     private var _radius: Float
     public var radius: Float {
@@ -54,7 +54,11 @@ public struct RadialLensState {
         }
     }
 
-    init(lensFocalPoint: simd_float3 = simd_float3(0, 0, 0),
+    public var lensFocalPoint: simd_float3 {
+        return simd_float3(target.x, target.y - depth, target.z)
+    }
+
+    init(target: simd_float3 = simd_float3(0, 0, 0),
          radius: Float = 2,
          height: Float = 0,
          depth: Float = 2,
@@ -74,6 +78,6 @@ public struct RadialLensState {
         _height = height.clamped(to: heightConstraint)
         _depth = depth.clamped(to: depthConstraint)
 
-        self.lensFocalPoint = lensFocalPoint
+        self.target = target
     }
 }

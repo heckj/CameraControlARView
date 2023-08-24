@@ -252,6 +252,21 @@ import RealityKit
 
     // MARK: - Camera positioning and orientation
 
+    @MainActor public func updateViewFromState() {
+        switch motionMode {
+        case .arcball_direct:
+            updateCamera(arcball_state)
+        case .arcball:
+            updateCamera(arcball_state)
+        case .lens_radial:
+            updateCamera(radial_lens_state)
+        case .lens_grid:
+            updateCamera(grid_lens_state)
+        case .firstperson:
+            break
+        }
+    }
+
     @MainActor private func updateCamera(_ state: ArcBallState) {
         let translationTransform = Transform(scale: .one,
                                              rotation: simd_quatf(),
@@ -281,7 +296,13 @@ import RealityKit
     @MainActor private func updateCamera(_ state: RadialLensState) {
         let x: Float = state.radius * cos(state.rotation)
         let z: Float = state.radius * sin(state.rotation)
-        let y: Float = sqrt(pow(state.radius, 2) - pow(x - state.lensFocalPoint.x, 2) - pow(z - state.lensFocalPoint.z, 2)) + state.lensFocalPoint.y
+
+        let y = state.target.y + state.height
+//        let y: Float = sqrt(
+//            pow(state.radius, 2)
+//            - pow(x - state.lensFocalPoint.x, 2)
+//            - pow(z - state.lensFocalPoint.z, 2)
+//        ) + state.lensFocalPoint.y
 
         let translationTransform = Transform(scale: .one, rotation: simd_quatf(), translation: SIMD3(x, y, z))
 
@@ -300,18 +321,16 @@ import RealityKit
     @MainActor private func updateCamera(_ state: GridLensState) {
         let x: Float = state.x
         let z: Float = state.z
-        let y: Float = sqrt(
-            pow(state.height + state.depth, 2) -
-                pow(x - state.lensFocalPoint.x, 2) -
-                pow(z - state.lensFocalPoint.z, 2)
-        ) + state.lensFocalPoint.y
-
-        let translationTransform = Transform(scale: .one,
-                                             rotation: simd_quatf(),
-                                             translation: SIMD3(x, y, z))
+        let y = state.target.y + state.height
+//        let y: Float = sqrt(
+//            pow(state.height + state.depth, 2) -
+//                pow(x - state.lensFocalPoint.x, 2) -
+//                pow(z - state.lensFocalPoint.z, 2)
+//        ) + state.lensFocalPoint.y
 
         // This moves the camera to the right location
-        cameraAnchor.transform = translationTransform
+        cameraAnchor.position = SIMD3(x, y, z)
+
         // This spins the camera AT its current location to look at a specific target location
         cameraAnchor.look(
             at: state.lensFocalPoint,
@@ -365,12 +384,14 @@ import RealityKit
             arcball_state.inclinationAngle += deltaY * movementSpeed
             updateCamera(arcball_state)
         case .lens_radial:
-            radial_lens_state.rotation -= deltaX * movementSpeed
+            radial_lens_state.rotation += deltaX * movementSpeed
             radial_lens_state.radius += deltaY * movementSpeed
+            print("radial: rotation \(radial_lens_state.rotation) rad, radius: \(radial_lens_state.radius) m")
             updateCamera(radial_lens_state)
         case .lens_grid:
             grid_lens_state.x += deltaX * movementSpeed
             grid_lens_state.z += deltaY * movementSpeed
+            print("grid: x \(grid_lens_state.x) rad, z: \(grid_lens_state.z) m")
             updateCamera(grid_lens_state)
         }
     }
@@ -438,7 +459,7 @@ import RealityKit
 
         override public dynamic func scrollWheel(with event: NSEvent) {
             // two fingers moving across the trackpad
-            print("scroll EVENT: \(event)")
+//            print("scroll EVENT: \(event)")
             if event.phase == .changed {
                 updateMove(Float(event.deltaX), Float(event.deltaY))
             }
