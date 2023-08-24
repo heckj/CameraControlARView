@@ -2,12 +2,12 @@
 public enum MotionMode {
     /// Rotate around a target location, effectively orbiting and keeping the camera trained on it.
     ///
-    /// Drag motions:
+    /// Click and Drag motions:
     /// - The view converts vertical drag distance into an inclination above, or below, the target location, clamped to directly above and below it.
     /// - The view converts horizontal drag distance into a rotational angle, orbiting the target location.
     /// - A magnify gesture zooms in, or out, from the target location.
     ///
-    /// Keyboard motions:
+    /// Keyboard shortcuts (if enabled):
     /// - The right-arrow and `d` keys rotate the camera to the right around the location.
     /// - The left-arrow and `a` keys rotate the camera to the left around the location.
     /// - The up-arrow and `w` keys rotate the camera upward around the location, clamped to a maximum of directly above the location.
@@ -16,22 +16,33 @@ public enum MotionMode {
 
     /// Rotate around a target location, effectively orbiting and keeping the camera trained on it.
     ///
-    /// two-finger gestures:
-    /// - The view converts vertical drag distance into an inclination above, or below, the target location, clamped to directly above and below it.
-    /// - The view converts horizontal drag distance into a rotational angle, orbiting the target location.
+    /// Two-finger gestures (scroll inputs):
+    /// - The view converts vertical scroll into an inclination above, or below, the target location, clamped to directly above and below it.
+    /// - The view converts horizontal scroll into a rotational angle, orbiting the target location.
     /// - A magnify gesture zooms in, or out, from the target location.
     ///
-    /// Keyboard motions:
+    /// Keyboard shortcuts (if enabled):
     /// - The right-arrow and `d` keys rotate the camera to the right around the location.
     /// - The left-arrow and `a` keys rotate the camera to the left around the location.
     /// - The up-arrow and `w` keys rotate the camera upward around the location, clamped to a maximum of directly above the location.
     /// - The down-arrow and `s` keys rotate the camera downward around the location, clamped to a minimum of directly below the location.
     case arcball(keys: Bool)
 
-    /// A constrained motion about an AR scene, looking down.
-    case lensabove(keys: Bool)
-    // constrain to a radius - max of the scene
-    // potentially allow height control with alt-sequences
+    /// A constrained motion above a RealityKit scene, looking down.
+    ///
+    /// Two-finger gestures (scroll inputs):
+    /// - The view converts vertical scroll into a distance moving from the center to the edge of the scene.
+    /// - The view converts horizontal scroll into a rotational angle, orbiting around the center of the scene.
+    /// - A magnify gesture changes the height over the scene.
+    case lens_radial(keys: Bool)
+
+    /// A constrained motion above a RealityKit scene, looking down.
+    ///
+    /// Two-finger gestures (scroll inputs):
+    /// - The view converts vertical scroll into a distance moving from the front to the rear of the scene.
+    /// - The view converts horizontal scroll into a distance moving from the left to the right of the scene.
+    /// - A magnify gesture changes the height over the scene.
+    case lens_grid(keys: Bool)
 
     /// Free motion within the AR scene, not locked to a location.
     ///
@@ -51,7 +62,6 @@ public enum MotionMode {
     /// - The up-arrow key rotates the camera upward.
     /// - The down-arrow key rotates the camera downward.
     case firstperson
-    // ? allow bounding box constraint
 }
 
 // arcball:

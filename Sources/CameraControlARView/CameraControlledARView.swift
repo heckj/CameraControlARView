@@ -16,6 +16,68 @@ import CoreGraphics
 import Foundation
 import RealityKit
 
+public struct RadialLensState {
+    static let defaultHeightConstraint: ClosedRange<Float> = 0 ... Float.infinity
+    static let defaultRotationConstraint: ClosedRange<Float> = (-Float.pi * 2) ... (Float.pi * 2)
+    static let defaultRadiusConstraint: ClosedRange<Float> = 0.0 ... Float.infinity
+
+    public var heightConstraint: ClosedRange<Float>
+    public var rotationConstraint: ClosedRange<Float>
+    public var radiusConstraint: ClosedRange<Float>
+
+    /// The target for the camera when in lens mode.
+    public var lensFocalPoint: simd_float3
+
+    private var _radius: Float
+    public var radius: Float {
+        get {
+            return _radius
+        }
+        set {
+            _radius = newValue.clamped(to: radiusConstraint)
+        }
+    }
+
+    private var _height: Float
+    public var height: Float {
+        get {
+            return _height
+        }
+        set {
+            _height = newValue.clamped(to: heightConstraint)
+        }
+    }
+
+    private var _rotation: Float
+    public var rotation: Float {
+        get {
+            return _rotation
+        }
+        set {
+            _rotation = newValue.clamped(to: rotationConstraint)
+        }
+    }
+
+    init(lensFocalPoint: simd_float3 = simd_float3(0, 0, 0),
+         radius: Float = 2,
+         height: Float = 0,
+         rotationAngle: Float = 0,
+         heightConstraint: ClosedRange<Float> = Self.defaultHeightConstraint,
+         rotationConstraint: ClosedRange<Float> = Self.defaultRotationConstraint,
+         radiusConstraint: ClosedRange<Float> = Self.defaultRadiusConstraint)
+    {
+        self.heightConstraint = heightConstraint
+        self.radiusConstraint = radiusConstraint
+        self.rotationConstraint = rotationConstraint
+
+        _radius = radius.clamped(to: radiusConstraint)
+        _height = height.clamped(to: heightConstraint)
+        _rotation = rotationAngle.clamped(to: rotationConstraint)
+
+        self.lensFocalPoint = lensFocalPoint
+    }
+}
+
 /// A 3D View for SwiftUI using RealityKit that provides movement controls for the camera within the view.
 ///
 /// Initialize a new instance with `init()` or `init(frame:)` on macOS, `init(frame:cameraMode:)` on iOS.
@@ -44,73 +106,6 @@ import RealityKit
 
     // MARK: - ARCBALL mode variables
 
-    public struct ArcBallState {
-        static let defaultInclinationConstraint: ClosedRange<Float> = (-Float.pi / 2) ... (Float.pi / 2)
-        static let defaultRotationConstraint: ClosedRange<Float> = (-Float.pi * 2) ... (Float.pi * 2)
-        static let defaultRadiusConstraint: ClosedRange<Float> = 0.0 ... Float.infinity
-
-        public var inclinationConstraint: ClosedRange<Float>
-        public var rangeConstraint: ClosedRange<Float>
-        public var rotationConstraint: ClosedRange<Float>
-        /// The target for the camera when in arcball mode.
-        public var arcballTarget: simd_float3
-
-        var movestart_rotation: Float = 0
-        var movestart_inclination: Float = 0
-
-        private var _radius: Float
-        /// The camera's orbital distance from the target when in arcball mode.
-        public var radius: Float {
-            get {
-                return _radius
-            }
-            set {
-                _radius = newValue.clamped(to: rangeConstraint)
-            }
-        }
-
-        private var _inclination: Float
-        /// The angle of inclination of the camera when in arcball mode.
-        public var inclinationAngle: Float {
-            get {
-                return _inclination
-            }
-            set {
-                _inclination = newValue.clamped(to: inclinationConstraint)
-            }
-        }
-
-        private var _rotation: Float
-        /// The angle of rotation of the camera when in arcball mode.
-        public var rotationAngle: Float {
-            get {
-                return _rotation
-            }
-            set {
-                _rotation = newValue.clamped(to: rotationConstraint)
-            }
-        }
-
-        init(arcballTarget: simd_float3 = simd_float3(0, 0, 0),
-             radius: Float = 2,
-             inclinationAngle: Float = 0,
-             rotationAngle: Float = 0,
-             inclinationConstraint: ClosedRange<Float> = Self.defaultInclinationConstraint,
-             rotationConstraint: ClosedRange<Float> = Self.defaultRotationConstraint,
-             radiusConstraint: ClosedRange<Float> = Self.defaultRadiusConstraint)
-        {
-            self.inclinationConstraint = inclinationConstraint
-            rangeConstraint = radiusConstraint
-            self.rotationConstraint = rotationConstraint
-
-            _radius = radius.clamped(to: radiusConstraint)
-            _inclination = inclinationAngle.clamped(to: inclinationConstraint)
-            _rotation = rotationAngle.clamped(to: rotationConstraint)
-
-            self.arcballTarget = arcballTarget
-        }
-    }
-
     public var arcball_state: ArcBallState {
         didSet {
             switch motionMode {
@@ -118,9 +113,18 @@ import RealityKit
                 updateCamera(arcball_state)
             case .arcball:
                 updateCamera(arcball_state)
-            case .lensabove:
-                updateCamera(arcball_state)
-            case .firstperson:
+            default:
+                break
+            }
+        }
+    }
+
+    public var radial_lens_state: RadialLensState {
+        didSet {
+            switch motionMode {
+            case .lens_radial:
+                updateCamera(radial_lens_state)
+            default:
                 break
             }
         }
@@ -278,81 +282,7 @@ import RealityKit
         fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: - rotational transforms
-
-    /// Creates a 3D rotation transform that rotates around the Z axis by the angle that you provide
-    /// - Parameter radians: The amount (in radians) to rotate around the Z axis.
-    /// - Returns: A Z-axis rotation transform.
-    private func rotationAroundZAxisTransform(radians: Float) -> simd_float4x4 {
-        return simd_float4x4(
-            SIMD4<Float>(cos(radians), sin(radians), 0, 0),
-            SIMD4<Float>(-sin(radians), cos(radians), 0, 0),
-            SIMD4<Float>(0, 0, 1, 0),
-            SIMD4<Float>(0, 0, 0, 1)
-        )
-    }
-
-    /// Creates a 3D rotation transform that rotates around the X axis by the angle that you provide
-    /// - Parameter radians: The amount (in radians) to rotate around the X axis.
-    /// - Returns: A X-axis rotation transform.
-    private func rotationAroundXAxisTransform(radians: Float) -> simd_float4x4 {
-        return simd_float4x4(
-            SIMD4<Float>(1, 0, 0, 0),
-            SIMD4<Float>(0, cos(radians), sin(radians), 0),
-            SIMD4<Float>(0, -sin(radians), cos(radians), 0),
-            SIMD4<Float>(0, 0, 0, 1)
-        )
-    }
-
-    /// Creates a 3D rotation transform that rotates around the Y axis by the angle that you provide
-    /// - Parameter radians: The amount (in radians) to rotate around the Y axis.
-    /// - Returns: A Y-axis rotation transform.
-    private func rotationAroundYAxisTransform(radians: Float) -> simd_float4x4 {
-        return simd_float4x4(
-            SIMD4<Float>(cos(radians), 0, -sin(radians), 0),
-            SIMD4<Float>(0, 1, 0, 0),
-            SIMD4<Float>(sin(radians), 0, cos(radians), 0),
-            SIMD4<Float>(0, 0, 0, 1)
-        )
-    }
-
-    /// Returns the rotational transform component from a homogeneous matrix.
-    /// - Parameter matrix: The homogeneous transform matrix.
-    /// - Returns: The 3x3 rotation matrix.
-    private func rotationTransform(_ matrix: matrix_float4x4) -> matrix_float3x3 {
-        // Extract the rotational component from the transform matrix
-        let (col1, col2, col3, _) = matrix.columns
-        let rotationTransform = matrix_float3x3(
-            simd_float3(x: col1.x, y: col1.y, z: col1.z),
-            simd_float3(x: col2.x, y: col2.y, z: col2.z),
-            simd_float3(x: col3.x, y: col3.y, z: col3.z)
-        )
-        return rotationTransform
-    }
-
-    // MARK: - heading vectors
-
-    /// Returns the unit-vector that represents the current heading for the camera.
-    private func headingVector() -> simd_float3 {
-        // Original heading is assumed to be the camera started out pointing in -Z direction.
-        let short_heading_vector = simd_float3(x: 0, y: 0, z: -1)
-        let rotated_heading = matrix_multiply(
-            rotationTransform(cameraAnchor.transform.matrix),
-            short_heading_vector
-        )
-        return rotated_heading
-    }
-
-    /// Returns the unit-vector that represents the heading 90° to the right of forward for the camera.
-    private func rightVector() -> simd_float3 {
-        // Original heading is assumed to be the camera started out pointing in -Z direction.
-        let short_heading_vector = simd_float3(x: 1, y: 0, z: 0)
-        let rotated_heading = matrix_multiply(
-            rotationTransform(cameraAnchor.transform.matrix),
-            short_heading_vector
-        )
-        return rotated_heading
-    }
+    // MARK: - Camera positioning and orientation
 
     @MainActor private func updateCamera(_ state: ArcBallState) {
         let translationTransform = Transform(scale: .one,
@@ -380,6 +310,32 @@ import RealityKit
         macOSCameraTransform = cameraAnchor.transform
     }
 
+    @MainActor private func updateCamera(_ state: RadialLensState) {
+        let translationTransform = Transform(scale: .one,
+                                             rotation: simd_quatf(),
+                                             translation: SIMD3<Float>(0, 0, state.radius))
+        let combinedRotationTransform: Transform = .init(
+            pitch: state.inclinationAngle,
+            yaw: state.rotationAngle,
+            roll: 0
+        )
+
+        // ORDER of operations is critical here to getting the correct transform:
+        // - identity -> rotation -> translation
+        let computed_transform = matrix_identity_float4x4 * combinedRotationTransform.matrix * translationTransform.matrix
+
+        // This moves the camera to the right location
+        cameraAnchor.transform = Transform(matrix: computed_transform)
+        // This spins the camera AT its current location to look at a specific target location
+        cameraAnchor.look(
+            at: state.lensFocalPoint,
+            from: cameraAnchor.transform.translation,
+            relativeTo: nil
+        )
+        // reflect the camera's transform as an observed object
+        macOSCameraTransform = cameraAnchor.transform
+    }
+
     func moveStart() {
         // captures the starting position before movement tracking
         switch motionMode {
@@ -390,7 +346,9 @@ import RealityKit
         case .arcball_direct:
             arcball_state.movestart_rotation = arcball_state.rotationAngle
             arcball_state.movestart_inclination = arcball_state.inclinationAngle
-        case .lensabove:
+        case .lens_grid:
+            break
+        case .lens_radial:
             break
         }
     }
@@ -420,10 +378,14 @@ import RealityKit
             arcball_state.rotationAngle = arcball_state.movestart_rotation - deltaX * movementSpeed
             arcball_state.inclinationAngle = arcball_state.movestart_inclination + deltaY * movementSpeed
             updateCamera(arcball_state)
-        case .lensabove:
+        case .lens_grid:
+            break
+        case .lens_radial:
             break
         }
     }
+
+    // MARK: - Touch, Trackpad, Mouse, and Gesture Input Handling
 
     #if os(iOS)
         override public dynamic func touchesBegan(_ touches: Set<UITouch>, with _: UIEvent?) {
@@ -448,7 +410,9 @@ import RealityKit
                 moveStart()
             case .arcball:
                 break
-            case .lensabove:
+            case .lens_grid:
+                break
+            case .lens_radial:
                 break
             case .firstperson:
                 movestart_location = event.locationInWindow
@@ -465,7 +429,9 @@ import RealityKit
                 updateMove(deltaX, deltaY)
             case .arcball:
                 break
-            case .lensabove:
+            case .lens_grid:
+                break
+            case .lens_radial:
                 break
             case .firstperson:
                 let deltaX = Float(event.locationInWindow.x - movestart_location.x)
@@ -569,30 +535,30 @@ import RealityKit
                 case 0:
                     // 0 = a (move left)
                     if event.isARepeat {
-                        cameraAnchor.position = cameraAnchor.position - (rightVector() * forward_speed * 2)
+                        cameraAnchor.position = cameraAnchor.position - (rightVector(cameraAnchor.transform) * forward_speed * 2)
                     } else {
-                        cameraAnchor.position = cameraAnchor.position - (rightVector() * forward_speed)
+                        cameraAnchor.position = cameraAnchor.position - (rightVector(cameraAnchor.transform) * forward_speed)
                     }
                 case 2:
                     // 2 = d (move right)
                     if event.isARepeat {
-                        cameraAnchor.position = cameraAnchor.position + (rightVector() * forward_speed * 2)
+                        cameraAnchor.position = cameraAnchor.position + (rightVector(cameraAnchor.transform) * forward_speed * 2)
                     } else {
-                        cameraAnchor.position = cameraAnchor.position + (rightVector() * forward_speed)
+                        cameraAnchor.position = cameraAnchor.position + (rightVector(cameraAnchor.transform) * forward_speed)
                     }
                 case 13:
                     // 13 = w (move forward)
                     if event.isARepeat {
-                        cameraAnchor.position = cameraAnchor.position + (headingVector() * forward_speed * 2)
+                        cameraAnchor.position = cameraAnchor.position + (headingVector(cameraAnchor.transform) * forward_speed * 2)
                     } else {
-                        cameraAnchor.position = cameraAnchor.position + (headingVector() * forward_speed)
+                        cameraAnchor.position = cameraAnchor.position + (headingVector(cameraAnchor.transform) * forward_speed)
                     }
                 case 1:
                     // 1 = s (move back)
                     if event.isARepeat {
-                        cameraAnchor.position = cameraAnchor.position - (headingVector() * forward_speed * 2)
+                        cameraAnchor.position = cameraAnchor.position - (headingVector(cameraAnchor.transform) * forward_speed * 2)
                     } else {
-                        cameraAnchor.position = cameraAnchor.position - (headingVector() * forward_speed)
+                        cameraAnchor.position = cameraAnchor.position - (headingVector(cameraAnchor.transform) * forward_speed)
                     }
                 case 123:
                     // 123 = left arrow (turn left)
@@ -684,7 +650,9 @@ import RealityKit
                         break
                     }
                 }
-            case .lensabove:
+            case .lens_grid:
+                break
+            case .lens_radial:
                 break
             }
         }
@@ -705,7 +673,9 @@ import RealityKit
                 let multiplier = Float(event.magnification) // magnify_end
                 arcball_state.radius = arcball_state.radius * (multiplier + 1)
                 updateCamera(arcball_state)
-            case .lensabove:
+            case .lens_grid:
+                break
+            case .lens_radial:
                 break
             }
         }
