@@ -49,18 +49,18 @@ import RealityKit
         static let defaultRotationConstraint: ClosedRange<Float> = (-Float.pi * 2) ... (Float.pi * 2)
         static let defaultRadiusConstraint: ClosedRange<Float> = 0.0 ... Float.infinity
 
-        var inclinationConstraint: ClosedRange<Float>
-        var rangeConstraint: ClosedRange<Float>
-        var rotationConstraint: ClosedRange<Float>
+        public var inclinationConstraint: ClosedRange<Float>
+        public var rangeConstraint: ClosedRange<Float>
+        public var rotationConstraint: ClosedRange<Float>
         /// The target for the camera when in arcball mode.
-        var arcballTarget: simd_float3
+        public var arcballTarget: simd_float3
 
         var movestart_rotation: Float = 0
         var movestart_inclination: Float = 0
 
         private var _radius: Float
         /// The camera's orbital distance from the target when in arcball mode.
-        var radius: Float {
+        public var radius: Float {
             get {
                 return _radius
             }
@@ -71,7 +71,7 @@ import RealityKit
 
         private var _inclination: Float
         /// The angle of inclination of the camera when in arcball mode.
-        var inclinationAngle: Float {
+        public var inclinationAngle: Float {
             get {
                 return _inclination
             }
@@ -82,7 +82,7 @@ import RealityKit
 
         private var _rotation: Float
         /// The angle of rotation of the camera when in arcball mode.
-        var rotationAngle: Float {
+        public var rotationAngle: Float {
             get {
                 return _rotation
             }
@@ -129,7 +129,7 @@ import RealityKit
     // MARK: movement mode agnostic state variables
 
     /// The speed at which drag operations map percentage of movement within the view to rotational or positional updates.
-    public var dragspeed: Float
+    public var movementSpeed: Float
 
     /// The speed at which keypresses change the angles of inclination or rotation.
     ///
@@ -190,7 +190,7 @@ import RealityKit
             arcball_state = ArcBallState()
 
             keyspeed = 0.01
-            dragspeed = 0.01
+            movementSpeed = 0.01
             magnify_start = arcball_state.radius
 
             // FPS mode
@@ -239,7 +239,7 @@ import RealityKit
         arcball_state = ArcBallState()
 
         keyspeed = 0.01
-        dragspeed = 0.01
+        movementSpeed = 0.01
 
         magnify_start = arcball_state.radius
 
@@ -381,10 +381,10 @@ import RealityKit
     }
 
     func moveStart() {
+        // captures the starting position before movement tracking
         switch motionMode {
         case .arcball:
-            arcball_state.movestart_rotation = arcball_state.rotationAngle
-            arcball_state.movestart_inclination = arcball_state.inclinationAngle
+            break
         case .firstperson:
             dragstart_transform = cameraAnchor.transform.matrix
         case .arcball_direct:
@@ -398,8 +398,8 @@ import RealityKit
     func updateMove(_ deltaX: Float, _ deltaY: Float) {
         switch motionMode {
         case .arcball:
-            arcball_state.rotationAngle = arcball_state.movestart_rotation - deltaX * dragspeed
-            arcball_state.inclinationAngle = arcball_state.movestart_inclination + deltaY * dragspeed
+            arcball_state.rotationAngle = arcball_state.rotationAngle - deltaX * movementSpeed
+            arcball_state.inclinationAngle = arcball_state.inclinationAngle + deltaY * movementSpeed
             updateCamera(arcball_state)
         case .firstperson:
             // print("delta X is \(deltaX)")
@@ -417,8 +417,8 @@ import RealityKit
             let combined_transform = dragstart_transform * look_up_transform * left_turn_transform
             cameraAnchor.transform = Transform(matrix: combined_transform)
         case .arcball_direct:
-            arcball_state.rotationAngle = arcball_state.movestart_rotation - deltaX * dragspeed
-            arcball_state.inclinationAngle = arcball_state.movestart_inclination + deltaY * dragspeed
+            arcball_state.rotationAngle = arcball_state.movestart_rotation - deltaX * movementSpeed
+            arcball_state.inclinationAngle = arcball_state.movestart_inclination + deltaY * movementSpeed
             updateCamera(arcball_state)
         case .lensabove:
             break
@@ -476,12 +476,20 @@ import RealityKit
 
         override public dynamic func scrollWheel(with event: NSEvent) {
             // two fingers moving across the trackpad
-            print("scroll EVENT: \(event)")
+            // print("scroll EVENT: \(event)")
+            if event.phase == .changed {
+                updateMove(Float(event.deltaX), Float(event.deltaY))
+            }
+
             // scroll EVENT: NSEvent: type=ScrollWheel loc=(487.367,125.148) time=198692.7 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deltaX=0.000000 deltaY=0.000000 count:0 phase=MayBegin momentumPhase=None
             // scroll EVENT: NSEvent: type=ScrollWheel loc=(487.367,125.148) time=198692.8 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deltaX=0.000000 deltaY=-1.000000 count:0 phase=Began momentumPhase=None
             // scroll EVENT: NSEvent: type=ScrollWheel loc=(487.367,125.148) time=198692.8 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deltaX=8.000000 deltaY=-12.000000 count:0 phase=Changed momentumPhase=None
             // scroll EVENT: NSEvent: type=ScrollWheel loc=(487.367,125.148) time=198692.8 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deltaX=46.000000 deltaY=-44.000000 count:1 phase=Changed momentumPhase=None
             // scroll EVENT: NSEvent: type=ScrollWheel loc=(487.367,125.148) time=198692.8 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deltaX=0.000000 deltaY=0.000000 count:1 phase=Ended momentumPhase=None
+
+            // if event.momentumPhase == ... to handle momentum based followthrough on
+            // flicks/scroll events..
+
             // scroll EVENT: NSEvent: type=ScrollWheel loc=(487.367,125.148) time=198692.8 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deltaX=97.000000 deltaY=-81.000000 count:1 phase=None momentumPhase=Began
             // scroll EVENT: NSEvent: type=ScrollWheel loc=(487.367,125.148) time=198692.8 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deltaX=104.000000 deltaY=-88.000000 count:1 phase=None momentumPhase=Changed
             // scroll EVENT: NSEvent: type=ScrollWheel loc=(487.367,125.148) time=198692.9 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deltaX=103.000000 deltaY=-89.000000 count:1 phase=None momentumPhase=Changed
