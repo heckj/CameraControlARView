@@ -409,11 +409,11 @@ public struct RadialLensState {
             case .arcball_direct:
                 moveStart()
             case .arcball:
-                break
+                super.mouseDown(with: event)
             case .lens_grid:
-                break
+                super.mouseDown(with: event)
             case .lens_radial:
-                break
+                super.mouseDown(with: event)
             case .firstperson:
                 movestart_location = event.locationInWindow
             }
@@ -428,11 +428,11 @@ public struct RadialLensState {
                 let deltaY = Float(event.locationInWindow.y - movestart_location.y)
                 updateMove(deltaX, deltaY)
             case .arcball:
-                break
+                super.mouseDragged(with: event)
             case .lens_grid:
-                break
+                super.mouseDragged(with: event)
             case .lens_radial:
-                break
+                super.mouseDragged(with: event)
             case .firstperson:
                 let deltaX = Float(event.locationInWindow.x - movestart_location.x)
                 let deltaY = Float(event.locationInWindow.y - movestart_location.y)
@@ -469,6 +469,7 @@ public struct RadialLensState {
 //            scroll EVENT: NSEvent: type=ScrollWheel loc=(487.367,125.148) time=198693.9 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deltaX=1.000000 deltaY=-1.000000 count:0 phase=None momentumPhase=Changed
 //            scroll EVENT: NSEvent: type=ScrollWheel loc=(487.367,125.148) time=198694.0 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deltaX=1.000000 deltaY=0.000000 count:0 phase=None momentumPhase=Changed
 //            scroll EVENT: NSEvent: type=ScrollWheel loc=(487.367,125.148) time=198694.0 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deltaX=0.000000 deltaY=0.000000 count:0 phase=None momentumPhase=Ended
+            super.scrollWheel(with: event)
         }
 
         override public dynamic func rotate(with event: NSEvent) {
@@ -476,6 +477,7 @@ public struct RadialLensState {
             print("rotate EVENT: \(event)")
             // rotate EVENT: NSEvent: type=Rotate loc=(784.109,128.215) time=198608.2 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deviceID:0x200000000000027 rotation=-0.549038 phase:Changed
             // rotate EVENT: NSEvent: type=Rotate loc=(784.109,128.215) time=198608.2 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deviceID:0x200000000000027 rotation=-0.772850 phase:Ended
+            super.rotate(with: event)
         }
 
         override public dynamic func keyDown(with event: NSEvent) {
@@ -526,8 +528,10 @@ public struct RadialLensState {
                             updateCamera(arcball_state)
                         }
                     default:
-                        break
+                        super.keyDown(with: event)
                     }
+                } else {
+                    super.keyDown(with: event)
                 }
 
             case .firstperson:
@@ -601,7 +605,7 @@ public struct RadialLensState {
                     }
                     cameraAnchor.transform = Transform(matrix: matrix_multiply(current_transform, look_down_transform))
                 default:
-                    break
+                    super.keyDown(with: event)
                 }
             case let .arcball_direct(useKeys):
                 if useKeys {
@@ -647,13 +651,16 @@ public struct RadialLensState {
                             updateCamera(arcball_state)
                         }
                     default:
-                        break
+                        super.keyDown(with: event)
                     }
+                } else {
+                    super.keyDown(with: event)
                 }
             case .lens_grid:
-                break
+                super.keyDown(with: event)
+
             case .lens_radial:
-                break
+                super.keyDown(with: event)
             }
         }
 
@@ -668,15 +675,15 @@ public struct RadialLensState {
                 arcball_state.radius = arcball_state.radius * (multiplier + 1)
                 updateCamera(arcball_state)
             case .firstperson:
-                break
+                super.magnify(with: event)
             case .arcball_direct:
                 let multiplier = Float(event.magnification) // magnify_end
                 arcball_state.radius = arcball_state.radius * (multiplier + 1)
                 updateCamera(arcball_state)
             case .lens_grid:
-                break
+                super.magnify(with: event)
             case .lens_radial:
-                break
+                super.magnify(with: event)
             }
         }
     #endif
