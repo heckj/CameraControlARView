@@ -55,6 +55,9 @@ import RealityKit
         /// The target for the camera when in arcball mode.
         var arcballTarget: simd_float3
 
+        var movestart_rotation: Float = 0
+        var movestart_inclination: Float = 0
+
         private var _radius: Float
         /// The camera's orbital distance from the target when in arcball mode.
         var radius: Float {
@@ -110,11 +113,20 @@ import RealityKit
 
     public var arcball_state: ArcBallState {
         didSet {
-            if motionMode == .arcball || motionMode == .arcball_direct {
+            switch motionMode {
+            case .arcball_direct:
                 updateCamera(arcball_state)
+            case .arcball:
+                updateCamera(arcball_state)
+            case .lensabove:
+                updateCamera(arcball_state)
+            case .firstperson:
+                break
             }
         }
     }
+
+    // MARK: movement mode agnostic state variables
 
     /// The speed at which drag operations map percentage of movement within the view to rotational or positional updates.
     public var dragspeed: Float
@@ -124,9 +136,7 @@ import RealityKit
     /// This view doubles the speed value when the key is held-down.
     public var keyspeed: Float
 
-    private var dragstart: CGPoint
-    private var dragstart_rotation: Float
-    private var dragstart_inclination: Float
+    private var movestart_location: CGPoint
     private var magnify_start: Float
 
     // MARK: - FPS mode variables
@@ -174,15 +184,13 @@ import RealityKit
         /// - Parameter frameRect: The frame rectangle for the view, measured in points.
         /// - Parameter cameraMode: An indication of whether to use the device’s camera or a virtual one.
         @MainActor public init(frame frameRect: CGRect, cameraMode: ARView.CameraMode) {
-            motionMode = .arcball
+            motionMode = .arcball_direct(keys: true)
 
             // ARCBALL mode
             arcball_state = ArcBallState()
 
             keyspeed = 0.01
             dragspeed = 0.01
-            dragstart_rotation = 0
-            dragstart_inclination = 0
             magnify_start = arcball_state.radius
 
             // FPS mode
@@ -191,7 +199,7 @@ import RealityKit
 
             // Not mode specific
             cameraAnchor = AnchorEntity(world: .zero)
-            dragstart = CGPoint.zero
+            movestart_location = CGPoint.zero
             dragstart_transform = cameraAnchor.transform.matrix
             // reflect the camera's transform as an observed object
             macOSCameraTransform = cameraAnchor.transform
@@ -225,15 +233,14 @@ import RealityKit
     /// - Parameter frameRect: The frame rectangle for the view, measured in points.
     /// - Parameter cameraMode: An indication of whether to use the device’s camera or a virtual one.
     @MainActor dynamic required init(frame frameRect: CGRect) {
-        motionMode = .arcball
+        motionMode = .arcball_direct(keys: true)
 
         // ARCBALL mode
         arcball_state = ArcBallState()
 
         keyspeed = 0.01
         dragspeed = 0.01
-        dragstart_rotation = 0
-        dragstart_inclination = 0
+
         magnify_start = arcball_state.radius
 
         // FPS mode
@@ -242,7 +249,7 @@ import RealityKit
 
         // Not mode specific
         cameraAnchor = AnchorEntity(world: .zero)
-        dragstart = CGPoint.zero
+        movestart_location = CGPoint.zero
         dragstart_transform = cameraAnchor.transform.matrix
         // reflect the camera's transform as an observed object
         macOSCameraTransform = cameraAnchor.transform
@@ -373,25 +380,26 @@ import RealityKit
         macOSCameraTransform = cameraAnchor.transform
     }
 
-    func dragStart() {
+    func moveStart() {
         switch motionMode {
         case .arcball:
-            dragstart_rotation = arcball_state.rotationAngle
-            dragstart_inclination = arcball_state.inclinationAngle
+            arcball_state.movestart_rotation = arcball_state.rotationAngle
+            arcball_state.movestart_inclination = arcball_state.inclinationAngle
         case .firstperson:
             dragstart_transform = cameraAnchor.transform.matrix
         case .arcball_direct:
-            break
+            arcball_state.movestart_rotation = arcball_state.rotationAngle
+            arcball_state.movestart_inclination = arcball_state.inclinationAngle
         case .lensabove:
             break
         }
     }
 
-    func dragMove(_ deltaX: Float, _ deltaY: Float) {
+    func updateMove(_ deltaX: Float, _ deltaY: Float) {
         switch motionMode {
         case .arcball:
-            arcball_state.rotationAngle = dragstart_rotation - deltaX * dragspeed
-            arcball_state.inclinationAngle = dragstart_inclination + deltaY * dragspeed
+            arcball_state.rotationAngle = arcball_state.movestart_rotation - deltaX * dragspeed
+            arcball_state.inclinationAngle = arcball_state.movestart_inclination + deltaY * dragspeed
             updateCamera(arcball_state)
         case .firstperson:
             // print("delta X is \(deltaX)")
@@ -409,7 +417,9 @@ import RealityKit
             let combined_transform = dragstart_transform * look_up_transform * left_turn_transform
             cameraAnchor.transform = Transform(matrix: combined_transform)
         case .arcball_direct:
-            break
+            arcball_state.rotationAngle = arcball_state.movestart_rotation - deltaX * dragspeed
+            arcball_state.inclinationAngle = arcball_state.movestart_inclination + deltaY * dragspeed
+            updateCamera(arcball_state)
         case .lensabove:
             break
         }
@@ -417,92 +427,133 @@ import RealityKit
 
     #if os(iOS)
         override public dynamic func touchesBegan(_ touches: Set<UITouch>, with _: UIEvent?) {
-            dragstart = touches.first!.location(in: self)
-            dragStart()
+            movestart_location = touches.first!.location(in: self)
+            moveStart()
         }
 
         override public dynamic func touchesMoved(_ touches: Set<UITouch>, with _: UIEvent?) {
             let drag = touches.first!.location(in: self)
-            let deltaX = Float(drag.x - dragstart.x)
-            let deltaY = Float(dragstart.y - drag.y)
-            dragMove(deltaX, deltaY)
+            let deltaX = Float(drag.x - movestart_location.x)
+            let deltaY = Float(movestart_location.y - drag.y)
+            updateMove(deltaX, deltaY)
         }
     #endif
 
     #if os(macOS)
         override public dynamic func mouseDown(with event: NSEvent) {
-            print("mouseDown EVENT: \(event)")
-            print(" at \(event.locationInWindow) of \(frame)")
-            dragstart = event.locationInWindow
-            dragStart()
+            // print("mouseDown EVENT: \(event)")
+            // print(" at \(event.locationInWindow) of \(frame)")
+            switch motionMode {
+            case .arcball_direct:
+                moveStart()
+            case .arcball:
+                break
+            case .lensabove:
+                break
+            case .firstperson:
+                movestart_location = event.locationInWindow
+            }
         }
 
         override public dynamic func mouseDragged(with event: NSEvent) {
-            print("mouseDragged EVENT: \(event)")
-            print(" at \(event.locationInWindow) of \(frame)")
-            let deltaX = Float(event.locationInWindow.x - dragstart.x)
-            let deltaY = Float(event.locationInWindow.y - dragstart.y)
-            dragMove(deltaX, deltaY)
+            // print("mouseDragged EVENT: \(event)")
+            // print(" at \(event.locationInWindow) of \(frame)")
+            switch motionMode {
+            case .arcball_direct:
+                let deltaX = Float(event.locationInWindow.x - movestart_location.x)
+                let deltaY = Float(event.locationInWindow.y - movestart_location.y)
+                updateMove(deltaX, deltaY)
+            case .arcball:
+                break
+            case .lensabove:
+                break
+            case .firstperson:
+                let deltaX = Float(event.locationInWindow.x - movestart_location.x)
+                let deltaY = Float(event.locationInWindow.y - movestart_location.y)
+                updateMove(deltaX, deltaY)
+            }
         }
 
         override public dynamic func scrollWheel(with event: NSEvent) {
-            // two fingers moving across the trackpad?
-            print(" scroll: \(event)")
+            // two fingers moving across the trackpad
+            print("scroll EVENT: \(event)")
+            // scroll EVENT: NSEvent: type=ScrollWheel loc=(487.367,125.148) time=198692.7 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deltaX=0.000000 deltaY=0.000000 count:0 phase=MayBegin momentumPhase=None
+            // scroll EVENT: NSEvent: type=ScrollWheel loc=(487.367,125.148) time=198692.8 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deltaX=0.000000 deltaY=-1.000000 count:0 phase=Began momentumPhase=None
+            // scroll EVENT: NSEvent: type=ScrollWheel loc=(487.367,125.148) time=198692.8 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deltaX=8.000000 deltaY=-12.000000 count:0 phase=Changed momentumPhase=None
+            // scroll EVENT: NSEvent: type=ScrollWheel loc=(487.367,125.148) time=198692.8 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deltaX=46.000000 deltaY=-44.000000 count:1 phase=Changed momentumPhase=None
+            // scroll EVENT: NSEvent: type=ScrollWheel loc=(487.367,125.148) time=198692.8 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deltaX=0.000000 deltaY=0.000000 count:1 phase=Ended momentumPhase=None
+            // scroll EVENT: NSEvent: type=ScrollWheel loc=(487.367,125.148) time=198692.8 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deltaX=97.000000 deltaY=-81.000000 count:1 phase=None momentumPhase=Began
+            // scroll EVENT: NSEvent: type=ScrollWheel loc=(487.367,125.148) time=198692.8 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deltaX=104.000000 deltaY=-88.000000 count:1 phase=None momentumPhase=Changed
+            // scroll EVENT: NSEvent: type=ScrollWheel loc=(487.367,125.148) time=198692.9 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deltaX=103.000000 deltaY=-89.000000 count:1 phase=None momentumPhase=Changed
+            // scroll EVENT: NSEvent: type=ScrollWheel loc=(487.367,125.148) time=198692.9 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deltaX=99.000000 deltaY=-86.000000 count:1 phase=None momentumPhase=Changed
+            // scroll EVENT: NSEvent: type=ScrollWheel loc=(487.367,125.148) time=198692.9 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deltaX=96.000000 deltaY=-83.000000 count:1 phase=None momentumPhase=Changed
+            // scroll EVENT: NSEvent: type=ScrollWheel loc=(487.367,125.148) time=198692.9 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deltaX=91.000000 deltaY=-79.000000 count:1 phase=None momentumPhase=Changed
+            // scroll EVENT: NSEvent: type=ScrollWheel loc=(487.367,125.148) time=198692.9 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deltaX=90.000000 deltaY=-80.000000 count:1 phase=None momentumPhase=Changed
+
+//            scroll EVENT: NSEvent: type=ScrollWheel loc=(487.367,125.148) time=198693.9 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deltaX=1.000000 deltaY=-1.000000 count:0 phase=None momentumPhase=Changed
+//            scroll EVENT: NSEvent: type=ScrollWheel loc=(487.367,125.148) time=198693.9 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deltaX=1.000000 deltaY=-1.000000 count:0 phase=None momentumPhase=Changed
+//            scroll EVENT: NSEvent: type=ScrollWheel loc=(487.367,125.148) time=198693.9 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deltaX=1.000000 deltaY=-1.000000 count:0 phase=None momentumPhase=Changed
+//            scroll EVENT: NSEvent: type=ScrollWheel loc=(487.367,125.148) time=198694.0 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deltaX=1.000000 deltaY=0.000000 count:0 phase=None momentumPhase=Changed
+//            scroll EVENT: NSEvent: type=ScrollWheel loc=(487.367,125.148) time=198694.0 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deltaX=0.000000 deltaY=0.000000 count:0 phase=None momentumPhase=Ended
         }
 
         override public dynamic func rotate(with event: NSEvent) {
             // Two fingers moving in opposite semicircles is a gesture meaning rotate.
-            print(" rotate: \(event)")
+            print("rotate EVENT: \(event)")
+            // rotate EVENT: NSEvent: type=Rotate loc=(784.109,128.215) time=198608.2 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deviceID:0x200000000000027 rotation=-0.549038 phase:Changed
+            // rotate EVENT: NSEvent: type=Rotate loc=(784.109,128.215) time=198608.2 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deviceID:0x200000000000027 rotation=-0.772850 phase:Ended
         }
 
         override public dynamic func keyDown(with event: NSEvent) {
             // print("keyDown: \(event)")
             // print("key value: \(event.keyCode)")
             switch motionMode {
-            case .arcball:
-                switch event.keyCode {
-                case 123, 0:
-                    // 123 = left arrow
-                    // 0 = a
-                    if event.isARepeat {
-                        arcball_state.rotationAngle -= keyspeed * 2
-                    } else {
-                        arcball_state.rotationAngle -= keyspeed
-                    }
-                    updateCamera(arcball_state)
-                case 124, 2:
-                    // 124 = right arrow
-                    // 2 = d
-                    if event.isARepeat {
-                        arcball_state.rotationAngle += keyspeed * 2
-                    } else {
-                        arcball_state.rotationAngle += keyspeed
-                    }
-                    updateCamera(arcball_state)
-                case 126, 13:
-                    // 126 = up arrow
-                    // 13 = w
-                    if arcball_state.inclinationAngle > -Float.pi / 2 {
+            case let .arcball(useKeys):
+                if useKeys {
+                    switch event.keyCode {
+                    case 123, 0:
+                        // 123 = left arrow
+                        // 0 = a
                         if event.isARepeat {
-                            arcball_state.inclinationAngle -= keyspeed * 2
+                            arcball_state.rotationAngle -= keyspeed * 2
                         } else {
-                            arcball_state.inclinationAngle -= keyspeed
+                            arcball_state.rotationAngle -= keyspeed
                         }
                         updateCamera(arcball_state)
-                    }
-                case 125, 1:
-                    // 125 = down arrow
-                    // 1 = s
-                    if arcball_state.inclinationAngle < Float.pi / 2 {
+                    case 124, 2:
+                        // 124 = right arrow
+                        // 2 = d
                         if event.isARepeat {
-                            arcball_state.inclinationAngle += keyspeed * 2
+                            arcball_state.rotationAngle += keyspeed * 2
                         } else {
-                            arcball_state.inclinationAngle += keyspeed
+                            arcball_state.rotationAngle += keyspeed
                         }
                         updateCamera(arcball_state)
+                    case 126, 13:
+                        // 126 = up arrow
+                        // 13 = w
+                        if arcball_state.inclinationAngle > -Float.pi / 2 {
+                            if event.isARepeat {
+                                arcball_state.inclinationAngle -= keyspeed * 2
+                            } else {
+                                arcball_state.inclinationAngle -= keyspeed
+                            }
+                            updateCamera(arcball_state)
+                        }
+                    case 125, 1:
+                        // 125 = down arrow
+                        // 1 = s
+                        if arcball_state.inclinationAngle < Float.pi / 2 {
+                            if event.isARepeat {
+                                arcball_state.inclinationAngle += keyspeed * 2
+                            } else {
+                                arcball_state.inclinationAngle += keyspeed
+                            }
+                            updateCamera(arcball_state)
+                        }
+                    default:
+                        break
                     }
-                default:
-                    break
                 }
 
             case .firstperson:
@@ -578,8 +629,53 @@ import RealityKit
                 default:
                     break
                 }
-            case .arcball_direct:
-                break
+            case let .arcball_direct(useKeys):
+                if useKeys {
+                    switch event.keyCode {
+                    case 123, 0:
+                        // 123 = left arrow
+                        // 0 = a
+                        if event.isARepeat {
+                            arcball_state.rotationAngle -= keyspeed * 2
+                        } else {
+                            arcball_state.rotationAngle -= keyspeed
+                        }
+                        updateCamera(arcball_state)
+                    case 124, 2:
+                        // 124 = right arrow
+                        // 2 = d
+                        if event.isARepeat {
+                            arcball_state.rotationAngle += keyspeed * 2
+                        } else {
+                            arcball_state.rotationAngle += keyspeed
+                        }
+                        updateCamera(arcball_state)
+                    case 126, 13:
+                        // 126 = up arrow
+                        // 13 = w
+                        if arcball_state.inclinationAngle > -Float.pi / 2 {
+                            if event.isARepeat {
+                                arcball_state.inclinationAngle -= keyspeed * 2
+                            } else {
+                                arcball_state.inclinationAngle -= keyspeed
+                            }
+                            updateCamera(arcball_state)
+                        }
+                    case 125, 1:
+                        // 125 = down arrow
+                        // 1 = s
+                        if arcball_state.inclinationAngle < Float.pi / 2 {
+                            if event.isARepeat {
+                                arcball_state.inclinationAngle += keyspeed * 2
+                            } else {
+                                arcball_state.inclinationAngle += keyspeed
+                            }
+                            updateCamera(arcball_state)
+                        }
+                    default:
+                        break
+                    }
+                }
             case .lensabove:
                 break
             }
@@ -598,7 +694,9 @@ import RealityKit
             case .firstperson:
                 break
             case .arcball_direct:
-                break
+                let multiplier = Float(event.magnification) // magnify_end
+                arcball_state.radius = arcball_state.radius * (multiplier + 1)
+                updateCamera(arcball_state)
             case .lensabove:
                 break
             }

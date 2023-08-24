@@ -1,5 +1,5 @@
 /// A type that indicates the control mode used to adjust the perspective camera within an ARView.
-public enum MotionMode: Int {
+public enum MotionMode {
     /// Rotate around a target location, effectively orbiting and keeping the camera trained on it.
     ///
     /// Drag motions:
@@ -12,13 +12,11 @@ public enum MotionMode: Int {
     /// - The left-arrow and `a` keys rotate the camera to the left around the location.
     /// - The up-arrow and `w` keys rotate the camera upward around the location, clamped to a maximum of directly above the location.
     /// - The down-arrow and `s` keys rotate the camera downward around the location, clamped to a minimum of directly below the location.
-    case arcball_direct
-    // ? allow setting origin or target location
-    // allow constraining range to radius from the target?
+    case arcball_direct(keys: Bool)
 
     /// Rotate around a target location, effectively orbiting and keeping the camera trained on it.
     ///
-    /// Drag motions:
+    /// two-finger gestures:
     /// - The view converts vertical drag distance into an inclination above, or below, the target location, clamped to directly above and below it.
     /// - The view converts horizontal drag distance into a rotational angle, orbiting the target location.
     /// - A magnify gesture zooms in, or out, from the target location.
@@ -28,12 +26,10 @@ public enum MotionMode: Int {
     /// - The left-arrow and `a` keys rotate the camera to the left around the location.
     /// - The up-arrow and `w` keys rotate the camera upward around the location, clamped to a maximum of directly above the location.
     /// - The down-arrow and `s` keys rotate the camera downward around the location, clamped to a minimum of directly below the location.
-    case arcball
-    // ? allow setting origin or target location
-    // allow constraining range to radius from the target?
+    case arcball(keys: Bool)
 
     /// A constrained motion about an AR scene, looking down.
-    case lensabove
+    case lensabove(keys: Bool)
     // constrain to a radius - max of the scene
     // potentially allow height control with alt-sequences
 
