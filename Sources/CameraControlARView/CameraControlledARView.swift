@@ -16,68 +16,6 @@ import CoreGraphics
 import Foundation
 import RealityKit
 
-public struct RadialLensState {
-    static let defaultHeightConstraint: ClosedRange<Float> = 0 ... Float.infinity
-    static let defaultRotationConstraint: ClosedRange<Float> = (-Float.pi * 2) ... (Float.pi * 2)
-    static let defaultRadiusConstraint: ClosedRange<Float> = 0.0 ... Float.infinity
-
-    public var heightConstraint: ClosedRange<Float>
-    public var rotationConstraint: ClosedRange<Float>
-    public var radiusConstraint: ClosedRange<Float>
-
-    /// The target for the camera when in lens mode.
-    public var lensFocalPoint: simd_float3
-
-    private var _radius: Float
-    public var radius: Float {
-        get {
-            return _radius
-        }
-        set {
-            _radius = newValue.clamped(to: radiusConstraint)
-        }
-    }
-
-    private var _height: Float
-    public var height: Float {
-        get {
-            return _height
-        }
-        set {
-            _height = newValue.clamped(to: heightConstraint)
-        }
-    }
-
-    private var _rotation: Float
-    public var rotation: Float {
-        get {
-            return _rotation
-        }
-        set {
-            _rotation = newValue.clamped(to: rotationConstraint)
-        }
-    }
-
-    init(lensFocalPoint: simd_float3 = simd_float3(0, 0, 0),
-         radius: Float = 2,
-         height: Float = 0,
-         rotationAngle: Float = 0,
-         heightConstraint: ClosedRange<Float> = Self.defaultHeightConstraint,
-         rotationConstraint: ClosedRange<Float> = Self.defaultRotationConstraint,
-         radiusConstraint: ClosedRange<Float> = Self.defaultRadiusConstraint)
-    {
-        self.heightConstraint = heightConstraint
-        self.radiusConstraint = radiusConstraint
-        self.rotationConstraint = rotationConstraint
-
-        _radius = radius.clamped(to: radiusConstraint)
-        _height = height.clamped(to: heightConstraint)
-        _rotation = rotationAngle.clamped(to: rotationConstraint)
-
-        self.lensFocalPoint = lensFocalPoint
-    }
-}
-
 /// A 3D View for SwiftUI using RealityKit that provides movement controls for the camera within the view.
 ///
 /// Initialize a new instance with `init()` or `init(frame:)` on macOS, `init(frame:cameraMode:)` on iOS.
@@ -103,7 +41,7 @@ public struct RadialLensState {
     /// - ``MotionMode-swift.enum/firstperson`` moves freely in all axis within the world space, not locked to any location.
     ///
     public var motionMode: MotionMode
-    
+
     // MARK: - ARCBALL mode variables
 
     public var arcball_state: ArcBallState {
@@ -124,6 +62,17 @@ public struct RadialLensState {
             switch motionMode {
             case .lens_radial:
                 updateCamera(radial_lens_state)
+            default:
+                break
+            }
+        }
+    }
+
+    public var grid_lens_state: GridLensState {
+        didSet {
+            switch motionMode {
+            case .lens_radial:
+                updateCamera(grid_lens_state)
             default:
                 break
             }
@@ -194,7 +143,8 @@ public struct RadialLensState {
             arcball_state = ArcBallState()
             // LENS mode
             radial_lens_state = RadialLensState()
-            
+            grid_lens_state = GridLensState()
+
             keyspeed = 0.01
             movementSpeed = 0.01
             magnify_start = arcball_state.radius
@@ -245,6 +195,7 @@ public struct RadialLensState {
         arcball_state = ArcBallState()
         // LENS mode
         radial_lens_state = RadialLensState()
+        grid_lens_state = GridLensState()
 
         keyspeed = 0.01
         movementSpeed = 0.01
@@ -269,7 +220,20 @@ public struct RadialLensState {
             cameraAnchor.addChild(cameraEntity)
             scene.addAnchor(cameraAnchor)
         #endif
-        updateCamera(arcball_state)
+        // Set initial camera position based on defaults from
+        // the motion tracking state machinery
+        switch motionMode {
+        case .arcball_direct:
+            updateCamera(arcball_state)
+        case .arcball:
+            updateCamera(arcball_state)
+        case .lens_radial:
+            updateCamera(radial_lens_state)
+        case .lens_grid:
+            updateCamera(grid_lens_state)
+        case .firstperson:
+            break
+        }
 
         #if os(iOS)
             twoFingerSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(twoFingerSwipeGestureRecognized(_:)))
@@ -315,29 +279,47 @@ public struct RadialLensState {
     }
 
     @MainActor private func updateCamera(_ state: RadialLensState) {
-//        let translationTransform = Transform(scale: .one,
-//                                             rotation: simd_quatf(),
-//                                             translation: SIMD3<Float>(0, 0, state.radius))
-//        let combinedRotationTransform: Transform = .init(
-//            pitch: state.inclinationAngle,
-//            yaw: state.rotationAngle,
-//            roll: 0
-//        )
-//
-//        // ORDER of operations is critical here to getting the correct transform:
-//        // - identity -> rotation -> translation
-//        let computed_transform = matrix_identity_float4x4 * combinedRotationTransform.matrix * translationTransform.matrix
-//
-//        // This moves the camera to the right location
-//        cameraAnchor.transform = Transform(matrix: computed_transform)
-//        // This spins the camera AT its current location to look at a specific target location
-//        cameraAnchor.look(
-//            at: state.lensFocalPoint,
-//            from: cameraAnchor.transform.translation,
-//            relativeTo: nil
-//        )
-//        // reflect the camera's transform as an observed object
-//        macOSCameraTransform = cameraAnchor.transform
+        let x: Float = state.radius * cos(state.rotation)
+        let z: Float = state.radius * sin(state.rotation)
+        let y: Float = sqrt(pow(state.radius, 2) - pow(x - state.lensFocalPoint.x, 2) - pow(z - state.lensFocalPoint.z, 2)) + state.lensFocalPoint.y
+
+        let translationTransform = Transform(scale: .one, rotation: simd_quatf(), translation: SIMD3(x, y, z))
+
+        // This moves the camera to the right location
+        cameraAnchor.transform = translationTransform
+        // This spins the camera AT its current location to look at a specific target location
+        cameraAnchor.look(
+            at: state.lensFocalPoint,
+            from: cameraAnchor.transform.translation,
+            relativeTo: nil
+        )
+        // reflect the camera's transform as an observed object
+        macOSCameraTransform = cameraAnchor.transform
+    }
+
+    @MainActor private func updateCamera(_ state: GridLensState) {
+        let x: Float = state.x
+        let z: Float = state.z
+        let y: Float = sqrt(
+            pow(state.height + state.depth, 2) -
+                pow(x - state.lensFocalPoint.x, 2) -
+                pow(z - state.lensFocalPoint.z, 2)
+        ) + state.lensFocalPoint.y
+
+        let translationTransform = Transform(scale: .one,
+                                             rotation: simd_quatf(),
+                                             translation: SIMD3(x, y, z))
+
+        // This moves the camera to the right location
+        cameraAnchor.transform = translationTransform
+        // This spins the camera AT its current location to look at a specific target location
+        cameraAnchor.look(
+            at: state.lensFocalPoint,
+            from: cameraAnchor.transform.translation,
+            relativeTo: nil
+        )
+        // reflect the camera's transform as an observed object
+        macOSCameraTransform = cameraAnchor.transform
     }
 
     func moveStart() {
@@ -360,8 +342,8 @@ public struct RadialLensState {
     func updateMove(_ deltaX: Float, _ deltaY: Float) {
         switch motionMode {
         case .arcball:
-            arcball_state.rotationAngle = arcball_state.rotationAngle - deltaX * movementSpeed
-            arcball_state.inclinationAngle = arcball_state.inclinationAngle + deltaY * movementSpeed
+            arcball_state.rotationAngle -= deltaX * movementSpeed
+            arcball_state.inclinationAngle += deltaY * movementSpeed
             updateCamera(arcball_state)
         case .firstperson:
             // print("delta X is \(deltaX)")
@@ -379,13 +361,17 @@ public struct RadialLensState {
             let combined_transform = dragstart_transform * look_up_transform * left_turn_transform
             cameraAnchor.transform = Transform(matrix: combined_transform)
         case .arcball_direct:
-            arcball_state.rotationAngle = arcball_state.movestart_rotation - deltaX * movementSpeed
-            arcball_state.inclinationAngle = arcball_state.movestart_inclination + deltaY * movementSpeed
+            arcball_state.rotationAngle -= deltaX * movementSpeed
+            arcball_state.inclinationAngle += deltaY * movementSpeed
             updateCamera(arcball_state)
-        case .lens_grid:
-            break
         case .lens_radial:
-            break
+            radial_lens_state.rotation -= deltaX * movementSpeed
+            radial_lens_state.radius += deltaY * movementSpeed
+            updateCamera(radial_lens_state)
+        case .lens_grid:
+            grid_lens_state.x += deltaX * movementSpeed
+            grid_lens_state.z += deltaY * movementSpeed
+            updateCamera(grid_lens_state)
         }
     }
 
@@ -413,10 +399,13 @@ public struct RadialLensState {
             case .arcball_direct:
                 moveStart()
             case .arcball:
+                // pass through events to the rest of the responder chain
                 super.mouseDown(with: event)
             case .lens_grid:
+                // pass through events to the rest of the responder chain
                 super.mouseDown(with: event)
             case .lens_radial:
+                // pass through events to the rest of the responder chain
                 super.mouseDown(with: event)
             case .firstperson:
                 movestart_location = event.locationInWindow
@@ -432,10 +421,13 @@ public struct RadialLensState {
                 let deltaY = Float(event.locationInWindow.y - movestart_location.y)
                 updateMove(deltaX, deltaY)
             case .arcball:
+                // pass through events to the rest of the responder chain
                 super.mouseDragged(with: event)
             case .lens_grid:
+                // pass through events to the rest of the responder chain
                 super.mouseDragged(with: event)
             case .lens_radial:
+                // pass through events to the rest of the responder chain
                 super.mouseDragged(with: event)
             case .firstperson:
                 let deltaX = Float(event.locationInWindow.x - movestart_location.x)
@@ -446,7 +438,7 @@ public struct RadialLensState {
 
         override public dynamic func scrollWheel(with event: NSEvent) {
             // two fingers moving across the trackpad
-            // print("scroll EVENT: \(event)")
+            print("scroll EVENT: \(event)")
             if event.phase == .changed {
                 updateMove(Float(event.deltaX), Float(event.deltaY))
             }
@@ -473,6 +465,8 @@ public struct RadialLensState {
 //            scroll EVENT: NSEvent: type=ScrollWheel loc=(487.367,125.148) time=198693.9 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deltaX=1.000000 deltaY=-1.000000 count:0 phase=None momentumPhase=Changed
 //            scroll EVENT: NSEvent: type=ScrollWheel loc=(487.367,125.148) time=198694.0 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deltaX=1.000000 deltaY=0.000000 count:0 phase=None momentumPhase=Changed
 //            scroll EVENT: NSEvent: type=ScrollWheel loc=(487.367,125.148) time=198694.0 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deltaX=0.000000 deltaY=0.000000 count:0 phase=None momentumPhase=Ended
+
+            // pass through events to the rest of the responder chain?
             super.scrollWheel(with: event)
         }
 
@@ -481,6 +475,8 @@ public struct RadialLensState {
             print("rotate EVENT: \(event)")
             // rotate EVENT: NSEvent: type=Rotate loc=(784.109,128.215) time=198608.2 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deviceID:0x200000000000027 rotation=-0.549038 phase:Changed
             // rotate EVENT: NSEvent: type=Rotate loc=(784.109,128.215) time=198608.2 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deviceID:0x200000000000027 rotation=-0.772850 phase:Ended
+
+            // pass through events to the rest of the responder chain
             super.rotate(with: event)
         }
 
@@ -532,9 +528,11 @@ public struct RadialLensState {
                             updateCamera(arcball_state)
                         }
                     default:
+                        // pass through events to the rest of the responder chain
                         super.keyDown(with: event)
                     }
                 } else {
+                    // pass through events to the rest of the responder chain
                     super.keyDown(with: event)
                 }
 
@@ -609,6 +607,7 @@ public struct RadialLensState {
                     }
                     cameraAnchor.transform = Transform(matrix: matrix_multiply(current_transform, look_down_transform))
                 default:
+                    // pass through events to the rest of the responder chain
                     super.keyDown(with: event)
                 }
             case let .arcball_direct(useKeys):
@@ -655,15 +654,19 @@ public struct RadialLensState {
                             updateCamera(arcball_state)
                         }
                     default:
+                        // pass through events to the rest of the responder chain
                         super.keyDown(with: event)
                     }
                 } else {
+                    // pass through events to the rest of the responder chain
                     super.keyDown(with: event)
                 }
             case .lens_grid:
+                // pass through events to the rest of the responder chain
                 super.keyDown(with: event)
 
             case .lens_radial:
+                // pass through events to the rest of the responder chain
                 super.keyDown(with: event)
             }
         }
@@ -685,8 +688,10 @@ public struct RadialLensState {
                 arcball_state.radius = arcball_state.radius * (multiplier + 1)
                 updateCamera(arcball_state)
             case .lens_grid:
+                // pass through events to the rest of the responder chain
                 super.magnify(with: event)
             case .lens_radial:
+                // pass through events to the rest of the responder chain
                 super.magnify(with: event)
             }
         }
