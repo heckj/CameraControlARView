@@ -103,7 +103,7 @@ public struct RadialLensState {
     /// - ``MotionMode-swift.enum/firstperson`` moves freely in all axis within the world space, not locked to any location.
     ///
     public var motionMode: MotionMode
-
+    
     // MARK: - ARCBALL mode variables
 
     public var arcball_state: ArcBallState {
@@ -192,7 +192,9 @@ public struct RadialLensState {
 
             // ARCBALL mode
             arcball_state = ArcBallState()
-
+            // LENS mode
+            radial_lens_state = RadialLensState()
+            
             keyspeed = 0.01
             movementSpeed = 0.01
             magnify_start = arcball_state.radius
@@ -241,6 +243,8 @@ public struct RadialLensState {
 
         // ARCBALL mode
         arcball_state = ArcBallState()
+        // LENS mode
+        radial_lens_state = RadialLensState()
 
         keyspeed = 0.01
         movementSpeed = 0.01
@@ -311,29 +315,29 @@ public struct RadialLensState {
     }
 
     @MainActor private func updateCamera(_ state: RadialLensState) {
-        let translationTransform = Transform(scale: .one,
-                                             rotation: simd_quatf(),
-                                             translation: SIMD3<Float>(0, 0, state.radius))
-        let combinedRotationTransform: Transform = .init(
-            pitch: state.inclinationAngle,
-            yaw: state.rotationAngle,
-            roll: 0
-        )
-
-        // ORDER of operations is critical here to getting the correct transform:
-        // - identity -> rotation -> translation
-        let computed_transform = matrix_identity_float4x4 * combinedRotationTransform.matrix * translationTransform.matrix
-
-        // This moves the camera to the right location
-        cameraAnchor.transform = Transform(matrix: computed_transform)
-        // This spins the camera AT its current location to look at a specific target location
-        cameraAnchor.look(
-            at: state.lensFocalPoint,
-            from: cameraAnchor.transform.translation,
-            relativeTo: nil
-        )
-        // reflect the camera's transform as an observed object
-        macOSCameraTransform = cameraAnchor.transform
+//        let translationTransform = Transform(scale: .one,
+//                                             rotation: simd_quatf(),
+//                                             translation: SIMD3<Float>(0, 0, state.radius))
+//        let combinedRotationTransform: Transform = .init(
+//            pitch: state.inclinationAngle,
+//            yaw: state.rotationAngle,
+//            roll: 0
+//        )
+//
+//        // ORDER of operations is critical here to getting the correct transform:
+//        // - identity -> rotation -> translation
+//        let computed_transform = matrix_identity_float4x4 * combinedRotationTransform.matrix * translationTransform.matrix
+//
+//        // This moves the camera to the right location
+//        cameraAnchor.transform = Transform(matrix: computed_transform)
+//        // This spins the camera AT its current location to look at a specific target location
+//        cameraAnchor.look(
+//            at: state.lensFocalPoint,
+//            from: cameraAnchor.transform.translation,
+//            relativeTo: nil
+//        )
+//        // reflect the camera's transform as an observed object
+//        macOSCameraTransform = cameraAnchor.transform
     }
 
     func moveStart() {
