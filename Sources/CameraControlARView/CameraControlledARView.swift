@@ -57,22 +57,11 @@ import RealityKit
         }
     }
 
-    public var radial_lens_state: RadialLensState {
+    public var birdseye_state: GridLensState {
         didSet {
             switch motionMode {
-            case .lens_radial:
-                updateCamera(radial_lens_state)
-            default:
-                break
-            }
-        }
-    }
-
-    public var grid_lens_state: GridLensState {
-        didSet {
-            switch motionMode {
-            case .lens_radial:
-                updateCamera(grid_lens_state)
+            case .birdseye:
+                updateCamera(birdseye_state)
             default:
                 break
             }
@@ -142,8 +131,7 @@ import RealityKit
             // ARCBALL mode
             arcball_state = ArcBallState()
             // LENS mode
-            radial_lens_state = RadialLensState()
-            grid_lens_state = GridLensState()
+            birdseye_state = GridLensState()
 
             keyspeed = 0.01
             movementSpeed = 0.01
@@ -194,8 +182,7 @@ import RealityKit
         // ARCBALL mode
         arcball_state = ArcBallState()
         // LENS mode
-        radial_lens_state = RadialLensState()
-        grid_lens_state = GridLensState()
+        birdseye_state = GridLensState()
 
         keyspeed = 0.01
         movementSpeed = 0.01
@@ -227,10 +214,8 @@ import RealityKit
             updateCamera(arcball_state)
         case .arcball:
             updateCamera(arcball_state)
-        case .lens_radial:
-            updateCamera(radial_lens_state)
-        case .lens_grid:
-            updateCamera(grid_lens_state)
+        case .birdseye:
+            updateCamera(birdseye_state)
         case .firstperson:
             break
         }
@@ -258,10 +243,8 @@ import RealityKit
             updateCamera(arcball_state)
         case .arcball:
             updateCamera(arcball_state)
-        case .lens_radial:
-            updateCamera(radial_lens_state)
-        case .lens_grid:
-            updateCamera(grid_lens_state)
+        case .birdseye:
+            updateCamera(birdseye_state)
         case .firstperson:
             break
         }
@@ -351,9 +334,7 @@ import RealityKit
         case .arcball_direct:
             arcball_state.movestart_rotation = arcball_state.rotationAngle
             arcball_state.movestart_inclination = arcball_state.inclinationAngle
-        case .lens_grid:
-            break
-        case .lens_radial:
+        case .birdseye:
             break
         }
     }
@@ -383,16 +364,11 @@ import RealityKit
             arcball_state.rotationAngle -= deltaX * movementSpeed
             arcball_state.inclinationAngle += deltaY * movementSpeed
             updateCamera(arcball_state)
-        case .lens_radial:
-            radial_lens_state.rotation += deltaX * movementSpeed
-            radial_lens_state.radius += deltaY * movementSpeed
-            print("radial: rotation \(radial_lens_state.rotation) rad, radius: \(radial_lens_state.radius) m")
-            updateCamera(radial_lens_state)
-        case .lens_grid:
-            grid_lens_state.x += deltaX * movementSpeed
-            grid_lens_state.z += deltaY * movementSpeed
-            print("grid: x \(grid_lens_state.x) rad, z: \(grid_lens_state.z) m")
-            updateCamera(grid_lens_state)
+        case .birdseye:
+            birdseye_state.x += deltaX * movementSpeed
+            birdseye_state.z += deltaY * movementSpeed
+            print("grid: x \(birdseye_state.x) rad, z: \(birdseye_state.z) m")
+            updateCamera(birdseye_state)
         }
     }
 
@@ -422,10 +398,7 @@ import RealityKit
             case .arcball:
                 // pass through events to the rest of the responder chain
                 super.mouseDown(with: event)
-            case .lens_grid:
-                // pass through events to the rest of the responder chain
-                super.mouseDown(with: event)
-            case .lens_radial:
+            case .birdseye:
                 // pass through events to the rest of the responder chain
                 super.mouseDown(with: event)
             case .firstperson:
@@ -444,10 +417,7 @@ import RealityKit
             case .arcball:
                 // pass through events to the rest of the responder chain
                 super.mouseDragged(with: event)
-            case .lens_grid:
-                // pass through events to the rest of the responder chain
-                super.mouseDragged(with: event)
-            case .lens_radial:
+            case .birdseye:
                 // pass through events to the rest of the responder chain
                 super.mouseDragged(with: event)
             case .firstperson:
@@ -682,11 +652,7 @@ import RealityKit
                     // pass through events to the rest of the responder chain
                     super.keyDown(with: event)
                 }
-            case .lens_grid:
-                // pass through events to the rest of the responder chain
-                super.keyDown(with: event)
-
-            case .lens_radial:
+            case .birdseye:
                 // pass through events to the rest of the responder chain
                 super.keyDown(with: event)
             }
@@ -708,10 +674,7 @@ import RealityKit
                 let multiplier = Float(event.magnification) // magnify_end
                 arcball_state.radius = arcball_state.radius * (multiplier + 1)
                 updateCamera(arcball_state)
-            case .lens_grid:
-                // pass through events to the rest of the responder chain
-                super.magnify(with: event)
-            case .lens_radial:
+            case .birdseye:
                 // pass through events to the rest of the responder chain
                 super.magnify(with: event)
             }

@@ -31,18 +31,11 @@ public enum MotionMode {
     /// A constrained motion above a RealityKit scene, looking down.
     ///
     /// Two-finger gestures (scroll inputs):
-    /// - The view converts vertical scroll into a distance moving from the center to the edge of the scene.
-    /// - The view converts horizontal scroll into a rotational angle, orbiting around the center of the scene.
-    /// - A magnify gesture changes the height over the scene.
-    case lens_radial(keys: Bool)
-
-    /// A constrained motion above a RealityKit scene, looking down.
-    ///
-    /// Two-finger gestures (scroll inputs):
     /// - The view converts vertical scroll into a distance moving from the front to the rear of the scene.
     /// - The view converts horizontal scroll into a distance moving from the left to the right of the scene.
+    /// - The view converts rotation gestures into a rotation around the center of the view.
     /// - A magnify gesture changes the height over the scene.
-    case lens_grid(keys: Bool)
+    case birdseye(keys: Bool)
 
     /// Free motion within the AR scene, not locked to a location.
     ///
