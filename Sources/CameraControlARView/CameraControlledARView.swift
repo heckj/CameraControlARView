@@ -57,7 +57,7 @@ import RealityKit
         }
     }
 
-    public var birdseye_state: GridLensState {
+    public var birdseye_state: BirdsEyeState {
         didSet {
             switch motionMode {
             case .birdseye:
@@ -182,7 +182,7 @@ import RealityKit
         // ARCBALL mode
         arcball_state = ArcBallState()
         // LENS mode
-        birdseye_state = GridLensState()
+        birdseye_state = BirdsEyeState()
 
         keyspeed = 0.01
         movementSpeed = 0.01
@@ -245,6 +245,12 @@ import RealityKit
             updateCamera(arcball_state)
         case .birdseye:
             updateCamera(birdseye_state)
+            // One time look at the target? Happens after context is set
+            cameraAnchor.look(
+                at: birdseye_state.lensFocalPoint,
+                from: cameraAnchor.transform.translation,
+                relativeTo: nil
+            )
         case .firstperson:
             break
         }
@@ -276,50 +282,25 @@ import RealityKit
         macOSCameraTransform = cameraAnchor.transform
     }
 
-    @MainActor private func updateCamera(_ state: RadialLensState) {
-        let x: Float = state.radius * cos(state.rotation)
-        let z: Float = state.radius * sin(state.rotation)
-
+    @MainActor private func updateCamera(_ state: BirdsEyeState) {
+        let x: Float = state.xAxis
+        let z: Float = state.zAxis
         let y = state.target.y + state.height
-//        let y: Float = sqrt(
-//            pow(state.radius, 2)
-//            - pow(x - state.lensFocalPoint.x, 2)
-//            - pow(z - state.lensFocalPoint.z, 2)
-//        ) + state.lensFocalPoint.y
-
-        let translationTransform = Transform(scale: .one, rotation: simd_quatf(), translation: SIMD3(x, y, z))
-
-        // This moves the camera to the right location
-        cameraAnchor.transform = translationTransform
-        // This spins the camera AT its current location to look at a specific target location
-        cameraAnchor.look(
-            at: state.lensFocalPoint,
-            from: cameraAnchor.transform.translation,
-            relativeTo: nil
-        )
-        // reflect the camera's transform as an observed object
-        macOSCameraTransform = cameraAnchor.transform
-    }
-
-    @MainActor private func updateCamera(_ state: GridLensState) {
-        let x: Float = state.x
-        let z: Float = state.z
-        let y = state.target.y + state.height
-//        let y: Float = sqrt(
-//            pow(state.height + state.depth, 2) -
-//                pow(x - state.lensFocalPoint.x, 2) -
-//                pow(z - state.lensFocalPoint.z, 2)
-//        ) + state.lensFocalPoint.y
 
         // This moves the camera to the right location
         cameraAnchor.position = SIMD3(x, y, z)
 
-        // This spins the camera AT its current location to look at a specific target location
-        cameraAnchor.look(
-            at: state.lensFocalPoint,
-            from: cameraAnchor.transform.translation,
-            relativeTo: nil
-        )
+
+        // LOOK is spinning the camera in weird angles when looking nearly "straight down",
+        // making the apparent motion really crazy. Need to work out another way to handle
+        // camera targetting.
+        
+//        // This spins the camera AT its current location to look at a specific target location
+//        cameraAnchor.look(
+//            at: state.lensFocalPoint,
+//            from: cameraAnchor.transform.translation,
+//            relativeTo: nil
+//        )
         // reflect the camera's transform as an observed object
         macOSCameraTransform = cameraAnchor.transform
     }
@@ -365,9 +346,9 @@ import RealityKit
             arcball_state.inclinationAngle += deltaY * movementSpeed
             updateCamera(arcball_state)
         case .birdseye:
-            birdseye_state.x += deltaX * movementSpeed
-            birdseye_state.z += deltaY * movementSpeed
-            print("grid: x \(birdseye_state.x) rad, z: \(birdseye_state.z) m")
+            birdseye_state.xAxis += deltaX * movementSpeed
+            birdseye_state.zAxis += deltaY * movementSpeed
+            print("grid: x \(birdseye_state.xAxis) rad, z: \(birdseye_state.zAxis) m")
             updateCamera(birdseye_state)
         }
     }
@@ -464,10 +445,22 @@ import RealityKit
         override public dynamic func rotate(with event: NSEvent) {
             // Two fingers moving in opposite semicircles is a gesture meaning rotate.
             print("rotate EVENT: \(event)")
+            if event.phase == .began {
+                birdseye_state.radiusStart = birdseye_state.radius
+                birdseye_state.rotationStart = birdseye_state.rotation
+            } else {
+//                let currentRotation = birdseye_state.rotationStart + event.rotation
+                // NOTE: rotation events are meant to be accumulated and summed to get a final rotation.
+                birdseye_state.rotationStart += event.rotation
+                birdseye_state.xAxis = birdseye_state.radiusStart * cos(birdseye_state.rotationStart)
+                birdseye_state.zAxis = birdseye_state.radiusStart * sin(birdseye_state.rotationStart)
+                updateCamera(birdseye_state)
+            }
+            
             // rotate EVENT: NSEvent: type=Rotate loc=(784.109,128.215) time=198608.2 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deviceID:0x200000000000027 rotation=-0.549038 phase:Changed
             // rotate EVENT: NSEvent: type=Rotate loc=(784.109,128.215) time=198608.2 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deviceID:0x200000000000027 rotation=-0.772850 phase:Ended
 
-            // pass through events to the rest of the responder chain
+            // pass through events to the rest of the responder chain ?
             super.rotate(with: event)
         }
 

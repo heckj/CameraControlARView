@@ -1,36 +1,58 @@
 import simd
 
-public struct RadialLensState {
+public struct BirdsEyeState {
     static let defaultHeightConstraint: ClosedRange<Float> = 0.001 ... Float.infinity
     static let defaultDepthConstraint: ClosedRange<Float> = 0.001 ... Float.infinity
+    
+    static let defaultXAxisConstraint: ClosedRange<Float> = -Float.infinity ... Float.infinity
+    static let defaultZAxisConstraint: ClosedRange<Float> = -Float.infinity ... Float.infinity
+    
     static let defaultRotationConstraint: ClosedRange<Float> = -Float.infinity ... Float.infinity
     static let defaultRadiusConstraint: ClosedRange<Float> = 0.001 ... Float.infinity
 
     public var heightConstraint: ClosedRange<Float>
     public var depthConstraint: ClosedRange<Float>
+    public var xAxisConstraint: ClosedRange<Float>
+    public var zAxisConstraint: ClosedRange<Float>
     public var rotationConstraint: ClosedRange<Float>
     public var radiusConstraint: ClosedRange<Float>
 
+    var rotationStart: Float = 0
+    var radiusStart: Float = 0
+    
     /// The target for the camera when in lens mode.
     public var target: simd_float3
 
-    private var _radius: Float
-    public var radius: Float {
+    private var _xAxis: Float
+    public var xAxis: Float {
         get {
-            return _radius
+            return _xAxis
         }
         set {
-            _radius = newValue.clamped(to: radiusConstraint)
+            _xAxis = newValue.clamped(to: xAxisConstraint)
+        }
+    }
+    
+    private var _zAxis: Float
+    public var zAxis: Float {
+        get {
+            return _zAxis
+        }
+        set {
+            _zAxis = newValue.clamped(to: zAxisConstraint)
         }
     }
 
-    private var _rotation: Float
+    
+    public var radius: Float {
+        get {
+            return sqrt(pow(xAxis,2)+pow(zAxis,2))
+        }
+    }
+
     public var rotation: Float {
         get {
-            return _rotation
-        }
-        set {
-            _rotation = newValue.clamped(to: rotationConstraint)
+            return asin(zAxis/radius)
         }
     }
 
@@ -59,12 +81,14 @@ public struct RadialLensState {
     }
 
     init(target: simd_float3 = simd_float3(0, 0, 0),
-         radius: Float = 2,
          height: Float = 0,
          depth: Float = 2,
-         rotationAngle: Float = 0,
+         x: Float = 0,
+         z: Float = 0,
          heightConstraint: ClosedRange<Float> = Self.defaultHeightConstraint,
          depthConstraint: ClosedRange<Float> = Self.defaultDepthConstraint,
+         xAxisConstraint: ClosedRange<Float> = Self.defaultXAxisConstraint,
+         zAxisConstraint: ClosedRange<Float> = Self.defaultZAxisConstraint,
          rotationConstraint: ClosedRange<Float> = Self.defaultRotationConstraint,
          radiusConstraint: ClosedRange<Float> = Self.defaultRadiusConstraint)
     {
@@ -72,9 +96,11 @@ public struct RadialLensState {
         self.depthConstraint = depthConstraint
         self.rotationConstraint = rotationConstraint
         self.radiusConstraint = radiusConstraint
-
-        _radius = radius.clamped(to: radiusConstraint)
-        _rotation = rotationAngle.clamped(to: rotationConstraint)
+        self.xAxisConstraint = xAxisConstraint
+        self.zAxisConstraint = zAxisConstraint
+        
+        _xAxis = x.clamped(to: xAxisConstraint)
+        _zAxis = z.clamped(to: zAxisConstraint)
         _height = height.clamped(to: heightConstraint)
         _depth = depth.clamped(to: depthConstraint)
 
