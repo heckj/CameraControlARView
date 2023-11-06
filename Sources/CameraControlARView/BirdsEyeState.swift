@@ -3,10 +3,10 @@ import simd
 public struct BirdsEyeState {
     static let defaultHeightConstraint: ClosedRange<Float> = 0.001 ... Float.infinity
     static let defaultDepthConstraint: ClosedRange<Float> = 0.001 ... Float.infinity
-    
+
     static let defaultXAxisConstraint: ClosedRange<Float> = -Float.infinity ... Float.infinity
     static let defaultZAxisConstraint: ClosedRange<Float> = -Float.infinity ... Float.infinity
-    
+
     static let defaultRotationConstraint: ClosedRange<Float> = -Float.infinity ... Float.infinity
     static let defaultRadiusConstraint: ClosedRange<Float> = 0.001 ... Float.infinity
 
@@ -19,7 +19,7 @@ public struct BirdsEyeState {
 
     var rotationStart: Float = 0
     var radiusStart: Float = 0
-    
+
     /// The target for the camera when in lens mode.
     public var target: simd_float3
 
@@ -32,7 +32,7 @@ public struct BirdsEyeState {
             _xAxis = newValue.clamped(to: xAxisConstraint)
         }
     }
-    
+
     private var _zAxis: Float
     public var zAxis: Float {
         get {
@@ -43,17 +43,12 @@ public struct BirdsEyeState {
         }
     }
 
-    
     public var radius: Float {
-        get {
-            return sqrt(pow(xAxis,2)+pow(zAxis,2))
-        }
+        return sqrt(pow(xAxis, 2) + pow(zAxis, 2))
     }
 
     public var rotation: Float {
-        get {
-            return asin(zAxis/radius)
-        }
+        return asin(zAxis / radius)
     }
 
     private var _height: Float
@@ -98,7 +93,7 @@ public struct BirdsEyeState {
         self.radiusConstraint = radiusConstraint
         self.xAxisConstraint = xAxisConstraint
         self.zAxisConstraint = zAxisConstraint
-        
+
         _xAxis = x.clamped(to: xAxisConstraint)
         _zAxis = z.clamped(to: zAxisConstraint)
         _height = height.clamped(to: heightConstraint)

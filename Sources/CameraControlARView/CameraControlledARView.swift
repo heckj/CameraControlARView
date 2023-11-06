@@ -290,11 +290,10 @@ import RealityKit
         // This moves the camera to the right location
         cameraAnchor.position = SIMD3(x, y, z)
 
-
         // LOOK is spinning the camera in weird angles when looking nearly "straight down",
         // making the apparent motion really crazy. Need to work out another way to handle
         // camera targetting.
-        
+
 //        // This spins the camera AT its current location to look at a specific target location
 //        cameraAnchor.look(
 //            at: state.lensFocalPoint,
@@ -456,7 +455,10 @@ import RealityKit
                 birdseye_state.zAxis = birdseye_state.radiusStart * sin(birdseye_state.rotationStart)
                 updateCamera(birdseye_state)
             }
-            
+
+            // HECKJ: this is rotating around the center of the scene, when I think what we want
+            // is just rotating the camera at it's current position, around the Y axis...
+
             // rotate EVENT: NSEvent: type=Rotate loc=(784.109,128.215) time=198608.2 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deviceID:0x200000000000027 rotation=-0.549038 phase:Changed
             // rotate EVENT: NSEvent: type=Rotate loc=(784.109,128.215) time=198608.2 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deviceID:0x200000000000027 rotation=-0.772850 phase:Ended
 
