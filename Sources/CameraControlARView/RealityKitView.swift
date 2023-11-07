@@ -42,7 +42,7 @@ public struct RealityKitView: View {
         }
 
         /// Applies the set of view debugging options that you provide to the RealityKit view.
-        /// - Parameter options: <#options description#>
+        /// - Parameter options: The debugging option set for an ARView to apply.
         @MainActor public func applyDebugOptions(_ options: ARView.DebugOptions) {
             arView.debugOptions = options
         }

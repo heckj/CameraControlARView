@@ -1,5 +1,6 @@
 import simd
 
+/// The representation of camera position and orientation when you hover over a 3D scene.
 public struct BirdsEyeState {
     static let defaultHeightConstraint: ClosedRange<Float> = 0.001 ... Float.infinity
     static let defaultDepthConstraint: ClosedRange<Float> = 0.001 ... Float.infinity

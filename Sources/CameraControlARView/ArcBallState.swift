@@ -1,5 +1,6 @@
 import simd
 
+/// The representation of camera position and orientation when you orbit a position within a 3D scene.
 public struct ArcBallState {
     static let defaultInclinationConstraint: ClosedRange<Float> = (-Float.pi / 2) ... (Float.pi / 2)
     static let defaultRotationConstraint: ClosedRange<Float> = (-Float.pi * 2) ... (Float.pi * 2)
