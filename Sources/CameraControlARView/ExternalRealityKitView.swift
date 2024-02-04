@@ -9,7 +9,6 @@
 import Combine
 import RealityKit
 import SwiftUI
-import XCTest
 
 /// A SwiftUI RealityKit view that uses a instance of CameraControlledARView that you provide.
 ///
