@@ -31,7 +31,7 @@ enum Global {
 /// ```
 public struct RealityKitView: View {
     /// The context for the RealityKit view.
-    public struct Context {
+    @MainActor public struct Context {
         /// A reference to an ARView subclass that you can configure.
         public var arView: CameraControlledARView
         
@@ -41,7 +41,7 @@ public struct RealityKitView: View {
         }
         
         /// Applies the set of view debugging options that you provide to the RealityKit view.
-        /// - Parameter options: <#options description#>
+        /// - Parameter options: The ARView debug options for the view.
         public func applyDebugOptions(_ options: ARView.DebugOptions) {
             self.arView.debugOptions = options
         }
