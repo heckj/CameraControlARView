@@ -242,20 +242,20 @@ import RealityKit
     // MARK: - Camera positioning and orientation
 
     @MainActor public func updateViewFromState() {
-        logger.trace("motion mode: \(self.motionMode.description)")
+        logger.trace("motion mode: \(motionMode.description)")
         switch motionMode {
         case .arcball_direct:
             updateCamera(arcball_state)
-            logger.trace("inc: \(self.arcball_state.inclinationAngle)")
-            logger.trace("rot: \(self.arcball_state.rotationAngle)")
-            logger.trace("radius: \(self.arcball_state.radius)")
-            logger.trace("target: \(self.arcball_state.arcballTarget)")
+            logger.trace("inc: \(arcball_state.inclinationAngle)")
+            logger.trace("rot: \(arcball_state.rotationAngle)")
+            logger.trace("radius: \(arcball_state.radius)")
+            logger.trace("target: \(arcball_state.arcballTarget)")
         case .arcball:
             updateCamera(arcball_state)
-            logger.trace("inc: \(self.arcball_state.inclinationAngle)")
-            logger.trace("rot: \(self.arcball_state.rotationAngle)")
-            logger.trace("radius: \(self.arcball_state.radius)")
-            logger.trace("target: \(self.arcball_state.arcballTarget)")
+            logger.trace("inc: \(arcball_state.inclinationAngle)")
+            logger.trace("rot: \(arcball_state.rotationAngle)")
+            logger.trace("radius: \(arcball_state.radius)")
+            logger.trace("target: \(arcball_state.arcballTarget)")
         case .birdseye:
             updateCamera(birdseye_state)
             // One time look at the target? Happens after context is set
@@ -270,37 +270,9 @@ import RealityKit
     }
 
     @MainActor private func updateCamera(_ state: ArcBallState) {
-        let translationTransform = Transform(scale: .one,
-                                             rotation: simd_quatf(),
-                                             translation: SIMD3<Float>(0, 0, state.radius))
-        let combinedRotationTransform: Transform = .init(
-            pitch: state.inclinationAngle,
-            yaw: state.rotationAngle,
-            roll: 0
-        )
-
-        // ORDER of operations is critical here to getting the correct transform:
-        // - identity -> rotation -> translation
-        let computed_transform = matrix_identity_float4x4 * combinedRotationTransform.matrix * translationTransform.matrix
-
-        // This moves the camera to the right location
-        cameraAnchor.transform = Transform(matrix: computed_transform)
-        let position = cameraAnchor.position
-        // This spins the camera AT its current location to look at a specific target location
-
-        // BUG: this doesn't appear to actually be calculating the correct rotation to look at the
-        // specified target. Instead, the method appears to be set up to billboard the relevant target towards
-        // the location provided, which isn't getting to the end result that we want here.
-        cameraAnchor.look(
-            at: SIMD3<Float>(0, 0, 0),
-            // at: state.arcballTarget,
-            from: position,
-            relativeTo: nil
-        )
+        cameraAnchor.transform = state.cameraTransform()
         // reflect the camera's transform as an observed object
         macOSCameraTransform = cameraAnchor.transform
-        logger.trace("camera position: \(self.cameraAnchor.position)")
-        logger.trace("camera transform: \(self.cameraAnchor.transform.matrix.debugDescription)")
     }
 
     @MainActor private func updateCamera(_ state: BirdsEyeState) {
@@ -323,8 +295,8 @@ import RealityKit
         )
         // reflect the camera's transform as an observed object
         macOSCameraTransform = cameraAnchor.transform
-        logger.trace("camera position: \(self.cameraAnchor.position)")
-        logger.trace("camera transform: \(self.cameraAnchor.transform.matrix.debugDescription)")
+        logger.trace("camera position: \(cameraAnchor.position)")
+        logger.trace("camera transform: \(cameraAnchor.transform.matrix.debugDescription)")
     }
 
     func moveStart() {

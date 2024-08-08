@@ -1,3 +1,6 @@
+import RealityKit
+import Spatial
+
 /// The representation of camera position and orientation when you orbit a position within a 3D scene.
 public struct ArcBallState: Sendable {
     public static let defaultInclinationConstraint: ClosedRange<Float> = (-Float.pi / 2) ... (Float.pi / 2)
@@ -63,5 +66,30 @@ public struct ArcBallState: Sendable {
         _rotation = rotationAngle.clamped(to: rotationConstraint)
 
         self.arcballTarget = arcballTarget
+    }
+
+    public func cameraTransform() -> Transform {
+        let translationTransform = Transform(scale: .one,
+                                             rotation: simd_quatf(),
+                                             translation: SIMD3<Float>(0, 0, radius))
+        let rotate_to_move: Transform = .init(
+            pitch: inclinationAngle,
+            yaw: rotationAngle,
+            roll: 0
+        )
+
+        // ORDER of operations is critical here to getting the correct transform:
+        // - identity -> rotation -> translation
+        let computed_transform = matrix_identity_float4x4 * rotate_to_move.matrix * translationTransform.matrix
+        // We only care about the position for the camera
+        let position: SIMD3<Float> = Transform(matrix: computed_transform).translation
+
+        // For the rest, we look at the target position - using the Spatial library, but it's annoyingly
+        // set to ONLY return double formats, so we screw with it to fit...
+        let lookRotation = Rotation3D(position: Point3D(position), target: Point3D(arcballTarget))
+        let bigQuat = lookRotation.quaternion
+        let smallQuat = simd_quatf(ix: Float(bigQuat.imag.x), iy: Float(bigQuat.imag.y), iz: Float(bigQuat.imag.z), r: Float(bigQuat.real))
+
+        return Transform(scale: .one, rotation: smallQuat, translation: position)
     }
 }
