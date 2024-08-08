@@ -242,20 +242,20 @@ import RealityKit
     // MARK: - Camera positioning and orientation
 
     @MainActor public func updateViewFromState() {
-        logger.trace("motion mode: \(motionMode.description)")
+        logger.trace("motion mode: \(self.motionMode.description)")
         switch motionMode {
         case .arcball_direct:
             updateCamera(arcball_state)
-            logger.trace("inc: \(arcball_state.inclinationAngle)")
-            logger.trace("rot: \(arcball_state.rotationAngle)")
-            logger.trace("radius: \(arcball_state.radius)")
-            logger.trace("target: \(arcball_state.arcballTarget)")
+            logger.trace("inc: \(self.arcball_state.inclinationAngle)")
+            logger.trace("rot: \(self.arcball_state.rotationAngle)")
+            logger.trace("radius: \(self.arcball_state.radius)")
+            logger.trace("target: \(self.arcball_state.arcballTarget)")
         case .arcball:
             updateCamera(arcball_state)
-            logger.trace("inc: \(arcball_state.inclinationAngle)")
-            logger.trace("rot: \(arcball_state.rotationAngle)")
-            logger.trace("radius: \(arcball_state.radius)")
-            logger.trace("target: \(arcball_state.arcballTarget)")
+            logger.trace("inc: \(self.arcball_state.inclinationAngle)")
+            logger.trace("rot: \(self.arcball_state.rotationAngle)")
+            logger.trace("radius: \(self.arcball_state.radius)")
+            logger.trace("target: \(self.arcball_state.arcballTarget)")
         case .birdseye:
             updateCamera(birdseye_state)
             // One time look at the target? Happens after context is set
@@ -299,8 +299,8 @@ import RealityKit
         )
         // reflect the camera's transform as an observed object
         macOSCameraTransform = cameraAnchor.transform
-        logger.trace("camera position: \(cameraAnchor.position)")
-        logger.trace("camera transform: \(cameraAnchor.transform.matrix.debugDescription)")
+        logger.trace("camera position: \(self.cameraAnchor.position)")
+        logger.trace("camera transform: \(self.cameraAnchor.transform.matrix.debugDescription)")
     }
 
     @MainActor private func updateCamera(_ state: BirdsEyeState) {
@@ -323,8 +323,8 @@ import RealityKit
         )
         // reflect the camera's transform as an observed object
         macOSCameraTransform = cameraAnchor.transform
-        logger.trace("camera position: \(cameraAnchor.position)")
-        logger.trace("camera transform: \(cameraAnchor.transform.matrix.debugDescription)")
+        logger.trace("camera position: \(self.cameraAnchor.position)")
+        logger.trace("camera transform: \(self.cameraAnchor.transform.matrix.debugDescription)")
     }
 
     func moveStart() {
