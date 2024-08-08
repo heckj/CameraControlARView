@@ -14,6 +14,7 @@
 #endif
 import CoreGraphics
 import Foundation
+import OSLog
 import RealityKit
 
 /// A 3D View for SwiftUI using RealityKit that provides movement controls for the camera within the view.
@@ -33,6 +34,7 @@ import RealityKit
 /// When used on iOS, a pinch gesture is automatically registered for interaction.
 ///
 /// Additional properties control the target location, the camera's location, or the speed of movement within the environment.
+@available(macOS 11.0, *)
 @objc public final class CameraControlledARView: ARView, ObservableObject {
     /// The mode in which the camera is controlled by keypresses and/or mouse and gesture movements.
     ///
@@ -41,6 +43,8 @@ import RealityKit
     /// - ``MotionMode-swift.enum/firstperson`` moves freely in all axis within the world space, not locked to any location.
     ///
     public var motionMode: MotionMode
+
+    private let logger = Logger(subsystem: "CameraControlledARView", category: "cameraState")
 
     // MARK: - ARCBALL mode variables
 
@@ -238,11 +242,20 @@ import RealityKit
     // MARK: - Camera positioning and orientation
 
     @MainActor public func updateViewFromState() {
+        logger.trace("motion mode: \(motionMode.description)")
         switch motionMode {
         case .arcball_direct:
             updateCamera(arcball_state)
+            logger.trace("inc: \(arcball_state.inclinationAngle)")
+            logger.trace("rot: \(arcball_state.rotationAngle)")
+            logger.trace("radius: \(arcball_state.radius)")
+            logger.trace("target: \(arcball_state.arcballTarget)")
         case .arcball:
             updateCamera(arcball_state)
+            logger.trace("inc: \(arcball_state.inclinationAngle)")
+            logger.trace("rot: \(arcball_state.rotationAngle)")
+            logger.trace("radius: \(arcball_state.radius)")
+            logger.trace("target: \(arcball_state.arcballTarget)")
         case .birdseye:
             updateCamera(birdseye_state)
             // One time look at the target? Happens after context is set
@@ -272,14 +285,22 @@ import RealityKit
 
         // This moves the camera to the right location
         cameraAnchor.transform = Transform(matrix: computed_transform)
+        let position = cameraAnchor.position
         // This spins the camera AT its current location to look at a specific target location
+
+        // BUG: this doesn't appear to actually be calculating the correct rotation to look at the
+        // specified target. Instead, the method appears to be set up to billboard the relevant target towards
+        // the location provided, which isn't getting to the end result that we want here.
         cameraAnchor.look(
-            at: state.arcballTarget,
-            from: cameraAnchor.transform.translation,
+            at: SIMD3<Float>(0, 0, 0),
+            // at: state.arcballTarget,
+            from: position,
             relativeTo: nil
         )
         // reflect the camera's transform as an observed object
         macOSCameraTransform = cameraAnchor.transform
+        logger.trace("camera position: \(cameraAnchor.position)")
+        logger.trace("camera transform: \(cameraAnchor.transform.matrix.debugDescription)")
     }
 
     @MainActor private func updateCamera(_ state: BirdsEyeState) {
@@ -302,6 +323,8 @@ import RealityKit
         )
         // reflect the camera's transform as an observed object
         macOSCameraTransform = cameraAnchor.transform
+        logger.trace("camera position: \(cameraAnchor.position)")
+        logger.trace("camera transform: \(cameraAnchor.transform.matrix.debugDescription)")
     }
 
     func moveStart() {

@@ -57,6 +57,17 @@ public enum MotionMode {
     case firstperson
 }
 
+extension MotionMode: CustomStringConvertible {
+    public var description: String {
+        switch self {
+        case .arcball: "ArcBall"
+        case .arcball_direct: "ArcBall Direct"
+        case .birdseye: "BirdsEye"
+        case .firstperson: "First Person"
+        }
+    }
+}
+
 // arcball:
 //
 // At its heart, arcball is all about looking at a singular location (or object). It needs to have a
