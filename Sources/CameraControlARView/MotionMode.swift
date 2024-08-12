@@ -1,6 +1,6 @@
 /// A type that indicates the control mode used to adjust the perspective camera within an ARView.
 public enum MotionMode {
-    /// Rotate around a target location, effectively orbiting and keeping the camera trained on it.
+    /// Rotate around a target location with click and drag gestures, effectively orbiting and keeping the camera trained on it.
     ///
     /// Click and Drag motions:
     /// - The view converts vertical drag distance into an inclination above, or below, the target location, clamped to directly above and below it.
@@ -14,7 +14,7 @@ public enum MotionMode {
     /// - The down-arrow and `s` keys rotate the camera downward around the location, clamped to a minimum of directly below the location.
     case arcball_direct(keys: Bool)
 
-    /// Rotate around a target location, effectively orbiting and keeping the camera trained on it.
+    /// Rotate around a target location with scrolling gestures, effectively orbiting and keeping the camera trained on it.
     ///
     /// Two-finger gestures (scroll inputs):
     /// - The view converts vertical scroll into an inclination above, or below, the target location, clamped to directly above and below it.

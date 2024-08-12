@@ -26,10 +26,11 @@ import RealityKit
 /// options through the `debugOptions` property.
 ///
 /// Set the ``CameraControlledARView/motionMode-swift.property`` to define the motion controls.
-/// - ``MotionMode-swift.enum/arcball`` for rotating around a specific point.
+/// - ``MotionMode-swift.enum/arcball_direct(keys:)`` for rotating around a specific point with point and click gestures.
+/// - ``MotionMode-swift.enum/arcball(keys:)`` for rotating around a specific point with scrolling gestures.
 /// - ``MotionMode-swift.enum/firstperson`` for moving freely within the environment.
 ///
-/// The default motion mode is ``MotionMode-swift.enum/arcball``.
+/// The default motion mode is ``MotionMode-swift.enum/arcball_direct(keys:)``.
 ///
 /// When used on iOS, a pinch gesture is automatically registered for interaction.
 ///
@@ -38,9 +39,10 @@ import RealityKit
 @objc public final class CameraControlledARView: ARView, ObservableObject {
     /// The mode in which the camera is controlled by keypresses and/or mouse and gesture movements.
     ///
-    /// The default option is ``MotionMode-swift.enum/arcball``:
-    /// - ``MotionMode-swift.enum/arcball`` rotates around a specific target location, effectively orbiting and keeping the camera trained on that location.
-    /// - ``MotionMode-swift.enum/firstperson`` moves freely in all axis within the world space, not locked to any location.
+    /// The default option is ``MotionMode-swift.enum/arcball(keys:)``:
+    /// - ``MotionMode-swift.enum/arcball_direct(keys:)`` for rotating around a specific point with point and click gestures.
+    /// - ``MotionMode-swift.enum/arcball(keys:)`` for rotating around a specific point with scrolling gestures.
+    /// - ``MotionMode-swift.enum/firstperson`` for moving freely within the environment.
     ///
     public var motionMode: MotionMode
 
@@ -241,29 +243,15 @@ import RealityKit
 
     // MARK: - Camera positioning and orientation
 
-    @MainActor public func updateViewFromState() {
+    @MainActor func updateViewFromState() {
         logger.trace("motion mode: \(motionMode.description)")
         switch motionMode {
         case .arcball_direct:
             updateCamera(arcball_state)
-            logger.trace("inc: \(arcball_state.inclinationAngle)")
-            logger.trace("rot: \(arcball_state.rotationAngle)")
-            logger.trace("radius: \(arcball_state.radius)")
-            logger.trace("target: \(arcball_state.arcballTarget)")
         case .arcball:
             updateCamera(arcball_state)
-            logger.trace("inc: \(arcball_state.inclinationAngle)")
-            logger.trace("rot: \(arcball_state.rotationAngle)")
-            logger.trace("radius: \(arcball_state.radius)")
-            logger.trace("target: \(arcball_state.arcballTarget)")
         case .birdseye:
             updateCamera(birdseye_state)
-            // One time look at the target? Happens after context is set
-            cameraAnchor.look(
-                at: birdseye_state.lensFocalPoint,
-                from: cameraAnchor.transform.translation,
-                relativeTo: nil
-            )
         case .firstperson:
             break
         }
@@ -276,27 +264,9 @@ import RealityKit
     }
 
     @MainActor private func updateCamera(_ state: BirdsEyeState) {
-        let x: Float = state.xAxis
-        let z: Float = state.zAxis
-        let y = state.target.y + state.height
-
-        // This moves the camera to the right location
-        cameraAnchor.position = SIMD3(x, y, z)
-
-        // LOOK is spinning the camera in weird angles when looking nearly "straight down",
-        // making the apparent motion really crazy. Need to work out another way to handle
-        // camera targeting.
-
-        // This spins the camera AT its current location to look at a specific target location
-        cameraAnchor.look(
-            at: state.lensFocalPoint,
-            from: cameraAnchor.transform.translation,
-            relativeTo: nil
-        )
+        cameraAnchor.transform = state.cameraTransform()
         // reflect the camera's transform as an observed object
         macOSCameraTransform = cameraAnchor.transform
-        logger.trace("camera position: \(cameraAnchor.position)")
-        logger.trace("camera transform: \(cameraAnchor.transform.matrix.debugDescription)")
     }
 
     func moveStart() {

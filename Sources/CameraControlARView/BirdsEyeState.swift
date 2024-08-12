@@ -1,4 +1,6 @@
+import RealityKit
 import simd
+import Spatial
 
 /// The representation of camera position and orientation when you hover over a 3D scene.
 public struct BirdsEyeState {
@@ -101,5 +103,20 @@ public struct BirdsEyeState {
         _depth = depth.clamped(to: depthConstraint)
 
         self.target = target
+    }
+
+    public func cameraTransform() -> Transform {
+        let x: Float = xAxis
+        let z: Float = zAxis
+        let y = target.y + height
+
+        let position = Transform(scale: .one,
+                                 rotation: simd_quatf(),
+                                 translation: SIMD3(x, y, z)).translation
+
+        // For the rest, we look at the target position - using the Spatial library, but it's annoyingly
+        // set to ONLY return double formats, so we screw with it to fit...
+        let lookRotation = Rotation3D(position: Point3D(position), target: Point3D(lensFocalPoint))
+        return Transform(scale: .one, rotation: lookRotation.quaternion.downsize(), translation: position)
     }
 }

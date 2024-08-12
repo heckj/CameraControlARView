@@ -1,4 +1,5 @@
 import RealityKit
+import simd
 import Spatial
 
 /// The representation of camera position and orientation when you orbit a position within a 3D scene.
@@ -87,9 +88,6 @@ public struct ArcBallState: Sendable {
         // For the rest, we look at the target position - using the Spatial library, but it's annoyingly
         // set to ONLY return double formats, so we screw with it to fit...
         let lookRotation = Rotation3D(position: Point3D(position), target: Point3D(arcballTarget))
-        let bigQuat = lookRotation.quaternion
-        let smallQuat = simd_quatf(ix: Float(bigQuat.imag.x), iy: Float(bigQuat.imag.y), iz: Float(bigQuat.imag.z), r: Float(bigQuat.real))
-
-        return Transform(scale: .one, rotation: smallQuat, translation: position)
+        return Transform(scale: .one, rotation: lookRotation.quaternion.downsize(), translation: position)
     }
 }
