@@ -244,7 +244,7 @@ import RealityKit
     // MARK: - Camera positioning and orientation
 
     @MainActor func updateViewFromState() {
-        logger.trace("motion mode: \(self.motionMode.description)")
+        logger.trace("motion mode: \(motionMode.description)")
         switch motionMode {
         case .arcball_direct:
             updateCamera(arcball_state)

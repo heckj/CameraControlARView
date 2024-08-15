@@ -21,7 +21,7 @@ public struct ArcBallState: Sendable {
     /// The camera's orbital distance from the target when in arcball mode.
     public var radius: Float {
         get {
-            return _radius
+            _radius
         }
         set {
             _radius = newValue.clamped(to: rangeConstraint)
@@ -32,7 +32,7 @@ public struct ArcBallState: Sendable {
     /// The angle of inclination of the camera when in arcball mode.
     public var inclinationAngle: Float {
         get {
-            return _inclination
+            _inclination
         }
         set {
             _inclination = newValue.clamped(to: inclinationConstraint)
@@ -43,7 +43,7 @@ public struct ArcBallState: Sendable {
     /// The angle of rotation of the camera when in arcball mode.
     public var rotationAngle: Float {
         get {
-            return _rotation
+            _rotation
         }
         set {
             _rotation = newValue.clamped(to: rotationConstraint)
@@ -85,9 +85,7 @@ public struct ArcBallState: Sendable {
         // We only care about the position for the camera
         let position: SIMD3<Float> = Transform(matrix: computed_transform).translation
 
-        // For the rest, we look at the target position - using the Spatial library, but it's annoyingly
-        // set to ONLY return double formats, so we screw with it to fit...
         let lookRotation = Rotation3D(position: Point3D(position), target: Point3D(arcballTarget))
-        return Transform(scale: .one, rotation: lookRotation.quaternion.downsize(), translation: position)
+        return Transform(scale: .one, rotation: simd_quatf(lookRotation), translation: position)
     }
 }

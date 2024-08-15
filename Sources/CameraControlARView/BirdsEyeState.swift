@@ -29,7 +29,7 @@ public struct BirdsEyeState {
     private var _xAxis: Float
     public var xAxis: Float {
         get {
-            return _xAxis
+            _xAxis
         }
         set {
             _xAxis = newValue.clamped(to: xAxisConstraint)
@@ -39,7 +39,7 @@ public struct BirdsEyeState {
     private var _zAxis: Float
     public var zAxis: Float {
         get {
-            return _zAxis
+            _zAxis
         }
         set {
             _zAxis = newValue.clamped(to: zAxisConstraint)
@@ -47,17 +47,17 @@ public struct BirdsEyeState {
     }
 
     public var radius: Float {
-        return sqrt(pow(xAxis, 2) + pow(zAxis, 2))
+        sqrt(pow(xAxis, 2) + pow(zAxis, 2))
     }
 
     public var rotation: Float {
-        return asin(zAxis / radius)
+        asin(zAxis / radius)
     }
 
     private var _height: Float
     public var height: Float {
         get {
-            return _height
+            _height
         }
         set {
             _height = newValue.clamped(to: heightConstraint)
@@ -67,7 +67,7 @@ public struct BirdsEyeState {
     private var _depth: Float
     public var depth: Float {
         get {
-            return _depth
+            _depth
         }
         set {
             _depth = newValue.clamped(to: depthConstraint)
@@ -75,7 +75,7 @@ public struct BirdsEyeState {
     }
 
     public var lensFocalPoint: SIMD3<Float> {
-        return SIMD3<Float>(target.x, target.y - depth, target.z)
+        SIMD3<Float>(target.x, target.y - depth, target.z)
     }
 
     init(target: SIMD3<Float> = SIMD3<Float>(0, 0, 0),
@@ -113,10 +113,7 @@ public struct BirdsEyeState {
         let position = Transform(scale: .one,
                                  rotation: simd_quatf(),
                                  translation: SIMD3(x, y, z)).translation
-
-        // For the rest, we look at the target position - using the Spatial library, but it's annoyingly
-        // set to ONLY return double formats, so we screw with it to fit...
         let lookRotation = Rotation3D(position: Point3D(position), target: Point3D(lensFocalPoint))
-        return Transform(scale: .one, rotation: lookRotation.quaternion.downsize(), translation: position)
+        return Transform(scale: .one, rotation: simd_quatf(lookRotation), translation: position)
     }
 }

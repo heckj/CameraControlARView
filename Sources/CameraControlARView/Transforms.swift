@@ -7,7 +7,7 @@ import simd
 /// - Parameter radians: The amount (in radians) to rotate around the Z axis.
 /// - Returns: A Z-axis rotation transform.
 func rotationAroundZAxisTransform(radians: Float) -> simd_float4x4 {
-    return simd_float4x4(
+    simd_float4x4(
         SIMD4<Float>(cos(radians), sin(radians), 0, 0),
         SIMD4<Float>(-sin(radians), cos(radians), 0, 0),
         SIMD4<Float>(0, 0, 1, 0),
@@ -19,7 +19,7 @@ func rotationAroundZAxisTransform(radians: Float) -> simd_float4x4 {
 /// - Parameter radians: The amount (in radians) to rotate around the X axis.
 /// - Returns: A X-axis rotation transform.
 func rotationAroundXAxisTransform(radians: Float) -> simd_float4x4 {
-    return simd_float4x4(
+    simd_float4x4(
         SIMD4<Float>(1, 0, 0, 0),
         SIMD4<Float>(0, cos(radians), sin(radians), 0),
         SIMD4<Float>(0, -sin(radians), cos(radians), 0),
@@ -31,7 +31,7 @@ func rotationAroundXAxisTransform(radians: Float) -> simd_float4x4 {
 /// - Parameter radians: The amount (in radians) to rotate around the Y axis.
 /// - Returns: A Y-axis rotation transform.
 func rotationAroundYAxisTransform(radians: Float) -> simd_float4x4 {
-    return simd_float4x4(
+    simd_float4x4(
         SIMD4<Float>(cos(radians), 0, -sin(radians), 0),
         SIMD4<Float>(0, 1, 0, 0),
         SIMD4<Float>(sin(radians), 0, cos(radians), 0),
