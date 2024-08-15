@@ -261,12 +261,14 @@ import RealityKit
         cameraAnchor.transform = state.cameraTransform()
         // reflect the camera's transform as an observed object
         macOSCameraTransform = cameraAnchor.transform
+        logger.trace("camera position \(self.cameraAnchor.transform.translation), heading: \(headingVector(self.cameraAnchor.transform)) ")
     }
 
     @MainActor private func updateCamera(_ state: BirdsEyeState) {
         cameraAnchor.transform = state.cameraTransform()
         // reflect the camera's transform as an observed object
         macOSCameraTransform = cameraAnchor.transform
+        logger.trace("camera position \(self.cameraAnchor.transform.translation), heading: \(headingVector(self.cameraAnchor.transform)) ")
     }
 
     func moveStart() {
