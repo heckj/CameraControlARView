@@ -70,7 +70,7 @@ public extension Transform {
 /// Returns the unit-vector that represents the current heading for the camera.
 func headingVector(_ t: Transform) -> simd_float3 {
     // Original heading is assumed to be the camera started out pointing in -Z direction.
-    let short_heading_vector = simd_float3(x: 0, y: 0, z: -1)
+    let short_heading_vector = simd_float3(x: 0, y: 0, z: 1)
     let rotated_heading = matrix_multiply(
         rotationTransform(t.matrix),
         short_heading_vector

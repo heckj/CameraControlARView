@@ -244,7 +244,7 @@ import RealityKit
     // MARK: - Camera positioning and orientation
 
     @MainActor func updateViewFromState() {
-        logger.trace("motion mode: \(self.motionMode.description)")
+        logger.trace("motion mode: \(motionMode.description)")
         switch motionMode {
         case .arcball_direct:
             updateCamera(arcball_state)
@@ -261,14 +261,14 @@ import RealityKit
         cameraAnchor.transform = state.cameraTransform()
         // reflect the camera's transform as an observed object
         macOSCameraTransform = cameraAnchor.transform
-        logger.trace("camera position \(self.cameraAnchor.transform.translation), heading: \(headingVector(self.cameraAnchor.transform)) ")
+        logger.trace("camera position \(cameraAnchor.transform.translation), heading: \(headingVector(cameraAnchor.transform)) ")
     }
 
     @MainActor private func updateCamera(_ state: BirdsEyeState) {
         cameraAnchor.transform = state.cameraTransform()
         // reflect the camera's transform as an observed object
         macOSCameraTransform = cameraAnchor.transform
-        logger.trace("camera position \(self.cameraAnchor.transform.translation), heading: \(headingVector(self.cameraAnchor.transform)) ")
+        logger.trace("camera position \(cameraAnchor.transform.translation), heading: \(headingVector(cameraAnchor.transform)) ")
     }
 
     func moveStart() {
@@ -288,7 +288,7 @@ import RealityKit
 
     func updateMove(_ deltaX: Float, _ deltaY: Float) {
         switch motionMode {
-        case .arcball:
+        case .arcball, .arcball_direct:
             arcball_state.rotationAngle -= deltaX * movementSpeed
             arcball_state.inclinationAngle += deltaY * movementSpeed
             updateCamera(arcball_state)
@@ -307,14 +307,10 @@ import RealityKit
                 radians: sixtydegrees * proportion_view_horizontal_drag)
             let combined_transform = dragstart_transform * look_up_transform * left_turn_transform
             cameraAnchor.transform = Transform(matrix: combined_transform)
-        case .arcball_direct:
-            arcball_state.rotationAngle -= deltaX * movementSpeed
-            arcball_state.inclinationAngle += deltaY * movementSpeed
-            updateCamera(arcball_state)
         case .birdseye:
             birdseye_state.xAxis += deltaX * movementSpeed
             birdseye_state.zAxis += deltaY * movementSpeed
-            print("grid: x \(birdseye_state.xAxis) rad, z: \(birdseye_state.zAxis) m")
+            // print("grid: x \(birdseye_state.xAxis) rad, z: \(birdseye_state.zAxis) m")
             updateCamera(birdseye_state)
         }
     }
@@ -625,16 +621,12 @@ import RealityKit
                 print("magnify: \(event)")
             }
             switch motionMode {
-            case .arcball:
+            case .arcball, .arcball_direct:
                 let multiplier = Float(event.magnification) // magnify_end
                 arcball_state.radius = arcball_state.radius * (multiplier + 1)
                 updateCamera(arcball_state)
             case .firstperson:
                 super.magnify(with: event)
-            case .arcball_direct:
-                let multiplier = Float(event.magnification) // magnify_end
-                arcball_state.radius = arcball_state.radius * (multiplier + 1)
-                updateCamera(arcball_state)
             case .birdseye:
                 // pass through events to the rest of the responder chain
                 super.magnify(with: event)

@@ -85,7 +85,10 @@ public struct ArcBallState: Sendable {
         // We only care about the position for the camera
         let position: SIMD3<Float> = Transform(matrix: computed_transform).translation
 
-        let lookRotation = Rotation3D(position: Point3D(position), target: Point3D(arcballTarget))
+        let lookRotation = Rotation3D(position: Point3D(position),
+                                      target: Point3D(x: 0, y: 0, z: 0),
+                                      up: Vector3D(x: 0, y: 1, z: 0))
+        // let lookRotation = Rotation3D(position: Point3D(position), target: Point3D(arcballTarget))
         return Transform(scale: .one, rotation: simd_quatf(lookRotation), translation: position)
     }
 }
