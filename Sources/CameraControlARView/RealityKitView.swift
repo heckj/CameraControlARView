@@ -8,7 +8,11 @@ import SwiftUI
 
 @MainActor
 enum Global {
-    static let arContainer = ARViewContainer(cameraARView: CameraControlledARView(frame: .zero))
+    #if os(iOS)
+        static let arContainer = ARViewContainer(cameraARView: CameraControlledARView(frame: .zero, cameraMode: .nonAR))
+    #elseif os(macOS)
+        static let arContainer = ARViewContainer(cameraARView: CameraControlledARView(frame: .zero))
+    #endif
 }
 
 /// A SwiftUI RealityKit view that optionally connects a closure you provide to scene events.
@@ -86,10 +90,27 @@ public struct RealityKitView: View {
 struct RealityView_Previews: PreviewProvider {
     static var previews: some View {
         RealityKitView({ context in
-            let entity = ModelEntity(mesh: .generateBox(size: SIMD3<Float>(repeating: 1)))
-            context.add(entity)
+            context.arView.motionMode = .arcball_direct(keys: true)
+
+            var sphereMaterial = SimpleMaterial()
+            sphereMaterial.roughness = .float(0.0)
+            sphereMaterial.metallic = .float(0.3)
+
+            let sphereEntity = ModelEntity(mesh: .generateSphere(radius: 0.5),
+                                           materials: [sphereMaterial])
+
+            let sphereAnchor = AnchorEntity(world: .zero)
+            sphereAnchor.addChild(sphereEntity)
+            context.arView.scene.anchors.append(sphereAnchor)
+
+            let pointLight = PointLight()
+            pointLight.light.intensity = 50000
+            pointLight.light.color = .red
+            pointLight.position.z = 2.0
+            sphereAnchor.addChild(pointLight)
         }, update: {
 //            print("update")
-        }).frame(width: 300, height: 300)
+        }).padding()
+        // .frame(width: 300, height: 300)
     }
 }
