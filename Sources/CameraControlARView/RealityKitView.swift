@@ -3,8 +3,8 @@
 //  Copyright © 2023 Joseph Heck
 
 import Combine
-import RealityKit
-import SwiftUI
+public import RealityKit
+public import SwiftUI
 
 @MainActor
 enum Global {
@@ -62,7 +62,7 @@ public struct RealityKitView: View {
 
     let context = Context(arView: Global.arContainer.cameraARView)
     var update: (() -> Void)?
-    var updateCancellable: Cancellable?
+    var updateCancellable: (any Cancellable)?
 
     /// Creates a new RealityKit SwiftUI View using the context you provide.
     /// - Parameters:

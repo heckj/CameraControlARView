@@ -14,8 +14,8 @@
 
     typealias PlatformViewRepresentable = NSViewRepresentable
 #endif
-import RealityKit
-import SwiftUI
+public import RealityKit
+public import SwiftUI
 
 /// A SwiftUI representable view that wraps an underlying augmented reality view with camera controls instance.
 ///

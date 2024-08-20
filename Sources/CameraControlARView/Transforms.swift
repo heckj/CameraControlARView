@@ -1,4 +1,4 @@
-import RealityKit
+public import RealityKit
 import simd
 
 // MARK: - rotational transforms

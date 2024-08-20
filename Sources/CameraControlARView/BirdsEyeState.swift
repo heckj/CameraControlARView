@@ -1,4 +1,4 @@
-import RealityKit
+public import RealityKit
 import simd
 import Spatial
 
@@ -115,5 +115,11 @@ public struct BirdsEyeState {
                                  translation: SIMD3(x, y, z)).translation
         let lookRotation = Rotation3D(position: Point3D(position), target: Point3D(lensFocalPoint))
         return Transform(scale: .one, rotation: simd_quatf(lookRotation), translation: position)
+    }
+}
+
+extension BirdsEyeState: CustomDebugStringConvertible {
+    public var debugDescription: String {
+        "radius: \(radius), rotation: \(rotation) ([\(xAxis), \(zAxis)]) to target \(lensFocalPoint)"
     }
 }

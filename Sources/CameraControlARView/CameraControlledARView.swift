@@ -5,17 +5,20 @@
 //  Created by Joseph Heck on 2/7/22.
 //
 
+// swiftformat:options --selfrequired trace
+// ^ needed for Autoclosure requirement need for self in logger.trace() calls
+
 #if os(iOS)
     import ARKit
-    import UIKit
+    public import UIKit
 #endif
 #if os(macOS)
-    import AppKit
+    public import AppKit
 #endif
 import CoreGraphics
 import Foundation
 import OSLog
-import RealityKit
+public import RealityKit
 
 /// A 3D View for SwiftUI using RealityKit that provides movement controls for the camera within the view.
 ///
@@ -244,7 +247,7 @@ import RealityKit
     // MARK: - Camera positioning and orientation
 
     @MainActor func updateViewFromState() {
-        logger.trace("motion mode: \(motionMode.description)")
+        logger.trace("motion mode: \(self.motionMode.description)")
         switch motionMode {
         case .arcball_direct:
             updateCamera(arcball_state)
@@ -261,14 +264,16 @@ import RealityKit
         cameraAnchor.transform = state.cameraTransform()
         // reflect the camera's transform as an observed object
         macOSCameraTransform = cameraAnchor.transform
-        logger.trace("camera position \(cameraAnchor.transform.translation), heading: \(headingVector(cameraAnchor.transform)) ")
+        logger.trace("state: \(state.debugDescription)")
+        logger.trace("camera position \(self.cameraAnchor.transform.translation), heading: \(headingVector(self.cameraAnchor.transform)) ")
     }
 
     @MainActor private func updateCamera(_ state: BirdsEyeState) {
         cameraAnchor.transform = state.cameraTransform()
         // reflect the camera's transform as an observed object
         macOSCameraTransform = cameraAnchor.transform
-        logger.trace("camera position \(cameraAnchor.transform.translation), heading: \(headingVector(cameraAnchor.transform)) ")
+        logger.trace("state: \(state.debugDescription)")
+        logger.trace("camera position \(self.cameraAnchor.transform.translation), heading: \(headingVector(self.cameraAnchor.transform)) ")
     }
 
     func moveStart() {
@@ -517,41 +522,37 @@ import RealityKit
                 case 123:
                     // 123 = left arrow (turn left)
                     let current_transform = cameraAnchor.transform.matrix
-                    let left_turn_transform: matrix_float4x4
-                    if event.isARepeat {
-                        left_turn_transform = rotationAroundYAxisTransform(radians: turn_speed * 2)
+                    let left_turn_transform: matrix_float4x4 = if event.isARepeat {
+                        rotationAroundYAxisTransform(radians: turn_speed * 2)
                     } else {
-                        left_turn_transform = rotationAroundYAxisTransform(radians: turn_speed)
+                        rotationAroundYAxisTransform(radians: turn_speed)
                     }
                     cameraAnchor.transform = Transform(matrix: matrix_multiply(current_transform, left_turn_transform))
                 case 124:
                     // 124 = right arrow (turn right)
                     let current_transform = cameraAnchor.transform.matrix
-                    let right_turn_transform: matrix_float4x4
-                    if event.isARepeat {
-                        right_turn_transform = rotationAroundYAxisTransform(radians: -turn_speed * 2)
+                    let right_turn_transform: matrix_float4x4 = if event.isARepeat {
+                        rotationAroundYAxisTransform(radians: -turn_speed * 2)
                     } else {
-                        right_turn_transform = rotationAroundYAxisTransform(radians: -turn_speed)
+                        rotationAroundYAxisTransform(radians: -turn_speed)
                     }
                     cameraAnchor.transform = Transform(matrix: matrix_multiply(current_transform, right_turn_transform))
                 case 126:
                     // 126 = up arrow (neg, X rotation)
                     let current_transform = cameraAnchor.transform.matrix
-                    let look_up_transform: matrix_float4x4
-                    if event.isARepeat {
-                        look_up_transform = rotationAroundXAxisTransform(radians: -turn_speed * 2)
+                    let look_up_transform: matrix_float4x4 = if event.isARepeat {
+                        rotationAroundXAxisTransform(radians: -turn_speed * 2)
                     } else {
-                        look_up_transform = rotationAroundXAxisTransform(radians: -turn_speed)
+                        rotationAroundXAxisTransform(radians: -turn_speed)
                     }
                     cameraAnchor.transform = Transform(matrix: matrix_multiply(current_transform, look_up_transform))
                 case 125:
                     // 125 = down arrow
                     let current_transform = cameraAnchor.transform.matrix
-                    let look_down_transform: matrix_float4x4
-                    if event.isARepeat {
-                        look_down_transform = rotationAroundXAxisTransform(radians: turn_speed * 2)
+                    let look_down_transform: matrix_float4x4 = if event.isARepeat {
+                        rotationAroundXAxisTransform(radians: turn_speed * 2)
                     } else {
-                        look_down_transform = rotationAroundXAxisTransform(radians: turn_speed)
+                        rotationAroundXAxisTransform(radians: turn_speed)
                     }
                     cameraAnchor.transform = Transform(matrix: matrix_multiply(current_transform, look_down_transform))
                 default:
