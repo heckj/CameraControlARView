@@ -10,15 +10,15 @@
 
 #if os(iOS)
     import ARKit
-    public import UIKit
+    import UIKit
 #endif
 #if os(macOS)
-    public import AppKit
+    import AppKit
 #endif
 import CoreGraphics
 import Foundation
 import OSLog
-public import RealityKit
+import RealityKit
 
 /// A 3D View for SwiftUI using RealityKit that provides movement controls for the camera within the view.
 ///

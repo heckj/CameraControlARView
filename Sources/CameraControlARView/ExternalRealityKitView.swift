@@ -8,7 +8,7 @@
 // import CameraControlARView
 import Combine
 import RealityKit
-public import SwiftUI
+import SwiftUI
 
 /// A SwiftUI RealityKit view that uses a instance of CameraControlledARView that you provide.
 ///

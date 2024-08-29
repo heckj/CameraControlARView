@@ -1,4 +1,4 @@
-public import RealityKit
+import RealityKit
 import simd
 
 // MARK: - rotational transforms
@@ -69,8 +69,9 @@ public extension Transform {
 
 /// Returns the unit-vector that represents the current heading for the camera.
 func headingVector(_ t: Transform) -> simd_float3 {
-    // Original heading is assumed to be the camera started out pointing in -Z direction.
-    let short_heading_vector = simd_float3(x: 0, y: 0, z: 1)
+    // Original heading is assumed to be the camera started out pointing in -Z direction,
+    // and "up" is in the +Y direction.
+    let short_heading_vector = simd_float3(x: 0, y: 0, z: -1)
     let rotated_heading = matrix_multiply(
         rotationTransform(t.matrix),
         short_heading_vector
@@ -80,7 +81,8 @@ func headingVector(_ t: Transform) -> simd_float3 {
 
 /// Returns the unit-vector that represents the heading 90° to the right of forward for the camera.
 func rightVector(_ t: Transform) -> simd_float3 {
-    // Original heading is assumed to be the camera started out pointing in -Z direction.
+    // Original heading is assumed to be the camera started out pointing in -Z direction,
+    // and "up" is in the +Y direction.
     let short_heading_vector = simd_float3(x: 1, y: 0, z: 0)
     let rotated_heading = matrix_multiply(
         rotationTransform(t.matrix),

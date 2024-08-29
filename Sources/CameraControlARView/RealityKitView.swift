@@ -3,8 +3,8 @@
 //  Copyright © 2023 Joseph Heck
 
 import Combine
-public import RealityKit
-public import SwiftUI
+import RealityKit
+import SwiftUI
 
 @MainActor
 enum Global {

@@ -1,4 +1,4 @@
-public import RealityKit
+import RealityKit
 import simd
 import Spatial
 
