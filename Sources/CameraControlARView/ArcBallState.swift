@@ -70,18 +70,21 @@ public struct ArcBallState: Sendable {
     }
 
     public func cameraTransform() -> Transform {
-        let translationTransform = Transform(scale: .one,
-                                             rotation: simd_quatf(),
-                                             translation: SIMD3<Float>(0, 0, radius))
+        let initialTranslation = Transform(scale: .one,
+                                           rotation: simd_quatf(),
+                                           translation: arcballTarget)
         let rotate_to_move: Transform = .init(
             pitch: inclinationAngle,
             yaw: rotationAngle,
             roll: 0
         )
+        let translationAfterRotationTransform = Transform(scale: .one,
+                                                          rotation: simd_quatf(),
+                                                          translation: SIMD3<Float>(0, 0, radius))
 
         // ORDER of operations is critical here to getting the correct transform:
         // - identity -> rotation -> translation
-        let computed_transform = matrix_identity_float4x4 * rotate_to_move.matrix * translationTransform.matrix
+        let computed_transform = initialTranslation.matrix + rotate_to_move.matrix * translationAfterRotationTransform.matrix
         // We only care about the position for the camera
         let position: SIMD3<Float> = Transform(matrix: computed_transform).translation
 
@@ -89,7 +92,9 @@ public struct ArcBallState: Sendable {
         let lookRotation = Rotation3D(position: Point3D(arcballTarget),
                                       target: Point3D(position),
                                       up: Vector3D(x: 0, y: 1, z: 0))
-        return Transform(scale: .one, rotation: simd_quatf(lookRotation), translation: position)
+        let float_rotation = simd_quatf(lookRotation)
+        let final_transform = Transform(scale: .one, rotation: float_rotation, translation: position)
+        return final_transform
     }
 }
 

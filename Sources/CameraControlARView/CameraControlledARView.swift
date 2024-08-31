@@ -261,7 +261,8 @@ import RealityKit
     }
 
     @MainActor private func updateCamera(_ state: ArcBallState) {
-        cameraAnchor.transform = state.cameraTransform()
+        let transform = state.cameraTransform()
+        cameraAnchor.transform = transform
         // reflect the camera's transform as an observed object
         macOSCameraTransform = cameraAnchor.transform
         logger.trace("state: \(state.debugDescription)")
