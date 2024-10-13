@@ -117,13 +117,23 @@ import RealityKit
     #if os(iOS)
         var pinchGesture: UIPinchGestureRecognizer?
         @IBAction func pinchRecognized(_ pinch: UIPinchGestureRecognizer) {
-            let multiplier = ((pinch.scale > 1.0) ? -1.0 : 1.0) * Float(pinch.scale) / 100 // magnify_end
-            arcball_state.radius = arcball_state.radius * (multiplier + 1)
+            logger.trace("iOS PINCH RECOGNIZED: pinch.scale \(pinch.scale)")
+            if pinch.scale > 1.0 {
+                // growing/ zooming in
+                arcball_state.radius = arcball_state.radius - Float(pinch.scale / 100)
+                logger.trace("subtracting: \(Float(pinch.scale / 100)) from radius -> \(self.arcball_state.radius)")
+            } else {
+                // value is 0...1 - shrinking, zooming out
+                arcball_state.radius = arcball_state.radius + Float(pinch.scale / 10)
+                logger.trace("adding: \(Float(pinch.scale / 100)) to radius -> \(self.arcball_state.radius)")
+            }
             updateCamera(arcball_state)
         }
 
         var twoFingerSwipeGesture: UISwipeGestureRecognizer?
-        @IBAction func twoFingerSwipeGestureRecognized(_: UISwipeGestureRecognizer) {}
+        @IBAction func twoFingerSwipeGestureRecognized(_ swipe: UISwipeGestureRecognizer) {
+            logger.trace("iOS SWIPE RECOGNIZED: \(swipe)")
+        }
     #endif
 
     #if os(iOS)
@@ -169,12 +179,20 @@ import RealityKit
                 super.init(frame: frameRect,
                            cameraMode: cameraMode,
                            automaticallyConfigureSession: true)
+                if cameraMode == .nonAR {
+                    let cameraEntity = PerspectiveCamera()
+                    cameraEntity.camera.fieldOfViewInDegrees = 60
+                    cameraAnchor.addChild(cameraEntity)
+                    scene.addAnchor(cameraAnchor)
+                }
             #endif
 
             updateCamera(arcball_state)
 
             pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(pinchRecognized(_:)))
+            twoFingerSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(twoFingerSwipeGestureRecognized(_:)))
             addGestureRecognizer(pinchGesture!)
+            addGestureRecognizer(twoFingerSwipeGesture!)
         }
     #endif
 
@@ -324,17 +342,19 @@ import RealityKit
     // MARK: - Touch, Trackpad, Mouse, and Gesture Input Handling
 
     #if os(iOS)
-        override public dynamic func touchesBegan(_ touches: Set<UITouch>, with _: UIEvent?) {
-            movestart_location = touches.first!.location(in: self)
-            moveStart()
-        }
-
-        override public dynamic func touchesMoved(_ touches: Set<UITouch>, with _: UIEvent?) {
-            let drag = touches.first!.location(in: self)
-            let deltaX = Float(drag.x - movestart_location.x)
-            let deltaY = Float(movestart_location.y - drag.y)
-            updateMove(deltaX, deltaY)
-        }
+        // DISABLING the single-touch manipulation of the view
+//        override public dynamic func touchesBegan(_ touches: Set<UITouch>, with _: UIEvent?) {
+//            movestart_location = touches.first!.location(in: self)
+//            moveStart()
+//        }
+//
+//        override public dynamic func touchesMoved(_ touches: Set<UITouch>, with _: UIEvent?) {
+//            let drag = touches.first!.location(in: self)
+//            let deltaX = Float(drag.x - movestart_location.x)
+//            let deltaY = Float(movestart_location.y - drag.y)
+//            updateMove(deltaX, deltaY)
+//            logger.trace("iOS touches moved: \(deltaX), \(deltaY)")
+//        }
     #endif
 
     #if os(macOS)
