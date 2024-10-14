@@ -117,22 +117,20 @@ import RealityKit
     #if os(iOS)
         var pinchGesture: UIPinchGestureRecognizer?
         @IBAction func pinchRecognized(_ pinch: UIPinchGestureRecognizer) {
-            logger.trace("iOS PINCH RECOGNIZED: pinch.scale \(pinch.scale)")
-            if pinch.scale > 1.0 {
-                // growing/ zooming in
-                arcball_state.radius = arcball_state.radius - Float(pinch.scale / 100)
-                logger.trace("subtracting: \(Float(pinch.scale / 100)) from radius -> \(self.arcball_state.radius)")
-            } else {
-                // value is 0...1 - shrinking, zooming out
-                arcball_state.radius = arcball_state.radius + Float(pinch.scale / 10)
-                logger.trace("adding: \(Float(pinch.scale / 100)) to radius -> \(self.arcball_state.radius)")
-            }
-            updateCamera(arcball_state)
+            logger.trace("iOS PINCH RECOGNIZED: pinch.scale \(pinch.scale), velocity: \(pinch.velocity)")
+            logger.trace("LOG VALUE SCALE: \(log(Float(pinch.scale)))")
+            arcball_state.radius = arcball_state.radius - log(Float(pinch.scale))
         }
 
-        var twoFingerSwipeGesture: UISwipeGestureRecognizer?
-        @IBAction func twoFingerSwipeGestureRecognized(_ swipe: UISwipeGestureRecognizer) {
-            logger.trace("iOS SWIPE RECOGNIZED: \(swipe)")
+        var panGesture: UIPanGestureRecognizer?
+        @IBAction func panRecognized(_ swipe: UIPanGestureRecognizer) {
+            logger.trace("iOS PAN RECOGNIZED: \(swipe)")
+            let translation: CGPoint = swipe.translation(in: swipe.view)
+            logger.trace("pan.translation: x: \(translation.x), y: \(translation.y)")
+            // iOS events flow pretty darned fast, so to get this down to a "sane" speed, I'm adding
+            // in an additional slow-down - there's another _inside_ updateMove, but it wasn't quite
+            // enough for iOS in testing.
+            updateMove(Float(translation.x) * movementSpeed, Float(translation.y) * movementSpeed)
         }
     #endif
 
@@ -187,12 +185,14 @@ import RealityKit
                 }
             #endif
 
+            // a one-off initial camera setup, after which modifying
+            // `arcball_state` will call through `didSet` to update the camera
             updateCamera(arcball_state)
 
             pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(pinchRecognized(_:)))
-            twoFingerSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(twoFingerSwipeGestureRecognized(_:)))
+            panGesture = UIPanGestureRecognizer(target: self, action: #selector(panRecognized(_:)))
             addGestureRecognizer(pinchGesture!)
-            addGestureRecognizer(twoFingerSwipeGesture!)
+            addGestureRecognizer(panGesture!)
         }
     #endif
 
@@ -248,12 +248,10 @@ import RealityKit
         }
 
         #if os(iOS)
-            twoFingerSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(twoFingerSwipeGestureRecognized(_:)))
-            twoFingerSwipeGesture?.numberOfTouchesRequired = 2
-            twoFingerSwipeGesture?.direction = [.up, .down, .left, .right]
-
             pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(pinchRecognized(_:)))
+            panGesture = UIPanGestureRecognizer(target: self, action: #selector(panRecognized(_:)))
             addGestureRecognizer(pinchGesture!)
+            addGestureRecognizer(panGesture!)
         #endif
     }
 
@@ -315,7 +313,6 @@ import RealityKit
         case .arcball, .arcball_direct:
             arcball_state.rotationAngle -= deltaX * movementSpeed
             arcball_state.inclinationAngle -= deltaY * movementSpeed
-            updateCamera(arcball_state)
         case .firstperson:
             // print("delta X is \(deltaX)")
             // print("delta Y is \(deltaY)")
@@ -335,7 +332,6 @@ import RealityKit
             birdseye_state.xAxis += deltaX * movementSpeed
             birdseye_state.zAxis += deltaY * movementSpeed
             // print("grid: x \(birdseye_state.xAxis) rad, z: \(birdseye_state.zAxis) m")
-            updateCamera(birdseye_state)
         }
     }
 
@@ -398,7 +394,7 @@ import RealityKit
 
         override public dynamic func scrollWheel(with event: NSEvent) {
             // two fingers moving across the trackpad
-//            print("scroll EVENT: \(event)")
+            logger.trace("macOS scroll EVENT: \(event)")
             if event.phase == .changed {
                 updateMove(Float(event.deltaX), Float(event.deltaY))
             }
@@ -432,17 +428,16 @@ import RealityKit
 
         override public dynamic func rotate(with event: NSEvent) {
             // Two fingers moving in opposite semicircles is a gesture meaning rotate.
-            // print("rotate EVENT: \(event)")
+            logger.trace("macOS rotate EVENT: \(event)")
             if event.phase == .began {
                 birdseye_state.radiusStart = birdseye_state.radius
                 birdseye_state.rotationStart = birdseye_state.rotation
             } else {
-//                let currentRotation = birdseye_state.rotationStart + event.rotation
+                // let currentRotation = birdseye_state.rotationStart + event.rotation
                 // NOTE: rotation events are meant to be accumulated and summed to get a final rotation.
                 birdseye_state.rotationStart += event.rotation
                 birdseye_state.xAxis = birdseye_state.radiusStart * cos(birdseye_state.rotationStart)
                 birdseye_state.zAxis = birdseye_state.radiusStart * sin(birdseye_state.rotationStart)
-                updateCamera(birdseye_state)
             }
 
             // HECKJ: this is rotating around the center of the scene, when I think what we want
@@ -456,8 +451,7 @@ import RealityKit
         }
 
         override public dynamic func keyDown(with event: NSEvent) {
-            // print("keyDown: \(event)")
-            // print("key value: \(event.keyCode)")
+            logger.trace("keyDown: \(event), code: \(event.keyCode)")
             switch motionMode {
             case let .arcball(useKeys):
                 if useKeys {
@@ -470,7 +464,6 @@ import RealityKit
                         } else {
                             arcball_state.rotationAngle -= keyspeed
                         }
-                        updateCamera(arcball_state)
                     case 124, 2:
                         // 124 = right arrow
                         // 2 = d
@@ -479,7 +472,6 @@ import RealityKit
                         } else {
                             arcball_state.rotationAngle += keyspeed
                         }
-                        updateCamera(arcball_state)
                     case 126, 13:
                         // 126 = up arrow
                         // 13 = w
@@ -489,7 +481,6 @@ import RealityKit
                             } else {
                                 arcball_state.inclinationAngle -= keyspeed
                             }
-                            updateCamera(arcball_state)
                         }
                     case 125, 1:
                         // 125 = down arrow
@@ -500,7 +491,6 @@ import RealityKit
                             } else {
                                 arcball_state.inclinationAngle += keyspeed
                             }
-                            updateCamera(arcball_state)
                         }
                     default:
                         // pass through events to the rest of the responder chain
@@ -591,7 +581,6 @@ import RealityKit
                         } else {
                             arcball_state.rotationAngle -= keyspeed
                         }
-                        updateCamera(arcball_state)
                     case 124, 2:
                         // 124 = right arrow
                         // 2 = d
@@ -600,7 +589,6 @@ import RealityKit
                         } else {
                             arcball_state.rotationAngle += keyspeed
                         }
-                        updateCamera(arcball_state)
                     case 126, 13:
                         // 126 = up arrow
                         // 13 = w
@@ -610,7 +598,6 @@ import RealityKit
                             } else {
                                 arcball_state.inclinationAngle -= keyspeed
                             }
-                            updateCamera(arcball_state)
                         }
                     case 125, 1:
                         // 125 = down arrow
@@ -621,7 +608,6 @@ import RealityKit
                             } else {
                                 arcball_state.inclinationAngle += keyspeed
                             }
-                            updateCamera(arcball_state)
                         }
                     default:
                         // pass through events to the rest of the responder chain
@@ -639,15 +625,16 @@ import RealityKit
 
         override public dynamic func magnify(with event: NSEvent) {
             // Pinching movements (in or out) are gestures meaning zoom out or zoom in (also called magnification).
+            logger.trace("macOS Magnify \(event)")
             if event.phase == NSEvent.Phase.ended {
-                // print("magnify: \(event)")
+                logger.trace("macOS Magnify End: \(event)")
             }
             switch motionMode {
             case .arcball, .arcball_direct:
                 let multiplier = -Float(event.magnification) // magnify_end
                 arcball_state.radius = arcball_state.radius * (multiplier + 1)
-                updateCamera(arcball_state)
             case .firstperson:
+                // pass through events to the rest of the responder chain
                 super.magnify(with: event)
             case .birdseye:
                 // pass through events to the rest of the responder chain
