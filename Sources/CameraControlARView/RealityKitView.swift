@@ -6,11 +6,26 @@ import Combine
 import RealityKit
 import SwiftUI
 
+/// The container for CameraControlARView global variables
 @MainActor
-enum Global {
+public enum Global {
     #if os(iOS)
+        /// A shared reference to ARViewContainer with its default ARView.
+        ///
+        /// You can access the RealityKit scene, or camera, from the ARView instance within ARViewContainer.
+        /// For example, to invoke findEntity on the scene:
+        /// ```
+        /// Global.arContainer.cameraARView.scene.findEntity(named: "...")
+        /// ```
         static let arContainer = ARViewContainer(cameraARView: CameraControlledARView(frame: .zero, cameraMode: .nonAR))
     #elseif os(macOS)
+        /// A shared reference to ARViewContainer with its default ARView.
+        ///
+        /// You can access the RealityKit scene, or camera, from the ARView instance within ARViewContainer.
+        /// For example, to invoke findEntity on the scene:
+        /// ```
+        /// Global.arContainer.cameraARView.scene.findEntity(named: "...")
+        /// ```
         static let arContainer = ARViewContainer(cameraARView: CameraControlledARView(frame: .zero))
     #endif
 }

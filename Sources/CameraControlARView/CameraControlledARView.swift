@@ -169,7 +169,7 @@ import RealityKit
                 super.init(frame: frameRect,
                            cameraMode: .nonAR,
                            automaticallyConfigureSession: true)
-                self.environment.background = .color(.white)
+                environment.background = .color(.white)
                 let cameraEntity = PerspectiveCamera()
                 cameraEntity.camera.fieldOfViewInDegrees = 60
                 cameraAnchor.addChild(cameraEntity)
@@ -179,7 +179,7 @@ import RealityKit
                            cameraMode: cameraMode,
                            automaticallyConfigureSession: true)
                 if cameraMode == .nonAR {
-                    self.environment.background = .color(.white)
+                    environment.background = .color(.white)
                     let cameraEntity = PerspectiveCamera()
                     cameraEntity.camera.fieldOfViewInDegrees = 60
                     cameraAnchor.addChild(cameraEntity)
