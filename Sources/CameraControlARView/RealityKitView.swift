@@ -6,9 +6,28 @@ import Combine
 import RealityKit
 import SwiftUI
 
+/// The container for CameraControlARView global variables
 @MainActor
-enum Global {
-  static let arContainer = ARViewContainer(cameraARView: CameraControlledARView(frame: .zero))
+public enum Global {
+    #if os(iOS)
+        /// A shared reference to ARViewContainer with its default ARView.
+        ///
+        /// You can access the RealityKit scene, or camera, from the ARView instance within ARViewContainer.
+        /// For example, to invoke findEntity on the scene:
+        /// ```
+        /// Global.arContainer.cameraARView.scene.findEntity(named: "...")
+        /// ```
+        public static let arContainer = ARViewContainer(cameraARView: CameraControlledARView(frame: .zero, cameraMode: .nonAR))
+    #elseif os(macOS)
+        /// A shared reference to ARViewContainer with its default ARView.
+        ///
+        /// You can access the RealityKit scene, or camera, from the ARView instance within ARViewContainer.
+        /// For example, to invoke findEntity on the scene:
+        /// ```
+        /// Global.arContainer.cameraARView.scene.findEntity(named: "...")
+        /// ```
+        public static let arContainer = ARViewContainer(cameraARView: CameraControlledARView(frame: .zero))
+    #endif
 }
 
 /// A SwiftUI RealityKit view that optionally connects a closure you provide to scene events.
@@ -29,26 +48,27 @@ enum Global {
 ///     print("update")
 /// })
 /// ```
+@MainActor
 public struct RealityKitView: View {
     /// The context for the RealityKit view.
     @MainActor public struct Context {
         /// A reference to an ARView subclass that you can configure.
         public var arView: CameraControlledARView
-        
+
         /// The RealityKit scene for this view
-        public var base: RealityKit.Scene {
-            self.arView.scene
+        @MainActor public var base: RealityKit.Scene {
+            arView.scene
         }
-        
+
         /// Applies the set of view debugging options that you provide to the RealityKit view.
-        /// - Parameter options: The ARView debug options for the view.
-        public func applyDebugOptions(_ options: ARView.DebugOptions) {
-            self.arView.debugOptions = options
+        /// - Parameter options: The debugging option set for an ARView to apply.
+        @MainActor public func applyDebugOptions(_ options: ARView.DebugOptions) {
+            arView.debugOptions = options
         }
-        
+
         /// Adds the entity that you provide at the center of the scene.
         /// - Parameter entity: The entity to add to the scene.
-        public func add(_ entity: Entity) {
+        @MainActor public func add(_ entity: Entity) {
             let originAnchor = AnchorEntity(world: .zero)
             originAnchor.addChild(entity)
             Global.arContainer.cameraARView.scene.anchors.append(originAnchor)
@@ -57,15 +77,17 @@ public struct RealityKitView: View {
 
     let context = Context(arView: Global.arContainer.cameraARView)
     var update: (() -> Void)?
-    var updateCancellable: Cancellable?
+    var updateCancellable: (any Cancellable)?
 
     /// Creates a new RealityKit SwiftUI View using the context you provide.
     /// - Parameters:
     ///   - content: A closure that provides ``Context`` for constructing your scene.
     ///   - update: An optional closure that RealityKit calls when Scene events are triggered.
+    @MainActor
     public init(_ content: @escaping (_ context: Context) -> Void, update: (() -> Void)? = nil) {
         content(context)
         self.update = update
+        context.arView.updateViewFromState()
 
         if let update = self.update {
             updateCancellable = Global.arContainer.cameraARView.scene.subscribe(to: SceneEvents.Update.self) { _ in
@@ -73,7 +95,7 @@ public struct RealityKitView: View {
             }
         }
     }
-    
+
     /// The body of the view.
     public var body: some View {
         Global.arContainer
@@ -83,10 +105,27 @@ public struct RealityKitView: View {
 struct RealityView_Previews: PreviewProvider {
     static var previews: some View {
         RealityKitView({ context in
-            let entity = ModelEntity(mesh: .generateBox(size: SIMD3<Float>.init(repeating: 1)))
-            context.add(entity)
+            context.arView.motionMode = .arcball_direct(keys: true)
+
+            var sphereMaterial = SimpleMaterial()
+            sphereMaterial.roughness = .float(0.0)
+            sphereMaterial.metallic = .float(0.3)
+
+            let sphereEntity = ModelEntity(mesh: .generateSphere(radius: 0.5),
+                                           materials: [sphereMaterial])
+
+            let sphereAnchor = AnchorEntity(world: .zero)
+            sphereAnchor.addChild(sphereEntity)
+            context.arView.scene.anchors.append(sphereAnchor)
+
+            let pointLight = PointLight()
+            pointLight.light.intensity = 50000
+            pointLight.light.color = .red
+            pointLight.position.z = 2.0
+            sphereAnchor.addChild(pointLight)
         }, update: {
-            print("update")
-        }).frame(width: 300, height: 300)
+//            print("update")
+        }).padding()
+        // .frame(width: 300, height: 300)
     }
 }

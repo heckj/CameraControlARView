@@ -11,16 +11,17 @@
 
 - ``CameraControlledARView/motionMode-swift.property``
 
-- ``CameraControlledARView/dragspeed``
 - ``CameraControlledARView/keyspeed``
+- ``CameraControlledARView/movementSpeed``
 - ``CameraControlledARView/turn_speed``
 
 ### Updating the Camera Using ArcBall Mode
 
-- ``CameraControlledARView/inclinationAngle``
-- ``CameraControlledARView/rotationAngle``
-- ``CameraControlledARView/radius``
-- ``CameraControlledARView/arcballTarget``
+- ``CameraControlledARView/arcball_state``
+
+### Updating the Camera Using BirdsEye Mode
+
+- ``CameraControlledARView/birdseye_state``
 
 ### Updating the Camera Using First Person Mode
 
@@ -33,3 +34,5 @@
 - ``CameraControlledARView/keyDown(with:)``
 - ``CameraControlledARView/mouseDown(with:)``
 - ``CameraControlledARView/mouseDragged(with:)``
+- ``CameraControlledARView/rotate(with:)``
+- ``CameraControlledARView/scrollWheel(with:)``

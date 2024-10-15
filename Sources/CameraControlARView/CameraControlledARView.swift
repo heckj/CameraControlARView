@@ -5,6 +5,9 @@
 //  Created by Joseph Heck on 2/7/22.
 //
 
+// swiftformat:options --selfrequired trace
+// ^ needed for Autoclosure requirement need for self in logger.trace() calls
+
 #if os(iOS)
     import ARKit
     import UIKit
@@ -14,6 +17,7 @@
 #endif
 import CoreGraphics
 import Foundation
+import OSLog
 import RealityKit
 
 /// A 3D View for SwiftUI using RealityKit that provides movement controls for the camera within the view.
@@ -25,75 +29,65 @@ import RealityKit
 /// options through the `debugOptions` property.
 ///
 /// Set the ``CameraControlledARView/motionMode-swift.property`` to define the motion controls.
-/// - ``MotionMode-swift.enum/arcball`` for rotating around a specific point.
+/// - ``MotionMode-swift.enum/arcball_direct(keys:)`` for rotating around a specific point with point and click gestures.
+/// - ``MotionMode-swift.enum/arcball(keys:)`` for rotating around a specific point with scrolling gestures.
 /// - ``MotionMode-swift.enum/firstperson`` for moving freely within the environment.
 ///
-/// The default motion mode is ``MotionMode-swift.enum/arcball``.
+/// The default motion mode is ``MotionMode-swift.enum/arcball_direct(keys:)``.
 ///
 /// When used on iOS, a pinch gesture is automatically registered for interaction.
 ///
 /// Additional properties control the target location, the camera's location, or the speed of movement within the environment.
+@available(macOS 11.0, *)
 @objc public final class CameraControlledARView: ARView, ObservableObject {
-
     /// The mode in which the camera is controlled by keypresses and/or mouse and gesture movements.
     ///
-    /// The default option is ``MotionMode-swift.enum/arcball``:
-    /// - ``MotionMode-swift.enum/arcball`` rotates around a specific target location, effectively orbiting and keeping the camera trained on that location.
-    /// - ``MotionMode-swift.enum/firstperson`` moves freely in all axis within the world space, not locked to any location.
+    /// The default option is ``MotionMode-swift.enum/arcball(keys:)``:
+    /// - ``MotionMode-swift.enum/arcball_direct(keys:)`` for rotating around a specific point with point and click gestures.
+    /// - ``MotionMode-swift.enum/arcball(keys:)`` for rotating around a specific point with scrolling gestures.
+    /// - ``MotionMode-swift.enum/firstperson`` for moving freely within the environment.
     ///
     public var motionMode: MotionMode
 
-    // TODO: consider encapsulating all these values into a single struct to allow for assigning consolidated values.
+    private let logger = Logger(subsystem: "CameraControlledARView", category: "cameraState")
 
     // MARK: - ARCBALL mode variables
 
-    /// The target for the camera when in arcball mode.
-    public var arcballTarget: simd_float3 {
+    public var arcball_state: ArcBallState {
         didSet {
-            if motionMode == .arcball {
-                updateCamera()
+            switch motionMode {
+            case .arcball_direct:
+                updateCamera(arcball_state)
+            case .arcball:
+                updateCamera(arcball_state)
+            default:
+                break
             }
         }
     }
 
-    /// The angle of inclination of the camera when in arcball mode.
-    public var inclinationAngle: Float {
+    public var birdseye_state: BirdsEyeState {
         didSet {
-            if motionMode == .arcball {
-                updateCamera()
+            switch motionMode {
+            case .birdseye:
+                updateCamera(birdseye_state)
+            default:
+                break
             }
         }
     }
 
-    /// The angle of rotation of the camera when in arcball mode.
-    public var rotationAngle: Float {
-        didSet {
-            if motionMode == .arcball {
-                updateCamera()
-            }
-        }
-    }
-
-    /// The camera's orbital distance from the target when in arcball mode.
-    public var radius: Float {
-        didSet {
-            if motionMode == .arcball {
-                updateCamera()
-            }
-        }
-    }
+    // MARK: movement mode agnostic state variables
 
     /// The speed at which drag operations map percentage of movement within the view to rotational or positional updates.
-    public var dragspeed: Float
+    public var movementSpeed: Float
 
     /// The speed at which keypresses change the angles of inclination or rotation.
     ///
     /// This view doubles the speed value when the key is held-down.
     public var keyspeed: Float
 
-    private var dragstart: CGPoint
-    private var dragstart_rotation: Float
-    private var dragstart_inclination: Float
+    private var movestart_location: CGPoint
     private var magnify_start: Float
 
     // MARK: - FPS mode variables
@@ -123,67 +117,87 @@ import RealityKit
     #if os(iOS)
         var pinchGesture: UIPinchGestureRecognizer?
         @IBAction func pinchRecognized(_ pinch: UIPinchGestureRecognizer) {
-            let multiplier = ((pinch.scale > 1.0) ? -1.0 : 1.0) * Float(pinch.scale) / 100 // magnify_end
-            radius = radius * (multiplier + 1)
-            updateCamera()
+            logger.trace("iOS PINCH RECOGNIZED: pinch.scale \(pinch.scale), velocity: \(pinch.velocity)")
+            logger.trace("LOG VALUE SCALE: \(log(Float(pinch.scale)))")
+            arcball_state.radius = arcball_state.radius - log(Float(pinch.scale))
+        }
+
+        var panGesture: UIPanGestureRecognizer?
+        @IBAction func panRecognized(_ swipe: UIPanGestureRecognizer) {
+            logger.trace("iOS PAN RECOGNIZED: \(swipe)")
+            let translation: CGPoint = swipe.translation(in: swipe.view)
+            logger.trace("pan.translation: x: \(translation.x), y: \(translation.y)")
+            // iOS events flow pretty darned fast, so to get this down to a "sane" speed, I'm adding
+            // in an additional slow-down - there's another _inside_ updateMove, but it wasn't quite
+            // enough for iOS in testing.
+            updateMove(Float(translation.x) * movementSpeed, Float(translation.y) * movementSpeed)
         }
     #endif
 
     #if os(iOS)
-    /// Creates an augmented reality view with the camera location and orientation controlled by the view.
-    /// 
-    /// The camera orientation and location is controlled by keyboard, mouse, touch, and multitouch gestures, with the specific sets of supported gestures and their effects defined by the view's ``MotionMode-swift.enum``.
-    /// The default motion mode for the view is ``MotionMode-swift.enum/arcball``, which orbits the camera around a specific point in space.
-    /// 
-    /// - Parameter frameRect: The frame rectangle for the view, measured in points.
-    /// - Parameter cameraMode: An indication of whether to use the device’s camera or a virtual one.
-    @MainActor public init(frame frameRect: CGRect, cameraMode: ARView.CameraMode) {
-        motionMode = .arcball
+        /// Creates an augmented reality view with the camera location and orientation controlled by the view.
+        ///
+        /// The camera orientation and location is controlled by keyboard, mouse, touch, and multitouch gestures, with the specific sets of supported gestures and their effects defined by the view's ``MotionMode-swift.enum``.
+        /// The default motion mode for the view is ``MotionMode-swift.enum/arcball``, which orbits the camera around a specific point in space.
+        ///
+        /// - Parameter frameRect: The frame rectangle for the view, measured in points.
+        /// - Parameter cameraMode: An indication of whether to use the device’s camera or a virtual one.
+        @MainActor public init(frame frameRect: CGRect, cameraMode: ARView.CameraMode) {
+            motionMode = .arcball_direct(keys: true)
 
-        // ARCBALL mode
-        arcballTarget = simd_float3(0, 0, 0)
-        inclinationAngle = 0
-        rotationAngle = 0
-        radius = 2
-        keyspeed = 0.01
-        dragspeed = 0.01
-        dragstart_rotation = 0
-        dragstart_inclination = 0
-        magnify_start = radius
+            // ARCBALL mode
+            arcball_state = ArcBallState()
+            // LENS mode
+            birdseye_state = BirdsEyeState()
 
-        // FPS mode
-        forward_speed = 0.05
-        turn_speed = 0.01
+            keyspeed = 0.01
+            movementSpeed = 0.01
+            magnify_start = arcball_state.radius
 
-        // Not mode specific
-        cameraAnchor = AnchorEntity(world: .zero)
-        dragstart = CGPoint.zero
-        dragstart_transform = cameraAnchor.transform.matrix
-        // reflect the camera's transform as an observed object
-        macOSCameraTransform = cameraAnchor.transform
+            // FPS mode
+            forward_speed = 0.05
+            turn_speed = 0.01
 
-        #if targetEnvironment(simulator)
-        super.init(frame: frameRect,
-                   cameraMode: .nonAR,
-                   automaticallyConfigureSession: true)
-        let cameraEntity = PerspectiveCamera()
-        cameraEntity.camera.fieldOfViewInDegrees = 60
-        cameraAnchor.addChild(cameraEntity)
-        scene.addAnchor(cameraAnchor)
-        #else
-        super.init(frame: frameRect,
-                   cameraMode: cameraMode,
-                   automaticallyConfigureSession: true)
-        #endif
-        
-        updateCamera()
+            // Not mode specific
+            cameraAnchor = AnchorEntity(world: .zero)
+            movestart_location = CGPoint.zero
+            dragstart_transform = cameraAnchor.transform.matrix
+            // reflect the camera's transform as an observed object
+            macOSCameraTransform = cameraAnchor.transform
 
-        pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(pinchRecognized(_:)))
-        addGestureRecognizer(pinchGesture!)
-        
-    }
-#endif
-    
+            #if targetEnvironment(simulator)
+                super.init(frame: frameRect,
+                           cameraMode: .nonAR,
+                           automaticallyConfigureSession: true)
+                environment.background = .color(.white)
+                let cameraEntity = PerspectiveCamera()
+                cameraEntity.camera.fieldOfViewInDegrees = 60
+                cameraAnchor.addChild(cameraEntity)
+                scene.addAnchor(cameraAnchor)
+            #else
+                super.init(frame: frameRect,
+                           cameraMode: cameraMode,
+                           automaticallyConfigureSession: true)
+                if cameraMode == .nonAR {
+                    environment.background = .color(.white)
+                    let cameraEntity = PerspectiveCamera()
+                    cameraEntity.camera.fieldOfViewInDegrees = 60
+                    cameraAnchor.addChild(cameraEntity)
+                    scene.addAnchor(cameraAnchor)
+                }
+            #endif
+
+            // a one-off initial camera setup, after which modifying
+            // `arcball_state` will call through `didSet` to update the camera
+            updateCamera(arcball_state)
+
+            pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(pinchRecognized(_:)))
+            panGesture = UIPanGestureRecognizer(target: self, action: #selector(panRecognized(_:)))
+            addGestureRecognizer(pinchGesture!)
+            addGestureRecognizer(panGesture!)
+        }
+    #endif
+
     /// Creates an augmented reality view with the camera location and orientation controlled by the view.
     ///
     /// The camera orientation and location is controlled by keyboard, mouse, touch, and multitouch gestures, with the specific sets of supported gestures and their effects defined by the view's ``MotionMode-swift.enum``.
@@ -192,18 +206,17 @@ import RealityKit
     /// - Parameter frameRect: The frame rectangle for the view, measured in points.
     /// - Parameter cameraMode: An indication of whether to use the device’s camera or a virtual one.
     @MainActor dynamic required init(frame frameRect: CGRect) {
-        motionMode = .arcball
+        motionMode = .arcball_direct(keys: true)
 
         // ARCBALL mode
-        arcballTarget = simd_float3(0, 0, 0)
-        inclinationAngle = 0
-        rotationAngle = 0
-        radius = 2
+        arcball_state = ArcBallState()
+        // LENS mode
+        birdseye_state = BirdsEyeState()
+
         keyspeed = 0.01
-        dragspeed = 0.01
-        dragstart_rotation = 0
-        dragstart_inclination = 0
-        magnify_start = radius
+        movementSpeed = 0.01
+
+        magnify_start = arcball_state.radius
 
         // FPS mode
         forward_speed = 0.05
@@ -211,7 +224,7 @@ import RealityKit
 
         // Not mode specific
         cameraAnchor = AnchorEntity(world: .zero)
-        dragstart = CGPoint.zero
+        movestart_location = CGPoint.zero
         dragstart_transform = cameraAnchor.transform.matrix
         // reflect the camera's transform as an observed object
         macOSCameraTransform = cameraAnchor.transform
@@ -223,11 +236,24 @@ import RealityKit
             cameraAnchor.addChild(cameraEntity)
             scene.addAnchor(cameraAnchor)
         #endif
-        updateCamera()
+        // Set initial camera position based on defaults from
+        // the motion tracking state machinery
+        switch motionMode {
+        case .arcball_direct:
+            updateCamera(arcball_state)
+        case .arcball:
+            updateCamera(arcball_state)
+        case .birdseye:
+            updateCamera(birdseye_state)
+        case .firstperson:
+            break
+        }
 
         #if os(iOS)
             pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(pinchRecognized(_:)))
+            panGesture = UIPanGestureRecognizer(target: self, action: #selector(panRecognized(_:)))
             addGestureRecognizer(pinchGesture!)
+            addGestureRecognizer(panGesture!)
         #endif
     }
 
@@ -235,128 +261,60 @@ import RealityKit
     @MainActor dynamic required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    // MARK: - rotational transforms
 
-    /// Creates a 3D rotation transform that rotates around the Z axis by the angle that you provide
-    /// - Parameter radians: The amount (in radians) to rotate around the Z axis.
-    /// - Returns: A Z-axis rotation transform.
-    private func rotationAroundZAxisTransform(radians: Float) -> simd_float4x4 {
-        return simd_float4x4(
-            SIMD4<Float>(cos(radians), sin(radians), 0, 0),
-            SIMD4<Float>(-sin(radians), cos(radians), 0, 0),
-            SIMD4<Float>(0, 0, 1, 0),
-            SIMD4<Float>(0, 0, 0, 1)
-        )
-    }
+    // MARK: - Camera positioning and orientation
 
-    /// Creates a 3D rotation transform that rotates around the X axis by the angle that you provide
-    /// - Parameter radians: The amount (in radians) to rotate around the X axis.
-    /// - Returns: A X-axis rotation transform.
-    private func rotationAroundXAxisTransform(radians: Float) -> simd_float4x4 {
-        return simd_float4x4(
-            SIMD4<Float>(1, 0, 0, 0),
-            SIMD4<Float>(0, cos(radians), sin(radians), 0),
-            SIMD4<Float>(0, -sin(radians), cos(radians), 0),
-            SIMD4<Float>(0, 0, 0, 1)
-        )
-    }
-
-    /// Creates a 3D rotation transform that rotates around the Y axis by the angle that you provide
-    /// - Parameter radians: The amount (in radians) to rotate around the Y axis.
-    /// - Returns: A Y-axis rotation transform.
-    private func rotationAroundYAxisTransform(radians: Float) -> simd_float4x4 {
-        return simd_float4x4(
-            SIMD4<Float>(cos(radians), 0, -sin(radians), 0),
-            SIMD4<Float>(0, 1, 0, 0),
-            SIMD4<Float>(sin(radians), 0, cos(radians), 0),
-            SIMD4<Float>(0, 0, 0, 1)
-        )
-    }
-
-    /// Returns the rotational transform component from a homogeneous matrix.
-    /// - Parameter matrix: The homogeneous transform matrix.
-    /// - Returns: The 3x3 rotation matrix.
-    private func rotationTransform(_ matrix: matrix_float4x4) -> matrix_float3x3 {
-        // Extract the rotational component from the transform matrix
-        let (col1, col2, col3, _) = matrix.columns
-        let rotationTransform = matrix_float3x3(
-            simd_float3(x: col1.x, y: col1.y, z: col1.z),
-            simd_float3(x: col2.x, y: col2.y, z: col2.z),
-            simd_float3(x: col3.x, y: col3.y, z: col3.z)
-        )
-        return rotationTransform
-    }
-
-    // MARK: - heading vectors
-
-    /// Returns the unit-vector that represents the current heading for the camera.
-    private func headingVector() -> simd_float3 {
-        // Original heading is assumed to be the camera started out pointing in -Z direction.
-        let short_heading_vector = simd_float3(x: 0, y: 0, z: -1)
-        let rotated_heading = matrix_multiply(
-            rotationTransform(cameraAnchor.transform.matrix),
-            short_heading_vector
-        )
-        return rotated_heading
-    }
-
-    /// Returns the unit-vector that represents the heading 90° to the right of forward for the camera.
-    private func rightVector() -> simd_float3 {
-        // Original heading is assumed to be the camera started out pointing in -Z direction.
-        let short_heading_vector = simd_float3(x: 1, y: 0, z: 0)
-        let rotated_heading = matrix_multiply(
-            rotationTransform(cameraAnchor.transform.matrix),
-            short_heading_vector
-        )
-        return rotated_heading
-    }
-
-    @MainActor private func updateCamera() {
+    @MainActor func updateViewFromState() {
+        logger.trace("motion mode: \(self.motionMode.description)")
         switch motionMode {
+        case .arcball_direct:
+            updateCamera(arcball_state)
         case .arcball:
-            let translationTransform = Transform(scale: .one,
-                                                 rotation: simd_quatf(),
-                                                 translation: SIMD3<Float>(0, 0, radius))
-            let combinedRotationTransform: Transform = .init(pitch: inclinationAngle, yaw: rotationAngle, roll: 0)
-
-            // ORDER of operations is critical here to getting the correct transform:
-            // - identity -> rotation -> translation
-            let computed_transform = matrix_identity_float4x4 * combinedRotationTransform.matrix * translationTransform.matrix
-
-            // This moves the camera to the right location
-            cameraAnchor.transform = Transform(matrix: computed_transform)
-            // This spins the camera AT its current location to look at a specific target location
-            cameraAnchor.look(at: arcballTarget, from: cameraAnchor.transform.translation, relativeTo: nil)
-            // reflect the camera's transform as an observed object
-            macOSCameraTransform = cameraAnchor.transform
+            updateCamera(arcball_state)
+        case .birdseye:
+            updateCamera(birdseye_state)
         case .firstperson:
             break
         }
     }
-    
-    func dragStart() {
+
+    @MainActor private func updateCamera(_ state: ArcBallState) {
+        let transform = state.cameraTransform()
+        cameraAnchor.transform = transform
+        // reflect the camera's transform as an observed object
+        macOSCameraTransform = cameraAnchor.transform
+        logger.trace("state: \(state.debugDescription)")
+        logger.trace("camera position \(self.cameraAnchor.transform.translation), heading: \(headingVector(self.cameraAnchor.transform)) ")
+    }
+
+    @MainActor private func updateCamera(_ state: BirdsEyeState) {
+        cameraAnchor.transform = state.cameraTransform()
+        // reflect the camera's transform as an observed object
+        macOSCameraTransform = cameraAnchor.transform
+        logger.trace("state: \(state.debugDescription)")
+        logger.trace("camera position \(self.cameraAnchor.transform.translation), heading: \(headingVector(self.cameraAnchor.transform)) ")
+    }
+
+    func moveStart() {
+        // captures the starting position before movement tracking
         switch motionMode {
         case .arcball:
-            dragstart_rotation = rotationAngle
-            dragstart_inclination = inclinationAngle
+            break
         case .firstperson:
             dragstart_transform = cameraAnchor.transform.matrix
+        case .arcball_direct:
+            arcball_state.movestart_rotation = arcball_state.rotationAngle
+            arcball_state.movestart_inclination = arcball_state.inclinationAngle
+        case .birdseye:
+            break
         }
     }
 
-    func dragMove(_ deltaX: Float, _ deltaY: Float) {
+    func updateMove(_ deltaX: Float, _ deltaY: Float) {
         switch motionMode {
-        case .arcball:
-            rotationAngle = dragstart_rotation - deltaX * dragspeed
-            inclinationAngle = dragstart_inclination + deltaY * dragspeed
-            if inclinationAngle > Float.pi / 2 {
-                inclinationAngle = Float.pi / 2
-            }
-            if inclinationAngle < -Float.pi / 2 {
-                inclinationAngle = -Float.pi / 2
-            }
-            updateCamera()
+        case .arcball, .arcball_direct:
+            arcball_state.rotationAngle -= deltaX * movementSpeed
+            arcball_state.inclinationAngle -= deltaY * movementSpeed
         case .firstperson:
             // print("delta X is \(deltaX)")
             // print("delta Y is \(deltaY)")
@@ -372,176 +330,317 @@ import RealityKit
                 radians: sixtydegrees * proportion_view_horizontal_drag)
             let combined_transform = dragstart_transform * look_up_transform * left_turn_transform
             cameraAnchor.transform = Transform(matrix: combined_transform)
+        case .birdseye:
+            birdseye_state.xAxis += deltaX * movementSpeed
+            birdseye_state.zAxis += deltaY * movementSpeed
+            // print("grid: x \(birdseye_state.xAxis) rad, z: \(birdseye_state.zAxis) m")
         }
     }
 
-    #if os(iOS)
-    override public dynamic func touchesBegan(_ touches: Set<UITouch>, with _: UIEvent?) {
-            dragstart = touches.first!.location(in: self)
-            dragStart()
-        }
+    // MARK: - Touch, Trackpad, Mouse, and Gesture Input Handling
 
-    override public dynamic func touchesMoved(_ touches: Set<UITouch>, with _: UIEvent?) {
-            let drag = touches.first!.location(in: self)
-            let deltaX = Float(drag.x - dragstart.x)
-            let deltaY = Float(dragstart.y - drag.y)
-            dragMove(deltaX, deltaY)
-        }
+    #if os(iOS)
+        // DISABLING the single-touch manipulation of the view
+//        override public dynamic func touchesBegan(_ touches: Set<UITouch>, with _: UIEvent?) {
+//            movestart_location = touches.first!.location(in: self)
+//            moveStart()
+//        }
+//
+//        override public dynamic func touchesMoved(_ touches: Set<UITouch>, with _: UIEvent?) {
+//            let drag = touches.first!.location(in: self)
+//            let deltaX = Float(drag.x - movestart_location.x)
+//            let deltaY = Float(movestart_location.y - drag.y)
+//            updateMove(deltaX, deltaY)
+//            logger.trace("iOS touches moved: \(deltaX), \(deltaY)")
+//        }
     #endif
 
     #if os(macOS)
-    override public dynamic func mouseDown(with event: NSEvent) {
+        override public dynamic func mouseDown(with event: NSEvent) {
             // print("mouseDown EVENT: \(event)")
-            // print(" at \(event.locationInWindow) of \(self.frame)")
-            dragstart = event.locationInWindow
-            dragStart()
-        }
-
-    override public dynamic func mouseDragged(with event: NSEvent) {
-            // print("mouseDragged EVENT: \(event)")
-            // print(" at \(event.locationInWindow) of \(self.frame)")
-            let deltaX = Float(event.locationInWindow.x - dragstart.x)
-            let deltaY = Float(event.locationInWindow.y - dragstart.y)
-            dragMove(deltaX, deltaY)
-        }
-
-    override public dynamic func keyDown(with event: NSEvent) {
-            // print("keyDown: \(event)")
-            // print("key value: \(event.keyCode)")
+            // print(" at \(event.locationInWindow) of \(frame)")
             switch motionMode {
+            case .arcball_direct:
+                moveStart()
             case .arcball:
-                switch event.keyCode {
-                case 123, 0:
-                    // 123 = left arrow
-                    // 0 = a
-                    if event.isARepeat {
-                        rotationAngle -= keyspeed * 2
-                    } else {
-                        rotationAngle -= keyspeed
-                    }
-                    updateCamera()
-                case 124, 2:
-                    // 124 = right arrow
-                    // 2 = d
-                    if event.isARepeat {
-                        rotationAngle += keyspeed * 2
-                    } else {
-                        rotationAngle += keyspeed
-                    }
-                    updateCamera()
-                case 126, 13:
-                    // 126 = up arrow
-                    // 13 = w
-                    if inclinationAngle > -Float.pi / 2 {
-                        if event.isARepeat {
-                            inclinationAngle -= keyspeed * 2
-                        } else {
-                            inclinationAngle -= keyspeed
-                        }
-                        updateCamera()
-                    }
-                case 125, 1:
-                    // 125 = down arrow
-                    // 1 = s
-                    if inclinationAngle < Float.pi / 2 {
-                        if event.isARepeat {
-                            inclinationAngle += keyspeed * 2
-                        } else {
-                            inclinationAngle += keyspeed
-                        }
-                        updateCamera()
-                    }
-                default:
-                    break
-                }
+                // pass through events to the rest of the responder chain
+                super.mouseDown(with: event)
+            case .birdseye:
+                // pass through events to the rest of the responder chain
+                super.mouseDown(with: event)
+            case .firstperson:
+                movestart_location = event.locationInWindow
+            }
+        }
 
+        override public dynamic func mouseDragged(with event: NSEvent) {
+            // print("mouseDragged EVENT: \(event)")
+            // print(" at \(event.locationInWindow) of \(frame)")
+            switch motionMode {
+            case .arcball_direct:
+                let deltaX = Float(event.locationInWindow.x - movestart_location.x)
+                let deltaY = Float(event.locationInWindow.y - movestart_location.y)
+                updateMove(deltaX, deltaY)
+            case .arcball:
+                // pass through events to the rest of the responder chain
+                super.mouseDragged(with: event)
+            case .birdseye:
+                // pass through events to the rest of the responder chain
+                super.mouseDragged(with: event)
+            case .firstperson:
+                let deltaX = Float(event.locationInWindow.x - movestart_location.x)
+                let deltaY = Float(event.locationInWindow.y - movestart_location.y)
+                updateMove(deltaX, deltaY)
+            }
+        }
+
+        override public dynamic func scrollWheel(with event: NSEvent) {
+            // two fingers moving across the trackpad
+            logger.trace("macOS scroll EVENT: \(event)")
+            if event.phase == .changed {
+                updateMove(Float(event.deltaX), Float(event.deltaY))
+            }
+
+            // scroll EVENT: NSEvent: type=ScrollWheel loc=(487.367,125.148) time=198692.7 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deltaX=0.000000 deltaY=0.000000 count:0 phase=MayBegin momentumPhase=None
+            // scroll EVENT: NSEvent: type=ScrollWheel loc=(487.367,125.148) time=198692.8 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deltaX=0.000000 deltaY=-1.000000 count:0 phase=Began momentumPhase=None
+            // scroll EVENT: NSEvent: type=ScrollWheel loc=(487.367,125.148) time=198692.8 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deltaX=8.000000 deltaY=-12.000000 count:0 phase=Changed momentumPhase=None
+            // scroll EVENT: NSEvent: type=ScrollWheel loc=(487.367,125.148) time=198692.8 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deltaX=46.000000 deltaY=-44.000000 count:1 phase=Changed momentumPhase=None
+            // scroll EVENT: NSEvent: type=ScrollWheel loc=(487.367,125.148) time=198692.8 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deltaX=0.000000 deltaY=0.000000 count:1 phase=Ended momentumPhase=None
+
+            // if event.momentumPhase == ... to handle momentum based followthrough on
+            // flicks/scroll events..
+
+            // scroll EVENT: NSEvent: type=ScrollWheel loc=(487.367,125.148) time=198692.8 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deltaX=97.000000 deltaY=-81.000000 count:1 phase=None momentumPhase=Began
+            // scroll EVENT: NSEvent: type=ScrollWheel loc=(487.367,125.148) time=198692.8 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deltaX=104.000000 deltaY=-88.000000 count:1 phase=None momentumPhase=Changed
+            // scroll EVENT: NSEvent: type=ScrollWheel loc=(487.367,125.148) time=198692.9 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deltaX=103.000000 deltaY=-89.000000 count:1 phase=None momentumPhase=Changed
+            // scroll EVENT: NSEvent: type=ScrollWheel loc=(487.367,125.148) time=198692.9 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deltaX=99.000000 deltaY=-86.000000 count:1 phase=None momentumPhase=Changed
+            // scroll EVENT: NSEvent: type=ScrollWheel loc=(487.367,125.148) time=198692.9 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deltaX=96.000000 deltaY=-83.000000 count:1 phase=None momentumPhase=Changed
+            // scroll EVENT: NSEvent: type=ScrollWheel loc=(487.367,125.148) time=198692.9 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deltaX=91.000000 deltaY=-79.000000 count:1 phase=None momentumPhase=Changed
+            // scroll EVENT: NSEvent: type=ScrollWheel loc=(487.367,125.148) time=198692.9 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deltaX=90.000000 deltaY=-80.000000 count:1 phase=None momentumPhase=Changed
+
+//            scroll EVENT: NSEvent: type=ScrollWheel loc=(487.367,125.148) time=198693.9 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deltaX=1.000000 deltaY=-1.000000 count:0 phase=None momentumPhase=Changed
+//            scroll EVENT: NSEvent: type=ScrollWheel loc=(487.367,125.148) time=198693.9 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deltaX=1.000000 deltaY=-1.000000 count:0 phase=None momentumPhase=Changed
+//            scroll EVENT: NSEvent: type=ScrollWheel loc=(487.367,125.148) time=198693.9 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deltaX=1.000000 deltaY=-1.000000 count:0 phase=None momentumPhase=Changed
+//            scroll EVENT: NSEvent: type=ScrollWheel loc=(487.367,125.148) time=198694.0 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deltaX=1.000000 deltaY=0.000000 count:0 phase=None momentumPhase=Changed
+//            scroll EVENT: NSEvent: type=ScrollWheel loc=(487.367,125.148) time=198694.0 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deltaX=0.000000 deltaY=0.000000 count:0 phase=None momentumPhase=Ended
+
+            // pass through events to the rest of the responder chain?
+            super.scrollWheel(with: event)
+        }
+
+        override public dynamic func rotate(with event: NSEvent) {
+            // Two fingers moving in opposite semicircles is a gesture meaning rotate.
+            logger.trace("macOS rotate EVENT: \(event)")
+            if event.phase == .began {
+                birdseye_state.radiusStart = birdseye_state.radius
+                birdseye_state.rotationStart = birdseye_state.rotation
+            } else {
+                // let currentRotation = birdseye_state.rotationStart + event.rotation
+                // NOTE: rotation events are meant to be accumulated and summed to get a final rotation.
+                birdseye_state.rotationStart += event.rotation
+                birdseye_state.xAxis = birdseye_state.radiusStart * cos(birdseye_state.rotationStart)
+                birdseye_state.zAxis = birdseye_state.radiusStart * sin(birdseye_state.rotationStart)
+            }
+
+            // HECKJ: this is rotating around the center of the scene, when I think what we want
+            // is just rotating the camera at it's current position, around the Y axis...
+
+            // rotate EVENT: NSEvent: type=Rotate loc=(784.109,128.215) time=198608.2 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deviceID:0x200000000000027 rotation=-0.549038 phase:Changed
+            // rotate EVENT: NSEvent: type=Rotate loc=(784.109,128.215) time=198608.2 flags=0 win=0x12684a6a0 winNum=7356 ctxt=0x0 deviceID:0x200000000000027 rotation=-0.772850 phase:Ended
+
+            // pass through events to the rest of the responder chain ?
+            super.rotate(with: event)
+        }
+
+        override public dynamic func keyDown(with event: NSEvent) {
+            logger.trace("keyDown: \(event), code: \(event.keyCode)")
+            switch motionMode {
+            case let .arcball(useKeys):
+                if useKeys {
+                    switch event.keyCode {
+                    case 123, 0:
+                        // 123 = left arrow
+                        // 0 = a
+                        if event.isARepeat {
+                            arcball_state.rotationAngle -= keyspeed * 2
+                        } else {
+                            arcball_state.rotationAngle -= keyspeed
+                        }
+                    case 124, 2:
+                        // 124 = right arrow
+                        // 2 = d
+                        if event.isARepeat {
+                            arcball_state.rotationAngle += keyspeed * 2
+                        } else {
+                            arcball_state.rotationAngle += keyspeed
+                        }
+                    case 126, 13:
+                        // 126 = up arrow
+                        // 13 = w
+                        if arcball_state.inclinationAngle > -Float.pi / 2 {
+                            if event.isARepeat {
+                                arcball_state.inclinationAngle -= keyspeed * 2
+                            } else {
+                                arcball_state.inclinationAngle -= keyspeed
+                            }
+                        }
+                    case 125, 1:
+                        // 125 = down arrow
+                        // 1 = s
+                        if arcball_state.inclinationAngle < Float.pi / 2 {
+                            if event.isARepeat {
+                                arcball_state.inclinationAngle += keyspeed * 2
+                            } else {
+                                arcball_state.inclinationAngle += keyspeed
+                            }
+                        }
+                    default:
+                        // pass through events to the rest of the responder chain
+                        super.keyDown(with: event)
+                    }
+                } else {
+                    // pass through events to the rest of the responder chain
+                    super.keyDown(with: event)
+                }
             case .firstperson:
                 switch event.keyCode {
                 case 0:
                     // 0 = a (move left)
                     if event.isARepeat {
-                        cameraAnchor.position = cameraAnchor.position - (rightVector() * forward_speed * 2)
+                        cameraAnchor.position = cameraAnchor.position - (rightVector(cameraAnchor.transform) * forward_speed * 2)
                     } else {
-                        cameraAnchor.position = cameraAnchor.position - (rightVector() * forward_speed)
+                        cameraAnchor.position = cameraAnchor.position - (rightVector(cameraAnchor.transform) * forward_speed)
                     }
                 case 2:
                     // 2 = d (move right)
                     if event.isARepeat {
-                        cameraAnchor.position = cameraAnchor.position + (rightVector() * forward_speed * 2)
+                        cameraAnchor.position = cameraAnchor.position + (rightVector(cameraAnchor.transform) * forward_speed * 2)
                     } else {
-                        cameraAnchor.position = cameraAnchor.position + (rightVector() * forward_speed)
+                        cameraAnchor.position = cameraAnchor.position + (rightVector(cameraAnchor.transform) * forward_speed)
                     }
                 case 13:
                     // 13 = w (move forward)
                     if event.isARepeat {
-                        cameraAnchor.position = cameraAnchor.position + (headingVector() * forward_speed * 2)
+                        cameraAnchor.position = cameraAnchor.position + (headingVector(cameraAnchor.transform) * forward_speed * 2)
                     } else {
-                        cameraAnchor.position = cameraAnchor.position + (headingVector() * forward_speed)
+                        cameraAnchor.position = cameraAnchor.position + (headingVector(cameraAnchor.transform) * forward_speed)
                     }
                 case 1:
                     // 1 = s (move back)
                     if event.isARepeat {
-                        cameraAnchor.position = cameraAnchor.position - (headingVector() * forward_speed * 2)
+                        cameraAnchor.position = cameraAnchor.position - (headingVector(cameraAnchor.transform) * forward_speed * 2)
                     } else {
-                        cameraAnchor.position = cameraAnchor.position - (headingVector() * forward_speed)
+                        cameraAnchor.position = cameraAnchor.position - (headingVector(cameraAnchor.transform) * forward_speed)
                     }
                 case 123:
                     // 123 = left arrow (turn left)
                     let current_transform = cameraAnchor.transform.matrix
-                    let left_turn_transform: matrix_float4x4
-                    if event.isARepeat {
-                        left_turn_transform = rotationAroundYAxisTransform(radians: turn_speed * 2)
+                    let left_turn_transform: matrix_float4x4 = if event.isARepeat {
+                        rotationAroundYAxisTransform(radians: turn_speed * 2)
                     } else {
-                        left_turn_transform = rotationAroundYAxisTransform(radians: turn_speed)
+                        rotationAroundYAxisTransform(radians: turn_speed)
                     }
                     cameraAnchor.transform = Transform(matrix: matrix_multiply(current_transform, left_turn_transform))
                 case 124:
                     // 124 = right arrow (turn right)
                     let current_transform = cameraAnchor.transform.matrix
-                    let right_turn_transform: matrix_float4x4
-                    if event.isARepeat {
-                        right_turn_transform = rotationAroundYAxisTransform(radians: -turn_speed * 2)
+                    let right_turn_transform: matrix_float4x4 = if event.isARepeat {
+                        rotationAroundYAxisTransform(radians: -turn_speed * 2)
                     } else {
-                        right_turn_transform = rotationAroundYAxisTransform(radians: -turn_speed)
+                        rotationAroundYAxisTransform(radians: -turn_speed)
                     }
                     cameraAnchor.transform = Transform(matrix: matrix_multiply(current_transform, right_turn_transform))
                 case 126:
                     // 126 = up arrow (neg, X rotation)
                     let current_transform = cameraAnchor.transform.matrix
-                    let look_up_transform: matrix_float4x4
-                    if event.isARepeat {
-                        look_up_transform = rotationAroundXAxisTransform(radians: -turn_speed * 2)
+                    let look_up_transform: matrix_float4x4 = if event.isARepeat {
+                        rotationAroundXAxisTransform(radians: -turn_speed * 2)
                     } else {
-                        look_up_transform = rotationAroundXAxisTransform(radians: -turn_speed)
+                        rotationAroundXAxisTransform(radians: -turn_speed)
                     }
                     cameraAnchor.transform = Transform(matrix: matrix_multiply(current_transform, look_up_transform))
                 case 125:
                     // 125 = down arrow
                     let current_transform = cameraAnchor.transform.matrix
-                    let look_down_transform: matrix_float4x4
-                    if event.isARepeat {
-                        look_down_transform = rotationAroundXAxisTransform(radians: turn_speed * 2)
+                    let look_down_transform: matrix_float4x4 = if event.isARepeat {
+                        rotationAroundXAxisTransform(radians: turn_speed * 2)
                     } else {
-                        look_down_transform = rotationAroundXAxisTransform(radians: turn_speed)
+                        rotationAroundXAxisTransform(radians: turn_speed)
                     }
                     cameraAnchor.transform = Transform(matrix: matrix_multiply(current_transform, look_down_transform))
                 default:
-                    break
+                    // pass through events to the rest of the responder chain
+                    super.keyDown(with: event)
                 }
+            case let .arcball_direct(useKeys):
+                if useKeys {
+                    switch event.keyCode {
+                    case 123, 0:
+                        // 123 = left arrow
+                        // 0 = a
+                        if event.isARepeat {
+                            arcball_state.rotationAngle -= keyspeed * 2
+                        } else {
+                            arcball_state.rotationAngle -= keyspeed
+                        }
+                    case 124, 2:
+                        // 124 = right arrow
+                        // 2 = d
+                        if event.isARepeat {
+                            arcball_state.rotationAngle += keyspeed * 2
+                        } else {
+                            arcball_state.rotationAngle += keyspeed
+                        }
+                    case 126, 13:
+                        // 126 = up arrow
+                        // 13 = w
+                        if arcball_state.inclinationAngle > -Float.pi / 2 {
+                            if event.isARepeat {
+                                arcball_state.inclinationAngle -= keyspeed * 2
+                            } else {
+                                arcball_state.inclinationAngle -= keyspeed
+                            }
+                        }
+                    case 125, 1:
+                        // 125 = down arrow
+                        // 1 = s
+                        if arcball_state.inclinationAngle < Float.pi / 2 {
+                            if event.isARepeat {
+                                arcball_state.inclinationAngle += keyspeed * 2
+                            } else {
+                                arcball_state.inclinationAngle += keyspeed
+                            }
+                        }
+                    default:
+                        // pass through events to the rest of the responder chain
+                        super.keyDown(with: event)
+                    }
+                } else {
+                    // pass through events to the rest of the responder chain
+                    super.keyDown(with: event)
+                }
+            case .birdseye:
+                // pass through events to the rest of the responder chain
+                super.keyDown(with: event)
             }
         }
 
-    override public dynamic func magnify(with event: NSEvent) {
-            // if event.phase == NSEvent.Phase.ended {
-            //    print("magnify: \(event)")
-            // }
+        override public dynamic func magnify(with event: NSEvent) {
+            // Pinching movements (in or out) are gestures meaning zoom out or zoom in (also called magnification).
+            logger.trace("macOS Magnify \(event)")
+            if event.phase == NSEvent.Phase.ended {
+                logger.trace("macOS Magnify End: \(event)")
+            }
             switch motionMode {
-            case .arcball:
-                let multiplier = Float(event.magnification) // magnify_end
-                radius = radius * (multiplier + 1)
-                updateCamera()
+            case .arcball, .arcball_direct:
+                let multiplier = -Float(event.magnification) // magnify_end
+                arcball_state.radius = arcball_state.radius * (multiplier + 1)
             case .firstperson:
-                break
+                // pass through events to the rest of the responder chain
+                super.magnify(with: event)
+            case .birdseye:
+                // pass through events to the rest of the responder chain
+                super.magnify(with: event)
             }
         }
     #endif
