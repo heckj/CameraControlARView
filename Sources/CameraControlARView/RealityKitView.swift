@@ -17,7 +17,7 @@ public enum Global {
         /// ```
         /// Global.arContainer.cameraARView.scene.findEntity(named: "...")
         /// ```
-        static let arContainer = ARViewContainer(cameraARView: CameraControlledARView(frame: .zero, cameraMode: .nonAR))
+        public static let arContainer = ARViewContainer(cameraARView: CameraControlledARView(frame: .zero, cameraMode: .nonAR))
     #elseif os(macOS)
         /// A shared reference to ARViewContainer with its default ARView.
         ///
@@ -26,7 +26,7 @@ public enum Global {
         /// ```
         /// Global.arContainer.cameraARView.scene.findEntity(named: "...")
         /// ```
-        static let arContainer = ARViewContainer(cameraARView: CameraControlledARView(frame: .zero))
+        public static let arContainer = ARViewContainer(cameraARView: CameraControlledARView(frame: .zero))
     #endif
 }
 
